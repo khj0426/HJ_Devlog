@@ -1,10 +1,13 @@
 'use client';
-import Button from './Button';
 import styled from 'styled-components';
-import { useRecoilState } from 'recoil';
-import { themeState } from '@/app/globalAtom';
+import ToggleDarkModeButton from '../DarkMode/ToggoeButton';
+import Link from 'next/link';
 
 const StyledNavBarLayout = styled.nav`
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
   display: flex;
   font-size: 20px;
   color: ${({ theme }) => theme.text};
@@ -12,35 +15,28 @@ const StyledNavBarLayout = styled.nav`
   margin: 0 auto;
   background-color: ${({ theme }) => theme.body};
   align-items: center;
+  justify-content: space-around;
+`;
+
+const StyledNavBarTitle = styled(Link)`
+  font-weight: 600;
+  text-decoration: none;
+  color: inherit;
 `;
 
 export default function Navbar() {
-  const [currentTheme, setCurrentTheme] = useRecoilState(themeState);
   return (
     <StyledNavBarLayout>
+      <StyledNavBarTitle href="/">HJ DevLog</StyledNavBarTitle>
       <div
         style={{
           display: 'flex',
+          alignItems: 'center',
         }}
       >
-        Home
+        <ToggleDarkModeButton />
+        <StyledNavBarTitle href="/about">About me</StyledNavBarTitle>
       </div>
-      <Button
-        label="About"
-        variant="outlined"
-        style={{
-          fontSize: '18px',
-        }}
-        onClick={() =>
-          setCurrentTheme((prevTheme) => {
-            console.log(prevTheme);
-            if (prevTheme === 'light') {
-              return 'dark';
-            }
-            return 'light';
-          })
-        }
-      />
     </StyledNavBarLayout>
   );
 }

@@ -35,7 +35,6 @@ export default function Button({
       variant={variant}
     >
       {icon}
-      버튼
     </StyledBaseButton>
   );
 }
