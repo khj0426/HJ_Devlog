@@ -3,14 +3,15 @@ import { join } from 'path';
 import matter from 'gray-matter';
 
 const PostDirectory = join(process.cwd(), 'posts');
+const ImageDirectory = join(process.cwd(), 'public/images');
 
 export function getPostSlugs() {
   return fs.readdirSync(PostDirectory);
 }
 
 export function getPostBySlug(slug: string, fields: string[] = []) {
-  const realSlug = slug.replace(/\.mdx/, '');
-  const fullPath = join(PostDirectory, `${realSlug}.mdx`);
+  const realSlug = slug.replace(/\.md/, '');
+  const fullPath = join(PostDirectory, `${realSlug}.md`);
   const fileContent = fs.readFileSync(fullPath, 'utf-8');
   const { data, content } = matter(fileContent);
 
@@ -28,6 +29,10 @@ export function getPostBySlug(slug: string, fields: string[] = []) {
     }
     if (typeof data[field] !== 'undefined') {
       items[field] = data[field];
+    }
+    if (field === 'image') {
+      const imagePath = join(ImageDirectory, data[field]);
+      items[field] = imagePath;
     }
   });
 

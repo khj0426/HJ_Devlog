@@ -42,6 +42,7 @@ export default function Footer() {
         </Link>
       </StyledLinkIconArea>
       <div>HJ DevLog</div>
+      <div>©{new Date().getFullYear()} 효중킴의 블로그, Powered By Next.js</div>
     </StyledFooter>
   );
 }

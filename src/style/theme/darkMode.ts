@@ -6,8 +6,9 @@
 const lightTheme = {
   body: '#eaeaea',
   text: '#363537',
-  toggleBorder: '#fff',
+  toggleBorder: '#d1d1d1',
   background: '#EEEEEE',
+  codeblock: '#f6f8fa'
 };
 
 const darkTheme = {
@@ -15,6 +16,7 @@ const darkTheme = {
   text: '#fafafa',
   toggleBorder: '#6b8096',
   background: '#363537',
+  codeblock: '#fafafa'
 };
 
 export { darkTheme, lightTheme };
