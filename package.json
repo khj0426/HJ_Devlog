@@ -2,11 +2,13 @@
   "name": "hj-devlog",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://github.com/khj0426/HJ_Devlog",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "deploy": "next build && npx gh-pages -d out"
   },
   "dependencies": {
     "@types/node": "20.2.5",
@@ -35,6 +37,7 @@
   },
   "devDependencies": {
     "@types/glob": "^8.1.0",
+    "gh-pages": "^5.0.0",
     "glob": "^10.2.7",
     "next-sitemap": "^4.1.3"
   }
