@@ -16,6 +16,7 @@ const StyledNavBarLayout = styled.nav`
   background-color: ${({ theme }) => theme.body};
   align-items: center;
   justify-content: space-around;
+  z-index: 1;
 `;
 
 const StyledNavBarTitle = styled(Link)`

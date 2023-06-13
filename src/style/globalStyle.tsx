@@ -37,13 +37,20 @@ const GlobalStyle = createGlobalStyle`
   }
   pre {
     border-radius: 10px;
+    overflow: auto;
+    font-family: 'Monaco', monospace;
+    padding: 0 1em;
     max-width: 100vw;
+    width: 100%;
+    flex-direction: column;
     white-space: pre-wrap;
+    display: flex;
   }
 
 
 
 code {
+  
     font-family: Monaco, monospace;
     font-size: 15px;
     padding: 0.2em;
