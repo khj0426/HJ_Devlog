@@ -15,7 +15,7 @@ const StyledPostLayOut = styled.article`
   }
 
   @media ${({ theme }) => theme.device.mobile} {
-    font-size: 16px;
+    font-size: 13px;
   }
 `;
 

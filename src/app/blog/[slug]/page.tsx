@@ -2,6 +2,7 @@ import ReactMarkdown from 'react-markdown';
 import Image from 'next/image';
 import BlogLayOut from '@/Component/Blog/LayOut';
 import { getPostBySlug } from '../../../../lib/api';
+import CodeBlock from '@/Component/Blog/CodeBlock';
 
 export default function Post({
   params,
@@ -31,13 +32,16 @@ export default function Post({
 
       <ReactMarkdown
         components={{
+          code: ({ node, inline, className, children, ...props }) => (
+            <CodeBlock>{children as string}</CodeBlock>
+          ),
           img: ({ node, ...props }) => (
             <img
               src={props.src || ''}
               alt="마크다운 이미지"
               style={{
                 maxWidth: '100%',
-                height:'auto',
+                height: 'auto',
                 objectFit: 'contain',
               }}
             />
