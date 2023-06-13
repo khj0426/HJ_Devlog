@@ -32,14 +32,12 @@ export default function Post({
       <ReactMarkdown
         components={{
           img: ({ node, ...props }) => (
-            <Image
+            <img
               src={props.src || ''}
               alt="마크다운 이미지"
-              width={700}
-              height={75}
               style={{
                 maxWidth: '100%',
-                maxHeight: '50%',
+                height:'auto',
                 objectFit: 'contain',
               }}
             />
