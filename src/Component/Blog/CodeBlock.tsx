@@ -8,7 +8,18 @@ export default function CodeBlock({
   children: string | string[];
 }) {
   return (
-    <SyntaxHighter language="javascript" style={materialOceanic}>
+    <SyntaxHighter
+      language="javascript"
+      style={materialOceanic}
+      wrapLines={true}
+      lineProps={{
+        style: {
+          wordBreak: 'break-all',
+          whiteSpace: 'pre-wrap',
+          fontSize: '16px',
+        },
+      }}
+    >
       {children}
     </SyntaxHighter>
   );

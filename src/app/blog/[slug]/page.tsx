@@ -1,5 +1,5 @@
 import ReactMarkdown from 'react-markdown';
-import Image from 'next/image';
+import PostExterct from '@/Component/Blog/Exterct';
 import BlogLayOut from '@/Component/Blog/LayOut';
 import { getPostBySlug } from '../../../../lib/api';
 import CodeBlock from '@/Component/Blog/CodeBlock';
@@ -21,10 +21,12 @@ export default function Post({
 
   return (
     <BlogLayOut>
-      <h2>{post.title}</h2>
+      <h3>{post.title}</h3>
+      <PostExterct exterct={post.excerpt} />
       <p
         style={{
           fontWeight: '700',
+          fontSize: '16px',
         }}
       >
         {post.date}

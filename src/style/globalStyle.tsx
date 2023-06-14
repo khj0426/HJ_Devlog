@@ -35,22 +35,21 @@ const GlobalStyle = createGlobalStyle`
     font-size: 20px;
     font-family: 'kyobo', 'Helvetica', 'Arial', sans-serif;
   }
+
   pre {
+    flex-wrap:wrap;
     border-radius: 10px;
-    overflow: auto;
     font-family: 'Monaco', monospace;
     padding: 0 1em;
-    max-width: 100vw;
-    width: 100%;
     flex-direction: column;
     white-space: pre-wrap;
-    display: flex;
   }
 
 
 
-code {
+code ,.language-javascript{
   
+    white-space: pre-wrap;
     font-family: Monaco, monospace;
     font-size: 15px;
     padding: 0.2em;

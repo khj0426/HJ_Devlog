@@ -1,8 +1,9 @@
 ---
 title: '# 자바스크립트의 여러 코드 트릭'
-excerpt: 'ECMA모듈, 그리고 common js에서의 모듈'
+excerpt: '자바스크립트의 여러 유용한 꼼수들!'
 date: '2023-06-12'
 author: '김효중'
+category: 'Js'
 ---
 
 ### 구조 분해 할당을 이용한 변수 SWAP

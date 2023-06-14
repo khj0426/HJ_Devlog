@@ -2,9 +2,10 @@
 
 import styled from 'styled-components';
 
-const StyledTitle = styled.h1`
-  font-weight: 600;
-  text-align: center;
+const StyledTitle = styled.h3`
+  font-weight: 700;
+  display: flex;
+
   @media ${({ theme }) => theme.device.tablet} {
     font-size: 20px;
   }
