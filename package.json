@@ -5,7 +5,8 @@
   "homepage": "https://github.com/khj0426/HJ_Devlog",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "postbuild": "next-sitemap",
+    "build": "next build && next-sitemap",
     "start": "next start",
     "lint": "next lint",
     "deploy": "next build && npx gh-pages -d out"
