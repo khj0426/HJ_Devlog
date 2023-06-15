@@ -12,6 +12,10 @@ export const metadata = {
   icons: {
     icon: '/images/favicon.png',
   },
+  url:'https://hj-devlog.vercel.app',
+  openGraph:{
+    title:'HJ`s Blog'
+  }
 };
 
 export default function RootLayout({
