@@ -16,7 +16,19 @@ export const metadata = {
   openGraph: {
     title: 'HJ`s Blog',
     description: '개발 관련 여러 지식을 기록하고, 정리하는 공간입니다',
-    image: '../images/ogImage.webp
+    images: [
+      {
+        url: 'https://avatars.githubusercontent.com/u/59411107?v=4',
+        width: 800,
+        height: 600,
+      },
+      {
+        url: 'https://avatars.githubusercontent.com/u/59411107?v=4',
+        width: 1800,
+        height: 1600,
+        alt: 'og images',
+      },
+    ],
   },
 };
 
