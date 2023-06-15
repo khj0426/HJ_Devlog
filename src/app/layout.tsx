@@ -4,6 +4,7 @@ import GlobalStyle from '@/style/globalStyle';
 import { ThemeWrapper } from './themeWrapper';
 import Navbar from '@/Component/Common/Navbar';
 import Footer from '@/Component/Common/Footer';
+import Head from 'next/head';
 
 export const metadata = {
   title: 'HJ`s Blog',
@@ -20,6 +21,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <Head>
+        <meta
+          name="google-site-verification"
+          content="g3Daim29whdK1ZzL1CE6pvkYyvSgM5-6C898-TVjiz0"
+        />
+      </Head>
       <body className="App">
         <Recoil>
           <ThemeWrapper>
