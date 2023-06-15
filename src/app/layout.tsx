@@ -15,6 +15,8 @@ export const metadata = {
   url: 'https://hj-devlog.vercel.app',
   openGraph: {
     title: 'HJ`s Blog',
+    description: '개발 관련 여러 지식을 기록하고, 정리하는 공간입니다',
+    image: '../images/ogImage.webp
   },
 };
 
