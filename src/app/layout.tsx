@@ -12,10 +12,10 @@ export const metadata = {
   icons: {
     icon: '/images/favicon.png',
   },
-  url:'https://hj-devlog.vercel.app',
-  openGraph:{
-    title:'HJ`s Blog'
-  }
+  url: 'https://hj-devlog.vercel.app',
+  openGraph: {
+    title: 'HJ`s Blog',
+  },
 };
 
 export default function RootLayout({
@@ -30,6 +30,19 @@ export default function RootLayout({
           name="google-site-verification"
           content="g3Daim29whdK1ZzL1CE6pvkYyvSgM5-6C898-TVjiz0"
         />
+        <meta
+          property="og:image"
+          content="https://avatars.githubusercontent.com/u/59411107?v=4"
+        />
+
+        <meta property="og:title" content="효중킴의 개발 블로그" />
+
+        <meta
+          property="og:description"
+          content="개발 관련 여러 정보를 정리하고 기록하는 공간입니다."
+        />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
       </Head>
       <body className="App">
         <Recoil>
