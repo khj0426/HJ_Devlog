@@ -5,8 +5,9 @@ import PostLayout from '@/Component/Common/PostLayout';
 import PostExterct from '@/Component/Blog/Exterct';
 
 export default function Home() {
-  const posts = getAllPosts(['title', 'data', 'slug', 'category', 'excerpt']);
-  const recentPosts = posts.slice(0, 2);
+  const posts = getAllPosts(['title', 'data', 'slug', 'category', 'excerpt','date']);
+
+  posts.sort((post1,post2) => post1.date > post2.date ? -1 : 1);
 
   return (
     <main>
