@@ -4,6 +4,7 @@ import BlogLayOut from '@/Component/Blog/LayOut';
 import { getPostBySlug } from '../../../../lib/api';
 import CodeBlock from '@/Component/Blog/CodeBlock';
 import rehypeRaw from 'rehype-raw';
+import Comments from '@/Component/Giscus/Gitcus';
 
 export default function Post({
   params,
@@ -12,7 +13,6 @@ export default function Post({
     slug: string;
   };
 }) {
-
   const post = getPostBySlug(params.slug, [
     'title',
     'content',
@@ -55,6 +55,8 @@ export default function Post({
       >
         {post.content}
       </ReactMarkdown>
+
+      <Comments />
     </BlogLayOut>
   );
 }
