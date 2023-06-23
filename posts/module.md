@@ -327,7 +327,8 @@ console.log((0,_utils__WEBPACK_IMPORTED_MODULE_0__/* .add */ .IH)(1, 2));
 })();
 ```
 
-이 빌드에서는 코드 실행 시 add함수를 (0,_utils__WEBPACK_IMPORTED_MODULE_0__/* .add */ .IH)(1, 2) - _utils__WEBPACK_IMPORTED_MODULE_0__ 모듈에서 동적으로 불러오고 있는 것을 볼 수 있다.
+이 빌드에서는 코드 실행 시 add함수를 (0,_utils__WEBPACK_IMPORTED_MODULE_0__/* .add */ .IH)(1, 2) - _utils__WEBPACK_IMPORTED_MODULE_0__ 
+모듈에서 동적으로 불러오고 있는 것을 볼 수 있습니다.
 
 ## 결론
 
