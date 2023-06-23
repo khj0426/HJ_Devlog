@@ -12,6 +12,7 @@
     "deploy": "next build && npx gh-pages -d out"
   },
   "dependencies": {
+    "@giscus/react": "^2.2.8",
     "@types/node": "20.2.5",
     "@types/react": "18.2.8",
     "@types/react-dom": "18.2.4",
