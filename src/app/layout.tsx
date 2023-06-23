@@ -14,6 +14,7 @@ export const metadata = {
   },
   url: 'https://hj-devlog.vercel.app',
   openGraph: {
+    url: 'https://hj-devlog.vercel.app',
     title: 'HJ`s Blog',
     description: '개발 관련 여러 지식을 기록하고, 정리하는 공간입니다',
     images: [
@@ -22,13 +23,8 @@ export const metadata = {
         width: 800,
         height: 600,
       },
-      {
-        url: 'https://avatars.githubusercontent.com/u/59411107?v=4',
-        width: 1800,
-        height: 1600,
-        alt: 'og images',
-      },
     ],
+    type: 'website',
   },
 };
 
@@ -50,7 +46,6 @@ export default function RootLayout({
         />
 
         <meta property="og:title" content="효중킴의 개발 블로그" />
-
         <meta
           property="og:description"
           content="개발 관련 여러 정보를 정리하고 기록하는 공간입니다."
