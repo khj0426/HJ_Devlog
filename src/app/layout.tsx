@@ -45,6 +45,8 @@ export default function RootLayout({
           content="https://avatars.githubusercontent.com/u/59411107?v=4"
         />
 
+        <meta property="og:url" content="https://avatars.githubusercontent.com/u/59411107?v=4" />
+
         <meta property="og:title" content="효중킴의 개발 블로그" />
         <meta
           property="og:description"
