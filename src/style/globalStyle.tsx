@@ -5,6 +5,7 @@ const GlobalStyle = createGlobalStyle`
   @font-face {
     font-family: 'kyobo';
     src: url('../font/KyoboHandwriting2022khn.ttf');
+    font-display: swap;
   }
 
   *,
@@ -18,6 +19,7 @@ const GlobalStyle = createGlobalStyle`
     color: ${({ theme }) => theme.text};
     cursor: pointer;
   }
+
 
   body {
     display: flex;
