@@ -11,6 +11,7 @@ export default function ProfileImageWrapper({ imgurl }: { imgurl: string }) {
         width={300}
         height={350}
         blurDataURL="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+        priority
       ></Image>
     </div>
   );

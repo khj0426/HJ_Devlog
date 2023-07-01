@@ -9,6 +9,7 @@ const StyledFooter = styled.footer`
   height: 30px;
   display: flex;
   flex-direction: column;
+  align-items: center;
   margin: 75px auto;
 `;
 

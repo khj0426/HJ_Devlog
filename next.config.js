@@ -13,4 +13,7 @@ const nextConfig = {
 module.exports = withBundleAnalyzer({
   nextConfig,
   compress: true,
+  images: {
+    formats: ['image/avif', 'image/webp'],
+  },
 });
