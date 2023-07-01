@@ -148,7 +148,7 @@ close 타입의 이벤트들이 처리되는 페이즈입니다.
 
 ## MicroTaskQueue와 nextTickQueue
 
-- 먼저 MicroTaskQueue는 프로미스나 async/await , process.nextTick 등의 비동기 호출을 넘겨받습니다.
+- 먼저 MicroTaskQueue는 프로미스나 async/await 등의 비동기 호출을 넘겨받습니다.
 - 그리고 이 우선순위는 일반적은 작업들보다 더 높습니다.
 
 ```js
