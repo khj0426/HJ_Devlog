@@ -5,7 +5,13 @@ import { ThemeWrapper } from './themeWrapper';
 import Navbar from '@/Component/Common/Navbar';
 import Footer from '@/Component/Common/Footer';
 import Head from 'next/head';
+import localFont from 'next/font/local';
 
+
+const baseFont = localFont({
+  src:'./fonts/KyoboHandwriting2022khn.ttf',
+  display:'swap'
+})
 export const metadata = {
   title: 'HJ`s Blog',
   description: '개발관련 여러 지식을 기록하는 공간',
@@ -34,7 +40,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className = {baseFont.className}>
       <Head>
         <meta
           name="google-site-verification"

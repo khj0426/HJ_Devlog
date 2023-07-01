@@ -2,11 +2,6 @@
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
-  @font-face {
-    font-family: 'kyobo';
-    src: url('../font/KyoboHandwriting2022khn.ttf');
-    font-display: swap;
-  }
 
   *,
   *::before,
@@ -28,14 +23,12 @@ const GlobalStyle = createGlobalStyle`
     min-height: 100vh;
     line-height: 1.5;
     max-width: 100%;
-    font-family: 'kyobo';
     background-color: ${({ theme }) => theme.background};
     color: ${({ theme }) => theme.text};
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-size: 20px;
-    font-family: 'kyobo', 'Helvetica', 'Arial', sans-serif;
   }
 
   pre {
