@@ -1,6 +1,7 @@
 'use client';
-import { Prism as SyntaxHighter } from 'react-syntax-highlighter';
-import { materialOceanic } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import dynamic from 'next/dynamic';
+const SyntaxHighlighter = dynamic(() => import('react-syntax-highlighter'));
+import { atomDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 export default function CodeBlock({
   children,
@@ -8,10 +9,10 @@ export default function CodeBlock({
   children: string | string[];
 }) {
   return (
-    <SyntaxHighter
+    <SyntaxHighlighter
       language="javascript"
-      style={materialOceanic}
       wrapLines={true}
+      style={atomDark}
       lineProps={{
         style: {
           wordBreak: 'break-all',
@@ -21,6 +22,6 @@ export default function CodeBlock({
       }}
     >
       {children}
-    </SyntaxHighter>
+    </SyntaxHighlighter>
   );
 }
