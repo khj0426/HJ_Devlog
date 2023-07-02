@@ -17,6 +17,7 @@ const StyledLinkIconArea = styled.div`
   display: flex;
   justify-content: center;
   gap: 10px;
+  margin: 0 auto;
 `;
 
 export default function Footer() {

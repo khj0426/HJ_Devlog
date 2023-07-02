@@ -37,9 +37,6 @@ export default function Post({
       <ReactMarkdown
         rehypePlugins={[rehypeRaw]}
         components={{
-          code: ({ node, inline, className, children, ...props }) => (
-            <CodeBlock>{children as string}</CodeBlock>
-          ),
           img: ({ node, ...props }) => (
             <img
               src={props.src || ''}
@@ -50,6 +47,9 @@ export default function Post({
                 objectFit: 'contain',
               }}
             />
+          ),
+          code: ({ node, inline, children, ...props }) => (
+            <CodeBlock>{children as string}</CodeBlock>
           ),
         }}
       >
