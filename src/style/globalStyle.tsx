@@ -15,6 +15,10 @@ const GlobalStyle = createGlobalStyle`
     cursor: pointer;
   }
 
+  main{
+    min-height: calc(100vh - 120px);
+  }
+
 
   body {
     display: flex;
