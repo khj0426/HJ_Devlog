@@ -39,12 +39,14 @@ export default function Post({
         rehypePlugins={[rehypeRaw]}
         components={{
           img: ({ node, ...props }) => (
-            <Image
+            <img
               src={props.src || ''}
               alt="마크다운 이미지"
-              layout="responsive"
-              width={500}
-              height={300}
+              style={{
+                maxWidth: '100%',
+                height: 'auto',
+                objectFit: 'contain',
+              }}
             />
           ),
           code: ({ node, inline, children, ...props }) => (
