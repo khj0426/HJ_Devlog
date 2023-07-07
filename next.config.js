@@ -14,6 +14,12 @@ module.exports = withBundleAnalyzer({
   nextConfig,
   compress: true,
   images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**',
+      },
+    ],
     formats: ['image/avif', 'image/webp'],
   },
 });

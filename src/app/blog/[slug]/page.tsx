@@ -5,6 +5,7 @@ import { getPostBySlug } from '../../../../lib/api';
 import CodeBlock from '@/Component/Blog/CodeBlock';
 import rehypeRaw from 'rehype-raw';
 import Comments from '@/Component/Giscus/Gitcus';
+import Image from 'next/image';
 
 export default function Post({
   params,
@@ -38,14 +39,12 @@ export default function Post({
         rehypePlugins={[rehypeRaw]}
         components={{
           img: ({ node, ...props }) => (
-            <img
+            <Image
               src={props.src || ''}
               alt="마크다운 이미지"
-              style={{
-                maxWidth: '100%',
-                height: 'auto',
-                objectFit: 'contain',
-              }}
+              layout="responsive"
+              width={500}
+              height={300}
             />
           ),
           code: ({ node, inline, children, ...props }) => (
