@@ -29,7 +29,6 @@ export default function Post({
         openGraph={{
           title: post.title || 'HJ`s Dev log',
           description: post.excerpt || '개발 관련 기록을 남기는 곳',
-          url: `https://hj-devlog.vercel.app/blog/${post.title}`,
           images: [
             {
               url: 'https://avatars.githubusercontent.com/u/59411107?v=4',
