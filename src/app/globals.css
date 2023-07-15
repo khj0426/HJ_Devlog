@@ -1,4 +1,6 @@
-@font-face {
-  font-family: 'kyobo';
-  src: url('/font/KyoboHandwriting2022khn.ttf');
+footer{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  margin: 60px auto;
 }
