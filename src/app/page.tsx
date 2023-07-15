@@ -6,7 +6,7 @@ import {
 import Link from 'next/link';
 import Title from '@/Component/About/Title';
 import PostLayout from '@/Component/Common/PostLayout';
-import Button from '@/Component/Common/Button';
+import CategoryList from '@/Component/CategoryList/CategoryList';
 
 export default function Home() {
   const posts = getAllPosts([
@@ -23,11 +23,7 @@ export default function Home() {
   const allCategory = getAllCategories();
   return (
     <>
-      <nav>
-        {Array.from(allCategory).map(([category, categoryCount]) => (
-          <div key={category}>{category + categoryCount}</div>
-        ))}
-      </nav>
+      <CategoryList category={allCategory} />
       <main>
         {posts.map((post) => (
           <PostLayout key={post.title}>
