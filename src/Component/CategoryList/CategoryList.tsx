@@ -6,7 +6,6 @@ import type { CategoryItem } from '@/@types/CategoryType';
 const CategoryListStyle = styled.span`
   color: ${({ theme }) => theme.text};
   font-size: 20px;
-  display: flex;
   cursor: pointer;
   &:hover {
     text-decoration: underline ${({ theme }) => theme.text};
@@ -14,6 +13,7 @@ const CategoryListStyle = styled.span`
 `;
 
 const CategoryListWrapper = styled.div`
+  gap: 15px;
   display: flex;
   width: 100%;
   flex-wrap: wrap;
@@ -25,9 +25,15 @@ export default function CategoryList({
 }: {
   category: CategoryItem[];
 }) {
-  return category.map(({ category, categoryCount }) => (
-    <CategoryListWrapper key={category}>
-      <CategoryListStyle># {category + categoryCount}</CategoryListStyle>
+  return (
+    <CategoryListWrapper>
+      {category.map(({ category, categoryCount }) => {
+        return (
+          <CategoryListStyle key={category}>
+            # {category + categoryCount}
+          </CategoryListStyle>
+        );
+      })}
     </CategoryListWrapper>
-  ));
+  );
 }
