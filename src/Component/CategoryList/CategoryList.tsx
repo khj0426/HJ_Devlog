@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import styled from 'styled-components';
 import type { CategoryItem } from '@/@types/CategoryType';
 
@@ -30,7 +31,9 @@ export default function CategoryList({
       {category.map(({ category, categoryCount }) => {
         return (
           <CategoryListStyle key={category}>
-            # {category + categoryCount}
+            <Link href={`/category/${category}`}>
+              # {category + categoryCount}
+            </Link>
           </CategoryListStyle>
         );
       })}

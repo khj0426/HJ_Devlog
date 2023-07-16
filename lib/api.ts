@@ -50,6 +50,7 @@ export function getAllPosts(fields: string[] = []) {
   return posts;
 }
 
+//리팩토링 필요한 부분
 export function getAllCategories() {
   const allPosts = getAllPosts(['category']);
 

@@ -1,8 +1,4 @@
-import {
-  getAllPosts,
-  getAllCategories,
-  getCategoryFilteredPosts,
-} from '../../lib/api';
+import { getAllCategories, getAllPosts } from '../../lib/api';
 import Link from 'next/link';
 import Title from '@/Component/About/Title';
 import PostLayout from '@/Component/Common/PostLayout';
@@ -21,9 +17,10 @@ export default function Home() {
   posts.sort((post1, post2) => (post1.date > post2.date ? -1 : 1));
 
   const allCategory = getAllCategories();
+
   return (
     <>
-      <CategoryList category={allCategory} />
+      <CategoryList category={allCategory}></CategoryList>
       <main
         style={{
           minWidth: '60%',
