@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Title from '@/Component/About/Title';
 import PostLayout from '@/Component/Common/PostLayout';
 import { getCategoryFilteredPosts } from '../../../../lib/api';
+import Image from 'next/image';
 
 export default function Home({
   params,
@@ -11,7 +12,7 @@ export default function Home({
   };
 }) {
   const posts = getCategoryFilteredPosts(
-    ['title', 'data', 'slug', 'category', 'excerpt', 'date'],
+    ['title', 'data', 'slug', 'category', 'excerpt', 'date', 'image'],
     params.categoryId
   );
 
@@ -25,11 +26,29 @@ export default function Home({
       >
         {posts.map((post) => (
           <PostLayout key={post.title}>
-            <Link href={`/category/${params.categoryId}/${post.slug}`}>
+            <Link href={`/blog/${post.slug}`}>
               <Title title={post.title} />
               <p>{post.category}</p>
               {post.content}
             </Link>
+
+            <div
+              style={{
+                display: 'flex',
+                position: 'relative',
+                width: '150px',
+                height: '150px',
+              }}
+            >
+              <Image
+                src={post.image}
+                fill
+                alt="블로그 대표 이미지"
+                style={{
+                  objectFit: 'cover',
+                }}
+              />
+            </div>
           </PostLayout>
         ))}
       </main>

@@ -4,6 +4,7 @@ excerpt: '자바스크립트의 여러 유용한 꼼수들!'
 date: '2023-06-12'
 author: '김효중'
 category: 'Js'
+image: '/images/postImg/Js.png'
 ---
 
 ### 구조 분해 할당을 이용한 변수 SWAP

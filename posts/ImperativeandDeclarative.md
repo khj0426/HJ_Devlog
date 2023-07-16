@@ -4,6 +4,7 @@ excerpt: '두 프로그래밍 방법은 뭐가 다를까!'
 date: '2023-06-15'
 author: '김효중'
 category: 'Programming_Methodology'
+image: '/images/Profile.jpg'
 ---
 
 ### 명령형 프로그래밍과 선언형 프로그래밍

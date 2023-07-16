@@ -2,21 +2,20 @@
 import styled from 'styled-components';
 const StyledPostLayOut = styled.section`
   display: flex;
+  justify-content: space-between;
   padding-left: 5px;
   border-radius: 25px;
   margin: 25px auto;
   background: ${({ theme }) => theme.backgroundPost};
 
-  @media ${({ theme }) => theme.device.laptop} {
-    width: 75%;
-  }
+  width: 65%;
 
   @media ${({ theme }) => theme.device.tablet} {
-    width: 80%;
+    width: 90%;
   }
 
   @media ${({ theme }) => theme.device.mobile} {
-    width: 100%;
+    width: 90%;
   }
 `;
 

@@ -4,6 +4,7 @@ excerpt: '나는 무엇을 했나!'
 date: '2023-07-05'
 author: '김효중'
 category: 'reflection'
+image: '/images/postImg/blogbundleSize.png'
 ---
 
 벌써,,2023년의 상반기가 갔다. 정말시간이 빨리 가는 것 같기도 하다!

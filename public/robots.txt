@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://hj-devlog.vercel.app
+
+# Sitemaps
+Sitemap: https://hj-devlog.vercel.app/sitemap.xml

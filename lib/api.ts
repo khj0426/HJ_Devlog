@@ -1,7 +1,6 @@
 import fs from 'fs';
-import { join } from 'path';
+import { join, basename } from 'path';
 import matter from 'gray-matter';
-import type { CategoryItem } from '@/@types/CategoryType';
 
 const PostDirectory = join(process.cwd(), 'posts');
 const ImageDirectory = join(process.cwd(), 'public/images');
@@ -33,7 +32,6 @@ export function getPostBySlug(slug: string, fields: string[] = []) {
     }
     if (field === 'image') {
       const imagePath = join(ImageDirectory, data[field]);
-      items[field] = imagePath;
     }
   });
 

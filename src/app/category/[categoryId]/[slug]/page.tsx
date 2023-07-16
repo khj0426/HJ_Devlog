@@ -20,6 +20,7 @@ export default function Post({
     'excerpt',
     'date',
     'author',
+    'image',
   ]);
 
   return (
