@@ -3,14 +3,17 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StyledPostLayOut = styled.article`
-  max-width: 80%;
+  max-width: 100%;
   display: flex;
   min-width: 60%;
   margin: 20px auto;
   flex-direction: column;
   margin-bottom: 50px;
 
-  width: 100%;
+  @media ${({ theme }) => theme.device.laptop} {
+    font-size: 20px;
+  }
+
   @media ${({ theme }) => theme.device.tablet} {
     font-size: 20px;
   }

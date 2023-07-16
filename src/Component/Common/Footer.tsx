@@ -10,7 +10,7 @@ const StyledFooter = styled.footer`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 60px auto;
+  justify-content: flex-end;
 `;
 
 const StyledLinkIconArea = styled.div`

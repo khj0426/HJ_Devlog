@@ -24,7 +24,11 @@ export default function Home() {
   return (
     <>
       <CategoryList category={allCategory} />
-      <main>
+      <main
+        style={{
+          minWidth: '60%',
+        }}
+      >
         {posts.map((post) => (
           <PostLayout key={post.title}>
             <Link href={`/blog/${post.slug}`}>
