@@ -11,6 +11,8 @@ export default function Home({
     categoryId: string;
   };
 }) {
+  params.categoryId = decodeURIComponent(params.categoryId);
+
   const posts = getCategoryFilteredPosts(
     ['title', 'data', 'slug', 'category', 'excerpt', 'date', 'image'],
     params.categoryId

@@ -3,7 +3,7 @@ title: '# 2023 상반기를 돌아보며'
 excerpt: '나는 무엇을 했나!'
 date: '2023-07-05'
 author: '김효중'
-category: 'reflection'
+category: '회고'
 image: '/images/postImg/blogbundleSize.png'
 ---
 
