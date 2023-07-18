@@ -49,6 +49,9 @@ export const metadata: Metadata = {
     width: 'device-width',
     initialScale: 1,
   },
+  verification: {
+    google: 'g3Daim29whdK1ZzL1CE6pvkYyvSgM5-6C898-TVjiz0',
+  },
 };
 
 export default function RootLayout({
