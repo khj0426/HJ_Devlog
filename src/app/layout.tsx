@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   title: 'HJ`s Blog',
   description: '개발관련 여러 지식을 기록하는 공간',
   icons: {
-    icon: '/images/favicon.png',
+    icon: '/images/favicon.webp',
   },
   metadataBase: new URL('https://hj-devlog.vercel.app/'),
   openGraph: {

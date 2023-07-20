@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import styled from 'styled-components';
 import Image from 'next/image';
-import InstagramImage from '../../../public/images/Instagramgram.png';
+import InstagramImage from '../../../public/images/Instagramgram.webp';
 
 const StyledFooter = styled.footer`
   height: 30px;

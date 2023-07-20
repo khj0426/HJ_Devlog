@@ -5,7 +5,6 @@ import { getPostBySlug } from '../../../../lib/api';
 import CodeBlock from '@/Component/Blog/CodeBlock';
 import rehypeRaw from 'rehype-raw';
 import Comments from '@/Component/Giscus/Gitcus';
-import Image from 'next/image';
 
 export default function Post({
   params,

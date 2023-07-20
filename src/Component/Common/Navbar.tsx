@@ -1,6 +1,7 @@
 'use client';
 import styled from 'styled-components';
 import ToggleDarkModeButton from '../DarkMode/ToggoeButton';
+import SearchPostButton from '../Blog/SearchPost';
 import Link from 'next/link';
 
 const StyledNavBarLayout = styled.nav`
@@ -35,6 +36,7 @@ export default function Navbar() {
           alignItems: 'center',
         }}
       >
+        <SearchPostButton />
         <ToggleDarkModeButton />
         <StyledNavBarTitle href="/about">About me</StyledNavBarTitle>
       </div>
