@@ -35,24 +35,15 @@ export default function Home() {
               <p>{post.category}</p>
               {post.content}
             </Link>
-
-            <div
+            <Image
+              src={post.image}
+              width={150}
+              height={150}
+              alt="블로그 대표 이미지"
               style={{
-                display: 'flex',
-                position: 'relative',
-                width: '150px',
-                height: '150px',
+                objectFit: 'cover',
               }}
-            >
-              <Image
-                src={post.image}
-                fill
-                alt="블로그 대표 이미지"
-                style={{
-                  objectFit: 'cover',
-                }}
-              />
-            </div>
+            />
           </PostLayout>
         ))}
       </main>
