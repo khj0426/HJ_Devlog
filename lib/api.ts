@@ -48,6 +48,16 @@ export function getAllPosts(fields: string[] = []) {
   return posts;
 }
 
+export function getAllPostRequest(fields: string[] = []) {
+  const slugs = getPostSlugs();
+  const posts = slugs
+    .map((slug) => getPostBySlug(slug, fields))
+    // sort posts by date in descending order
+    .sort((post1, post2) => (post1.date > post2.date ? -1 : 1));
+
+  return {};
+}
+
 //리팩토링 필요한 부분
 export function getAllCategories() {
   const allPosts = getAllPosts(['category']);

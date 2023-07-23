@@ -1,5 +1,5 @@
 ---
-title: '# ES6의 모듈'
+title: 'ES6의 모듈'
 excerpt: '기존의 모듈,es6의 새로운 모듈에 대해 알아보자'
 date: '2023-06-19'
 author: '김효중'

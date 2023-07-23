@@ -1,5 +1,5 @@
 ---
-title: '#노션 클로닝 회고'
+title: '노션 클로닝 회고'
 excerpt: '자바스크립트와 더 친해진 것 같다..!'
 date: '2023-07-18'
 author: '김효중'
@@ -7,53 +7,61 @@ category: '회고'
 image: '/images/postImg/notion.png'
 ---
 
-
 ## 노션 프로젝트 회고록
 
-![](/images/postImg/notion.png) 
+![](/images/postImg/notion.png)
 
 <a style = "color:#587da9" href = "http://khj0426-notion.s3-website.ap-northeast-2.amazonaws.com" target = "_blank" >
 <b>보러가기</b></a>
 
+노션 클로닝 회고를 kpt방법으로 진행해보려고 합니다! kpt방법은
 
-노션 클로닝 회고를 kpt방법으로 진행해보려고 합니다!
-kpt방법은 
- - Keep : 프로젝트를 진행하면서 간직하고 싶은 좋았던점/잘했던점
- - Problem : 프로젝트를 진행하면서 겪었던 문제점/어려웠던 점
- - Try : Problem 중 해결된 사항에 대한 해결 방법
+- Keep : 프로젝트를 진행하면서 간직하고 싶은 좋았던점/잘했던점
+- Problem : 프로젝트를 진행하면서 겪었던 문제점/어려웠던 점
+- Try : Problem 중 해결된 사항에 대한 해결 방법
 
 이 세 단계에 거쳐서 회고를 하는 것입니다!.
-
 
 ## 프로젝트 요구사항
 
 먼저 기본 요구 사항은 다음과 같습니다
 
-- 글 단위를 Document라고 합니다. Document는 Document 여러개를 포함할 수 있습니다.
+- 글 단위를 Document라고 합니다. Document는 Document 여러개를 포함할 수 있습니다
+  .
 
-- 화면 좌측에 Root Documents를 불러오는 API를 통해 루트 Documents를 렌더링합니다.
+- 화면 좌측에 Root Documents를 불러오는 API를 통해 루트 Documents를 렌더링합니다
+  .
 
-  - Root Document를 클릭하면 오른쪽 편집기 영역에 해당 Document의 Content를 렌더링합니다.
+  - Root Document를 클릭하면 오른쪽 편집기 영역에 해당 Document의 Content를 렌더
+    링합니다.
 
-  - 해당 Root Document에 하위 Document가 있는 경우, 해당 Document 아래에 트리 형태로 렌더링 합니다.
+  - 해당 Root Document에 하위 Document가 있는 경우, 해당 Document 아래에 트리 형
+    태로 렌더링 합니다.
 
-  - Document Tree에서 각 Document 우측에는 + 버튼이 있습니다. 해당 버튼을 클릭하면, 클릭한            Document의Document로 새 Document를 생성하고 편집화면으로 넘깁니다.
+  - Document Tree에서 각 Document 우측에는 + 버튼이 있습니다. 해당 버튼을 클릭하
+    면, 클릭한 Document의Document로 새 Document를 생성하고 편집화면으로 넘깁니다
+    .
 
-- 편집기에는 기본적으로 저장 버튼이 없습니다. Document Save API를 이용해 지속적으로 서버에 저장되도록 합니다.
+- 편집기에는 기본적으로 저장 버튼이 없습니다. Document Save API를 이용해 지속적
+  으로 서버에 저장되도록 합니다.
 
 - History API를 이용해 SPA 형태로 만듭니다.
 
   - 루트 URL 접속 시엔 별다른 편집기 선택이 안 된 상태입니다.
 
-  - /documents/{documentId} 로 접속시, 해당 Document 의 content를 불러와 편집기에 로딩합니다.
+  - /documents/{documentId} 로 접속시, 해당 Document 의 content를 불러와 편집기
+    에 로딩합니다.
 
 ## 다음으로 보너스 요구사항은 다음과 같습니다.
 
-- 기본적으로 편집기는 textarea 기반으로 단순한 텍스트 편집기로 시작하되, 여력이 되면 div와    contentEditable을 조합해서 좀 더 Rich한 에디터를 만들어봅니다.
+- 기본적으로 편집기는 textarea 기반으로 단순한 텍스트 편집기로 시작하되, 여력이
+  되면 div와 contentEditable을 조합해서 좀 더 Rich한 에디터를 만들어봅니다.
 
-- 편집기 최하단에는 현재 편집 중인 Document의 하위 Document 링크를 렌더링하도록 추가합니다.
+- 편집기 최하단에는 현재 편집 중인 Document의 하위 Document 링크를 렌더링하도록
+  추가합니다.
 
-- 편집기 내에서 다른 Document name을 적은 경우, 자동으로 해당 Document의 편집 페이지로 이동하는 링크를 거는 기능을 추가합니다.
+- 편집기 내에서 다른 Document name을 적은 경우, 자동으로 해당 Document의 편집 페
+  이지로 이동하는 링크를 거는 기능을 추가합니다.
 
 - 그외 개선하거나 구현했으면 좋겠다는 부분이 있으면 적극적으로 구현해봅니다!
 
@@ -63,17 +71,18 @@ kpt방법은
 
 ## 최종 컴포넌트 구조
 
-좌측의 Document들의 리스트들과 관련된 컴포넌트들을 DocumentPage에서,
-편집기와 관련된 컴포넌트들은 DocumentEditPage에서 조율하도록 하였습니다.
+좌측의 Document들의 리스트들과 관련된 컴포넌트들을 DocumentPage에서, 편집기와 관
+련된 컴포넌트들은 DocumentEditPage에서 조율하도록 하였습니다.
 
 ![최종 컴포넌트 구조](https://user-images.githubusercontent.com/59411107/251504161-945e70b9-8db0-4fc8-aa79-86f7d6900c40.png)
 
 ## Keep
 
-가장 좋았던 점은 컴포넌트를 어떻게 독립적으로 구성하면 좋을지, 컴포넌트는 어떤 역할을 해야만 하는지 배운 것입니다.
+가장 좋았던 점은 컴포넌트를 어떻게 독립적으로 구성하면 좋을지, 컴포넌트는 어떤
+역할을 해야만 하는지 배운 것입니다.
 
 기존 제가 짰던 코드들을 보면, 되게 명령형적으로 코드를 짠 것을 볼 수 있습니다..
-부끄럽지만,실제 제가 1년 전에 ..짰던 코드를 보면 
+부끄럽지만,실제 제가 1년 전에 ..짰던 코드를 보면
 
 ```code
 DOM요소를 가져와서 ->  어떤 연산을 해! 하는 명령형 코드로 작성된 것을 볼 수 있습니다.
@@ -107,27 +116,33 @@ Init.addEventListener('click', () => {
   StoreExpress.innerHTML = '';
 });
 ```
-이렇게 한 파일안에서 종속적인 코드가 아닌, 독립적으로 다시 쓸 수 있는 컴포넌트를 만들고 설계하는 법을 배운게 가장 좋았던 점입니다!
+
+이렇게 한 파일안에서 종속적인 코드가 아닌, 독립적으로 다시 쓸 수 있는 컴포넌트를
+만들고 설계하는 법을 배운게 가장 좋았던 점입니다!
 
 이번 과제를 하면서 가장 크게 중점을 둔 것은 아래의 3가지 항목입니다!
 
 - 컴포넌트는 데이터를 그리는 데에만 집중한다.
-- 데이터를 가져오거나 이벤트를 등록하는 콜백은 외부에서 주입해 최대한 독립적이게 작동하게 만든다.
+- 데이터를 가져오거나 이벤트를 등록하는 콜백은 외부에서 주입해 최대한 독립적이게
+  작동하게 만든다.
 - 컴포넌트마다 상태를 갖고, 해당 상태에 따라 랜더링을 어떻게 할지 결정한다.
 
-실제로 이렇게 명확히 컴포넌트의 역할에 집중하다보니, 틀린부분을 찾았을때 고치기에도 매우 쉬워졌습니다.
-추가적인 요구사항이 들어왔을떄에도 잘 적용할 수 있을 것 같았어요!
+실제로 이렇게 명확히 컴포넌트의 역할에 집중하다보니, 틀린부분을 찾았을때 고치기
+에도 매우 쉬워졌습니다. 추가적인 요구사항이 들어왔을떄에도 잘 적용할 수 있을 것
+같았어요!
 
 ## Problem
 
 과제를 하면서 마주친 문제는 총 2가지입니다.
 
-- 첫번쨰 문제는 위의 구조도에서 편집기의 제목이 바뀌면 문서 리스트에 있는 해당 문서의 제목이 즉각적이게 바뀌어야 하지만, 문서의 리스트는 DocumentPage, 편집기는 DocumentEditPage에 위치하고 있었습니다.
+- 첫번쨰 문제는 위의 구조도에서 편집기의 제목이 바뀌면 문서 리스트에 있는 해당
+  문서의 제목이 즉각적이게 바뀌어야 하지만, 문서의 리스트는 DocumentPage, 편집기
+  는 DocumentEditPage에 위치하고 있었습니다.
 
 <p>편집중일떄 -> 문서의 리스트의 상태를 바꿔서 문서의 리스트들을 다시 그려야 할 필요가 있었습니다.</p>
 
-
-- 두번쨰 문제는 API호출 실패의 대한 처리입니다. API호출을 실패할 때 어떤 조치를 취해야 할지가 어려웠습니다.
+- 두번쨰 문제는 API호출 실패의 대한 처리입니다. API호출을 실패할 때 어떤 조치를
+  취해야 할지가 어려웠습니다.
 
 <p>과제뿐만 아니라,, 실제 현업에서 어떻게 API 실패를 처리하는지 가장 궁금하기도 했던 주제였습니다!</p>
 
@@ -135,38 +150,38 @@ Init.addEventListener('click', () => {
 
 ## Try
 
-- 첫번쨰 문제는 편집기가 작동해서 제목이 바뀌었을떄, 리스트를 다시 그리는 함수를 props로 계속 전달해서 해결했습니다.
+- 첫번쨰 문제는 편집기가 작동해서 제목이 바뀌었을떄, 리스트를 다시 그리는 함수를
+  props로 계속 전달해서 해결했습니다.
 
 ```js
-  //App.js
+//App.js
 
-  //편집기의 제목이 바뀌면 리스트들을 다시 그리는 함수를 props로 전달!!
-  const documentEditPage = new DocumentEditPage({
-    $target,
-    initalState: {
-      documentId: 'new',
-      document: {
-        title: '',
-        content: '',
-      },
+//편집기의 제목이 바뀌면 리스트들을 다시 그리는 함수를 props로 전달!!
+const documentEditPage = new DocumentEditPage({
+  $target,
+  initalState: {
+    documentId: 'new',
+    document: {
+      title: '',
+      content: '',
     },
-    onChangeEditorTitle: () => {
-      documentPage.render();
-    },
-  });
-
-
+  },
+  onChangeEditorTitle: () => {
+    documentPage.render();
+  },
+});
 ```
 
-다만 이 방법이 적절한가?를 스스로 생각해보았을떄, 지금 프로젝트보다 더 복잡한 구조, 컴포넌트가 많이 생기는 구조에서는 적절치 못하다는 느낌을 받았습니다.
+다만 이 방법이 적절한가?를 스스로 생각해보았을떄, 지금 프로젝트보다 더 복잡한 구
+조, 컴포넌트가 많이 생기는 구조에서는 적절치 못하다는 느낌을 받았습니다.
 
-어쩌면 지금의 구조보다 더 복잡한 구조가 된다면, 전역적으로 관리할 저장소가 필요하다는 느낌을 받았어요!
+어쩌면 지금의 구조보다 더 복잡한 구조가 된다면, 전역적으로 관리할 저장소가 필요
+하다는 느낌을 받았어요!
 
-
-- 두번쨰 API호출 실패에 대한 문제는 단순히 최대한 상세하게 에러 코드를 분기하고, 해당 에러를 alert으로 띄우는 것으로 해결하였습니다.
+- 두번쨰 API호출 실패에 대한 문제는 단순히 최대한 상세하게 에러 코드를 분기하고,
+  해당 에러를 alert으로 띄우는 것으로 해결하였습니다.
 
 ```js
-
 const request = async (url, options = {}) => {
   const res = await fetch(`${API_ENDPOINT}${url}`, {
     ...options,
@@ -196,8 +211,10 @@ const request = async (url, options = {}) => {
 
 ## 느낀점
 
-노션 클로닝 프로젝트 동안, 컴포넌트의 역할, 자바스크립트로 컴포넌트를 어떻게 만드는지 많이 깨달았던 것 같습니다.
-개발을 계속 하면서 제가 데브코스에서 꼭 이루고 싶었던, 순수 자바스크립트를 잘 알고, 잘 다루는 사람에 조금이나마 가까워 진 느낌이였어요.
+노션 클로닝 프로젝트 동안, 컴포넌트의 역할, 자바스크립트로 컴포넌트를 어떻게 만
+드는지 많이 깨달았던 것 같습니다. 개발을 계속 하면서 제가 데브코스에서 꼭 이루고
+싶었던, 순수 자바스크립트를 잘 알고, 잘 다루는 사람에 조금이나마 가까워 진 느낌
+이였어요.
 
 ![](https://i.pinimg.com/564x/3b/68/35/3b6835e21fa7ec10bf26a694eb0d5730.jpg)
 
@@ -205,7 +222,3 @@ const request = async (url, options = {}) => {
 
 <a style = "color:#587da9" href = "https://github.com/prgrms-fe-devcourse/FEDC4-5_Project_Notion_VanillaJS/pull/16" target = "_blank" >
 <b>PR링크</b></a>
-
-
-
-
