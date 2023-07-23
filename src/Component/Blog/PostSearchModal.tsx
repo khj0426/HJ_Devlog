@@ -46,8 +46,8 @@ export default function PostSearchModal({
 }: {
   onCloseModal: () => void;
 }) {
-  const [querySearch, setQuerySearch] = useState<string>('');
-  const { posts } = useSearchPost(querySearch);
+  const [querySearch, setQuerySearch] = useState<string | null>(null);
+  const { posts } = useSearchPost(querySearch as string);
 
   return (
     <StyledPostSearchModalWrapper>
