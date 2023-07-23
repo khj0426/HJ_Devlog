@@ -43,6 +43,9 @@ export default function Home({
               }}
             >
               <Image
+                priority
+                width={150}
+                height={150}
                 src={post.image}
                 fill
                 alt="블로그 대표 이미지"
