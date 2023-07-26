@@ -38,21 +38,17 @@ const GlobalStyle = createGlobalStyle`
   pre {
     flex-wrap:wrap;
     border-radius: 10px;
-    font-family: 'Monaco', monospace;
+    font-family: Arial, Helvetica, sans-serif;
     padding: 0 1em;
     flex-direction: column;
     white-space: pre-wrap;
   }
 
 
-
-code ,.language-javascript{
-  
+  code ,.language-javascript{
     white-space: pre-wrap;
-    font-family: Monaco, monospace;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 15px;
-    padding: 0.2em;
-    letter-spacing: -0.05em;
     word-break: normal;
   }
 

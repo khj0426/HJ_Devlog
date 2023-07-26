@@ -47,7 +47,6 @@ export default function Home({
                 width={150}
                 height={150}
                 src={post.image}
-                fill
                 alt="블로그 대표 이미지"
                 style={{
                   objectFit: 'cover',
