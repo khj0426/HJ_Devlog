@@ -5,6 +5,7 @@ import CodeBlock from '@/Component/Blog/CodeBlock';
 import rehypeRaw from 'rehype-raw';
 import Comments from '@/Component/Giscus/Gitcus';
 import { getPostBySlug } from '../../../../../lib/api';
+import { Metadata } from 'next';
 
 export default function Post({
   params,
@@ -22,6 +23,37 @@ export default function Post({
     'author',
     'image',
   ]);
+
+  const dynamicMetaData: Metadata = {
+    title: post.title,
+    description: post.excerpt,
+    keywords: post.title,
+    openGraph: {
+      images: [
+        {
+          url: `${post.image}`,
+          width: 800,
+          height: 600,
+        },
+      ],
+    },
+
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+      },
+    },
+    viewport: {
+      width: 'device-width',
+      initialScale: 1,
+    },
+    verification: {
+      google: 'g3Daim29whdK1ZzL1CE6pvkYyvSgM5-6C898-TVjiz0',
+    },
+  };
 
   return (
     <>

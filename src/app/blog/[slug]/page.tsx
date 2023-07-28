@@ -5,6 +5,57 @@ import { getPostBySlug } from '../../../../lib/api';
 import CodeBlock from '@/Component/Blog/CodeBlock';
 import rehypeRaw from 'rehype-raw';
 import Comments from '@/Component/Giscus/Gitcus';
+import { Metadata } from 'next';
+
+export async function generateMetaData({
+  params,
+}: {
+  params: {
+    slug: string;
+  };
+}) {
+  const post = getPostBySlug(params.slug, [
+    'title',
+    'content',
+    'excerpt',
+    'date',
+    'author',
+    'image',
+  ]);
+
+  const openGraphImage = post.image;
+  const dynamicMetaTag: Metadata = {
+    title: post.title,
+    description: post.excerpt,
+    openGraph: {
+      images: [
+        {
+          url: `${post.image}`,
+          width: 800,
+          height: 600,
+        },
+      ],
+    },
+    keywords: post.title,
+
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+      },
+    },
+    viewport: {
+      width: 'device-width',
+      initialScale: 1,
+    },
+    verification: {
+      google: 'g3Daim29whdK1ZzL1CE6pvkYyvSgM5-6C898-TVjiz0',
+    },
+  };
+  return dynamicMetaTag;
+}
 
 export default function Post({
   params,
