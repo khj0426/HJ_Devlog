@@ -7,8 +7,12 @@ const StyledPostLayOut = styled.section`
   border-radius: 25px;
   margin: 25px auto;
   background: ${({ theme }) => theme.backgroundPost};
+  max-width: 800px;
+  width: 60%;
 
-  width: 65%;
+  @media ${({ theme }) => theme.device.laptop} {
+    width: 80%;
+  }
 
   @media ${({ theme }) => theme.device.tablet} {
     width: 90%;
