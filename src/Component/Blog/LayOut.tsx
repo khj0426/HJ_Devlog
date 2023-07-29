@@ -1,25 +1,35 @@
 'use client';
 import React from 'react';
-import styled from 'styled-components';
+import styled,{css} from 'styled-components';
+
+const PostLayOutPC = css`
+    min-width: 60%;
+    max-width: 60%;
+`
+const PostLayOutMobile = css`
+  min-width: 80%;
+  max-width: 80%;
+`
 
 const StyledPostLayOut = styled.article`
-  max-width: 60%;
+
+  ${PostLayOutPC}
   display: flex;
-  min-width: 60%;
   margin: 20px auto;
   flex-direction: column;
   margin-bottom: 50px;
+  font-size: 20px;
 
   @media ${({ theme }) => theme.device.laptop} {
-    font-size: 20px;
+    ${PostLayOutPC}
   }
 
   @media ${({ theme }) => theme.device.tablet} {
-    font-size: 20px;
+    ${PostLayOutPC}
   }
 
   @media ${({ theme }) => theme.device.mobile} {
-    font-size: 13px;
+    ${PostLayOutMobile}
   }
 `;
 

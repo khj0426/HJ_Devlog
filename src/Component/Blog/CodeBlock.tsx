@@ -8,7 +8,7 @@ export default function CodeBlock({
   children: string | string[];
 }) {
   return (
-    <SyntaxHighlighter language="javascript" wrapLines={true} style={rainbow}>
+    <SyntaxHighlighter language="javascript" wrapLines={true} style={rainbow} useInlineStyles={true}>
       {children}
     </SyntaxHighlighter>
   );

@@ -36,20 +36,19 @@ const GlobalStyle = createGlobalStyle`
   }
 
   pre {
-    flex-wrap:wrap;
     border-radius: 10px;
     font-family: Arial, Helvetica, sans-serif;
     padding: 0 1em;
-    flex-direction: column;
     white-space: pre-wrap;
+    word-wrap: break-word;
   }
 
 
   code ,.language-javascript{
-    white-space: pre-wrap;
-    font-family: Arial, Helvetica, sans-serif;
     font-size: 15px;
-    word-break: normal;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-family: Arial, Helvetica, sans-serif;
   }
 
 `;
