@@ -7,7 +7,7 @@ import rehypeRaw from 'rehype-raw';
 import Comments from '@/Component/Giscus/Gitcus';
 import { Metadata } from 'next';
 
-export async function generateMetaData({
+export async function generateMetadata({
   params,
 }: {
   params: {

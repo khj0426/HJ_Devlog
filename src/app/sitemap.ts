@@ -6,10 +6,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const posts = getAllPosts(['title', 'date']);
 
   const postsSiteMap = posts.map((post) => {
-    return { url: `/blog/${post.title}`, lastModified: new Date() };
+    return { url: `/blog/${post.title}`, lastModified: new Date(post.date) };
   });
-
-  console.log(postsSiteMap);
 
   return [
     {
