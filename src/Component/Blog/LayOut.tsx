@@ -3,7 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StyledPostLayOut = styled.article`
-  max-width: 80%;
+  max-width: 60%;
   display: flex;
   min-width: 60%;
   margin: 20px auto;

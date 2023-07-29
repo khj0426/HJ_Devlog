@@ -7,10 +7,10 @@ const StyledTitle = styled.h3`
   display: flex;
 
   @media ${({ theme }) => theme.device.tablet} {
-    font-size: 20px;
+    font-size: 18px;
   }
   @media ${({ theme }) => theme.device.mobile} {
-    font-size: 16px;
+    font-size: 14px;
   }
 `;
 

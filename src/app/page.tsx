@@ -32,7 +32,13 @@ export default function Home() {
           <PostLayout key={post.title}>
             <Link href={`/blog/${post.slug}`}>
               <Title title={post.title} />
-              <p>{post.date}</p>
+              <p
+                style={{
+                  fontSize: '1rem',
+                }}
+              >
+                {post.date}
+              </p>
               {post.content}
             </Link>
             <Image
