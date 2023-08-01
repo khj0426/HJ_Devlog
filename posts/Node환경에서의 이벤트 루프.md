@@ -1,7 +1,7 @@
 ---
 title: 'Node환경에서의 이벤트 루프'
 excerpt: '이벤트 루프, 노드에서는 어떻게 작동할까?'
-date: '2022-06-30'
+date: '2023-06-30'
 author: '김효중'
 category: 'Js'
 image: '/images/postImg/libuv.jpg'

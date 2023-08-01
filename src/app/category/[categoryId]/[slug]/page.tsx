@@ -15,7 +15,7 @@ export default function Post({
     slug: string;
   };
 }) {
-  const post = getPostBySlug(params.slug, [
+  const post = getPostBySlug(decodeURIComponent(params.slug), [
     'title',
     'content',
     'excerpt',
