@@ -8,10 +8,6 @@ export default function useSearchPost(searchInput: string) {
   const [posts, setPosts] = useState<Item[]>([]);
 
   useEffect(() => {
-    const debounceHandler = setTimeout(() => {
-      fetchAllPosts();
-    }, 300);
-
     const fetchAllPosts = async () => {
       const allPostResponse = await fetch('/api/slugs');
       const allPosts: Item[] = await allPostResponse.json();
@@ -19,10 +15,7 @@ export default function useSearchPost(searchInput: string) {
         setPosts(allPosts.filter((post) => post.title.includes(searchInput)));
       }
     };
-
-    return () => {
-      clearTimeout(debounceHandler);
-    };
+    fetchAllPosts();
   }, [searchInput]);
 
   return {

@@ -61,6 +61,7 @@ export default function PostSearchModal({
           X
         </p>
         <StyledPostSearchInput
+          autoFocus
           placeholder="검색할 내용을 입력해주세요."
           onChange={(e) => setQuerySearch(e.target.value)}
         />
