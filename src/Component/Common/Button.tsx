@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import type { ButtonProps } from '@/@types/ButtonType';
 
 const StyledBaseButton = styled.button<ButtonProps>`
-  background-color: rgba(66, 153, 225, 1);
+  background-color: ${({ theme }) => theme.backgroundPost};
   font-weight: bold;
   border-radius: 0.25rem;
   cursor: pointer;
@@ -35,6 +35,7 @@ export default function Button({
       variant={variant}
     >
       {icon}
+      {label}
     </StyledBaseButton>
   );
 }

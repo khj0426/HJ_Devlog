@@ -10,7 +10,7 @@ export default function useSearchPost(searchInput: string) {
   useEffect(() => {
     const debounceHandler = setTimeout(() => {
       fetchAllPosts();
-    }, 1000);
+    }, 300);
 
     const fetchAllPosts = async () => {
       const allPostResponse = await fetch('/api/slugs');
