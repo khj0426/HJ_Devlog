@@ -1,6 +1,8 @@
 'use client';
 import dynamic from 'next/dynamic';
-const SyntaxHighlighter = dynamic(() => import('react-syntax-highlighter'));
+const PrismLight = dynamic(
+  () => import('react-syntax-highlighter/dist/cjs/prism')
+);
 import { rainbow } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 export default function CodeBlock({
   children,
@@ -8,8 +10,13 @@ export default function CodeBlock({
   children: string | string[];
 }) {
   return (
-    <SyntaxHighlighter language="javascript" wrapLines={true} style={rainbow} useInlineStyles={true}>
+    <PrismLight
+      language="javascript"
+      wrapLines={true}
+      style={rainbow}
+      useInlineStyles={true}
+    >
       {children}
-    </SyntaxHighlighter>
+    </PrismLight>
   );
 }
