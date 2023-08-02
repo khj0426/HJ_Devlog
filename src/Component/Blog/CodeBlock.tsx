@@ -1,9 +1,10 @@
 'use client';
 import dynamic from 'next/dynamic';
 const PrismLight = dynamic(
-  () => import('react-syntax-highlighter/dist/cjs/prism')
+  () => import('react-syntax-highlighter/dist/cjs/prism-light')
 );
-import { rainbow } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+import { materialDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
+
 export default function CodeBlock({
   children,
 }: {
@@ -13,7 +14,7 @@ export default function CodeBlock({
     <PrismLight
       language="javascript"
       wrapLines={true}
-      style={rainbow}
+      style={materialDark}
       useInlineStyles={true}
     >
       {children}
