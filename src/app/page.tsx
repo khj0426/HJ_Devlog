@@ -1,6 +1,9 @@
 import { getAllCategories, getAllPosts } from '../../lib/api';
 import CategoryList from '@/Component/CategoryList/CategoryList';
-import PostServiceLayer from '@/services/PostService';
+import Link from 'next/link';
+import Title from '@/Component/About/Title';
+import Image from 'next/image';
+import PostLayout from '@/Component/Common/PostLayout';
 
 export default function Home() {
   const posts = getAllPosts([
@@ -25,7 +28,31 @@ export default function Home() {
           minWidth: '60%',
         }}
       >
-        <PostServiceLayer />
+        {posts.map((post) => (
+          <PostLayout key={post.title}>
+            <Link href={`/blog/${post.slug}`}>
+              <Title title={post.title} />
+              <p
+                style={{
+                  fontSize: '1rem',
+                }}
+              >
+                {post.date}
+              </p>
+              {post.content}
+            </Link>
+            <Image
+              src={post.image}
+              width={150}
+              height={150}
+              alt="블로그 대표 이미지"
+              style={{
+                objectFit: 'cover',
+              }}
+              priority
+            />
+          </PostLayout>
+        ))}
       </main>
     </>
   );
