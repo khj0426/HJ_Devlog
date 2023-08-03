@@ -6,7 +6,7 @@ import Navbar from '@/Component/Common/Navbar';
 import Footer from '@/Component/Common/Footer';
 import localFont from 'next/font/local';
 import { Metadata } from 'next';
-import Script from 'next/script';
+import GoogleAnalytics from '@/Component/GA/GA';
 
 const baseFont = localFont({
   src: './fonts/KyoboHandwriting2022khn.ttf',
@@ -61,17 +61,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={baseFont.className}>
-      <Script src="https://www.googletagmanager.com/gtag/js?id=G-S9N5XJ40DL" />
-      <Script id="google-analytics">
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
- 
-          gtag('config', 'GA_MEASUREMENT_ID');
-        `}
-      </Script>
+    <html lang="ko" className={baseFont.className}>
+      <GoogleAnalytics />
       <body className="App">
         <Recoil>
           <ThemeWrapper>
