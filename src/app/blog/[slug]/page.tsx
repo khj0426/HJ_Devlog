@@ -76,7 +76,7 @@ export default function Post({
   return (
     <>
       <BlogLayOut>
-        <h3>{post.title}</h3>
+        <h1>{post.title}</h1>
         <PostExterct exterct={post.excerpt} />
         <p
           style={{

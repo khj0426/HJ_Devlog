@@ -6,6 +6,7 @@ import Navbar from '@/Component/Common/Navbar';
 import Footer from '@/Component/Common/Footer';
 import localFont from 'next/font/local';
 import { Metadata } from 'next';
+import Script from 'next/script';
 
 const baseFont = localFont({
   src: './fonts/KyoboHandwriting2022khn.ttf',
@@ -61,6 +62,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={baseFont.className}>
+      <Script src="https://www.googletagmanager.com/gtag/js?id=G-S9N5XJ40DL" />
       <body className="App">
         <Recoil>
           <ThemeWrapper>
