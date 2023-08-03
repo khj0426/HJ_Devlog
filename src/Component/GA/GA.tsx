@@ -1,21 +1,36 @@
 'use client';
 import Script from 'next/script';
 
-const GoogleAnalytics = () => {
+const GoogleAnalytics = ({
+  GA_MEASUREMENT_ID,
+}: {
+  GA_MEASUREMENT_ID: string;
+}) => {
   return (
     <>
       <Script
-        src="https://www.googletagmanager.com/gtag/js?id=G-S9N5XJ40DL"
         strategy="afterInteractive"
+        src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
       />
-      <Script id="google-analgytics" strategy="afterInteractive">
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-S9N5XJ40DL');
-        `}
-      </Script>
+      <Script
+        id="google-analytics"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('consent', 'default', {
+            'analytics_storage': 'denied'
+        });
+        
+        gtag('config', '${GA_MEASUREMENT_ID}', {
+            page_path: window.location.pathname,
+        });
+        `,
+        }}
+      />
     </>
   );
 };

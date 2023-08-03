@@ -6,6 +6,7 @@ import Navbar from '@/Component/Common/Navbar';
 import Footer from '@/Component/Common/Footer';
 import localFont from 'next/font/local';
 import { Metadata } from 'next';
+import Head from 'next/head';
 import GoogleAnalytics from '@/Component/GA/GA';
 
 const baseFont = localFont({
@@ -62,7 +63,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko" className={baseFont.className}>
-      <GoogleAnalytics />
+      <Head>
+        <GoogleAnalytics GA_MEASUREMENT_ID="G-S9N5XJ40DL" />
+      </Head>
       <body className="App">
         <Recoil>
           <ThemeWrapper>
