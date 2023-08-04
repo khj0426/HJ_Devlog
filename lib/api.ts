@@ -48,6 +48,12 @@ export function getAllPosts(fields: string[] = []) {
   return posts;
 }
 
+export function getInitPosts(fields: string[] = []) {
+  const slugs = getPostSlugs();
+  const posts = slugs.map((slug) => getPostBySlug(slug, fields)).slice(0, 3);
+  return posts;
+}
+
 export function getAllPostRequest(fields: string[] = []) {
   const slugs = getPostSlugs();
   const posts = slugs

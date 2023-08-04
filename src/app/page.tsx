@@ -1,12 +1,13 @@
-import { getAllCategories, getAllPosts } from '../../lib/api';
+import { getAllCategories, getInitPosts } from '../../lib/api';
 import CategoryList from '@/Component/CategoryList/CategoryList';
 import Link from 'next/link';
 import Title from '@/Component/About/Title';
 import Image from 'next/image';
 import PostLayout from '@/Component/Common/PostLayout';
+import PostServiceLayer from '@/services/PostService';
 
 export default function Home() {
-  const posts = getAllPosts([
+  const posts = getInitPosts([
     'title',
     'data',
     'slug',
@@ -14,9 +15,7 @@ export default function Home() {
     'excerpt',
     'date',
     'image',
-  ]);
-
-  posts.sort((post1, post2) => (post1.date > post2.date ? -1 : 1));
+  ]).sort((post1, post2) => (post1.date > post2.date ? -1 : 1));
 
   const allCategory = getAllCategories();
 
@@ -53,6 +52,8 @@ export default function Home() {
             />
           </PostLayout>
         ))}
+
+        <PostServiceLayer />
       </main>
     </>
   );
