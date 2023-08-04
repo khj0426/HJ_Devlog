@@ -50,7 +50,11 @@ export function getAllPosts(fields: string[] = []) {
 
 export function getInitPosts(fields: string[] = []) {
   const slugs = getPostSlugs();
-  const posts = slugs.map((slug) => getPostBySlug(slug, fields)).slice(0, 3);
+  const posts = slugs
+    .map((slug) => getPostBySlug(slug, fields))
+    .sort((post1, post2) => (post1.date > post2.date ? -1 : 1))
+    .slice(0, 3);
+
   return posts;
 }
 
