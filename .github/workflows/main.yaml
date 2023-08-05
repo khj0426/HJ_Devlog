@@ -1,0 +1,31 @@
+name: Run lighthouse CI When Push
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  lhci:
+    name: Lighthouse CI
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Use Node.js 16
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+
+      - name: Install Packages
+        run: npm install && npm install -g @lhci/cli
+
+      - name: Build
+        run: npm run build
+
+      - name: Run LightHouse CI
+        env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+        run: npm run lhci

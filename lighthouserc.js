@@ -26,7 +26,6 @@ module.exports = {
     collect: {
       startServerCommand: 'npm run dev',
       url: makeUrls().allPostPaths,
-      numberOfRuns: 1,
     },
     upload: {
       target: 'filesystem',

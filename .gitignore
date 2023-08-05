@@ -10,7 +10,7 @@
 
 # lighthouseci
 .lighthouseci
-./lhci_reports
+/lhci_reports
 
 # next.js
 /.next/
