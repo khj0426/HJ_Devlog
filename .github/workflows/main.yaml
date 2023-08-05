@@ -22,9 +22,6 @@ jobs:
       - name: Install Packages
         run: npm install && npm install -g @lhci/cli
 
-      - name: Build
-        run: npm run build
-
       - name: Run LightHouse CI
         env:
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}

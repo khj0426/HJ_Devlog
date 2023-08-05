@@ -4,7 +4,7 @@
   "private": true,
   "homepage": "https://github.com/khj0426/HJ_Devlog",
   "scripts": {
-    "lhci":"lhci autorun",
+    "lhci": "next build && lhci autorun",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
