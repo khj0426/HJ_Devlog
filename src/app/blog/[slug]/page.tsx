@@ -13,7 +13,7 @@ export async function generateMetadata({
   params: {
     slug: string;
   };
-}) {
+}): Promise<Metadata> {
   const post = getPostBySlug(params.slug, [
     'title',
     'content',
@@ -33,8 +33,12 @@ export async function generateMetadata({
           url: `${post.image}`,
           width: 800,
           height: 600,
+          alt: '블로그 대표 이미지',
         },
       ],
+      type: 'website',
+      siteName: `${post.title}`,
+      locale: 'ko-KR',
     },
     keywords: post.title,
 
