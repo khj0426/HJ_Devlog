@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Title from '@/Component/About/Title';
 import Image from 'next/image';
 import PostLayout from '@/Component/Common/PostLayout';
-import PostServiceLayer from '@/services/PostService';
+import PostList from '@/Component/Post/PostList';
 
 export default function Home() {
   const posts = getInitPosts([
@@ -53,7 +53,7 @@ export default function Home() {
           </PostLayout>
         ))}
 
-        <PostServiceLayer />
+        <PostList />
       </main>
     </>
   );
