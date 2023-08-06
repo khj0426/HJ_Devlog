@@ -37,7 +37,6 @@ const GlobalStyle = createGlobalStyle`
 
   pre {
     border-radius: 10px;
-    font-family: Arial, Helvetica, sans-serif;
     padding: 0 1em;
     white-space: pre-wrap;
     word-wrap: break-word;
@@ -48,7 +47,6 @@ const GlobalStyle = createGlobalStyle`
     font-size: 15px;
     white-space: pre-wrap;
     word-wrap: break-word;
-    font-family: Arial, Helvetica, sans-serif;
   }
 
 `;

@@ -4,15 +4,18 @@ import GlobalStyle from '@/style/globalStyle';
 import { ThemeWrapper } from './themeWrapper';
 import Navbar from '@/Component/Common/Navbar';
 import Footer from '@/Component/Common/Footer';
-import localFont from 'next/font/local';
+import { Do_Hyeon } from 'next/font/google';
 import { Metadata } from 'next';
 import Head from 'next/head';
 import GoogleAnalytics from '@/Component/GA/GA';
 
-const baseFont = localFont({
-  src: './fonts/KyoboHandwriting2022khn.ttf',
+const baseFont = Do_Hyeon({
+  subsets: ['latin'],
+  preload: true,
   display: 'swap',
+  weight: '400',
 });
+
 export const metadata: Metadata = {
   title: 'HJ`s Blog',
   description: '개발관련 여러 지식을 기록하는 공간',
