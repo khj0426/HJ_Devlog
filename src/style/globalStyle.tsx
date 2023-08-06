@@ -39,13 +39,7 @@ const GlobalStyle = createGlobalStyle`
     border-radius: 10px;
     padding: 0 1em;
     white-space: pre-wrap;
-    word-wrap: break-word;
-  }
-
-
-  code ,.language-javascript{
-    font-size: 15px;
-    white-space: pre-wrap;
+    font-family: inherit;
     word-wrap: break-word;
   }
 

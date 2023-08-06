@@ -29,7 +29,7 @@ export default function Home() {
       >
         {posts.map((post) => (
           <PostLayout key={post.title}>
-            <Link href={`/blog/${post.slug}`}>
+            <Link href={`/blog/${post.slug}`} rel='canonical' title={post.title}>
               <Title title={post.title} />
               <p
                 style={{

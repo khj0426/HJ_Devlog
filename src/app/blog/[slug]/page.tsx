@@ -105,7 +105,7 @@ export default function Post({
                 }}
               />
             ),
-            code: ({ node, inline, children, ...props }) => (
+            code: ({children }) => (
               <CodeBlock>{children as string}</CodeBlock>
             ),
           }}
