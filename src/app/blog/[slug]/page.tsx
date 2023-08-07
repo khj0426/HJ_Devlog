@@ -81,7 +81,6 @@ export default function Post({
 
   return (
     <>
-      <TOC toc={makeToc({ children: post.content }) || []}></TOC>
       <BlogLayOut>
         <h1>{post.title}</h1>
         <PostExterct exterct={post.excerpt} />
@@ -122,6 +121,7 @@ export default function Post({
 
         <Comments />
       </BlogLayOut>
+      <TOC toc={makeToc({ children: post.content }) || []}></TOC>
     </>
   );
 }
