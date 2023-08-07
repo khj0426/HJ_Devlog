@@ -4,7 +4,7 @@ export default function useScroll({
   target,
   options,
 }: {
-  target: HTMLElement | null;
+  target: HTMLElement | null | HTMLElement[];
   options: IntersectionObserverInit;
 }) {
   const [isFetching, setIsFetching] = useState(false);
@@ -17,10 +17,16 @@ export default function useScroll({
   };
 
   useEffect(() => {
-    let observer;
+    let observer = new IntersectionObserver(intersectionCallback, options);
     if (target instanceof HTMLElement) {
-      observer = new IntersectionObserver(intersectionCallback, options);
       observer.observe(target);
+      return;
+    }
+
+    if (target instanceof Array) {
+      target.forEach((eachTarget) => {
+        observer.observe(eachTarget);
+      });
     }
   }, [options, target]);
 
