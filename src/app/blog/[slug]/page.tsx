@@ -4,8 +4,10 @@ import BlogLayOut from '@/Component/Blog/LayOut';
 import { getPostBySlug } from '../../../../lib/api';
 import CodeBlock from '@/Component/Blog/CodeBlock';
 import rehypeRaw from 'rehype-raw';
+import makeToc from '../../../../lib/makeToc';
 import Comments from '@/Component/Giscus/Gitcus';
 import { Metadata } from 'next';
+import TOC from '@/Component/TOC';
 
 export async function generateMetadata({
   params,
@@ -79,6 +81,7 @@ export default function Post({
 
   return (
     <>
+      <TOC toc={makeToc({ children: post.content }) || []}></TOC>
       <BlogLayOut>
         <h1>{post.title}</h1>
         <PostExterct exterct={post.excerpt} />
@@ -105,9 +108,13 @@ export default function Post({
                 }}
               />
             ),
-            code: ({children }) => (
-              <CodeBlock>{children as string}</CodeBlock>
-            ),
+            code: ({ children }) => <CodeBlock>{children as string}</CodeBlock>,
+            h2: ({ children }) => {
+              return <h2 id={children as string}>{children}</h2>;
+            },
+            h3: ({ children }) => {
+              return <h3 id={children as string}>{children}</h3>;
+            },
           }}
         >
           {post.content}
