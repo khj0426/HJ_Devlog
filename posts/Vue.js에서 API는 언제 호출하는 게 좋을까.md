@@ -1,5 +1,5 @@
 ---
-title: 'Vue.js의 비동기요청은 언제하면 좋을까'
+title: 'Vue.js의 비동기요청과 라이프사이클'
 excerpt: 'Vue.js의 라이프사이클과 비동기'
 date: '2023-08-14'
 author: '김효중'
