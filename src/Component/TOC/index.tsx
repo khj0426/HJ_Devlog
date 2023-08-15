@@ -43,7 +43,9 @@ export default function TOC({ toc }: { toc: string[] }) {
       <>
         <li key={eachToc}>
           <div>
-            <StyledTOCLink href={`#${makeTOC}`}>{makeTOC}</StyledTOCLink>
+            <StyledTOCLink className={`${makeTOC}`} href={`#${makeTOC}`}>
+              {makeTOC}
+            </StyledTOCLink>
           </div>
         </li>
       </>

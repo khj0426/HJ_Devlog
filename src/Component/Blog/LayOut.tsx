@@ -1,17 +1,17 @@
 'use client';
-import styled,{css} from 'styled-components';
+import styled, { css } from 'styled-components';
+import { useEffect } from 'react';
 
 const PostLayOutPC = css`
-    min-width: 60%;
-    max-width: 60%;
-`
+  min-width: 60%;
+  max-width: 60%;
+`;
 const PostLayOutMobile = css`
   min-width: 80%;
   max-width: 80%;
-`
+`;
 
 const StyledPostLayOut = styled.article`
-
   ${PostLayOutPC}
   display: flex;
   margin: 20px auto;
@@ -37,5 +37,29 @@ export default function BlogLayOut({
 }: {
   children: React.ReactNode[];
 }) {
+  useEffect(() => {
+    const getH2Element = Array.from(document.querySelectorAll('h2'));
+    const getH3Element = Array.from(document.querySelectorAll('h3'));
+
+    const getAllHeaderElement = [...getH2Element, ...getH3Element];
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const getTOC = entry.target.textContent as string;
+        const getTOCElement = document.getElementsByClassName(
+          entry.target.textContent as string
+        );
+        if (getTOCElement && entry.intersectionRatio > 0) {
+          getTOCElement[0].classList.add('active');
+        } else if (getTOCElement && entry.intersectionRatio <= 0) {
+          getTOCElement[0].classList.remove('active');
+        }
+      });
+    });
+
+    getAllHeaderElement.forEach((eachHeaderElement) => {
+      io.observe(eachHeaderElement);
+    });
+  }, []);
+
   return <StyledPostLayOut>{children}</StyledPostLayOut>;
 }

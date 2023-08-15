@@ -9,6 +9,9 @@ footer {
 .tocItem:hover {
   color: rgb(0, 131, 120);
 }
+.active {
+  color: rgb(0, 131, 120);
+}
 main {
   font-family: inherit;
   min-height: calc(100vh - 120px);
