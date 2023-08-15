@@ -42,23 +42,31 @@ export default function BlogLayOut({
     const getH3Element = Array.from(document.querySelectorAll('h3'));
 
     const getAllHeaderElement = [...getH2Element, ...getH3Element];
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        const getTOC = entry.target.textContent as string;
-        const getTOCElement = document.getElementsByClassName(
-          entry.target.textContent as string
-        );
-        if (getTOCElement && entry.intersectionRatio > 0) {
-          getTOCElement[0].classList.add('active');
-        } else if (getTOCElement && entry.intersectionRatio <= 0) {
-          getTOCElement[0].classList.remove('active');
-        }
-      });
-    });
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const getTOC = entry.target.textContent as string;
+          const getTOCElement = document.getElementsByClassName(
+            entry.target.textContent as string
+          );
+          if (getTOCElement && entry.isIntersecting) {
+            getTOCElement[0].classList.add('active');
+          } else if (getTOCElement && !entry.isIntersecting) {
+            getTOCElement[0].classList.remove('active');
+          }
+        });
+      },
+      {
+        threshold: 0.4,
+      }
+    );
 
     getAllHeaderElement.forEach((eachHeaderElement) => {
       io.observe(eachHeaderElement);
     });
+
+    return () => io.disconnect();
   }, []);
 
   return <StyledPostLayOut>{children}</StyledPostLayOut>;
