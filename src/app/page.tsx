@@ -47,6 +47,8 @@ export default function Home() {
               alt="블로그 대표 이미지"
               style={{
                 objectFit: 'cover',
+                minWidth:'150px'
+               
               }}
               priority
             />
