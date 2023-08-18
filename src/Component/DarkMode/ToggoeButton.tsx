@@ -28,6 +28,7 @@ export default function ToggleDarkModeButton() {
             alt="다크모드로 바꾸는 이미지"
             width={50}
             height={50}
+            priority
           />
         ) : (
           <Image
@@ -35,6 +36,7 @@ export default function ToggleDarkModeButton() {
             alt="기본모드로 바꾸는 이미지"
             width={50}
             height={50}
+            priority
           />
         )
       }
