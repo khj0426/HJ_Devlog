@@ -50,6 +50,7 @@
   },
   "devDependencies": {
     "@lhci/cli": "^0.12.0",
+    "@sentry/utils": "^7.64.0",
     "@types/glob": "^8.1.0",
     "gh-pages": "^5.0.0",
     "glob": "^10.2.7"
