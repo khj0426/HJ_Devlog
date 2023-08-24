@@ -98,14 +98,14 @@ export default function Post({
           rehypePlugins={[rehypeRaw]}
           components={{
             img: ({ node, ...props }) => (
-              <div
+              <img
+                src={props?.src || ''}
+                alt={props?.alt || '마크다운 이미지'}
                 style={{
-                  position: 'relative',
                   maxWidth: '100%',
+                  objectFit: 'cover',
                 }}
-              >
-                <Image src={props.src || ''} alt="마크다운 이미지" fill />
-              </div>
+              ></img>
             ),
             code: ({ children }) => <CodeBlock>{children as string}</CodeBlock>,
             h2: ({ children }) => {
