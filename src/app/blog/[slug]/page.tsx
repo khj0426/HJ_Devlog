@@ -7,6 +7,7 @@ import rehypeRaw from 'rehype-raw';
 import makeToc from '../../../../lib/makeToc';
 import Comments from '@/Component/Giscus/Gitcus';
 import { Metadata } from 'next';
+import Image from 'next/image';
 import TOC from '@/Component/TOC';
 
 export async function generateMetadata({
@@ -97,15 +98,14 @@ export default function Post({
           rehypePlugins={[rehypeRaw]}
           components={{
             img: ({ node, ...props }) => (
-              <img
-                src={props.src || ''}
-                alt="마크다운 이미지"
+              <div
                 style={{
+                  position: 'relative',
                   maxWidth: '100%',
-                  height: 'auto',
-                  objectFit: 'contain',
                 }}
-              />
+              >
+                <Image src={props.src || ''} alt="마크다운 이미지" fill />
+              </div>
             ),
             code: ({ children }) => <CodeBlock>{children as string}</CodeBlock>,
             h2: ({ children }) => {
