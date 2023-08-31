@@ -249,5 +249,5 @@ Request from ::1: POST /.netlify/functions/movie/
 
 axios는 서드파티 라이브러리입니다. 그러다 보니 번들 사이즈를 신경쓰지 않을 수 없는데 번들의 크기는 아래와 같습니다. 소규모의 프로젝트의 경우 (api 호출이 별로 없거나, 기본 fetch API만으로 충분한 경우) 오히려 번들 크기로 인해 axios가 무거워 질 수 있다고 생각합니다.!.!
 
-![번들크기](/imges/postImg/axiosbundle.png)
+![번들크기](/images/postImg/axiosbundle.png)
 
