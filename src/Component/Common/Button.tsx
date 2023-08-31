@@ -14,6 +14,7 @@ const StyledBaseButton = styled.button<ButtonProps>`
     opacity: 0.5;
   }
   color: ${({ theme }) => theme.text};
+  transition: icon 0.3s ease-in-out;
   border: ${(props) =>
     props.variant === 'outlined' ? '1px rgba(255,255,255,1)' : 'none'};
 `;
