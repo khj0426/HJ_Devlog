@@ -1,9 +1,11 @@
 'use client';
-import Giscus from '@giscus/react';
+
+import dynamic from 'next/dynamic';
+const DynamicGiscus = dynamic(() => import('@giscus/react'));
 
 export default function Comments() {
   return (
-    <Giscus
+    <DynamicGiscus
       repo="khj0426/HJ_Devlog"
       repoId="R_kgDOJsCLkw"
       mapping="pathname"

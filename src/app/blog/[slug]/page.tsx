@@ -101,7 +101,6 @@ export default function Post({
               <picture>
                 <source type="image/webp" />
                 <img
-                  fetchPriority="high"
                   src={props?.src || ''}
                   alt={props?.alt || '마크다운 이미지'}
                   style={{
@@ -109,6 +108,7 @@ export default function Post({
                     objectFit: 'cover',
                     height: 'auto',
                   }}
+                  sizes="(max-width: 560px) 360px, (max-width: 1023px) 700px, (max-width: 1260px) 1024px, (min-width: 1261px) 1260px"
                 />
               </picture>
             ),
