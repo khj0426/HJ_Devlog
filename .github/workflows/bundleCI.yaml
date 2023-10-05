@@ -1,7 +1,7 @@
 name: package size Report
 
 on:
-  pull_request:
+  push:
     branches: [main, develop, release]
 
 jobs:
