@@ -1,9 +1,9 @@
 'use client';
 import dynamic from 'next/dynamic';
-const PrismLight = dynamic(
+import { materialDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
+const PrismLight = dynamic<any>(
   () => import('react-syntax-highlighter/dist/cjs/prism-light')
 );
-import { materialDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 
 export default function CodeBlock({
