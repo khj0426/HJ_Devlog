@@ -8,7 +8,6 @@ const StyledTOCList = styled.ul`
   max-width: 235px;
   height: auto;
   max-height: 75vh;
-  word-wrap: break-word;
   text-align: justify;
   width: 235px;
   margin-top: 100px;

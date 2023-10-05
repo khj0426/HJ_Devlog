@@ -1,32 +1,24 @@
-name: bundleCI
+name: package size Report
 
 on:
-  push:
-    branches:
-      - main
   pull_request:
-    branches:
-      - main
-      - develop
-      - release
+    branches: [main, develop, release]
 
 jobs:
-  run-bundle-analysis:
+  pkg-size-report:
+    name: Package Size Report
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Install dependencies
-        run: yarn
-
-      - name: Build
-        run: yarn build
-
-      - name: Analyze bundle sizes
-        uses: transferwise/actions-next-bundle-analyzer@master
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
         with:
-          workflow-id: checkbundlesize.yml
-          base-branch: main
+          node-version: '18' # ⬅ Specify a version of Node.js to build your app
+
+      - name: Package size report
+        uses: pkg-size/action@v1
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}

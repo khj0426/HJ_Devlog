@@ -1,7 +1,6 @@
-'use client';
 import dynamic from 'next/dynamic';
 import { materialDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
-const PrismLight = dynamic<any>(
+const PrismLight = dynamic(
   () => import('react-syntax-highlighter/dist/cjs/prism-light')
 );
 
