@@ -1,8 +1,10 @@
+import Image from 'next/image';
 import Link from 'next/link';
+
 import Title from '@/Component/About/Title';
 import PostLayout from '@/Component/Common/PostLayout';
+
 import { getCategoryFilteredPosts } from '../../../../lib/api';
-import Image from 'next/image';
 
 export default function Home({
   params,

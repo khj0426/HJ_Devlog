@@ -1,7 +1,10 @@
-import SearchImage from '../../.././public/images/search.webp';
 import Image from 'next/image';
 import { useRecoilState } from 'recoil';
+
 import { postSearchModalState } from '@/app/globalAtom';
+
+import SearchImage from '../../.././public/images/search.webp';
+
 import PostSearchModal from './PostSearchModal';
 
 export default function SearchPostButton() {

@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
-import { get } from '@/utils/axiosClient';
+
 import { AxiosResponse } from 'axios';
+
+import { get } from '@/utils/axiosClient';
 
 type Item = {
   [key: string]: string;

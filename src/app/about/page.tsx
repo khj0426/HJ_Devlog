@@ -1,10 +1,12 @@
 'use client';
 
-import Title from '@/Component/About/Title';
 import type AboutProps from '@/@types/AboutProps';
+
 import styled from 'styled-components';
-import ProfileImageWrapper from '@/Component/About/ProfileImgWrapper';
+
 import Content from '@/Component/About/Content';
+import ProfileImageWrapper from '@/Component/About/ProfileImgWrapper';
+import Title from '@/Component/About/Title';
 
 const AboutContent: AboutProps = {
   title: '안녕하세요! 기록하기를 좋아하는 김효중입니다!',

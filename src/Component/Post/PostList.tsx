@@ -1,11 +1,13 @@
 'use client';
 
 import { useRecoilState } from 'recoil';
+
 import { postCurPage } from '@/app/globalAtom';
-import usePostQuery from '@/hooks/usePostQuery';
-import PostItem from './PostItem';
 import Button from '@/Component/Common/Button';
 import POST_CONSTANT from '@/constants/POST';
+import usePostQuery from '@/hooks/usePostQuery';
+
+import PostItem from './PostItem';
 
 export default function PostServiceLayer() {
   const { start, end } = POST_CONSTANT;

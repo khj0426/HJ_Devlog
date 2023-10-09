@@ -1,8 +1,9 @@
 'use client';
-import styled from 'styled-components';
-import ToggleDarkModeButton from '../DarkMode/ToggoeButton';
-import SearchPostButton from '../Blog/SearchPost';
 import Link from 'next/link';
+import styled from 'styled-components';
+
+import SearchPostButton from '../Blog/SearchPost';
+import ToggleDarkModeButton from '../DarkMode/ToggoeButton';
 
 const StyledNavBarLayout = styled.nav`
   position: sticky;

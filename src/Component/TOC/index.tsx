@@ -1,7 +1,8 @@
 'use client';
 
-import replaceStrWithBlank from '../../../lib/replaceStr';
 import styled from 'styled-components';
+
+import replaceStrWithBlank from '../../../lib/replaceStr';
 
 const StyledTOCList = styled.ul`
   position: fixed;

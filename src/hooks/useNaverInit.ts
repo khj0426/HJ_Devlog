@@ -1,7 +1,8 @@
 'use client';
 
-import { Environment } from '@/utils/envorinments';
 import { useCallback, useEffect } from 'react';
+
+import { Environment } from '@/utils/envorinments';
 
 const useNaverInit = () => {
   const handleNaverInit = useCallback(() => {

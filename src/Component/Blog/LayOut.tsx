@@ -1,6 +1,7 @@
 'use client';
-import styled, { css } from 'styled-components';
 import { useEffect } from 'react';
+
+import styled, { css } from 'styled-components';
 
 const PostLayOutPC = css`
   min-width: 60%;

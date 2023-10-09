@@ -1,11 +1,15 @@
+import { Metadata } from 'next';
+
 import ReactMarkdown from 'react-markdown';
+
+import rehypeRaw from 'rehype-raw';
+
+import CodeBlock from '@/Component/Blog/CodeBlock';
 import PostExterct from '@/Component/Blog/Exterct';
 import BlogLayOut from '@/Component/Blog/LayOut';
-import CodeBlock from '@/Component/Blog/CodeBlock';
-import rehypeRaw from 'rehype-raw';
 import Comments from '@/Component/Giscus/Gitcus';
+
 import { getPostBySlug } from '../../../../../lib/api';
-import { Metadata } from 'next';
 
 export default function Post({
   params,

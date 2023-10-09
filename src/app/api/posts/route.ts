@@ -1,4 +1,5 @@
 import { NextRequest } from 'next/server';
+
 import { getAllPosts } from '../../../../lib/api';
 
 export async function GET(req: NextRequest) {

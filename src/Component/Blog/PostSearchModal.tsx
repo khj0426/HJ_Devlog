@@ -1,7 +1,10 @@
-import styled from 'styled-components';
 import { useState } from 'react';
-import useSearchPost from '@/hooks/useSearchPost';
+
 import Link from 'next/link';
+import styled from 'styled-components';
+
+import useSearchPost from '@/hooks/useSearchPost';
+
 
 const StyledPostSearchModalWrapper = styled.div`
   position: fixed;

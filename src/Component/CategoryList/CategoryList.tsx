@@ -1,8 +1,9 @@
 'use client';
 
+import type { CategoryItem } from '@/@types/CategoryType';
+
 import Link from 'next/link';
 import styled from 'styled-components';
-import type { CategoryItem } from '@/@types/CategoryType';
 
 const CategoryListStyle = styled.span`
   color: ${({ theme }) => theme.text};

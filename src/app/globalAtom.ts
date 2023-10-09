@@ -1,6 +1,8 @@
-import { atom } from 'recoil';
-import POST_CONSTANT from '@/constants/POST';
 import type { ThemeType } from '@/@types/ThemeType';
+
+import { atom } from 'recoil';
+
+import POST_CONSTANT from '@/constants/POST';
 
 export const themeState = atom<ThemeType>({
   key: 'THEME_STATE',

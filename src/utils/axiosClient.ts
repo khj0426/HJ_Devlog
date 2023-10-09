@@ -1,11 +1,12 @@
-import { Environment } from './envorinments';
 import axios, {
   AxiosHeaders,
   AxiosInstance,
   AxiosRequestConfig,
   AxiosResponse,
 } from 'axios';
+
 import { getAccessToken, setAccessToken } from './accessToken';
+import { Environment } from './envorinments';
 
 const axiosClient = axios.create({
   baseURL: Environment.baseURL,

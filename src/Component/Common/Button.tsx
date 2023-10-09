@@ -1,5 +1,6 @@
-import styled from 'styled-components';
 import type { ButtonProps } from '@/@types/ButtonType';
+
+import styled from 'styled-components';
 
 const StyledBaseButton = styled.button<ButtonProps>`
   background-color: ${({ theme }) => theme.backgroundPost};

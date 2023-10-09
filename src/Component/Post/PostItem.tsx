@@ -1,9 +1,11 @@
 'use client';
 
-import PostLayout from '@/Component/Common/PostLayout';
-import Link from 'next/link';
-import Title from '@/Component/About/Title';
 import Image from 'next/image';
+import Link from 'next/link';
+
+import Title from '@/Component/About/Title';
+import PostLayout from '@/Component/Common/PostLayout';
+
 
 export default function PostItem({
   post,

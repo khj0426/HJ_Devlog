@@ -1,14 +1,17 @@
 import './globals.css';
-import Recoil from './Recoil';
-import GlobalStyle from '@/style/globalStyle';
-import { ThemeWrapper } from './themeWrapper';
-import Navbar from '@/Component/Common/Navbar';
-import Footer from '@/Component/Common/Footer';
-import { Do_Hyeon } from 'next/font/google';
 import { Metadata } from 'next';
+
+import { Do_Hyeon } from 'next/font/google';
 import Head from 'next/head';
-import GoogleAnalytics from '@/Component/GA/GA';
 import Script from 'next/script';
+
+import Footer from '@/Component/Common/Footer';
+import Navbar from '@/Component/Common/Navbar';
+import GoogleAnalytics from '@/Component/GA/GA';
+import GlobalStyle from '@/style/globalStyle';
+
+import Recoil from './Recoil';
+import { ThemeWrapper } from './themeWrapper';
 
 declare global {
   interface Window {

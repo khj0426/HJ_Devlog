@@ -1,11 +1,15 @@
 'use client';
 
-import { darkTheme, lightTheme } from '@/style/theme/darkMode';
-import StyledComponentsRegistry from './registry';
-import { ThemeProvider } from 'styled-components';
 import { useRecoilState } from 'recoil';
-import { themeState } from './globalAtom';
+import { ThemeProvider } from 'styled-components';
+
+import { darkTheme, lightTheme } from '@/style/theme/darkMode';
 import mediatheme from '@/style/theme/media';
+
+import { themeState } from './globalAtom';
+import StyledComponentsRegistry from './registry';
+
+
 export function ThemeWrapper({ children }: { children: React.ReactNode }) {
   const [currentTheme, setCurrentTheme] = useRecoilState(themeState);
   const themeObj = currentTheme === 'light' ? lightTheme : darkTheme;
