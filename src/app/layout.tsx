@@ -8,6 +8,13 @@ import { Do_Hyeon } from 'next/font/google';
 import { Metadata } from 'next';
 import Head from 'next/head';
 import GoogleAnalytics from '@/Component/GA/GA';
+import Script from 'next/script';
+
+declare global {
+  interface Window {
+    naver: any;
+  }
+}
 
 const baseFont = Do_Hyeon({
   subsets: ['latin'],
@@ -77,6 +84,10 @@ export default function RootLayout({
             {children}
           </ThemeWrapper>
           <Footer />
+          <Script
+            src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js"
+            strategy="beforeInteractive"
+          />
         </Recoil>
       </body>
     </html>

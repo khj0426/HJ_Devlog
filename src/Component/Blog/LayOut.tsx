@@ -58,7 +58,7 @@ export default function BlogLayOut({
         });
       },
       {
-        threshold: 0.4,
+        threshold: 1,
       }
     );
 

@@ -1,23 +1,25 @@
 import { useState, useEffect } from 'react';
+import { get } from '@/utils/axiosClient';
+import { AxiosResponse } from 'axios';
 
 type Item = {
   [key: string]: string;
 };
 
-export default function usePostQuery([start,end]:[string,string]) {
+export default function usePostQuery([start, end]: [string, string]) {
   const [posts, setPosts] = useState<Item[]>([]);
 
   useEffect(() => {
-
-    const fetchAllPosts = async () => {
-      const allPostResponse = await fetch(`api/posts?start=${start}&end=${end}`);
-      const allPosts: Item[] = await allPostResponse.json();
-      return allPosts;
+    const getPosts = async () => {
+      try {
+        const allPostsRes = await get<Item[]>(
+          `/api/posts?start=${start}&end=${end}`
+        );
+        setPosts(allPostsRes.data);
+      } catch (e) {}
     };
-
-    fetchAllPosts().then((data) => setPosts(data));
-    
-  }, [start , end]);
+    getPosts();
+  }, [start, end]);
 
   return {
     posts,
