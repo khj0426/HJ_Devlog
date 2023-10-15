@@ -107,7 +107,9 @@ export default function Post({
                 <img
                   src={
                     props.src?.includes('images/postImg')
-                      ? `${process.env.NEXT_PUBLIC_AWS_IMAGE_URL}` + props.src
+                      ? `${process.env.NEXT_PUBLIC_AWS_IMAGE_URL}` +
+                        props.src +
+                        '?f=webp'
                       : props.src
                   }
                   alt={props?.alt || '마크다운 이미지'}
