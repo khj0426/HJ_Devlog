@@ -14,9 +14,6 @@ import TOC from '@/Component/TOC';
 import { getPostBySlug } from '../../../../lib/api';
 import makeToc from '../../../../lib/makeToc';
 
-
-
-
 export async function generateMetadata({
   params,
 }: {
@@ -108,7 +105,11 @@ export default function Post({
               <picture>
                 <source type="image/webp" />
                 <img
-                  src={props?.src || ''}
+                  src={
+                    props.src?.includes('images/postImg')
+                      ? `${process.env.NEXT_PUBLIC_AWS_IMAGE_URL}` + props.src
+                      : props.src
+                  }
                   alt={props?.alt || '마크다운 이미지'}
                   style={{
                     maxWidth: '100%',
