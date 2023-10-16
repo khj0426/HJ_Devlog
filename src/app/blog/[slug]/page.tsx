@@ -102,25 +102,18 @@ export default function Post({
           rehypePlugins={[rehypeRaw]}
           components={{
             img: ({ node, ...props }) => (
-              <picture>
-                <source type="image/webp" />
-                <img
-                  src={
-                    props.src?.includes('images/postImg')
-                      ? `${process.env.NEXT_PUBLIC_AWS_IMAGE_URL}` +
-                        props.src +
-                        '?f=webp'
-                      : props.src
-                  }
-                  alt={props?.alt || '마크다운 이미지'}
-                  style={{
-                    maxWidth: '100%',
-                    objectFit: 'cover',
-                    height: 'auto',
-                  }}
-                  sizes="(max-width: 560px) 360px, (max-width: 1023px) 700px, (max-width: 1260px) 1024px, (min-width: 1261px) 1260px"
-                />
-              </picture>
+              <img
+                src={
+                  props.src
+                }
+                alt={props?.alt || '마크다운 이미지'}
+                style={{
+                  maxWidth: '100%',
+                  objectFit: 'cover',
+                  height: 'auto',
+                }}
+                sizes="(max-width: 560px) 360px, (max-width: 1023px) 700px, (max-width: 1260px) 1024px, (min-width: 1261px) 1260px"
+              />
             ),
             code: ({ children }) => <CodeBlock>{children as string}</CodeBlock>,
             h2: ({ children }) => {

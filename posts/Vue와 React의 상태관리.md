@@ -104,7 +104,7 @@ const onClickButton = () => {
 </template>
  ```
 
-![Alt text](/images/postImg/vue-state-2.png)
+![Alt text](/images/postImg/vue-state-2.webp)
 
 이번에는 리액트와 다르게 상태가 갱신되고 랜더링도 새로 발생한 것을 볼 수 있습니다.
 
@@ -170,11 +170,11 @@ const onClickButton = () => {
 버튼을 한번 클릭한 후 콘솔을 보겠습니다.
 구조분해 할당 전 프록시 객체가 콘솔에 찍히고 빈 배열이 target으로 설정되어 있습니다.
 
-![](/images/postImg/vue-proxy.png)
+![](/images/postImg/vue-proxy.webp)
 
 이제 버튼을 한번 더 누르고 콘솔을 누르겠습니다. 앞서 살펴본 것처럼, Reactive객체 속성을 구조분해 하면, 해당 프록시 객체의 get,set을 발생시키지 않고, 대신 프록시 객체 대신 배열이 덮어씌워집니다.
 
-![](/images/postImg/vue-proxy-1.png)
+![](/images/postImg/vue-proxy-1.webp)
 
 따라서 반응성을 더 유지하지 못하고 보간법으로 배열을 출력하는 것이 동작하지 않습니다.
 
@@ -182,7 +182,7 @@ const onClickButton = () => {
 
 Push메소드를 쓰면 프록시로 등록한 배열의 set이 잘 동작하는 것을 볼 수 있습니다.
 
-![](/images/postImg/vue-proxy-2.png)
+![](/images/postImg/vue-proxy-2.webp)
 
 
 

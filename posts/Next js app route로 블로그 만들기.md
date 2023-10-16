@@ -57,7 +57,7 @@ SEO를 어떻게 최적화할지, TOC를 어떻게 만들지, 다크모드는 �
 하게 됩니다. 그래서 <mark>use client</mark>이라는 명령 없이 일반적으로 클라이언
 트 컴포넌트를 app에서 사용하면 에러를 볼 수 있습니다.
 
-![](/images/postImg/clientComponentError.png)
+![](/images/postImg/clientComponentError.webp)
 
 따라서 파일 최상단에 use client 명령어를 명시적으로 적어줘야 클라이언트 컴포넌트
 로 작동하게 됩니다.
@@ -398,7 +398,7 @@ react-syntax-highlighter 라이브러리를 사용했습니다.
 열심히 만든 블로그를 친구에게 공유했는데 다음과 같이 나오면 굉장히 슬플 것입니다
 . 😭😭
 
-![오픈그래프](/images/postImg/opgkakao.png)
+![오픈그래프](/images/postImg/opgkakao.webp)
 
 오픈그래프를 사용하면
 

@@ -86,7 +86,7 @@ request와 response를 바꾸거나 가공하기 위해 인터셉터를 사용�
 
 Axios Request를 사용하면 Request 인터셉터를 거쳐, Request를 변환합니다. 브라우저에서는 XMLHttpRequest를 통해 응답을 보냅니다. Node JS의 경우 HTTP Request를 통해 응답을 보냅니다. 그 후 Response 인터셉터를 거쳐 실제 응답이 됩니다.
 
-![axios다이어그램](/images/postImg/axiosDiagram.png)
+![axios다이어그램](/images/postImg/axiosDiagram.webp)
 
 # Axios의 요청과 응답 설정
 
@@ -249,5 +249,5 @@ Request from ::1: POST /.netlify/functions/movie/
 
 axios는 서드파티 라이브러리입니다. 그러다 보니 번들 사이즈를 신경쓰지 않을 수 없는데 번들의 크기는 아래와 같습니다. 소규모의 프로젝트의 경우 (api 호출이 별로 없거나, 기본 fetch API만으로 충분한 경우) 오히려 번들 크기로 인해 axios가 무거워 질 수 있다고 생각합니다.!.!
 
-![번들크기](/images/postImg/axiosbundle.png)
+![번들크기](/images/postImg/axiosbundle.webp)
 
