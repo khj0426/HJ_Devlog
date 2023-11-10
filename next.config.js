@@ -4,6 +4,9 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 const { withSentryConfig } = require('@sentry/nextjs');
 
 const nextConfig = {
+  experimental: {
+    optimizePackageImports: ["styled-components,sentry,lodash,react-markdown"],
+  },
   webpack: (config, { webpack }) => {
     config.plugins.push(
       new webpack.DefinePlugin({

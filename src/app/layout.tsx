@@ -3,7 +3,6 @@ import { Metadata } from 'next';
 
 import { Do_Hyeon } from 'next/font/google';
 import Head from 'next/head';
-import Script from 'next/script';
 
 import Footer from '@/Component/Common/Footer';
 import Navbar from '@/Component/Common/Navbar';
