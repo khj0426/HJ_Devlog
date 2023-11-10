@@ -35,7 +35,7 @@
     "github-label-sync": "^2.3.1",
     "gray-matter": "^4.0.3",
     "js-cookie": "^3.0.5",
-    "next": "^14.0.2",
+    "next": "^13.5.0",
     "next-seo": "^6.1.0",
     "notion-client": "^6.16.0",
     "notion-on-next": "^1.0.20",
