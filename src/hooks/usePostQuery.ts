@@ -1,29 +1,40 @@
-import { useState, useEffect } from 'react';
-
-import { AxiosResponse } from 'axios';
+import { useInfiniteQuery } from '@tanstack/react-query';
 
 import { get } from '@/utils/axiosClient';
 
-type Item = {
-  [key: string]: string;
+type Post = {
+  title: string;
+  date: string;
+  slug: string;
+  category: string;
+  excerpt: string;
+  image: string;
 };
 
-export default function usePostQuery([start, end]: [string, string]) {
-  const [posts, setPosts] = useState<Item[]>([]);
+type PageParams = {
+  start: number;
+  end: number;
+};
 
-  useEffect(() => {
-    const getPosts = async () => {
-      try {
-        const allPostsRes = await get<Item[]>(
-          `/api/posts?start=${start}&end=${end}`
-        );
-        setPosts(allPostsRes.data);
-      } catch (e) {}
-    };
-    getPosts();
-  }, [start, end]);
+type PostsResponse = {
+  posts: Post[];
+  page: number;
+};
 
-  return {
-    posts,
-  };
+const getPosts = async ({ pageParams }: { pageParams: number }) => {
+  const start = pageParams * 5;
+  const end = start + 5;
+  return (await get<PostsResponse>(`/api/posts?start=${start}&end=${end}`))
+    .data;
+};
+
+export default function usePostQuery() {
+  return useInfiniteQuery({
+    queryKey: ['getPosts'],
+    queryFn: ({ pageParam = 0 }) => getPosts({ pageParams: pageParam }),
+    getNextPageParam: (lastPage) => {
+      const nextPage = Math.floor(lastPage.page);
+      return nextPage + 1;
+    },
+  });
 }

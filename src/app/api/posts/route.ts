@@ -18,10 +18,13 @@ export async function GET(req: NextRequest) {
   const lengthPostNUmber = allPosts.length;
   const startPostNumber = Number(sourceURL.searchParams.get('start')) || 0;
   const endPostNumber =
-    Number(sourceURL.searchParams.get('end')) || lengthPostNUmber;
+    Number(sourceURL.searchParams.get('end')) || startPostNumber + 5;
 
   return new Response(
-    JSON.stringify(allPosts.slice(startPostNumber, endPostNumber)),
+    JSON.stringify({
+      posts: allPosts.slice(startPostNumber, endPostNumber),
+      page: Math.floor(startPostNumber / 5),
+    }),
     {
       status: 200,
       headers: {

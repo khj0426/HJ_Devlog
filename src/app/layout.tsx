@@ -4,6 +4,7 @@ import { Metadata } from 'next';
 import { Do_Hyeon } from 'next/font/google';
 import Head from 'next/head';
 
+import Providers from '@/app/queryClientProvider';
 import Footer from '@/Component/Common/Footer';
 import Navbar from '@/Component/Common/Navbar';
 import GoogleAnalytics from '@/Component/GA/GA';
@@ -79,14 +80,16 @@ export default function RootLayout({
         <GoogleAnalytics GA_MEASUREMENT_ID="G-S9N5XJ40DL" />
       </Head>
       <body className="App">
-        <Recoil>
-          <ThemeWrapper>
-            <GlobalStyle />
-            <Navbar />
-            {children}
-          </ThemeWrapper>
-          <Footer />
-        </Recoil>
+        <Providers>
+          <Recoil>
+            <ThemeWrapper>
+              <GlobalStyle />
+              <Navbar />
+              {children}
+            </ThemeWrapper>
+            <Footer />
+          </Recoil>
+        </Providers>
       </body>
     </html>
   );

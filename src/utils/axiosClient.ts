@@ -9,21 +9,11 @@ import { getAccessToken, setAccessToken } from './accessToken';
 import { Environment } from './envorinments';
 
 const axiosClient = axios.create({
-  baseURL: Environment.baseURL,
-  timeout: 1000,
+  baseURL:
+    process.env.NODE_ENV === 'production'
+      ? process.env.NEXT_PUBLIC_PRODUCT_URL
+      : process.env.NEXT_PUBLIC_LOCAL_URL,
 });
-
-//요청 인터셉터 처리
-axiosClient.interceptors.request.use(
-  async (config) => {
-    //refresh token분기처리
-    if (config.headers && getAccessToken()) {
-      config.headers.Authorization = `Bearer ${getAccessToken()}`;
-    }
-    return config;
-  },
-  (error) => Promise.reject(error)
-);
 
 export const get = async <T>(
   url: string,
