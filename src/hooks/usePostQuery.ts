@@ -31,7 +31,7 @@ const getPosts = async ({ pageParams }: { pageParams: number }) => {
 export default function usePostQuery() {
   return useInfiniteQuery({
     queryKey: ['getPosts'],
-    queryFn: ({ pageParam = 0 }) => getPosts({ pageParams: pageParam }),
+    queryFn: ({ pageParam = 1 }) => getPosts({ pageParams: pageParam }),
     getNextPageParam: (lastPage) => {
       const nextPage = Math.floor(lastPage.page);
       return nextPage + 1;

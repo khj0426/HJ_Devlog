@@ -14,11 +14,11 @@ export default function PostServiceLayer() {
   });
 
   return (
-    <div>
+    <>
       {data?.pages?.map((page) =>
         page.posts.map((post) => <PostItem post={post} key={post.title} />)
       )}
       <div ref={target}></div>
-    </div>
+    </>
   );
 }
