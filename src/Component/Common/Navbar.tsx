@@ -1,6 +1,6 @@
 'use client';
 import Link from 'next/link';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import SearchPostButton from '../Blog/SearchPost';
 import ToggleDarkModeButton from '../DarkMode/ToggoeButton';
@@ -25,6 +25,13 @@ const StyledNavBarTitle = styled(Link)`
   font-weight: 600;
   text-decoration: none;
   color: inherit;
+  ${({ href }) =>
+    href === '/notion/resume' &&
+    css`
+      @media (max-width: 1024px) {
+        opacity: 0;
+      }
+    `}
 `;
 
 export default function Navbar() {
@@ -39,7 +46,17 @@ export default function Navbar() {
       >
         <SearchPostButton />
         <ToggleDarkModeButton />
-        <StyledNavBarTitle href="/about">About me</StyledNavBarTitle>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            gap: '15px',
+          }}
+        >
+          <StyledNavBarTitle href="/notion/resume">Resume</StyledNavBarTitle>
+          <StyledNavBarTitle href="/about">About me</StyledNavBarTitle>
+        </div>
       </div>
     </StyledNavBarLayout>
   );

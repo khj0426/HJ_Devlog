@@ -1,7 +1,7 @@
 // Next 13 - /app/blog
 import { NotionPageBody, getParsedPages, getBlocks } from 'notion-on-next';
 
-interface NotionPage {
+export interface NotionPage {
   object: string;
   id: string;
   created_time: string;
