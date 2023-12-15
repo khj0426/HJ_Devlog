@@ -1,8 +1,7 @@
 import { getBlocks, getParsedPages } from 'notion-on-next';
 
 import { NotionPage } from '@/app/notion/[pageId]/page';
-
-import ResumeClient from './resumeClient';
+import ResumeClient from '@/Component/Notion/NotionresumeClient';
 
 export default async function ResumePage() {
   const pages: NotionPage[] = await getParsedPages(

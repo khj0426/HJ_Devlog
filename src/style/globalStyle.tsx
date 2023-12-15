@@ -33,6 +33,7 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
     font-size: 20px;
+    transition: background 0.2s ease-in, color 0.2s ease-in;
   }
 
   pre {

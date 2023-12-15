@@ -49,13 +49,13 @@ export default function Navbar() {
         <div
           style={{
             display: 'flex',
-            justifyContent: 'space-between',
+            justifyContent: 'center',
             alignItems: 'center',
-            gap: '15px',
+            gap: '5px',
           }}
         >
           <StyledNavBarTitle href="/notion/resume">Resume</StyledNavBarTitle>
-          <StyledNavBarTitle href="/about">About me</StyledNavBarTitle>
+          <StyledNavBarTitle href="/about">About</StyledNavBarTitle>
         </div>
       </div>
     </StyledNavBarLayout>
