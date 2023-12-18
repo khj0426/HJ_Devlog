@@ -51,6 +51,9 @@ export default function BlogLayOut({
           const getTOCElement = document.getElementsByClassName(
             entry.target.textContent as string
           );
+          if (!getTOCElement[0]) {
+            return;
+          }
           if (getTOCElement && entry.isIntersecting) {
             getTOCElement[0].classList.add('active');
           } else if (getTOCElement && !entry.isIntersecting) {
@@ -60,6 +63,7 @@ export default function BlogLayOut({
       },
       {
         threshold: 1,
+        rootMargin: '-50px 0px 0px 0px',
       }
     );
 

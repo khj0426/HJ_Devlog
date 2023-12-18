@@ -1,7 +1,7 @@
 import './globals.css';
 import { Metadata } from 'next';
 
-import { Do_Hyeon } from 'next/font/google';
+import { Lora } from 'next/font/google';
 import Head from 'next/head';
 
 import Providers from '@/app/queryClientProvider';
@@ -19,7 +19,7 @@ declare global {
   }
 }
 
-const baseFont = Do_Hyeon({
+const baseFont = Lora({
   subsets: ['latin'],
   preload: true,
   display: 'swap',

@@ -1,42 +1,41 @@
-import React from 'react';
+'use client';
 
-import { NotionPageBody, getBlocks } from 'notion-on-next';
+import 'react-notion-x/src/styles.css';
+
+import 'prismjs/themes/prism-tomorrow.css';
+import type { ReturnTypeofNotionRecord } from '@/app/notion/resume/page';
+
+import { NotionRenderer } from 'react-notion-x';
+
+import { Collection } from 'react-notion-x/build/third-party/collection';
+import { Modal } from 'react-notion-x/build/third-party/modal';
+import { useRecoilState } from 'recoil';
+
+import { themeState } from '@/app/globalAtom';
 
 type PromiseType<T extends Promise<any>> = T extends Promise<infer U>
   ? U
   : never;
 
-type BlockObject = PromiseType<ReturnType<typeof getBlocks>>;
-
 export default function ResumeClient({
-  blocks,
-  pageId,
+  recordMap,
 }: {
-  blocks: BlockObject;
-  pageId: string;
+  recordMap: PromiseType<ReturnTypeofNotionRecord>;
 }) {
+  const [modeState] = useRecoilState(themeState);
   return (
     <div>
-      <main
-        style={{
-          width: '80%',
-          margin: '0 auto',
+      <NotionRenderer
+        darkMode={modeState === 'dark' ? true : false}
+        disableHeader
+        components={{
+          Collection,
+          Modal,
+          nextImage: Image,
         }}
-      >
-        <div
-          style={{
-            maxWidth: '80%',
-            display: 'flex',
-            flexWrap: 'wrap',
-          }}
-        >
-          <NotionPageBody
-            blocks={blocks}
-            pageId={pageId}
-            databaseId={`${process.env.NOTION_DATABASE_ID}`}
-          />
-        </div>
-      </main>
+        recordMap={recordMap}
+        fullPage={true}
+      />
     </div>
   );
 }

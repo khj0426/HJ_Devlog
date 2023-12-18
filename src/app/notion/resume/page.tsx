@@ -1,17 +1,12 @@
-import { getBlocks, getParsedPages } from 'notion-on-next';
+import { NotionAPI } from 'notion-client';
 
-import { NotionPage } from '@/app/notion/[pageId]/page';
 import ResumeClient from '@/Component/Notion/NotionresumeClient';
-
+export type ReturnTypeofNotionRecord = ReturnType<typeof notion.getPage>;
+const notion = new NotionAPI();
 export default async function ResumePage() {
-  const pages: NotionPage[] = await getParsedPages(
-    `${process.env.NOTION_DATABASE_ID}`
+  const recordMap = await notion.getPage(
+    `https://notion-api.splitbee.io/v1/page/${process.env.NOTION_PAGE_ID}`
   );
 
-  const page = pages.find(
-    (page) => page.id.replaceAll(/-/g, '') === `${process.env.NOTION_RESUME_ID}`
-  );
-  const blocks = await getBlocks(page?.id as string);
-
-  return <ResumeClient pageId={page?.id as string} blocks={blocks} />;
+  return <ResumeClient recordMap={recordMap} />;
 }
