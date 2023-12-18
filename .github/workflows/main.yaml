@@ -25,4 +25,7 @@ jobs:
       - name: Run LightHouse CI
         env:
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+          NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
+          NOTION_KEY: ${{ secrets.NOTION_KEY }}
+          NOTION_RESUME_ID: ${{ secrets.NOTION_RESUME_ID }}
         run: npm run lhci
