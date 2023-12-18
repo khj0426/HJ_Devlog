@@ -5,7 +5,7 @@
 
 const lightTheme = {
   body: '#eaeaea',
-  text: '#363537',
+  text: '#1c1e21',
   toggleBorder: '#d1d1d1',
   background: '#EEEEEE',
   codeblock: '#f6f8fa',

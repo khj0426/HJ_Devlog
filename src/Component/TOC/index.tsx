@@ -1,5 +1,6 @@
 'use client';
 
+import { uuid4 } from '@sentry/utils';
 import styled from 'styled-components';
 
 import replaceStrWithBlank from '../../../lib/replaceStr';
@@ -42,7 +43,7 @@ export default function TOC({ toc }: { toc: string[] }) {
     const makeTOC = replaceStrWithBlank([eachToc, ['#', '##', '###', '####']]);
     return (
       <>
-        <li key={eachToc}>
+        <li key={uuid4()}>
           <div>
             <StyledTOCLink className={`${makeTOC}`} href={`#${makeTOC}`}>
               {makeTOC}

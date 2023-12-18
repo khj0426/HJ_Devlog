@@ -37,7 +37,16 @@ const StyledNavBarTitle = styled(Link)`
 export default function Navbar() {
   return (
     <StyledNavBarLayout>
-      <StyledNavBarTitle href="/">HJ DevLog</StyledNavBarTitle>
+      <div
+        style={{
+          display: 'flex',
+          gap: '10px',
+        }}
+      >
+        <StyledNavBarTitle href="/">Blog</StyledNavBarTitle>
+        <StyledNavBarTitle href="/about">About</StyledNavBarTitle>
+        <StyledNavBarTitle href="/notion/resume">Resume</StyledNavBarTitle>
+      </div>
       <div
         style={{
           display: 'flex',
@@ -46,17 +55,6 @@ export default function Navbar() {
       >
         <SearchPostButton />
         <ToggleDarkModeButton />
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            gap: '5px',
-          }}
-        >
-          <StyledNavBarTitle href="/notion/resume">Resume</StyledNavBarTitle>
-          <StyledNavBarTitle href="/about">About</StyledNavBarTitle>
-        </div>
       </div>
     </StyledNavBarLayout>
   );
