@@ -9,7 +9,7 @@ export default function ProfileImageWrapper({ imgurl }: { imgurl: string }) {
         src={imgurl}
         alt="About 페이지 프로필 이미지"
         width={300}
-        height={350}
+        height={300}
         blurDataURL="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
         priority
       ></Image>

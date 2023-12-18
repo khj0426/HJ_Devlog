@@ -8,6 +8,7 @@ const StyledContent = styled.section`
   max-width: 400px;
   max-height: 500px;
   display: flex;
+  font-size: 18px;
   flex-direction: column;
 `;
 export default function Content({ content }: { content: string | string[] }) {

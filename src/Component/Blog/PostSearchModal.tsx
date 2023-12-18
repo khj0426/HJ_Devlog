@@ -1,10 +1,9 @@
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 
 import Link from 'next/link';
 import styled from 'styled-components';
 
 import useSearchPost from '@/hooks/useSearchPost';
-
 
 const StyledPostSearchModalWrapper = styled.div`
   position: fixed;
@@ -42,6 +41,7 @@ const StyledPostSearchModal = styled.div`
   color: rgb(236, 237, 238);
   box-shadow: 0 15px 30px 0 rgba(#000, 0.25);
   border-radius: 15px;
+  overflow: auto;
 `;
 
 export default function PostSearchModal({
@@ -52,8 +52,16 @@ export default function PostSearchModal({
   const [querySearch, setQuerySearch] = useState<string | null>(null);
   const { posts } = useSearchPost(querySearch as string);
 
+  const handleChangSearchQuery = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.value.length === 0) {
+      return;
+    }
+
+    setQuerySearch(e.target.value);
+  };
+
   return (
-    <StyledPostSearchModalWrapper>
+    <StyledPostSearchModalWrapper onClick={() => onCloseModal()}>
       <StyledPostSearchModal>
         <p
           onClick={() => onCloseModal()}
@@ -66,7 +74,7 @@ export default function PostSearchModal({
         <StyledPostSearchInput
           autoFocus
           placeholder="검색할 내용을 입력해주세요."
-          onChange={(e) => setQuerySearch(e.target.value)}
+          onChange={handleChangSearchQuery}
         />
         {posts.map((post) => (
           <Link

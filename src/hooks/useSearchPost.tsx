@@ -16,7 +16,14 @@ export default function useSearchPost(searchInput: string) {
       const allPostResponse = await fetch('/api/slugs');
       const allPosts: Item[] = await allPostResponse.json();
       if (allPostResponse.ok) {
-        setPosts(allPosts.filter((post) => post.title.includes(searchInput)));
+        setPosts(
+          allPosts.filter((post) =>
+            post.title
+              .trim()
+              .toLowerCase()
+              .includes(searchInput.trim().toLowerCase())
+          )
+        );
       }
     };
 
