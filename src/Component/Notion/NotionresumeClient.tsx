@@ -31,7 +31,6 @@ export default function ResumeClient({
         components={{
           Collection,
           Modal,
-          nextImage: Image,
         }}
         recordMap={recordMap}
         fullPage={true}
