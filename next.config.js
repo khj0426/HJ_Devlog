@@ -5,13 +5,16 @@ const { withSentryConfig } = require('@sentry/nextjs');
 
 const nextConfig = {
   experimental: {
-    optimizePackageImports: ["styled-components,sentry,lodash,react-markdown"],
+    optimizePackageImports: ['styled-components,sentry,lodash,react-markdown'],
   },
   webpack: (config, { webpack }) => {
     config.plugins.push(
       new webpack.DefinePlugin({
         __SENTRY_DEBUG__: false,
         __SENTRY_TRACING__: false,
+        __RRWEB_EXCLUDE_IFRAME__: true,
+        __RRWEB_EXCLUDE_SHADOW_DOM__: true,
+        __SENTRY_EXCLUDE_REPLAY_WORKER__: true,
       })
     );
     return config;
