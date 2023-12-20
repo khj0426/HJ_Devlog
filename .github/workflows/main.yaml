@@ -26,4 +26,10 @@ jobs:
         env:
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
           NOTION_PAGE_ID: ${{ secrets.NOTION_PAGE_ID }}
+          NEXT_PUBLIC_AWS_IMAGE_URL: ${{ secrets.NEXT_PUBLIC_AWS_IMAGE_URL }}
+          NEXT_PUBLIC_LOCAL_URL: ${{ secrets.NEXT_PUBLIC_LOCAL_URL }}
+          NEXT_PUBLIC_PRODUCT_URL: ${{ secrets.NEXT_PUBLIC_PRODUCT_URL }}
+          NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
+          NOTION_KEY: ${{ secrets.NOTION_KEY }}
+          NOTION_RESUME_ID: ${{ secrets.NOTION_RESUME_ID }}
         run: npm run lhci

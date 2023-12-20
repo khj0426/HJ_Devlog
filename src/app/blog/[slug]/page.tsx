@@ -30,7 +30,6 @@ export async function generateMetadata({
     'image',
   ]);
 
-  const openGraphImage = post.image;
   const dynamicMetaTag: Metadata = {
     title: post.title,
     description: post.excerpt,
