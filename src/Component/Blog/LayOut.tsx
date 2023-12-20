@@ -62,7 +62,7 @@ export default function BlogLayOut({
         });
       },
       {
-        threshold: 1,
+        threshold: 0.4,
         rootMargin: '-50px 0px 0px 0px',
       }
     );
