@@ -3,7 +3,7 @@
 import 'react-notion-x/src/styles.css';
 
 import 'prismjs/themes/prism-tomorrow.css';
-import type { ReturnTypeofNotionRecord } from '@/app/notion/resume/page';
+import type { ReturnTypeofNotionRecord } from '@/app/(root)/(routes)/notion/resume/page';
 
 import { NotionRenderer } from 'react-notion-x';
 

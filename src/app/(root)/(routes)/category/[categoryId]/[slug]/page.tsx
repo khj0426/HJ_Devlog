@@ -9,7 +9,7 @@ import PostExterct from '@/Component/Blog/Exterct';
 import BlogLayOut from '@/Component/Blog/LayOut';
 import Comments from '@/Component/Giscus/Gitcus';
 
-import { getPostBySlug } from '../../../../../lib/api';
+import { getPostBySlug } from '../../../../../../../lib/api';
 
 export default function Post({
   params,
