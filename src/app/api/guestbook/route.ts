@@ -1,5 +1,5 @@
-import { ref, get } from 'firebase/database';
-import { NextResponse } from 'next/server';
+import { ref, get, push } from 'firebase/database';
+import { NextResponse, NextRequest } from 'next/server';
 
 import { DB } from '../../firebase';
 
@@ -26,4 +26,33 @@ export async function GET() {
       status: 502,
     }
   );
+}
+
+export async function POST(req: NextRequest) {
+  const body = await req.json();
+
+  await push(ref(DB, '/guestbook'), {
+    comment: body.comment,
+    commentTime: body.time,
+  })
+    .then((val) => {
+      return NextResponse.json(
+        {
+          guestBook: val,
+        },
+        {
+          status: 200,
+        }
+      );
+    })
+    .catch((e) => {
+      return NextResponse.json(
+        {
+          e,
+        },
+        {
+          status: 502,
+        }
+      );
+    });
 }
