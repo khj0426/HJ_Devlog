@@ -11,8 +11,8 @@ import BlogLayOut from '@/Component/Blog/LayOut';
 import Comments from '@/Component/Giscus/Gitcus';
 import TOC from '@/Component/TOC';
 
-import { getPostBySlug } from '../../../../lib/api';
-import makeToc from '../../../../lib/makeToc';
+import { getPostBySlug } from '../../../../../../lib/api';
+import makeToc from '../../../../../../lib/makeToc';
 
 export async function generateMetadata({
   params,
@@ -102,9 +102,7 @@ export default function Post({
           components={{
             img: ({ node, ...props }) => (
               <img
-                src={
-                  props.src
-                }
+                src={props.src}
                 alt={props?.alt || '마크다운 이미지'}
                 style={{
                   maxWidth: '100%',

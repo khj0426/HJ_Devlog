@@ -1,4 +1,4 @@
-import './globals.css';
+import '../globals.css';
 import { Metadata } from 'next';
 
 import { Lora } from 'next/font/google';
@@ -10,8 +10,8 @@ import Navbar from '@/Component/Common/Navbar';
 import GoogleAnalytics from '@/Component/GA/GA';
 import GlobalStyle from '@/style/globalStyle';
 
-import Recoil from './Recoil';
-import { ThemeWrapper } from './themeWrapper';
+import Recoil from '../Recoil';
+import { ThemeWrapper } from '../themeWrapper';
 
 declare global {
   interface Window {
