@@ -10,7 +10,7 @@ export async function GET() {
   if (snapShot.exists()) {
     return NextResponse.json(
       {
-        guestbook: await snapShot.val().comments,
+        guestbook: await snapShot.val(),
       },
       {
         status: 200,

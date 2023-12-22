@@ -1,9 +1,11 @@
 'use client';
 
+import { useQuery } from '@tanstack/react-query';
 import styled from 'styled-components';
+import { v4 as uuidv4 } from 'uuid';
 
 import { Input, InputBox } from '@/Component/Input';
-import useGetGuestBook from '@/hooks/useGetGuestBook';
+import { getGuestBook } from '@/hooks/useGetGuestBook';
 import useInput from '@/hooks/useInput';
 import usePostGuestBook from '@/hooks/usePostGuestBook';
 
@@ -13,7 +15,14 @@ const GuestBookList = styled.section`
 
 export default function GuestBook() {
   const guestBookInput = useInput('', (e) => e.target.value.length <= 150);
-  const { data } = useGetGuestBook();
+  const { data } = useQuery({
+    queryFn: getGuestBook,
+    queryKey: ['guestBook'],
+    refetchInterval: false,
+    retry: 0,
+    refetchOnMount: false,
+  });
+
   const { mutate } = usePostGuestBook();
 
   const handleSubmitGuestBook = () => {
@@ -23,7 +32,13 @@ export default function GuestBook() {
   };
   return (
     <main>
-      <GuestBookList></GuestBookList>
+      <GuestBookList>
+        {data &&
+          data.guestbook &&
+          Array.from(Object.values(data.guestbook)).map((value) => (
+            <div key={uuidv4()}>{value.comment}</div>
+          ))}
+      </GuestBookList>
 
       <InputBox width="300px">
         <Input {...guestBookInput} />
