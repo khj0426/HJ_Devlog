@@ -31,9 +31,6 @@ export function getPostBySlug(slug: string, fields: string[] = []) {
     if (typeof data[field] !== 'undefined') {
       items[field] = data[field];
     }
-    if (field === 'image') {
-      const imagePath = join(ImageDirectory, data[field]);
-    }
   });
 
   return items;

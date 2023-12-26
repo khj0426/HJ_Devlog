@@ -5,9 +5,9 @@ import styled from 'styled-components';
 import { v4 as uuidv4 } from 'uuid';
 
 import { Input, InputBox } from '@/Component/Input';
-import { getGuestBook } from '@/hooks/useGetGuestBook';
+import usePostGuestBook from '@/hooks/mutations/useGuestBookMutation';
 import useInput from '@/hooks/useInput';
-import usePostGuestBook from '@/hooks/usePostGuestBook';
+import { getGuestBook } from '@/services/GuestBook';
 
 const GuestBookList = styled.section`
   min-height: 700px;
