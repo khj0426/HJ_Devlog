@@ -6,6 +6,7 @@ const { withSentryConfig } = require('@sentry/nextjs');
 const nextConfig = {
   experimental: {
     optimizePackageImports: ['styled-components,sentry,lodash,react-markdown'],
+    serverActions: true,
   },
   webpack: (config, { webpack }) => {
     config.plugins.push(
