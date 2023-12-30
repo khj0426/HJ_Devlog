@@ -5,9 +5,8 @@ const PrismLight = dynamic(
 );
 import { materialDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
-
 export default function CodeBlock({
-  children
+  children,
 }: {
   children: string | string[];
 }) {
@@ -16,7 +15,6 @@ export default function CodeBlock({
       language="javascript"
       style={materialDark}
       customStyle={{
-        fontFamily: '__Do_Hyeon_7b3cf7',
         maxWidth: '100vw',
         wordBreak: 'break-all',
         overflowWrap: 'break-word', // 추가: 화면 넘어갈 때 단어 단위로 줄바꿈 처리
@@ -25,7 +23,7 @@ export default function CodeBlock({
         style: {
           fontFamily: 'inherit',
           wordBreak: 'break-all',
-          overflowWrap: 'break-word', 
+          overflowWrap: 'break-word',
         },
       }}
     >

@@ -3,6 +3,8 @@
 import { uuid4 } from '@sentry/utils';
 import styled from 'styled-components';
 
+import useToc from '@/hooks/useToc';
+
 import replaceStrWithBlank from '../../../lib/replaceStr';
 
 const StyledTOCList = styled.ul`
@@ -36,16 +38,26 @@ const StyledTOCLink = styled.a`
   &:hover {
     color: rgb(0, 131, 120);
   }
+
+  &:active {
+    color: rgb(0, 131, 120);
+  }
 `;
 
 export default function TOC({ toc }: { toc: string[] }) {
+  const { id } = useToc();
+
   const TOC = toc.map((eachToc) => {
     const makeTOC = replaceStrWithBlank([eachToc, ['#', '##', '###', '####']]);
     return (
       <>
         <li key={uuid4()}>
           <div>
-            <StyledTOCLink className={`${makeTOC}`} href={`#${makeTOC}`}>
+            <StyledTOCLink
+              className={`${makeTOC} ${id === makeTOC && 'active'}`}
+              href={`#${makeTOC}`}
+              id={makeTOC}
+            >
               {makeTOC}
             </StyledTOCLink>
           </div>
