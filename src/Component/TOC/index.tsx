@@ -49,6 +49,14 @@ export default function TOC({ toc }: { toc: string[] }) {
 
   const TOC = toc.map((eachToc) => {
     const makeTOC = replaceStrWithBlank([eachToc, ['#', '##', '###', '####']]);
+
+    const handleClickTOC = (e: React.MouseEvent<HTMLElement>) => {
+      const activeElement = document.querySelector('.active');
+      if (activeElement) {
+        activeElement.classList.remove('active');
+      }
+      e.currentTarget.classList.add('active');
+    };
     return (
       <>
         <li key={uuid4()}>
@@ -57,6 +65,7 @@ export default function TOC({ toc }: { toc: string[] }) {
               className={`${makeTOC} ${id === makeTOC && 'active'}`}
               href={`#${makeTOC}`}
               id={makeTOC}
+              onClick={handleClickTOC}
             >
               {makeTOC}
             </StyledTOCLink>

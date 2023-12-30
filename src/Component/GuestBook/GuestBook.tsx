@@ -15,21 +15,30 @@ const GuestBookList = styled.section`
 
 export default function GuestBook() {
   const guestBookInput = useInput('', (e) => e.target.value.length <= 150);
-  const { data } = useQuery({
+  const { data, refetch } = useQuery({
     queryFn: getGuestBook,
     queryKey: ['guestBook'],
     refetchInterval: false,
     retry: 0,
-    refetchOnMount: false,
+    refetchOnMount: true,
+    enabled: false,
   });
 
   const { mutate } = usePostGuestBook();
 
   const handleSubmitGuestBook = () => {
-    mutate({
-      comment: guestBookInput.value,
-    });
+    mutate(
+      {
+        comment: guestBookInput.value,
+      },
+      {
+        onSuccess: () => {
+          refetch();
+        },
+      }
+    );
   };
+
   return (
     <main>
       <GuestBookList>
