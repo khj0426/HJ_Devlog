@@ -20,6 +20,7 @@ const useInput = (
     value,
     onChange,
     error,
+    setValue,
   };
 };
 

@@ -34,6 +34,7 @@ export default function GuestBook() {
       {
         onSuccess: () => {
           refetch();
+          guestBookInput.setValue('');
         },
       }
     );

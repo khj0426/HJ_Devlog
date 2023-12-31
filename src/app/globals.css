@@ -16,11 +16,6 @@ main {
   font-size: 1rem;
 }
 
-ul,
-li {
-  list-style-type: none;
-}
-
 .TOC {
   text-shadow: -0.01em -0.01em 0.01em #000;
 }

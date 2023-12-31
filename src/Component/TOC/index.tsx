@@ -20,6 +20,7 @@ const StyledTOCList = styled.ul`
   opacity: 1;
   font-size: 15px;
   overflow-y: scroll;
+  list-style-type: none;
 
   @media ${({ theme }) => theme.device.laptop} {
     opacity: 0;
