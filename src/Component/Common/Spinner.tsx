@@ -20,7 +20,7 @@ const StyledSpinner = styled.div<Required<SpinnerProps>>`
   width: ${({ size }) => size}px;
   height: ${({ size }) => size}px;
   border: ${({ width }) => width}px solid rgba(0, 0, 0, 0.2);
-  border-top: ${({ width }) => width}px solid black;
+  border-top: ${({ width }) => width}px solid gray;
   border-radius: 50%;
   animation: ${rotate} ${({ timing }) => timing}s linear infinite;
   opacity: ${({ disabled }) => (disabled ? 0.5 : 1)};

@@ -14,12 +14,13 @@ export default function PostServiceLayer() {
     fetchNextPage,
   });
 
+
   return (
     <>
       {data?.pages?.map((page) =>
         page.posts.map((post) => <PostItem post={post} key={post.title} />)
       )}
-      {isFetching && (
+      {isFetching && hasNextPage && (
         <div
           style={{
             display: 'flex',

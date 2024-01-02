@@ -34,6 +34,9 @@ export default function usePostQuery() {
     queryFn: ({ pageParam = 1 }) => getPosts({ pageParams: pageParam }),
     getNextPageParam: (lastPage) => {
       const nextPage = Math.floor(lastPage.page);
+      if (lastPage.posts.length === 0) {
+        return null;
+      }
       return nextPage + 1;
     },
   });

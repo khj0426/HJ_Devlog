@@ -8,6 +8,7 @@ export default function useGetGuestBook() {
     queryKey: ['guestBook'],
     refetchInterval: false,
     retry: 0,
-    refetchOnMount: false,
+    refetchOnMount: true,
+    enabled: false,
   });
 }
