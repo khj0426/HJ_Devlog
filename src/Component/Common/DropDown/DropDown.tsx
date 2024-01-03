@@ -2,8 +2,8 @@ import { useState } from 'react';
 
 import { dropDownItem, type dropDownProps } from '@/@types/DropDownType';
 
-import { DropDownMenu } from './DropDownMenu';
-import { Trigger } from './Trigger';
+import DropDownMenu from './DropDownMenu';
+import Trigger from './Trigger';
 
 export default function DropDown({ items }: dropDownProps) {
   const [isOpen, setIsOpen] = useState(false);

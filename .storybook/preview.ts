@@ -1,6 +1,20 @@
 import type { Preview } from '@storybook/react';
+import { withThemeFromJSXProvider } from '@storybook/addon-styling';
 
+import { ThemeProvider } from 'styled-components';
+import globalStyle from '../src/style/globalStyle';
+import { darkTheme, lightTheme } from '../src/style/theme/darkMode';
 const preview: Preview = {
+  decorators: [
+    withThemeFromJSXProvider({
+      GlobalStyles: globalStyle,
+      themes: {
+        darkTheme,
+        lightTheme,
+      },
+      Provider: ThemeProvider,
+    }),
+  ],
   parameters: {
     actions: { argTypesRegex: '^on[A-Z].*' },
     controls: {

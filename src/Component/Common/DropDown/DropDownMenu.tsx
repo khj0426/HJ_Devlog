@@ -2,7 +2,7 @@ import type { dropDownItem } from '@/@types/DropDownType';
 
 import { uuid4 } from '@sentry/utils';
 
-export function DropDownMenu({
+export default function DropDownMenu({
   items,
   onClickItem,
 }: {
