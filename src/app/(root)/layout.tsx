@@ -4,14 +4,14 @@ import { Metadata } from 'next';
 import { Montserrat } from 'next/font/google';
 import Head from 'next/head';
 
-import Providers from '@/app/queryClientProvider';
+import Providers from '@/app/Providers/Query/queryClientProvider';
 import Footer from '@/Component/Common/Footer';
 import Navbar from '@/Component/Common/Navbar';
 import GoogleAnalytics from '@/Component/GA/GA';
 import GlobalStyle from '@/style/globalStyle';
 
-import Recoil from '../Recoil';
-import { ThemeWrapper } from '../themeWrapper';
+import Recoil from '../Providers/Recoil/Recoil';
+import { ThemeWrapper } from '../Providers/Styled-Component/themeWrapper';
 
 declare global {
   interface Window {

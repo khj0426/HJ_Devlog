@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { useRecoilState } from 'recoil';
 
-import { themeState } from '@/app/globalAtom';
+import { themeState } from '@/app/Providers/Recoil/globalAtom';
 
 import darkModeImage from '../../../public/images/darkmode.webp';
 import lightModeImage from '../../../public/images/lightmode.webp';

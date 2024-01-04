@@ -6,7 +6,8 @@ import { ThemeProvider } from 'styled-components';
 import { darkTheme, lightTheme } from '@/style/theme/darkMode';
 import mediatheme from '@/style/theme/media';
 
-import { themeState } from './globalAtom';
+import { themeState } from '../Recoil/globalAtom';
+
 import StyledComponentsRegistry from './registry';
 
 

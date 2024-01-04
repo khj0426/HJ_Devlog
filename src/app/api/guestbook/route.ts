@@ -1,7 +1,7 @@
 import { ref, get, push } from 'firebase/database';
 import { NextResponse, NextRequest } from 'next/server';
 
-import { DB } from '../../firebase';
+import { DB } from '../../Providers/firebase';
 
 export async function GET() {
   const guestbookRef = ref(DB, '/guestbook');
