@@ -1,9 +1,22 @@
+import React from 'react';
 import type { Preview } from '@storybook/react';
 import { withThemeFromJSXProvider } from '@storybook/addon-styling';
 
+import { RecoilRoot, useRecoilValue } from 'recoil';
 import { ThemeProvider } from 'styled-components';
 import globalStyle from '../src/style/globalStyle';
 import { darkTheme, lightTheme } from '../src/style/theme/darkMode';
+import mediatheme from '../src/style/theme/media';
+import { themeState } from '../src/app/globalAtom';
+
+const ThemeWrapper = ({ children }) => {
+  const currentTheme = useRecoilValue(themeState);
+  const theme = currentTheme === 'light' ? lightTheme : darkTheme;
+  const themeObj = { ...theme, mediatheme };
+
+  return <ThemeProvider theme={themeObj}>{children}</ThemeProvider>;
+};
+
 const preview: Preview = {
   decorators: [
     withThemeFromJSXProvider({
@@ -11,9 +24,18 @@ const preview: Preview = {
       themes: {
         darkTheme,
         lightTheme,
+        mediatheme,
       },
-      Provider: ThemeProvider,
     }),
+    (Story) => {
+      return (
+        <RecoilRoot>
+          <ThemeWrapper>
+            <Story />
+          </ThemeWrapper>
+        </RecoilRoot>
+      );
+    },
   ],
   parameters: {
     actions: { argTypesRegex: '^on[A-Z].*' },

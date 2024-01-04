@@ -12,7 +12,7 @@ export default function ToggleDarkModeButton() {
     currentTheme === 'light' ? darkModeImage : lightModeImage;
 
   const handleClickToggleImage = () => {
-    if (currentTheme === 'light') {
+     if (currentTheme === 'light') {
       setCurrentTheme('dark');
       return;
     }
