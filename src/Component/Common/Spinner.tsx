@@ -7,6 +7,7 @@ export interface SpinnerProps {
   size?: number;
   width?: number;
   disabled?: boolean;
+  color?: string;
 }
 
 const rotate = keyframes`
@@ -20,7 +21,7 @@ const StyledSpinner = styled.div<Required<SpinnerProps>>`
   width: ${({ size }) => size}px;
   height: ${({ size }) => size}px;
   border: ${({ width }) => width}px solid rgba(0, 0, 0, 0.2);
-  border-top: ${({ width }) => width}px solid gray;
+  border-top: ${({ width }) => width}px solid ${({ color }) => color};
   border-radius: 50%;
   animation: ${rotate} ${({ timing }) => timing}s linear infinite;
   opacity: ${({ disabled }) => (disabled ? 0.5 : 1)};
@@ -31,9 +32,11 @@ const Spinner = ({
   size = 50,
   width = 5,
   disabled = false,
+  color,
 }: SpinnerProps) => {
   return (
     <StyledSpinner
+      color={color ?? 'gray'}
       timing={timing}
       size={size}
       width={width}
