@@ -10,15 +10,7 @@ export async function GET(
     };
   }
 ) {
-  const allPosts = getAllPosts([
-    'title',
-    'data',
-    'slug',
-    'category',
-    'excerpt',
-    'date',
-    'image',
-  ]).filter((posts) => posts.slug === params.id);
+  const allPosts = getAllPosts().filter((posts) => posts.slug === params.id);
 
   return new Response(JSON.stringify(allPosts), {
     status: 200,

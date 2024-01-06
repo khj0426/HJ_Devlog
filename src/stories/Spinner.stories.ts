@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import Spinner from '@/Component/Common/Spinner';
 const meta: Meta<typeof Spinner> = {
-  title: '로딩 중임을 나타내는 스피너 컴포넌트',
+  title: '스피너 컴포넌트',
   component: Spinner,
   parameters: {
     layout: 'centered',

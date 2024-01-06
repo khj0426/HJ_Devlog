@@ -4,7 +4,7 @@ import { getAllPosts } from '../../../lib/api';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const SITE_SUFFIX = 'https://hj-devlog.vercel.app';
-  const posts = getAllPosts(['title', 'date']);
+  const posts = getAllPosts();
 
   const postsSiteMap = posts.map((post) => {
     return {

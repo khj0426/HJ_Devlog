@@ -1,11 +1,6 @@
-import { Meta, Story } from '@storybook/react';
-import { RecoilRoot, useRecoilState } from 'recoil';
+import { Meta } from '@storybook/react';
 
 import ToggleDarkModeButton from '@/Component/DarkMode/ToggoeButton';
-
-type ToggleDarkModeButtonProps = React.ComponentProps<
-  typeof ToggleDarkModeButton
->;
 
 const meta: Meta = {
   title: '다크모드 토글 버튼',

@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Title from '@/Component/About/Title';
 import PostLayout from '@/Component/Common/PostLayout';
 
-import { getCategoryFilteredPosts } from '../../../../../../lib/api';
+import { getFilteredCategory } from '../../../../../../lib/api';
 
 export default function Home({
   params,
@@ -15,10 +15,7 @@ export default function Home({
 }) {
   params.categoryId = decodeURIComponent(params.categoryId);
 
-  const posts = getCategoryFilteredPosts(
-    ['title', 'data', 'slug', 'category', 'excerpt', 'date', 'image'],
-    params.categoryId
-  );
+  const posts = getFilteredCategory(params.categoryId);
 
   return (
     <>

@@ -1,78 +1,68 @@
 import fs from 'fs';
-import { join, basename } from 'path';
+import { join } from 'path';
 
 import matter from 'gray-matter';
 
-const PostDirectory = join(process.cwd(), 'posts');
-const ImageDirectory = join(process.cwd(), 'public/images');
+type PostItem = {
+  [key: string]: string;
+};
 
-export function getPostSlugs() {
-  return fs.readdirSync(PostDirectory);
+const postDirectory = join(process.cwd(), 'posts');
+
+export function getPostSlug() {
+  return fs.readdirSync(postDirectory);
 }
 
-export function getPostBySlug(slug: string, fields: string[] = []) {
-  const realSlug = decodeURIComponent(slug.replace(/\.md/, ''));
-  const fullPath = join(PostDirectory, `${realSlug}.md`);
-  const fileContent = fs.readFileSync(fullPath, 'utf-8');
+export function getPostBySlug(slug: string, fields: string[]) {
+  const decodedSlug = decodeURIComponent(slug.replace(/\.md/, ''));
+
+  const postPath = join(postDirectory, `${decodedSlug}.md`);
+  const fileContent = fs.readFileSync(postPath, 'utf-8');
   const { data, content } = matter(fileContent);
 
-  type Item = {
-    [key: string]: string;
-  };
-  const items: Item = {};
+  const postItems: PostItem = {};
 
   fields.forEach((field) => {
     if (field === 'slug') {
-      items[field] = realSlug;
+      postItems[field] = decodedSlug;
     }
     if (field === 'content') {
-      items[field] = content;
+      postItems[field] = content;
     }
     if (typeof data[field] !== 'undefined') {
-      items[field] = data[field];
+      postItems[field] = data[field];
     }
   });
 
-  return items;
+  return postItems;
 }
 
-export function getAllPosts(fields: string[] = []) {
-  const slugs = getPostSlugs();
-  const posts = slugs
-    .map((slug) => getPostBySlug(slug, fields))
-    // sort posts by date in descending order
+export function getAllPosts() {
+  const slugs = getPostSlug();
+  return slugs
+    .map((slug) =>
+      getPostBySlug(slug, [
+        'title',
+        'data',
+        'slug',
+        'category',
+        'excerpt',
+        'date',
+        'image',
+      ])
+    )
     .sort((post1, post2) => (post1.date > post2.date ? -1 : 1));
-
-  return posts;
 }
 
-export function getInitPosts(fields: string[] = []) {
-  const slugs = getPostSlugs();
-  const posts = slugs
-    .map((slug) => getPostBySlug(slug, fields))
-    .sort((post1, post2) => (post1.date > post2.date ? -1 : 1))
-    .slice(0, 5);
-
-  return posts;
+export function getInitPost() {
+  return getAllPosts().slice(0, 5);
 }
 
-export function getAllPostRequest(fields: string[] = []) {
-  const slugs = getPostSlugs();
-  const posts = slugs
-    .map((slug) => getPostBySlug(slug, fields))
-    // sort posts by date in descending order
-    .sort((post1, post2) => (post1.date > post2.date ? -1 : 1));
-
-  return {};
-}
-
-//리팩토링 필요한 부분
 export function getAllCategories() {
-  const allPosts = getAllPosts(['category']);
-
+  const allPost = getAllPosts();
   const allCategory = new Map<string, number>();
 
-  allPosts.map((post) => {
+  allPost.map((post) => {
     const getCategory = allCategory.get(post.category);
     if (getCategory) {
       allCategory.set(post.category, getCategory + 1);
@@ -90,16 +80,6 @@ export function getAllCategories() {
   });
 }
 
-export function getCategoryFilteredPosts(
-  fields: string[] = [],
-  category: string
-) {
-  const slugs = getPostSlugs();
-  const posts = slugs
-    .map((slug) => getPostBySlug(slug, fields))
-    // sort posts by date in descending order
-    .sort((post1, post2) => (post1.date > post2.date ? -1 : 1))
-    .filter((post) => post.category === category);
-
-  return posts;
+export function getFilteredCategory(category: string) {
+  return getAllPosts().filter((post) => post.category === category);
 }
