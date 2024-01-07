@@ -5,13 +5,6 @@
     "plugin:import/recommended",
     "plugin:storybook/recommended"
   ],
-  "settings": {
-    "import/resolver": {
-      "node": {
-        "paths": ["src", "public"]
-      }
-    }
-  },
   "rules": {
     "no-unused-vars": [
       "warn",
