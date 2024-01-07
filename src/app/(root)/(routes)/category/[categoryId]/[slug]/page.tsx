@@ -6,7 +6,7 @@ import rehypeRaw from 'rehype-raw';
 
 import CodeBlock from '@/Component/Blog/CodeBlock';
 import PostExtract from '@/Component/Blog/Extract';
-import BlogLayOut from '@/Component/Blog/Layout';
+import BlogLayout from '@/Component/Blog/Layout';
 import Comments from '@/Component/Giscus/Gitcus';
 
 import { getPostBySlug } from '../../../../../../../lib/api';
@@ -61,7 +61,7 @@ export default function Post({
 
   return (
     <>
-      <BlogLayOut>
+      <BlogLayout>
         <h3>{post.title}</h3>
         <PostExtract extract={post.excerpt} />
         <p
@@ -95,7 +95,7 @@ export default function Post({
           {post.content}
         </ReactMarkdown>
         <Comments />
-      </BlogLayOut>
+      </BlogLayout>
     </>
   );
 }

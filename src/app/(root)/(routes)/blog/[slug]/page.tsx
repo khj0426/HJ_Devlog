@@ -6,7 +6,7 @@ import rehypeRaw from 'rehype-raw';
 
 import CodeBlock from '@/Component/Blog/CodeBlock';
 import PostExtract from '@/Component/Blog/Extract';
-import BlogLayOut from '@/Component/Blog/Layout';
+import BlogLayout from '@/Component/Blog/Layout';
 import Comments from '@/Component/Giscus/Gitcus';
 import TOC from '@/Component/TOC';
 
@@ -83,7 +83,7 @@ export default function Post({
 
   return (
     <>
-      <BlogLayOut>
+      <BlogLayout>
         <h1>{post.title}</h1>
         <PostExtract extract={post.excerpt} />
         <p
@@ -172,7 +172,7 @@ export default function Post({
         </ReactMarkdown>
 
         <Comments />
-      </BlogLayOut>
+      </BlogLayout>
       <TOC toc={makeTableOfContent({ children: post.content }) || []}></TOC>
     </>
   );
