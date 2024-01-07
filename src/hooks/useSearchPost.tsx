@@ -15,7 +15,7 @@ export default function useSearchPost(searchInput: string) {
     const fetchAllPosts = async () => {
       const allPostResponse = await fetch('/api/slugs');
       const allPosts: Item[] = await allPostResponse.json();
-      if (allPostResponse.ok) {
+      if (allPostResponse.ok && searchInput.length > 0) {
         setPosts(
           allPosts.filter((post) =>
             post?.title

@@ -1,6 +1,6 @@
 'use client';
 
-import type AboutProps from '@/@types/AboutProps';
+import type { AboutProps } from '@/@types/AboutProps';
 
 import styled from 'styled-components';
 

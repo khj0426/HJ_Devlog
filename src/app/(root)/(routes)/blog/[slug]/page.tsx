@@ -2,18 +2,16 @@ import { Metadata } from 'next';
 
 import ReactMarkdown from 'react-markdown';
 
-import Image from 'next/image';
 import rehypeRaw from 'rehype-raw';
 
 import CodeBlock from '@/Component/Blog/CodeBlock';
-import PostExterct from '@/Component/Blog/Exterct';
-import BlogLayOut from '@/Component/Blog/LayOut';
+import PostExtract from '@/Component/Blog/Extract';
+import BlogLayOut from '@/Component/Blog/Layout';
 import Comments from '@/Component/Giscus/Gitcus';
 import TOC from '@/Component/TOC';
 
 import { getPostBySlug } from '../../../../../../lib/api';
-import makeToc from '../../../../../../lib/makeToc';
-
+import makeTableOfContent from '../../../../../../lib/makeTableOfContent';
 export async function generateMetadata({
   params,
 }: {
@@ -87,7 +85,7 @@ export default function Post({
     <>
       <BlogLayOut>
         <h1>{post.title}</h1>
-        <PostExterct exterct={post.excerpt} />
+        <PostExtract extract={post.excerpt} />
         <p
           style={{
             fontWeight: '700',
@@ -175,7 +173,7 @@ export default function Post({
 
         <Comments />
       </BlogLayOut>
-      <TOC toc={makeToc({ children: post.content }) || []}></TOC>
+      <TOC toc={makeTableOfContent({ children: post.content }) || []}></TOC>
     </>
   );
 }

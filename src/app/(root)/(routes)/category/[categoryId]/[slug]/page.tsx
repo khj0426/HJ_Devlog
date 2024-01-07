@@ -5,8 +5,8 @@ import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
 
 import CodeBlock from '@/Component/Blog/CodeBlock';
-import PostExterct from '@/Component/Blog/Exterct';
-import BlogLayOut from '@/Component/Blog/LayOut';
+import PostExtract from '@/Component/Blog/Extract';
+import BlogLayOut from '@/Component/Blog/Layout';
 import Comments from '@/Component/Giscus/Gitcus';
 
 import { getPostBySlug } from '../../../../../../../lib/api';
@@ -63,7 +63,7 @@ export default function Post({
     <>
       <BlogLayOut>
         <h3>{post.title}</h3>
-        <PostExterct exterct={post.excerpt} />
+        <PostExtract extract={post.excerpt} />
         <p
           style={{
             fontWeight: '700',

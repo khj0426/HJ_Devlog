@@ -11,11 +11,6 @@ type Post = {
   image: string;
 };
 
-type PageParams = {
-  start: number;
-  end: number;
-};
-
 type PostsResponse = {
   posts: Post[];
   page: number;

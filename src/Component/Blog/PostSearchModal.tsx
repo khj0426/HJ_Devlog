@@ -49,10 +49,10 @@ export default function PostSearchModal({
 }: {
   onCloseModal: () => void;
 }) {
-  const [querySearch, setQuerySearch] = useState<string | null>(null);
-  const { posts } = useSearchPost(querySearch as string);
+  const [querySearch, setQuerySearch] = useState<string>('');
+  const { posts } = useSearchPost(querySearch);
 
-  const handleChangSearchQuery = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChangeQuerySearch = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.value.length === 0) {
       return;
     }
@@ -61,10 +61,10 @@ export default function PostSearchModal({
   };
 
   return (
-    <StyledPostSearchModalWrapper onClick={() => onCloseModal()}>
+    <StyledPostSearchModalWrapper onClick={onCloseModal}>
       <StyledPostSearchModal>
         <p
-          onClick={() => onCloseModal()}
+          onClick={onCloseModal}
           style={{
             cursor: 'pointer',
           }}
@@ -74,7 +74,7 @@ export default function PostSearchModal({
         <StyledPostSearchInput
           autoFocus
           placeholder="검색할 내용을 입력해주세요."
-          onChange={handleChangSearchQuery}
+          onChange={handleChangeQuerySearch}
         />
         {posts.map((post) => (
           <Link

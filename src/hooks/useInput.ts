@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 const useInput = (
   initialState: string,
-  prevConditionCallback: (e: React.ChangeEvent<HTMLInputElement>) => boolean
+  prevConditionCallback: (_e: React.ChangeEvent<HTMLInputElement>) => boolean
 ) => {
   const [value, setValue] = useState(initialState);
   const [error, setError] = useState(false);
