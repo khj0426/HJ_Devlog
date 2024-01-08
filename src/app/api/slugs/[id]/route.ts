@@ -10,9 +10,13 @@ export async function GET(
     };
   }
 ) {
-  const allPosts = getAllPosts().filter((posts) => posts.slug === params.id);
-
-  return new Response(JSON.stringify(allPosts), {
+  const allfilteredPost = getAllPosts().filter((post) =>
+    post?.title
+      ?.trim()
+      ?.toLowerCase()
+      ?.includes(params.id?.trim()?.toLowerCase())
+  );
+  return new Response(JSON.stringify(allfilteredPost), {
     status: 200,
     headers: {
       'Content-Type': 'application/json',

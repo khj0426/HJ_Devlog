@@ -17,6 +17,12 @@ const nextConfig = {
         __SENTRY_EXCLUDE_REPLAY_WORKER__: true,
       })
     );
+
+    config.plugins.push(
+      new webpack.IgnorePlugin({
+        resourceRegExp: /test.*\.tsx$/,
+      })
+    );
     return config;
   },
   reactStrictMode: true,

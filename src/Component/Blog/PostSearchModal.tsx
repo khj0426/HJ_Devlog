@@ -3,6 +3,7 @@ import { ChangeEvent, useState } from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
 
+import Spinner from '@/Component/Common/Spinner';
 import useSearchPost from '@/hooks/useSearchPost';
 
 const StyledPostSearchModalWrapper = styled.div`
@@ -50,7 +51,7 @@ export default function PostSearchModal({
   onCloseModal: () => void;
 }) {
   const [querySearch, setQuerySearch] = useState<string>('');
-  const { posts } = useSearchPost(querySearch);
+  const { posts, loading } = useSearchPost(querySearch);
 
   const handleChangeQuerySearch = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.value.length === 0) {
@@ -76,18 +77,20 @@ export default function PostSearchModal({
           placeholder="검색할 내용을 입력해주세요."
           onChange={handleChangeQuerySearch}
         />
-        {posts.map((post) => (
-          <Link
-            key={post.title}
-            href={`/blog/${post.slug}`}
-            onClick={() => onCloseModal()}
-            style={{
-              color: 'inherit',
-            }}
-          >
-            {post.title}
-          </Link>
-        ))}
+        {loading && <Spinner timing={1} />}
+        {!loading &&
+          posts.map((post) => (
+            <Link
+              key={post.title}
+              href={`/blog/${post.slug}`}
+              onClick={() => onCloseModal()}
+              style={{
+                color: 'inherit',
+              }}
+            >
+              {post.title}
+            </Link>
+          ))}
       </StyledPostSearchModal>
     </StyledPostSearchModalWrapper>
   );

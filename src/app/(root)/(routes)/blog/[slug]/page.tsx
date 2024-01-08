@@ -116,6 +116,7 @@ export default function Post({
                 <h2
                   id={children as string}
                   style={{
+                    paddingTop: '10px',
                     fontSize: '1.3rem',
                   }}
                 >
@@ -129,6 +130,7 @@ export default function Post({
                   id={children as string}
                   style={{
                     fontSize: '1.2rem',
+                    paddingTop: '10px',
                   }}
                 >
                   {children}

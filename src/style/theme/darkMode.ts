@@ -1,8 +1,3 @@
-'use client';
-
-//121212
-//d22427
-
 const lightTheme = {
   body: '#eaeaea',
   text: '#1c1e21',

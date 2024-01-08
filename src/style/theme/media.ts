@@ -10,8 +10,8 @@ const device = {
   laptop: `screen and (max-width:${deviceSizes.laptop})`,
 };
 
-const mediatheme = {
+const mediaTheme = {
   device,
 };
 
-export default mediatheme;
+export default mediaTheme;
