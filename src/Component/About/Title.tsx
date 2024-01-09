@@ -11,7 +11,7 @@ const StyledTitle = styled.h3`
     font-size: 24px;
   }
   @media ${({ theme }) => theme.device.mobile} {
-    font-size: 20px;
+    font-size: 18px;
   }
 `;
 

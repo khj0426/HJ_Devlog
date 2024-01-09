@@ -10,6 +10,7 @@ const StyledPostExtract = styled.h5`
   @media ${({ theme }) => theme.device.tablet} {
     font-size: 13px;
   }
+
   @media ${({ theme }) => theme.device.mobile} {
     font-size: 11px;
   }

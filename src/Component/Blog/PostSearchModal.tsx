@@ -4,7 +4,7 @@ import Link from 'next/link';
 import styled from 'styled-components';
 
 import Spinner from '@/Component/Common/Spinner';
-import useSearchPost from '@/hooks/useSearchPost';
+import useSearchPostQuery from '@/hooks/queries/useSearchPostQuery';
 
 const StyledPostSearchModalWrapper = styled.div`
   position: fixed;
@@ -51,7 +51,7 @@ export default function PostSearchModal({
   onCloseModal: () => void;
 }) {
   const [querySearch, setQuerySearch] = useState<string>('');
-  const { posts, loading } = useSearchPost(querySearch);
+  const { data: posts, isFetching } = useSearchPostQuery(querySearch);
 
   const handleChangeQuerySearch = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.value.length === 0) {
@@ -77,9 +77,10 @@ export default function PostSearchModal({
           placeholder="검색할 내용을 입력해주세요."
           onChange={handleChangeQuerySearch}
         />
-        {loading && <Spinner timing={1} />}
-        {!loading &&
-          posts.map((post) => (
+        {isFetching && <Spinner timing={1} />}
+        {!isFetching &&
+          posts &&
+          posts?.map((post) => (
             <Link
               key={post.title}
               href={`/blog/${post.slug}`}

@@ -14,7 +14,6 @@ export default function PostServiceLayer() {
     fetchNextPage,
   });
 
-
   return (
     <>
       {data?.pages?.map((page) =>

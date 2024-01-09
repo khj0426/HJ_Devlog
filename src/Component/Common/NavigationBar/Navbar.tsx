@@ -22,6 +22,9 @@ const StyledNavBarLayout = styled.nav`
 `;
 
 const StyledNavBarTitle = styled(Link)`
+  @media ${({ theme }) => theme.device.mobile} {
+    font-size: 14px;
+  }
   font-weight: 600;
   text-decoration: none;
   color: inherit;
@@ -31,7 +34,7 @@ const StyledNavBarTitle = styled(Link)`
       @media (max-width: 1024px) {
         opacity: 0;
       }
-    `}
+    `};
 `;
 
 export default function Navbar() {
@@ -45,6 +48,7 @@ export default function Navbar() {
       >
         <StyledNavBarTitle href="/">Blog</StyledNavBarTitle>
         <StyledNavBarTitle href="/about">About</StyledNavBarTitle>
+        <StyledNavBarTitle href="/guestbook">GuestBook</StyledNavBarTitle>
         <StyledNavBarTitle href="/notion/resume">Resume</StyledNavBarTitle>
       </div>
       <div

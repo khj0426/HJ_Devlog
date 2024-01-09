@@ -3,7 +3,7 @@
 import { uuid4 } from '@sentry/utils';
 import styled from 'styled-components';
 
-import useToc from '@/hooks/useToc';
+import useTableOfContent from '@/hooks/useTableOfContent';
 
 import replaceStrWithBlank from '../../../lib/replaceStr';
 
@@ -46,7 +46,7 @@ const StyledTOCLink = styled.a`
 `;
 
 export default function TOC({ toc }: { toc: string[] }) {
-  const { id } = useToc();
+  const { id } = useTableOfContent();
 
   const TOC = toc.map((eachToc) => {
     const makeTOC = replaceStrWithBlank([eachToc, ['#', '##', '###', '####']]);

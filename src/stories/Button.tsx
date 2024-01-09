@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { ComponentProps, ButtonHTMLAttributes } from 'react';
 import './button.css';
 
-interface ButtonProps {
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   /**
    * Is this the principal call to action on the page?
    */
@@ -34,17 +34,27 @@ export const Button = ({
   label,
   ...props
 }: ButtonProps) => {
-  const mode = primary ? 'storybook-button--primary' : 'storybook-button--secondary';
+  const mode = primary
+    ? 'storybook-button--primary'
+    : 'storybook-button--secondary';
   return (
     <button
       type="button"
-      className={['storybook-button', `storybook-button--${size}`, mode].join(' ')}
+      className={['storybook-button', `storybook-button--${size}`, mode].join(
+        ' '
+      )}
       {...props}
     >
       {label}
       <style jsx>{`
         button {
           background-color: ${backgroundColor};
+        }
+
+        button:disabled {
+          background-color: #cccccc;
+          cursor: not-allowed; // 마우스 커서를 '금지' 심볼로 변경
+          color: #666666;
         }
       `}</style>
     </button>

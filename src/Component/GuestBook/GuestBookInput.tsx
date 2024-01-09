@@ -1,9 +1,12 @@
 import { Input, InputBox } from '@/Component/Input';
 import usePostGuestBook from '@/hooks/mutations/useGuestBookMutation';
 import useInput from '@/hooks/useInput';
-
+import { Button } from '@/stories/Button';
 const GuestBookInput = ({ refetch }: { refetch: () => void }) => {
-  const guestBookInput = useInput('', (e) => e.target.value.length <= 150);
+  const guestBookInput = useInput(
+    '',
+    (e) => e.target.value.length <= 150 && e.target.value.length !== 0
+  );
   const { mutate } = usePostGuestBook();
 
   const handleSubmitGuestBook = () => {
@@ -21,14 +24,36 @@ const GuestBookInput = ({ refetch }: { refetch: () => void }) => {
   };
 
   return (
-    <>
-      <InputBox width="300px">
-        <Input {...guestBookInput} />
+    <div
+      style={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        width: '80%',
+        margin: '20px auto',
+      }}
+    >
+      <InputBox width="350px" color="#f8f9fa">
+        <Input
+          {...guestBookInput}
+          placeholder="😀 방명록을 적어주세요"
+          style={{
+            fontSize: '1rem',
+          }}
+        />
       </InputBox>
-      <button type="button" onClick={handleSubmitGuestBook}>
+      <Button
+        disabled={guestBookInput.error}
+        label="쓰기"
+        type="button"
+        style={{
+          borderRadius: '7px',
+        }}
+        onClick={handleSubmitGuestBook}
+        backgroundColor="#f8f9fa"
+      >
         쓰기
-      </button>
-    </>
+      </Button>
+    </div>
   );
 };
 

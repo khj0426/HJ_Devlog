@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-export default function useToc() {
+export default function useTableOfContent() {
   const [id, setId] = useState<string>('');
 
   useEffect(() => {

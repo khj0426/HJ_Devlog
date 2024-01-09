@@ -14,6 +14,7 @@ const useInput = (
     }
 
     setValue(e.target.value);
+    setError(() => false);
   };
 
   return {

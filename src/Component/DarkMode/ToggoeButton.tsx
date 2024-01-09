@@ -12,7 +12,7 @@ export default function ToggleDarkModeButton() {
     currentTheme === 'light' ? darkModeImage : lightModeImage;
 
   const handleClickToggleImage = () => {
-     if (currentTheme === 'light') {
+    if (currentTheme === 'light') {
       setCurrentTheme('dark');
       return;
     }
@@ -25,8 +25,8 @@ export default function ToggleDarkModeButton() {
       }}
       src={modeImageSrc}
       alt="모드를 바꾸는 이미지"
-      width={50}
-      height={50}
+      width={45}
+      height={45}
       priority
       onClick={handleClickToggleImage}
     />

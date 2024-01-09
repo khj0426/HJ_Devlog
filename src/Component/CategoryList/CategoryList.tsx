@@ -12,6 +12,10 @@ const CategoryListStyle = styled.span`
   &:hover {
     text-decoration: underline ${({ theme }) => theme.text};
   }
+
+  @media ${({ theme }) => theme.device.mobile} {
+    font-size: 11px;
+  }
 `;
 
 const CategoryListWrapper = styled.div`

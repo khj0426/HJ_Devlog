@@ -5,6 +5,28 @@ import { v4 as uuidv4 } from 'uuid';
 
 const StyledGuestBookList = styled.section`
   min-height: 700px;
+  width: 500px;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    width: 300px;
+  }
+
+  margin: 20px auto;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #f8f9fa;
+`;
+
+const Entry = styled.div`
+  border-bottom: 1px solid #dee2e6;
+  padding: 10px 0;
+`;
+
+const EntryContent = styled.p`
+  color: #343a40;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 const GuestBookList = ({
@@ -17,7 +39,9 @@ const GuestBookList = ({
       {guestbookList &&
         guestbookList.guestbook &&
         Array.from(Object.values(guestbookList.guestbook)).map((value) => (
-          <div key={uuidv4()}>{value.comment}</div>
+          <Entry key={uuidv4()}>
+            <EntryContent>{value.comment}</EntryContent>
+          </Entry>
         ))}
     </StyledGuestBookList>
   );

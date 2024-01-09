@@ -14,7 +14,11 @@ export default function useSearchPost(searchInput: string) {
     }, 1000);
 
     const fetchAllPosts = async () => {
-      setIsLoading(() => true);
+
+      if(searchInput.length > 0){
+        setIsLoading(() => true);
+      
+      }
       const allPostResponse = await fetch(`/api/slugs/${searchInput}`);
       if (allPostResponse.ok && searchInput.length > 0) {
         setIsLoading(() => false);

@@ -19,9 +19,9 @@ export default function SearchPostButton() {
     <>
       <Image
         alt="블로그 글 검색 이미지"
-        width={32}
+        width={28}
         placeholder="blur"
-        height={32}
+        height={28}
         style={{
           display: 'flex',
           alignItems: 'center',
@@ -29,7 +29,7 @@ export default function SearchPostButton() {
         }}
         src={SearchPostImage}
         onClick={togglePostSearchModal}
-      ></Image>
+      />
       {isModalOpen && <PostSearchModal onCloseModal={togglePostSearchModal} />}
     </>
   );
