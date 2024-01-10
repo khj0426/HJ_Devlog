@@ -1,5 +1,7 @@
 'use client';
 
+import { memo } from 'react';
+
 import { uuid4 } from '@sentry/utils';
 import styled from 'styled-components';
 
@@ -45,7 +47,7 @@ const StyledTOCLink = styled.a`
   }
 `;
 
-export default function TOC({ toc }: { toc: string[] }) {
+function TOC({ toc }: { toc: string[] }) {
   const { id } = useTableOfContent();
 
   const TOC = toc.map((eachToc) => {
@@ -59,22 +61,22 @@ export default function TOC({ toc }: { toc: string[] }) {
       e.currentTarget.classList.add('active');
     };
     return (
-      <>
-        <li key={uuid4()}>
-          <div>
-            <StyledTOCLink
-              className={`${makeTOC} ${id === makeTOC && 'active'}`}
-              href={`#${makeTOC}`}
-              id={makeTOC}
-              onClick={handleClickTOC}
-            >
-              {makeTOC}
-            </StyledTOCLink>
-          </div>
-        </li>
-      </>
+      <li key={uuid4()}>
+        <div>
+          <StyledTOCLink
+            className={`${makeTOC} ${id === makeTOC && 'active'}`}
+            href={`#${makeTOC}`}
+            id={makeTOC}
+            onClick={handleClickTOC}
+          >
+            {makeTOC}
+          </StyledTOCLink>
+        </div>
+      </li>
     );
   });
 
   return <StyledTOCList>{TOC}</StyledTOCList>;
 }
+
+export default memo(TOC);

@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 
+import { useMemo } from 'react';
 import ReactMarkdown from 'react-markdown';
 
 import rehypeRaw from 'rehype-raw';
@@ -79,6 +80,10 @@ export default function Post({
     'author',
     'image',
   ]);
+
+  const tableOfContent = useMemo(() => {
+    return makeTableOfContent({ children: post.content }) || [];
+  }, [post.content]);
 
   return (
     <>
@@ -174,7 +179,7 @@ export default function Post({
 
         <Comments />
       </BlogLayout>
-      <TOC toc={makeTableOfContent({ children: post.content }) || []}></TOC>
+      <TOC toc={tableOfContent}></TOC>
     </>
   );
 }
