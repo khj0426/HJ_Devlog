@@ -1,15 +1,15 @@
 import Image from 'next/image';
 import { useRecoilState } from 'recoil';
 
-import { postSearchModalState } from '@/app/Providers/Recoil/globalAtom';
+import { postSearchModalAtom } from '@/app/Providers/Recoil/globalAtom';
 
-import PostSearchModal from './PostSearchModal';
+import PostSearchModal from './PostSerachModal/PostSearchModal';
 
 // eslint-disable-next-line import/no-unresolved
 import SearchPostImage from '/public/images/search.webp';
 
 export default function SearchPostButton() {
-  const [isModalOpen, setModalOpen] = useRecoilState(postSearchModalState);
+  const [isModalOpen, setModalOpen] = useRecoilState(postSearchModalAtom);
 
   const togglePostSearchModal = () => {
     setModalOpen(!isModalOpen);

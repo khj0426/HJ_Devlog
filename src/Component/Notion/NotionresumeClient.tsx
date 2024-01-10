@@ -11,7 +11,7 @@ import { Collection } from 'react-notion-x/build/third-party/collection';
 import { Modal } from 'react-notion-x/build/third-party/modal';
 import { useRecoilState } from 'recoil';
 
-import { themeState } from '@/app/Providers/Recoil/globalAtom';
+import { themeAtom } from '@/app/Providers/Recoil/globalAtom';
 
 type PromiseType<T extends Promise<any>> = T extends Promise<infer U>
   ? U
@@ -22,7 +22,7 @@ export default function ResumeClient({
 }: {
   recordMap: PromiseType<ReturnTypeofNotionRecord>;
 }) {
-  const [modeState] = useRecoilState(themeState);
+  const [modeState] = useRecoilState(themeAtom);
   return (
     <div>
       <NotionRenderer

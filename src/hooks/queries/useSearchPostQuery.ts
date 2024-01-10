@@ -9,7 +9,7 @@ export default function useSearchPostQuery(searchPostQuery: string) {
     queryKey: ['searchPostQuery', searchPostQuery],
     queryFn: () => getSearchQueryPostList(searchPostQuery),
     enabled: !!searchPostQuery,
-    staleTime: 6 * 10 * 1000,
-    cacheTime: 6 * 10 * 1000,
+    staleTime: 60 * 10 * 1000,
+    cacheTime: 60 * 10 * 1000,
   });
 }

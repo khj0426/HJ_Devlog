@@ -3,8 +3,7 @@ import Link from 'next/link';
 
 import Title from '@/Component/About/Title';
 import PostLayout from '@/Component/Common/PostLayout';
-
-import { getFilteredCategory } from '../../../../../../lib/api';
+import { getFilteredCategory } from '~/lib/api';
 
 export default function Home({
   params,

@@ -8,8 +8,7 @@ import CodeBlock from '@/Component/Blog/CodeBlock';
 import PostExtract from '@/Component/Blog/Extract';
 import BlogLayout from '@/Component/Blog/Layout';
 import Comments from '@/Component/Giscus/Gitcus';
-
-import { getPostBySlug } from '../../../../../../../lib/api';
+import { getPostBySlug } from '~/lib/api';
 
 export default function Post({
   params,

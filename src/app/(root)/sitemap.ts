@@ -1,25 +1,24 @@
 import { MetadataRoute } from 'next';
 
-import { getAllPosts } from '../../../lib/api';
+import { getAllPosts } from '~/lib/api';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const SITE_SUFFIX = 'https://hj-devlog.vercel.app';
   const posts = getAllPosts();
 
   const postsSiteMap = posts.map((post) => {
     return {
-      url: `${SITE_SUFFIX}/blog/${post.title}`,
+      url: `${process.env.NEXT_PUBLIC_PRODUCT_URL}/blog/${post.title}`,
       lastModified: new Date(post.date),
     };
   });
 
   return [
     {
-      url: `${SITE_SUFFIX}`,
+      url: `${process.env.NEXT_PUBLIC_PRODUCT_URL}`,
       lastModified: new Date(),
     },
     {
-      url: `${SITE_SUFFIX}/about`,
+      url: `${process.env.NEXT_PUBLIC_PRODUCT_URL}/about`,
       lastModified: new Date(),
     },
     ...postsSiteMap,

@@ -9,12 +9,12 @@ const useInput = (
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!prevConditionCallback(e)) {
-      setError(() => true);
+      setError(true);
       return;
     }
 
     setValue(e.target.value);
-    setError(() => false);
+    setError(false);
   };
 
   return {

@@ -9,9 +9,8 @@ import PostExtract from '@/Component/Blog/Extract';
 import BlogLayout from '@/Component/Blog/Layout';
 import Comments from '@/Component/Giscus/Gitcus';
 import TOC from '@/Component/TOC';
-
-import { getPostBySlug } from '../../../../../../lib/api';
-import makeTableOfContent from '../../../../../../lib/makeTableOfContent';
+import { getPostBySlug } from '~/lib/api';
+import makeTableOfContent from '~/lib/makeTableOfContent';
 export async function generateMetadata({
   params,
 }: {

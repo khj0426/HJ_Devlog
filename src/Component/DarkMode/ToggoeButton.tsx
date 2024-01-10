@@ -1,13 +1,13 @@
 import Image from 'next/image';
 import { useRecoilState } from 'recoil';
 
-import { themeState } from '@/app/Providers/Recoil/globalAtom';
+import { themeAtom } from '@/app/Providers/Recoil/globalAtom';
 
 import darkModeImage from '../../../public/images/darkmode.webp';
 import lightModeImage from '../../../public/images/lightmode.webp';
 
 export default function ToggleDarkModeButton() {
-  const [currentTheme, setCurrentTheme] = useRecoilState(themeState);
+  const [currentTheme, setCurrentTheme] = useRecoilState(themeAtom);
   const modeImageSrc =
     currentTheme === 'light' ? darkModeImage : lightModeImage;
 

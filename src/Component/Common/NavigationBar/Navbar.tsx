@@ -22,7 +22,7 @@ const StyledNavBarLayout = styled.nav`
 `;
 
 const StyledNavBarTitle = styled(Link)`
-  @media ${({ theme }) => theme.device.mobile} {
+  @media ${({ theme }) => theme?.device?.mobile} {
     font-size: 14px;
   }
   font-weight: 600;

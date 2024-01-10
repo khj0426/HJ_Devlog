@@ -1,4 +1,4 @@
-import { getAllPosts } from '../../../../lib/api';
+import { getAllPosts } from '~/lib/api';
 
 export async function GET(req: Request) {
   const allPosts = getAllPosts();

@@ -5,6 +5,14 @@
     "plugin:import/recommended",
     "plugin:storybook/recommended"
   ],
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": {}
+    }
+  },
   "rules": {
     "no-unused-vars": [
       "warn",
