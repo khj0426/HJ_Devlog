@@ -7,10 +7,10 @@ import { ThemeProvider } from 'styled-components';
 import globalStyle from '../src/style/globalStyle';
 import { darkTheme, lightTheme } from '../src/style/theme/darkMode';
 import mediatheme from '../src/style/theme/media';
-import { themeState } from '../src/app/Providers/Recoil/globalAtom';
+import { themeAtom } from '../src/app/Providers/Recoil/globalAtom';
 
 const ThemeWrapper = ({ children }) => {
-  const currentTheme = useRecoilValue(themeState);
+  const currentTheme = useRecoilValue(themeAtom);
   const theme = currentTheme === 'light' ? lightTheme : darkTheme;
   const themeObj = { ...theme, mediatheme };
 
