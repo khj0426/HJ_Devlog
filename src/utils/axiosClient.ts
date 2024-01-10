@@ -1,11 +1,30 @@
+import * as Sentry from '@sentry/nextjs';
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
-
 const axiosClient = axios.create({
   baseURL:
     process.env.NODE_ENV === 'production'
       ? process.env.NEXT_PUBLIC_PRODUCT_URL
       : process.env.NEXT_PUBLIC_LOCAL_URL,
 });
+
+axiosClient.interceptors.response.use(
+  (res) => {
+    return res;
+  },
+  (error) => {
+    Sentry.captureException(error, {
+      level: 'error',
+      extra: {
+        header: error.config.headers,
+        response: error.response?.data,
+        request: error.request,
+        type: '네트워크 에러',
+      },
+    });
+
+    return Promise.reject(error);
+  }
+);
 
 export const get = async <T>(
   url: string,
