@@ -9,7 +9,7 @@ import { NotionRenderer } from 'react-notion-x';
 
 import { Collection } from 'react-notion-x/build/third-party/collection';
 import { Modal } from 'react-notion-x/build/third-party/modal';
-import { useRecoilState } from 'recoil';
+import { useRecoilValue } from 'recoil';
 
 import { themeAtom } from '@/app/Providers/Recoil/globalAtom';
 
@@ -22,7 +22,7 @@ export default function ResumeClient({
 }: {
   recordMap: PromiseType<ReturnTypeofNotionRecord>;
 }) {
-  const [modeState] = useRecoilState(themeAtom);
+  const modeState = useRecoilValue(themeAtom);
   return (
     <div>
       <NotionRenderer

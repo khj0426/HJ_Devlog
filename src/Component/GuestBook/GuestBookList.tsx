@@ -1,5 +1,3 @@
-import type { GuestBook } from '@/@types/GuestBookType';
-
 import styled from 'styled-components';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -29,20 +27,26 @@ const EntryContent = styled.p`
   text-overflow: ellipsis;
 `;
 
+type guestBookListProps = {
+  id: string;
+  comment: string;
+  commentTime: string;
+};
+
 const GuestBookList = ({
   guestbookList,
 }: {
-  guestbookList: GuestBook | undefined;
+  guestbookList: guestBookListProps[];
 }) => {
   return (
     <StyledGuestBookList>
-      {guestbookList &&
-        guestbookList.guestbook &&
-        Array.from(Object.values(guestbookList.guestbook)).map((value) => (
-          <Entry key={uuidv4()}>
+      {guestbookList.map((value) => {
+        return (
+          <Entry key={value.id}>
             <EntryContent>{value.comment}</EntryContent>
           </Entry>
-        ))}
+        );
+      })}
     </StyledGuestBookList>
   );
 };
