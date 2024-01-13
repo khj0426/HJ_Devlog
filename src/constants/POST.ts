@@ -4,4 +4,5 @@ const POST_CONSTANT = {
 };
 
 Object.freeze(POST_CONSTANT);
-export default POST_CONSTANT;
+
+export { POST_CONSTANT };
