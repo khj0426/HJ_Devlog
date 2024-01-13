@@ -9,6 +9,10 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
 
+  body {
+    height:100%;
+  }
+
   a {
     text-decoration: none;
     color: ${({ theme }) => theme.text};

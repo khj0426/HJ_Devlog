@@ -6,7 +6,7 @@ import { POST_CONSTANT } from '@/constants/POST';
 
 export const themeAtom = atom<ThemeType>({
   key: 'THEME_STATE',
-  default: (sessionStorage.getItem('theme') as string) ?? 'light',
+  default: 'light',
 });
 
 export const postSearchModalAtom = atom<boolean>({

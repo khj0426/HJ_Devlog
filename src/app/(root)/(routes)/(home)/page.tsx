@@ -17,7 +17,6 @@ export default function Home() {
           display: 'flex',
           flexWrap: 'wrap',
           margin: '0 auto',
-          justifyContent: 'center',
         }}
       >
         {initPosts.map((post) => (
