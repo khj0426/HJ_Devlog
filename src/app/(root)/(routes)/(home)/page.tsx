@@ -12,7 +12,12 @@ export default function Home() {
       <CategoryList category={allCategory}></CategoryList>
       <main
         style={{
-          minWidth: '60%',
+          minWidth: '65%',
+          maxWidth: '70%',
+          display: 'flex',
+          flexWrap: 'wrap',
+          margin: '0 auto',
+          justifyContent: 'center',
         }}
       >
         {initPosts.map((post) => (

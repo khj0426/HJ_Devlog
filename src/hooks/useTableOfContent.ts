@@ -19,7 +19,7 @@ export default function useTableOfContent() {
             return;
           }
           if (getTOCElement && entry.isIntersecting) {
-            setId(getTOCElement[0].id);
+            setId(getTOCElement[getTOCElement.length - 1].id);
           }
         });
       },

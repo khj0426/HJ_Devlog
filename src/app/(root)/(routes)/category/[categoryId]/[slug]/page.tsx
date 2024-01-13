@@ -75,7 +75,7 @@ export default function Post({
         <ReactMarkdown
           rehypePlugins={[rehypeRaw]}
           components={{
-            img: ({ node, ...props }) => (
+            img: ({ ...props }) => (
               <img
                 src={props.src || ''}
                 alt="마크다운 이미지"
@@ -86,9 +86,7 @@ export default function Post({
                 }}
               />
             ),
-            code: ({ node, inline, children, ...props }) => (
-              <CodeBlock>{children as string}</CodeBlock>
-            ),
+            code: ({ children }) => <CodeBlock>{children as string}</CodeBlock>,
           }}
         >
           {post.content}

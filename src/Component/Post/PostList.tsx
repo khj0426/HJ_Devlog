@@ -7,6 +7,7 @@ import useObserver from '@/hooks/useObserver';
 import PostItem from './PostItem';
 
 export default function PostServiceLayer() {
+  //TODO - 스피너 대신 스켈레톤UI로 수정 필요
   const { data, fetchNextPage, hasNextPage, isFetching } = usePostQuery();
   const { target } = useObserver({
     threshold: 0.1,
@@ -19,16 +20,7 @@ export default function PostServiceLayer() {
       {data?.pages?.map((page) =>
         page.posts.map((post) => <PostItem post={post} key={post.title} />)
       )}
-      {isFetching && hasNextPage && (
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-          }}
-        >
-          <Spinner size={50} />
-        </div>
-      )}
+
       <div ref={target}></div>
     </>
   );

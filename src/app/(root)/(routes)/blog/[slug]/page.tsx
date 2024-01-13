@@ -120,7 +120,7 @@ export default function Post({
                 <h2
                   id={children as string}
                   style={{
-                    paddingTop: '10px',
+                    marginTop: '30px',
                     fontSize: '1.3rem',
                   }}
                 >
@@ -134,7 +134,7 @@ export default function Post({
                   id={children as string}
                   style={{
                     fontSize: '1.2rem',
-                    paddingTop: '10px',
+                    marginTop: '30px',
                   }}
                 >
                   {children}
@@ -179,7 +179,7 @@ export default function Post({
 
         <Comments />
       </BlogLayout>
-      <TOC toc={tableOfContent}></TOC>
+      <TOC toc={tableOfContent} />
     </>
   );
 }

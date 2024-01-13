@@ -2,8 +2,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import Title from '@/Component/About/Title';
+import CategoryList from '@/Component/CategoryList/CategoryList';
 import PostLayout from '@/Component/Common/PostLayout';
-import { getFilteredCategory } from '~/lib/api';
+import { getFilteredCategory, getAllCategories } from '~/lib/api';
 
 export default function Home({
   params,
@@ -15,9 +16,11 @@ export default function Home({
   params.categoryId = decodeURIComponent(params.categoryId);
 
   const posts = getFilteredCategory(params.categoryId);
+  const allCategory = getAllCategories();
 
   return (
     <>
+      <CategoryList category={allCategory} />
       <h2>{params.categoryId}</h2>
       <main
         style={{

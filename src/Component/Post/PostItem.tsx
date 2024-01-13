@@ -5,37 +5,57 @@ import Link from 'next/link';
 import styled from 'styled-components';
 
 import Title from '@/Component/About/Title';
-import PostLayout from '@/Component/Common/PostLayout';
 
-const PostTitleDateArea = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+const PostCard = styled.div`
+  border-radius: 10px;
+  overflow: hidden;
+  width: 350px;
+  margin-top: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  &:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  }
+  background: ${({ theme }) => theme.backgroundPost};
 `;
+
+const PostImage = styled(Image)`
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+`;
+
+const PostContent = styled.div`
+  padding: 20px;
+`;
+
+const PostDate = styled.p`
+  margin: 0;
+  font-size: 14px;
+`;
+
 export default function PostItem({
   post,
 }: {
   post: { [key: string]: string };
 }) {
   return (
-    <PostLayout key={post.title}>
+    <PostCard>
       <Link href={`/blog/${post.slug}`}>
-        <PostTitleDateArea>
-          <Title title={post.title} />
-          <p>{post.date}</p>
-        </PostTitleDateArea>
-        {post.content}
+        <PostImage
+          src={post.image}
+          alt="블로그 대표 이미지"
+          width={300}
+          height={200}
+          priority
+        />
+        <PostContent>
+          <Title title={post.title}></Title>
+          <PostDate>{post.date}</PostDate>
+          <p>{post.content}</p>
+        </PostContent>
       </Link>
-      <Image
-        src={post.image}
-        width={150}
-        height={150}
-        alt="블로그 대표 이미지"
-        style={{
-          objectFit: 'cover',
-        }}
-        priority
-      />
-    </PostLayout>
+    </PostCard>
   );
 }

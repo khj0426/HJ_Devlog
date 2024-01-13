@@ -6,8 +6,10 @@ import Link from 'next/link';
 import styled from 'styled-components';
 
 const CategoryListStyle = styled.span`
+  display: flex;
+  flex-direction: column;
   color: ${({ theme }) => theme.text};
-  font-size: 20px;
+  font-size: 18px;
   cursor: pointer;
   &:hover {
     text-decoration: underline ${({ theme }) => theme.text};
@@ -19,12 +21,21 @@ const CategoryListStyle = styled.span`
 `;
 
 const CategoryListWrapper = styled.div`
+  @media ${({ theme }) => theme.device.mobile} {
+    opacity: 0;
+  }
+
+  @media ${({ theme }) => theme.device.tablet} {
+    opacity: 0;
+  }
   gap: 15px;
-  display: flex;
-  width: 100%;
-  flex-wrap: wrap;
-  flex-direction: row;
+  position: fixed;
+  margin-top: 80px;
+  right: 0;
+  flex-direction: column;
   justify-content: center;
+  max-height: 350px;
+  overflow-y: auto;
 `;
 export default function CategoryList({
   category,
@@ -37,7 +48,7 @@ export default function CategoryList({
         return (
           <CategoryListStyle key={category}>
             <Link href={`/category/${category}`}>
-              # {category + categoryCount}
+              💻 {category + categoryCount}
             </Link>
           </CategoryListStyle>
         );

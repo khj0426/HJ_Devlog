@@ -2,11 +2,11 @@ import type { ThemeType } from '@/@types/ThemeType';
 
 import { atom } from 'recoil';
 
-import POST_CONSTANT from '@/constants/POST';
+import { POST_CONSTANT } from '@/constants/POST';
 
 export const themeAtom = atom<ThemeType>({
   key: 'THEME_STATE',
-  default: 'light',
+  default: (sessionStorage.getItem('theme') as string) ?? 'light',
 });
 
 export const postSearchModalAtom = atom<boolean>({

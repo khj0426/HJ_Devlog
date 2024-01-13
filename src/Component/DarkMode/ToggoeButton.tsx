@@ -2,9 +2,8 @@ import Image from 'next/image';
 import { useRecoilState } from 'recoil';
 
 import { themeAtom } from '@/app/Providers/Recoil/globalAtom';
-
-import darkModeImage from '../../../public/images/darkmode.webp';
-import lightModeImage from '../../../public/images/lightmode.webp';
+import darkModeImage from '~/public/images/darkmode.webp';
+import lightModeImage from '~/public/images/lightmode.webp';
 
 export default function ToggleDarkModeButton() {
   const [currentTheme, setCurrentTheme] = useRecoilState(themeAtom);
@@ -14,8 +13,10 @@ export default function ToggleDarkModeButton() {
   const handleClickToggleImage = () => {
     if (currentTheme === 'light') {
       setCurrentTheme('dark');
+      sessionStorage.setItem('theme', 'dark');
       return;
     }
+    sessionStorage.setItem('theme', 'light');
     setCurrentTheme('light');
   };
   return (
