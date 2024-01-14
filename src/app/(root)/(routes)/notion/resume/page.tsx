@@ -1,6 +1,8 @@
+import dynamic from 'next/dynamic';
 import { NotionAPI } from 'notion-client';
 
-import ResumeClient from '@/Component/Notion/NotionresumeClient';
+const ResumeClient = dynamic(() => import('@/Component/Notion/NotionresumeClient'))
+
 export type ReturnTypeofNotionRecord = ReturnType<typeof notion.getPage>;
 const notion = new NotionAPI();
 export default async function ResumePage() {

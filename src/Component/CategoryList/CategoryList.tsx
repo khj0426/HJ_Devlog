@@ -15,19 +15,20 @@ const CategoryListStyle = styled.span`
     text-decoration: underline ${({ theme }) => theme.text};
   }
 
-  @media ${({ theme }) => theme.device.mobile} {
+  @media ${({ theme }) => theme?.device?.mobile} {
     font-size: 11px;
   }
 `;
 
 const CategoryListWrapper = styled.div`
-  @media ${({ theme }) => theme.device.mobile} {
+  @media ${({ theme }) => theme?.device?.mobile} {
     opacity: 0;
   }
 
-  @media ${({ theme }) => theme.device.tablet} {
+  @media ${({ theme }) => theme?.device?.tablet} {
     opacity: 0;
   }
+
   gap: 15px;
   position: fixed;
   margin-top: 80px;
@@ -37,6 +38,7 @@ const CategoryListWrapper = styled.div`
   max-height: 350px;
   overflow-y: auto;
 `;
+
 export default function CategoryList({
   category,
 }: {

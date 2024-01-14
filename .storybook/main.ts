@@ -5,7 +5,12 @@ import type { Configuration } from 'webpack';
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 const config: StorybookConfig = {
-  stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
+  stories: [
+    '../src/**/*.mdx',
+    '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)',
+    '../src/*.stories.@(js|jsx|ts|tsx)',
+    '../src/**/*.stories.@(js|jsx|ts|tsx)',
+  ],
   webpackFinal: async (config: Configuration) => {
     config.resolve = config.resolve || {};
     config.resolve.alias = config.resolve.alias || {};

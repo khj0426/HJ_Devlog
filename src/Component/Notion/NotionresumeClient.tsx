@@ -7,7 +7,6 @@ import type { ReturnTypeofNotionRecord } from '@/app/(root)/(routes)/notion/resu
 
 import { NotionRenderer } from 'react-notion-x';
 
-import { Collection } from 'react-notion-x/build/third-party/collection';
 import { Modal } from 'react-notion-x/build/third-party/modal';
 import { useRecoilValue } from 'recoil';
 
@@ -29,7 +28,6 @@ export default function ResumeClient({
         darkMode={modeState === 'dark' ? true : false}
         disableHeader
         components={{
-          Collection,
           Modal,
         }}
         recordMap={recordMap}

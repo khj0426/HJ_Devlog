@@ -6,13 +6,13 @@ import { RecoilRoot, useRecoilValue } from 'recoil';
 import { ThemeProvider } from 'styled-components';
 import globalStyle from '../src/style/globalStyle';
 import { darkTheme, lightTheme } from '../src/style/theme/darkMode';
-import mediatheme from '../src/style/theme/media';
+import mediaTheme from '../src/style/theme/media';
 import { themeAtom } from '../src/app/Providers/Recoil/globalAtom';
 
 const ThemeWrapper = ({ children }) => {
   const currentTheme = useRecoilValue(themeAtom);
   const theme = currentTheme === 'light' ? lightTheme : darkTheme;
-  const themeObj = { ...theme, mediatheme };
+  const themeObj = { ...theme, mediaTheme };
 
   return <ThemeProvider theme={themeObj}>{children}</ThemeProvider>;
 };
@@ -24,7 +24,7 @@ const preview: Preview = {
       themes: {
         darkTheme,
         lightTheme,
-        mediatheme,
+        mediaTheme,
       },
     }),
     (Story) => {

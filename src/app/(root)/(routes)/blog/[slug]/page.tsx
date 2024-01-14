@@ -152,6 +152,19 @@ export default function Post({
                 </p>
               );
             },
+            a: ({href,children}) => {
+              return (
+                <a
+                  target="_blank"
+                  style={{
+                    color: 'rgb(0,131,120)',
+                  }}
+                  href = {href}
+                >
+                  {children}
+                </a>
+              );
+            },
             li: ({ children }) => {
               return (
                 <li

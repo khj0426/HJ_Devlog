@@ -10,7 +10,7 @@ const PostCard = styled.div`
   border-radius: 10px;
   overflow: hidden;
   width: 350px;
-  margin-top: 20px;
+  margin: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
   &:hover {
