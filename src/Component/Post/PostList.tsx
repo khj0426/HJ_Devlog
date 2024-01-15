@@ -8,7 +8,8 @@ import PostItem from './PostItem';
 
 export default function PostServiceLayer() {
   //TODO - 스피너 대신 스켈레톤UI로 수정 필요
-  const { data, fetchNextPage, hasNextPage, isFetching } = usePostQuery();
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
+    usePostQuery();
   const { target } = useObserver({
     threshold: 0.1,
     hasNextPage,
@@ -21,7 +22,7 @@ export default function PostServiceLayer() {
         page.posts.map((post) => <PostItem post={post} key={post.title} />)
       )}
 
-      {isFetching &&
+      {isFetchingNextPage &&
         Array.from({ length: 5 }).map((value, index) => (
           <Skeleton.Card key={index} />
         ))}
