@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import styled from 'styled-components';
 
-import InstagramImage from '../../../public/images/Instagramgram.webp';
+import InstagramImage from '~/public/images/Instagramgram.webp';
 
 const StyledFooter = styled.footer`
   height: 30px;

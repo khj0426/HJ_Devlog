@@ -3,7 +3,7 @@ import { ChangeEvent, useState } from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
 
-import Spinner from '@/Component/Common/Spinner';
+import Spinner from '@/Component/Common/Spinner/Spinner';
 import useSearchPostQuery from '@/hooks/queries/useSearchPostQuery';
 
 const StyledPostSearchModalWrapper = styled.div`

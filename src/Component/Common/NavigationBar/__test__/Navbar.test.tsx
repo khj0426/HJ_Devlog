@@ -5,7 +5,7 @@ import { RecoilRoot } from 'recoil';
 
 import Navbar from '../Navbar';
 
-test('Navbar의 Blog,About,Resume가 성공적으로 렌더링 되는지 테스트', () => {
+test('Navbar의 Blog,About,Resume render works?', () => {
   const { getByText } = render(
     <RecoilRoot>
       <Navbar />
@@ -16,7 +16,7 @@ test('Navbar의 Blog,About,Resume가 성공적으로 렌더링 되는지 테스�
   expect(getByText('About')).toBeTruthy();
 });
 
-test('Navbar의 Blog,About,Resume 클릭 시 해당 주소로 잘 이동하는지 테스트', () => {
+test('when Click Navbar Blog,About,Resume Link Component, the href must change ', () => {
   const { getByText } = render(
     <RecoilRoot>
       <Navbar />
@@ -25,7 +25,6 @@ test('Navbar의 Blog,About,Resume 클릭 시 해당 주소로 잘 이동하는�
 
   waitFor(() => {
     fireEvent.click(getByText('Blog', { exact: false }));
-
     expect(window.location.pathname).toBe('/');
   });
 

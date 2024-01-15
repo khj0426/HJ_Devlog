@@ -5,7 +5,7 @@ import { Montserrat } from 'next/font/google';
 import Head from 'next/head';
 
 import Providers from '@/app/Providers/Query/queryClientProvider';
-import Footer from '@/Component/Common/Footer';
+import Footer from '@/Component/Common/Footer/Footer';
 import Navbar from '@/Component/Common/NavigationBar/Navbar';
 import GoogleAnalytics from '@/Component/GA/GA';
 import GlobalStyle from '@/style/globalStyle';

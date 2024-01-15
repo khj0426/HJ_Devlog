@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import Footer from '@/Component/Common/Footer';
+import Footer from '@/Component/Common/Footer/Footer';
 
 const meta: Meta<typeof Footer> = {
   title: '푸터 컴포넌트',
@@ -9,9 +9,7 @@ const meta: Meta<typeof Footer> = {
     layout: 'centered',
   },
   tags: ['autodocs'],
-  argTypes: {
-    backgroundColor: { control: 'color' },
-  },
+  argTypes: {},
 };
 
 export default meta;

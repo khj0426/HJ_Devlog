@@ -1,4 +1,4 @@
-import Spinner from '@/Component/Common/Spinner';
+import Spinner from '@/Component/Common/Spinner/Spinner';
 
 export default function NotionResumeLoading() {
   return (

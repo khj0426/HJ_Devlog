@@ -1,6 +1,6 @@
 'use client';
 
-import Spinner from '@/Component/Common/Spinner';
+import Skeleton from '@/Component/Common/Skeleton/Skeleton';
 import usePostQuery from '@/hooks/queries/usePostQuery';
 import useObserver from '@/hooks/useObserver';
 
@@ -20,6 +20,11 @@ export default function PostServiceLayer() {
       {data?.pages?.map((page) =>
         page.posts.map((post) => <PostItem post={post} key={post.title} />)
       )}
+
+      {isFetching &&
+        Array.from({ length: 5 }).map((value, index) => (
+          <Skeleton.Card key={index} />
+        ))}
 
       <div ref={target}></div>
     </>

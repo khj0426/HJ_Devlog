@@ -5,7 +5,7 @@ import ReactMarkdown from 'react-markdown';
 
 import rehypeRaw from 'rehype-raw';
 
-import CodeBlock from '@/Component/Blog/CodeBlock';
+import CodeBlock from '@/Component/Blog/CodeBlock/CodeBlock';
 import PostExtract from '@/Component/Blog/Extract';
 import BlogLayout from '@/Component/Blog/Layout';
 import Comments from '@/Component/Giscus/Gitcus';
@@ -152,14 +152,14 @@ export default function Post({
                 </p>
               );
             },
-            a: ({href,children}) => {
+            a: ({ href, children }) => {
               return (
                 <a
                   target="_blank"
                   style={{
                     color: 'rgb(0,131,120)',
                   }}
-                  href = {href}
+                  href={href}
                 >
                   {children}
                 </a>

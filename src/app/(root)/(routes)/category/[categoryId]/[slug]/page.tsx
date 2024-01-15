@@ -4,7 +4,7 @@ import ReactMarkdown from 'react-markdown';
 
 import rehypeRaw from 'rehype-raw';
 
-import CodeBlock from '@/Component/Blog/CodeBlock';
+import CodeBlock from '@/Component/Blog/CodeBlock/CodeBlock';
 import PostExtract from '@/Component/Blog/Extract';
 import BlogLayout from '@/Component/Blog/Layout';
 import Comments from '@/Component/Giscus/Gitcus';

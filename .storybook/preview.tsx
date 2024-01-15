@@ -47,6 +47,30 @@ const preview: Preview = {
     },
     viewport: {
       viewports: {
+        laptop: {
+          name: 'Laptop Medium',
+          styles: {
+            width: '1024px',
+            height: '768px',
+          },
+          type: 'desktop',
+        },
+        desktop: {
+          name: 'Desktop Large',
+          styles: {
+            width: '1280px',
+            height: '1024px',
+          },
+          type: 'desktop',
+        },
+        desktopXL: {
+          name: 'Desktop Extra Large',
+          styles: {
+            width: '1440px',
+            height: '900px',
+          },
+          type: 'desktop',
+        },
         mobile1: {
           name: 'iPhone 13 mini',
           styles: {
