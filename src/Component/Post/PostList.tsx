@@ -22,12 +22,11 @@ export default function PostServiceLayer() {
         page.posts.map((post) => <PostItem post={post} key={post.title} />)
       )}
 
+      <div ref={target}></div>
       {isFetchingNextPage &&
         Array.from({ length: 5 }).map((value, index) => (
           <Skeleton.Card key={index} />
         ))}
-
-      <div ref={target}></div>
     </>
   );
 }

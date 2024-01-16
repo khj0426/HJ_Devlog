@@ -1,4 +1,5 @@
 import { ChangeEvent, useState } from 'react';
+import { CSSTransition } from 'react-transition-group';
 
 import Link from 'next/link';
 import styled from 'styled-components';
@@ -6,6 +7,7 @@ import styled from 'styled-components';
 import Spinner from '@/Component/Common/Spinner/Spinner';
 import useSearchPostQuery from '@/hooks/queries/useSearchPostQuery';
 
+import './index.css';
 const StyledPostSearchModalWrapper = styled.div`
   position: fixed;
   top: 0;
@@ -47,7 +49,9 @@ const StyledPostSearchModal = styled.div`
 
 export default function PostSearchModal({
   onCloseModal,
+  isOpen,
 }: {
+  isOpen: boolean;
   onCloseModal: () => void;
 }) {
   const [querySearch, setQuerySearch] = useState<string>('');
@@ -62,37 +66,46 @@ export default function PostSearchModal({
   };
 
   return (
-    <StyledPostSearchModalWrapper onClick={onCloseModal}>
-      <StyledPostSearchModal>
-        <p
-          onClick={onCloseModal}
-          style={{
-            cursor: 'pointer',
-          }}
-        >
-          X
-        </p>
-        <StyledPostSearchInput
-          autoFocus
-          placeholder="검색할 내용을 입력해주세요."
-          onChange={handleChangeQuerySearch}
-        />
-        {isFetching && <Spinner timing={1} />}
-        {!isFetching &&
-          posts &&
-          posts?.map((post) => (
-            <Link
-              key={post.title}
-              href={`/blog/${post.slug}`}
-              onClick={() => onCloseModal()}
-              style={{
-                color: 'inherit',
-              }}
-            >
-              {post.title}
-            </Link>
-          ))}
-      </StyledPostSearchModal>
-    </StyledPostSearchModalWrapper>
+    <CSSTransition
+      in={isOpen}
+      appear
+      mountOnEnter
+      classNames="modal"
+      timeout={300}
+      onExited={onCloseModal}
+    >
+      <StyledPostSearchModalWrapper onClick={onCloseModal} key={'modal'}>
+        <StyledPostSearchModal onClick={(e) => e.stopPropagation()}>
+          <p
+            onClick={onCloseModal}
+            style={{
+              cursor: 'pointer',
+            }}
+          >
+            X
+          </p>
+          <StyledPostSearchInput
+            autoFocus
+            placeholder="검색할 내용을 입력해주세요."
+            onChange={handleChangeQuerySearch}
+          />
+          {isFetching && <Spinner timing={1} />}
+          {!isFetching &&
+            posts &&
+            posts?.map((post) => (
+              <Link
+                key={post.title}
+                href={`/blog/${post.slug}`}
+                onClick={() => onCloseModal()}
+                style={{
+                  color: 'inherit',
+                }}
+              >
+                {post.title}
+              </Link>
+            ))}
+        </StyledPostSearchModal>
+      </StyledPostSearchModalWrapper>
+    </CSSTransition>
   );
 }

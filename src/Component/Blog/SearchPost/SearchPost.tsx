@@ -3,7 +3,7 @@ import { useRecoilState } from 'recoil';
 
 import { postSearchModalAtom } from '@/app/Providers/Recoil/globalAtom';
 
-import PostSearchModal from './PostSerachModal/PostSearchModal';
+import PostSearchModal from '../PostSerachModal/PostSearchModal';
 
 // eslint-disable-next-line import/no-unresolved
 import SearchPostImage from '/public/images/search.webp';
@@ -30,7 +30,12 @@ export default function SearchPostButton() {
         src={SearchPostImage}
         onClick={togglePostSearchModal}
       />
-      {isModalOpen && <PostSearchModal onCloseModal={togglePostSearchModal} />}
+      {isModalOpen && (
+        <PostSearchModal
+          isOpen={isModalOpen}
+          onCloseModal={togglePostSearchModal}
+        />
+      )}
     </>
   );
 }

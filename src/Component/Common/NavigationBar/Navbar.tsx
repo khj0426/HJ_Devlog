@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import styled, { css } from 'styled-components';
 
-import SearchPostButton from '../../Blog/SearchPost';
+import SearchPostButton from '../../Blog/SearchPost/SearchPost';
 import ToggleDarkModeButton from '../../DarkMode/ToggoeButton';
 
 const StyledNavBarLayout = styled.nav`
