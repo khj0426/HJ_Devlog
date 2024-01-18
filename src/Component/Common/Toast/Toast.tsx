@@ -1,17 +1,13 @@
-import React, {
-  ComponentPropsWithoutRef,
-  useRef,
-  useEffect,
-  useCallback,
-} from 'react';
+import React, { ComponentPropsWithoutRef, useRef, useEffect } from 'react';
 
+import './index.css';
 import styled from 'styled-components';
 
 export interface ToastPropsType {
   id?: string;
-  type: 'info' | 'success' | 'warning' | 'error';
-  toastTitle: React.ReactNode;
-  message: React.ReactNode;
+  type?: 'info' | 'success' | 'warning' | 'error';
+  toastTitle?: React.ReactNode;
+  message?: React.ReactNode;
   timeOut?: number;
   onClick?: () => void;
   onRequestHide?: () => void;
@@ -72,29 +68,38 @@ export const Toast = ({
   message = null,
   timeOut = 5000,
   onClick,
-  onRequestHide = () => {},
+  id,
+  onRequestHide,
 }: ToastProps) => {
-  const timer = useRef<NodeJS.Timeout | null>(null);
+  const timer = useRef<NodeJS.Timer | null>(null);
+
+  const handleClick = () => {
+    if (onClick) {
+      onClick();
+    }
+    if (onRequestHide) {
+      onRequestHide();
+    }
+  };
+
+  const requestHide = () => {
+    if (onRequestHide) {
+      onRequestHide();
+    }
+  };
 
   useEffect(() => {
-    timer.current = setTimeout(onRequestHide, timeOut);
+    timer.current = setTimeout(requestHide, timeOut);
 
     return () => {
       if (timer.current) {
         clearTimeout(timer.current);
       }
     };
-  }, [onRequestHide, timeOut]);
-
-  const handleOnClick = useCallback(() => {
-    if (onClick) {
-      onClick();
-    }
-    onRequestHide();
-  }, [onClick, onRequestHide]);
+  }, [id, timer.current]);
 
   return (
-    <Notification type={type} onClick={handleOnClick}>
+    <Notification type={type} onClick={handleClick} className="notification">
       <div role="alert">
         {toastTitle && <div className="title">{toastTitle}</div>}
         <div>{message}</div>
