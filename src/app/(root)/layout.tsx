@@ -77,7 +77,7 @@ export default function RootLayout({
   return (
     <html lang="ko" className={baseFont.className}>
       <Head>
-        <GoogleAnalytics GA_MEASUREMENT_ID="G-S9N5XJ40DL" />
+        <GoogleAnalytics />
       </Head>
       <body className="App">
         <Providers>

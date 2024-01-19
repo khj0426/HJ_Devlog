@@ -1,16 +1,11 @@
-'use client';
 import Script from 'next/script';
 
-const GoogleAnalytics = ({
-  GA_MEASUREMENT_ID,
-}: {
-  GA_MEASUREMENT_ID: string;
-}) => {
+const GoogleAnalytics = () => {
   return (
     <>
       <Script
         strategy="afterInteractive"
-        src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_MEASUREMENT_ID}`}
       />
       <Script
         id="google-analytics"
@@ -25,7 +20,7 @@ const GoogleAnalytics = ({
             'analytics_storage': 'denied'
         });
         
-        gtag('config', '${GA_MEASUREMENT_ID}', {
+        gtag('config', '${process.env.NEXT_PUBLIC_MEASUREMENT_ID}', {
             page_path: window.location.pathname,
         });
         `,
