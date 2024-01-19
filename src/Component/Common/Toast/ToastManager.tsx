@@ -27,7 +27,6 @@ class ToastManager extends EventEmitter {
       timeOut: 5000,
     };
     this.toastList.push(Object.assign(defaultNotify, newToast));
-    console.log(this.toastList);
 
     this.emitChange();
   }

@@ -1,3 +1,4 @@
+import { ToastManager, ToastContainer } from '@/Component/Common/Toast';
 import { Input, InputBox } from '@/Component/Input';
 import usePostGuestBook from '@/hooks/mutations/useGuestBookMutation';
 import useInput from '@/hooks/useInput';
@@ -18,6 +19,12 @@ const GuestBookInput = ({ refetch }: { refetch: () => void }) => {
         onSuccess: () => {
           refetch();
           guestBookInput.setValue('');
+          ToastManager.success({
+            newToast: {
+              timeOut: 1000,
+              toastTitle: '방명록이 작성되었습니다!',
+            },
+          });
         },
       }
     );
@@ -53,6 +60,8 @@ const GuestBookInput = ({ refetch }: { refetch: () => void }) => {
       >
         쓰기
       </Button>
+
+      <ToastContainer enterTimeout={1000} leaveTimeout={1000} />
     </div>
   );
 };
