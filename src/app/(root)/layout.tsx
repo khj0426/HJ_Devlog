@@ -76,9 +76,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko" className={baseFont.className}>
-      <Head>
-        <GoogleAnalytics />
-      </Head>
+      <GoogleAnalytics />
       <body className="App">
         <Providers>
           <Recoil>

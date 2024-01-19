@@ -16,13 +16,7 @@ const GoogleAnalytics = () => {
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
 
-        gtag('consent', 'default', {
-            'analytics_storage': 'denied'
-        });
-        
-        gtag('config', '${process.env.NEXT_PUBLIC_MEASUREMENT_ID}', {
-            page_path: window.location.pathname,
-        });
+        gtag('config', ${process.env.NEXT_PUBLIC_MEASUREMENT_ID});
         `,
         }}
       />
