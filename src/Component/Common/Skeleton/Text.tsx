@@ -34,11 +34,12 @@ export const SkeletonText = ({ variant = 'text', ...rest }: SkeletonProps) => {
   return (
     <StyledSkeleton
       variant={variant}
+      className={rest.className}
       style={{
         ...rest.style,
         margin: rest?.style?.margin ?? '10px',
-        width: rest.width ?? 100,
-        height: rest.height ?? 10,
+        width: rest.width,
+        height: rest.height,
         fontSize: rest.fontSize,
       }}
     />

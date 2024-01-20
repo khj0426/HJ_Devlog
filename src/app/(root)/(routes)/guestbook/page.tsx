@@ -1,4 +1,3 @@
-
 import { dehydrate } from '@tanstack/react-query';
 
 import Hydrate from '@/Component/Common/Hydrate';
@@ -13,8 +12,8 @@ export default async function Home() {
     shouldDehydrateQuery: () => true,
   });
   return (
-      <Hydrate state={dehydratedState}>
-        <GuestBook />
-      </Hydrate>
+    <Hydrate state={dehydratedState}>
+      <GuestBook />
+    </Hydrate>
   );
 }

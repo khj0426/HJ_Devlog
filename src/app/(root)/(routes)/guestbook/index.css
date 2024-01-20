@@ -1,0 +1,29 @@
+.loading-container {
+  min-height: 700px;
+  width: 500px;
+  margin: 20px auto;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #f8f9fa;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 768px) {
+  .loading-container {
+    width: 300px;
+  }
+  .loading_skeleton {
+    width: 300px;
+  }
+}
+
+@media (min-width: 769px) {
+  .loading_skeleton {
+    width: 500px;
+  }
+}
+
+.loading_skeleton {
+  display: flex;
+}
