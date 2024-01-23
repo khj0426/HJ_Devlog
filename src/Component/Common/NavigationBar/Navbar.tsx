@@ -49,7 +49,7 @@ export default function Navbar() {
         <StyledNavBarTitle href="/">Blog</StyledNavBarTitle>
         <StyledNavBarTitle href="/about">About</StyledNavBarTitle>
         <StyledNavBarTitle href="/guestbook">GuestBook</StyledNavBarTitle>
-        <StyledNavBarTitle href="/notion/resume">Resume</StyledNavBarTitle>
+        <StyledNavBarTitle href="/notion/resume" prefetch={false}>Resume</StyledNavBarTitle>
       </div>
       <div
         style={{

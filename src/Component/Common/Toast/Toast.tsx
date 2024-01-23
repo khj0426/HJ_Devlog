@@ -6,7 +6,7 @@ import styled from 'styled-components';
 export interface ToastPropsType {
   id?: string;
   type?: 'info' | 'success' | 'warning' | 'error';
-  toastTitle?: React.ReactNode;
+  title?: React.ReactNode;
   message?: React.ReactNode;
   timeOut?: number;
   onClick?: () => void;

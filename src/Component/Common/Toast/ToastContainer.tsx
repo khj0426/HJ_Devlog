@@ -1,3 +1,5 @@
+import type { ToastPropsType } from '@/Component/Common/Toast/Toast';
+
 import React, { Component } from 'react';
 
 import { ToastList } from '@/Component/Common/Toast/ToastList';
@@ -21,11 +23,11 @@ export class ToastContainer extends Component<ToastContainerProps> {
     ToastManager.removeChangeListener(this.handleStoreChange);
   }
 
-  handleStoreChange = (newNoti: any[]) => {
+  handleStoreChange = (newNoti: ToastPropsType[]) => {
     this.setState({ noti: newNoti });
   };
 
-  handleRequestHide = (noti: any) => {
+  handleRequestHide = (noti: ToastPropsType) => {
     ToastManager.remove(noti);
   };
 

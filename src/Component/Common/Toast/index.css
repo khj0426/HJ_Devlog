@@ -24,10 +24,6 @@
   opacity: 0.9;
   margin-top: 15px;
 
-  &:before {
-    display: block;
-  }
-
   &:hover,
   &:focus {
     opacity: $react-notifications-hover-opacity;

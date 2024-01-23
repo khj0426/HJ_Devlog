@@ -1,31 +1,18 @@
 'use client';
 
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import type { ToastPropsType } from '@/Component/Common/Toast/Toast';
 
-import styled from 'styled-components';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 import { Toast } from '@/Component/Common/Toast/Toast';
 import './index.css';
 
 interface ToastListProps {
-  notifications?: any[];
+  notifications?: ToastPropsType[];
   onRequestHide?: Function;
   enterTimeout: number;
   leaveTimeout: number;
 }
-
-const ToastListContainer = styled.div`
-  overflow-x: hidden;
-  overflow-y: auto;
-  position: fixed;
-  box-sizing: border-box;
-  top: 0;
-  right: 0;
-  z-index: 999;
-  width: 320px;
-  max-height: calc(100%-30px);
-  padding: 0px 15px;
-`;
 
 export const ToastList = ({
   notifications = [],
@@ -33,7 +20,7 @@ export const ToastList = ({
   enterTimeout = 400,
   leaveTimeout = 400,
 }: ToastListProps) => {
-  const handleRequestHide = (toastList: any) => {
+  const handleRequestHide = (toastList: ToastPropsType) => {
     if (onRequestHide) {
       onRequestHide(toastList);
     }
@@ -54,8 +41,8 @@ export const ToastList = ({
         <Toast
           key={'toast'}
           id={noti.id}
-          type={noti.type as 'info' | 'warning' | 'success' | 'error'}
-          toastTitle={noti.toastTitle}
+          type={noti.type ?? 'info'}
+          toastTitle={noti.title}
           message={noti.message}
           onClick={noti.onClick}
           onRequestHide={() => handleRequestHide(noti)}

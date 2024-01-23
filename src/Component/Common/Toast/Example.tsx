@@ -7,36 +7,16 @@ class Example extends React.Component {
     return () => {
       switch (type) {
         case 'info':
-          ToastManager.info({
-            newToast: {
-              toastTitle: 'info',
-              message: 'info message',
-            },
-          });
+          ToastManager.info('info', 'infoMessage', 500);
           break;
         case 'success':
-          ToastManager.success({
-            newToast: {
-              toastTitle: 'success',
-              message: 'success message',
-            },
-          });
+          ToastManager.success('success', 'successMessage', 1000);
           break;
         case 'warning':
-          ToastManager.warning({
-            newToast: {
-              toastTitle: 'warning',
-              message: 'warning message',
-            },
-          });
+          ToastManager.warning('warning', 'warningMessage', 1500);
           break;
         case 'error':
-          ToastManager.error({
-            newToast: {
-              toastTitle: 'error',
-              message: 'error message',
-            },
-          });
+          ToastManager.error('error', 'errorMessage', 2000);
           break;
       }
     };

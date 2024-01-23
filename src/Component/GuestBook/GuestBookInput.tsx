@@ -19,12 +19,7 @@ const GuestBookInput = ({ refetch }: { refetch: () => void }) => {
         onSuccess: () => {
           refetch();
           guestBookInput.setValue('');
-          ToastManager.success({
-            newToast: {
-              timeOut: 1000,
-              toastTitle: '방명록이 작성되었습니다!',
-            },
-          });
+          ToastManager.success('💚 방명록이 작성되었습니다!');
         },
       }
     );

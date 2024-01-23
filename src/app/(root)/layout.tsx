@@ -1,18 +1,19 @@
 import '../globals.css';
 import { Metadata } from 'next';
 
+import dynamic from 'next/dynamic';
 import { Montserrat } from 'next/font/google';
-import Head from 'next/head';
 
 import Providers from '@/app/Providers/Query/queryClientProvider';
 import Footer from '@/Component/Common/Footer/Footer';
-import Navbar from '@/Component/Common/NavigationBar/Navbar';
 import GoogleAnalytics from '@/Component/GA/GA';
 import GlobalStyle from '@/style/globalStyle';
 
 import Recoil from '../Providers/Recoil/Recoil';
 import { ThemeWrapper } from '../Providers/Styled-Component/themeWrapper';
 
+
+const Navbar = dynamic(() => import ('@/Component/Common/NavigationBar/Navbar'))
 declare global {
   interface Window {
     naver: any;

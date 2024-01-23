@@ -2,11 +2,7 @@ import type { ToastPropsType } from '@/Component/Common/Toast/Toast';
 
 import { EventEmitter } from 'events';
 
-import React from 'react';
-
 import { uuid4 } from '@sentry/utils';
-
-type toastWithOutType = Omit<ToastPropsType, 'onRequestHide' | 'type'>;
 
 type toast = Omit<ToastPropsType, 'onRequestHide'>;
 
@@ -18,7 +14,7 @@ class ToastManager extends EventEmitter {
     this.toastList = [];
   }
 
-  create(newToast: toast) {
+  create(title: string, message?: string, timeOut?: number, type?: string) {
     const defaultNotify = {
       id: uuid4(),
       type: 'info',
@@ -26,37 +22,33 @@ class ToastManager extends EventEmitter {
       message: null,
       timeOut: 5000,
     };
-    this.toastList.push(Object.assign(defaultNotify, newToast));
+    this.toastList.push(
+      Object.assign(defaultNotify, {
+        ...defaultNotify,
+        title,
+        message,
+        timeOut,
+        type,
+      })
+    );
 
     this.emitChange();
   }
 
-  info({ newToast }: { newToast: toastWithOutType }) {
-    this.create({
-      ...newToast,
-      type: 'info',
-    });
+  info(title: string, message?: string, timeOut?: number) {
+    this.create(title, message, timeOut, 'info');
   }
 
-  success({ newToast }: { newToast: toastWithOutType }) {
-    this.create({
-      ...newToast,
-      type: 'success',
-    });
+  success(title: string, message?: string, timeOut?: number) {
+    this.create(title, message, timeOut, 'success');
   }
 
-  warning({ newToast }: { newToast: toastWithOutType }) {
-    this.create({
-      ...newToast,
-      type: 'warning',
-    });
+  warning(title: string, message?: string, timeOut?: number) {
+    this.create(title, message, timeOut, 'warning');
   }
 
-  error({ newToast }: { newToast: toastWithOutType }) {
-    this.create({
-      ...newToast,
-      type: 'error',
-    });
+  error(title: string, message?: string, timeOut?: number) {
+    this.create(title, message, timeOut, 'error');
   }
 
   removeAll() {
@@ -64,9 +56,8 @@ class ToastManager extends EventEmitter {
     this.emitChange();
   }
 
-  remove(noti: any) {
+  remove(noti: toast) {
     this.toastList = this.toastList.filter((toast) => toast.id !== noti.id);
-
     this.emitChange();
   }
 
