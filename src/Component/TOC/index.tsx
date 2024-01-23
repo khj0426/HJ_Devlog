@@ -6,8 +6,7 @@ import { uuid4 } from '@sentry/utils';
 import styled from 'styled-components';
 
 import useTableOfContent from '@/hooks/useTableOfContent';
-
-import replaceStrWithBlank from '../../../lib/replaceStr';
+import replaceStrWithBlank from '~/lib/replaceStr';
 
 const StyledTOCList = styled.ul`
   position: fixed;

@@ -14,7 +14,12 @@ class ToastManager extends EventEmitter {
     this.toastList = [];
   }
 
-  create(title: string, message?: string, timeOut?: number, type?: string) {
+  private create(
+    title: string,
+    message?: string,
+    timeOut?: number,
+    type?: string
+  ) {
     const defaultNotify = {
       id: uuid4(),
       type: 'info',
@@ -51,7 +56,7 @@ class ToastManager extends EventEmitter {
     this.create(title, message, timeOut, 'error');
   }
 
-  removeAll() {
+  private removeAll() {
     this.toastList.length = 0;
     this.emitChange();
   }
@@ -61,7 +66,7 @@ class ToastManager extends EventEmitter {
     this.emitChange();
   }
 
-  emitChange() {
+  private emitChange() {
     this.emit('change', this.toastList);
   }
 
