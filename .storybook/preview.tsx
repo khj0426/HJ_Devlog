@@ -12,7 +12,7 @@ import { themeAtom } from '../src/app/Providers/Recoil/globalAtom';
 const ThemeWrapper = ({ children }) => {
   const currentTheme = useRecoilValue(themeAtom);
   const theme = currentTheme === 'light' ? lightTheme : darkTheme;
-  const themeObj = { ...theme, mediaTheme };
+  const themeObj = { ...theme, ...mediaTheme };
 
   return <ThemeProvider theme={themeObj}>{children}</ThemeProvider>;
 };

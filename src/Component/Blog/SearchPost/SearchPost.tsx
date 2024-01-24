@@ -1,19 +1,13 @@
 import Image from 'next/image';
-import { useRecoilState } from 'recoil';
 
-import { postSearchModalAtom } from '@/app/Providers/Recoil/globalAtom';
-
-import PostSearchModal from '../PostSerachModal/PostSearchModal';
+import PostSearchModal from '@/Component/Blog/PostSerachModal/PostSearchModal';
+import useModal from '@/hooks/useModal';
 
 // eslint-disable-next-line import/no-unresolved
 import SearchPostImage from '/public/images/search.webp';
 
 export default function SearchPostButton() {
-  const [isModalOpen, setModalOpen] = useRecoilState(postSearchModalAtom);
-
-  const togglePostSearchModal = () => {
-    setModalOpen(!isModalOpen);
-  };
+  const { modal, toggleModal } = useModal('POST_SEARCH_MODAL_STATE');
 
   return (
     <>
@@ -28,13 +22,10 @@ export default function SearchPostButton() {
           cursor: 'pointer',
         }}
         src={SearchPostImage}
-        onClick={togglePostSearchModal}
+        onClick={toggleModal}
       />
-      {isModalOpen && (
-        <PostSearchModal
-          isOpen={isModalOpen}
-          onCloseModal={togglePostSearchModal}
-        />
+      {modal.isOpen && (
+        <PostSearchModal isOpen={modal.isOpen} onCloseModal={toggleModal} />
       )}
     </>
   );
