@@ -1,13 +1,8 @@
-'use client';
-
 import type { AboutProps } from '@/@types/AboutProps';
-
-import styled from 'styled-components';
 
 import Content from '@/Component/About/Content';
 import ProfileImageWrapper from '@/Component/About/ProfileImgWrapper';
 import Title from '@/Component/About/Title';
-
 const AboutContent: AboutProps = {
   title: '안녕하세요! 항상 팀에 기여하고 싶은 개발자 김효중입니다',
   imgurl: '/images/Profile.jpg',
@@ -19,15 +14,7 @@ const AboutContent: AboutProps = {
   ],
 };
 
-const StyledContentLayOut = styled.article`
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  gap: 25px;
-  flex-wrap: wrap;
-`;
-
-export default function About() {
+export default async function About() {
   return (
     <main
       style={{
@@ -37,10 +24,18 @@ export default function About() {
       }}
     >
       <Title title={AboutContent.title} />
-      <StyledContentLayOut>
+      <article
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          width: '100%',
+          gap: '25px',
+          flexWrap: 'wrap',
+        }}
+      >
         <ProfileImageWrapper imgurl={AboutContent.imgurl} />
         <Content content={AboutContent.content} />
-      </StyledContentLayOut>
+      </article>
     </main>
   );
 }

@@ -1,9 +1,8 @@
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true',
-});
-const { withSentryConfig } = require('@sentry/nextjs');
+import withBundleAnalyzer from '@next/bundle-analyzer';
+import withPlaiceholder from '@plaiceholder/next';
+import { withSentryConfig } from '@sentry/nextjs';
 
-const nextConfig = {
+const bundleAnalyzerConfig = withBundleAnalyzer({
   experimental: {
     serverActions: true,
   },
@@ -38,11 +37,8 @@ const nextConfig = {
     ],
     formats: ['image/avif', 'image/webp'],
   },
-};
-
-const bundleAnalyzerConfig = withBundleAnalyzer({
-  ...nextConfig,
   compress: true,
+  basePath: '/',
 });
 
 const sentryConfig = {
@@ -56,4 +52,6 @@ const sentryConfig = {
   disableLogger: true,
 };
 
-module.exports = withSentryConfig(bundleAnalyzerConfig, sentryConfig);
+export default withPlaiceholder(
+  withSentryConfig(bundleAnalyzerConfig, sentryConfig)
+);
