@@ -17,8 +17,8 @@ type PostsResponse = {
 };
 
 const getPosts = async ({ pageParams }: { pageParams: number }) => {
-  const start = pageParams * 5;
-  const end = start + 5;
+  const start = pageParams * 6;
+  const end = start + 6;
   return (await get<PostsResponse>(`/api/posts?start=${start}&end=${end}`))
     .data;
 };

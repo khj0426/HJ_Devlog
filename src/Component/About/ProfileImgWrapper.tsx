@@ -6,7 +6,7 @@ export default async function ProfileImageWrapper({
 }: {
   imgurl: string;
 }) {
-  const { base64, img } = await getBase64BlurImage({
+  const { base64 } = await getBase64BlurImage({
     src: imgurl,
   });
   return (

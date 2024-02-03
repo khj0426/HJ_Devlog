@@ -55,7 +55,7 @@ export function getAllPosts() {
 }
 
 export function getInitPost() {
-  return getAllPosts().slice(0, 5);
+  return getAllPosts().slice(0, 6);
 }
 
 export function getAllCategories() {

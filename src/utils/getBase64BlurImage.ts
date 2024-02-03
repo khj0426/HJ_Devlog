@@ -6,17 +6,19 @@ export default async function getBase64BlurImage({
   src,
   width,
   height,
+  blurSize,
 }: {
   src: string;
   width?: number;
   height?: number;
+  blurSize?: number;
 }) {
   const buffer = await readFile(
     path.join(process.cwd(), path.join('/public', src))
   );
 
   const blurImage = await getPlaiceholder(buffer, {
-    size: 10,
+    size: blurSize ?? 10,
   });
 
   return {
