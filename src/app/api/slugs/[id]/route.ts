@@ -1,4 +1,4 @@
-import { getAllPosts } from '../../../../../lib/api';
+import { getAllPosts } from '~/lib/api';
 
 export async function GET(
   req: Request,
@@ -16,10 +16,22 @@ export async function GET(
       ?.toLowerCase()
       ?.includes(params.id?.trim()?.toLowerCase())
   );
-  return new Response(JSON.stringify(allfilteredPost), {
-    status: 200,
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
+
+  if (allfilteredPost) {
+    return new Response(JSON.stringify(allfilteredPost), {
+      status: 200,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+  }
+
+  return new Response(
+    JSON.stringify({
+      error: 'firebase 설정 에러',
+    }),
+    {
+      status: 502,
+    }
+  );
 }
