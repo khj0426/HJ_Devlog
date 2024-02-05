@@ -49,6 +49,8 @@ export default function PostItem({
           width={300}
           height={200}
           priority
+          placeholder="blur"
+          blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNcKgkAAWkAwC+Aq/wAAAAASUVORK5CYII="
         />
         <PostContent>
           <Title
