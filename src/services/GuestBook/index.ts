@@ -1,5 +1,3 @@
-'use server';
-
 import type { GuestBook } from '@/@types/GuestBookType';
 
 import { get } from '@/utils/axiosClient';
