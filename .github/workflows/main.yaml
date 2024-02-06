@@ -22,16 +22,21 @@ jobs:
       - name: Install Packages
         run: npm install && npm install -g @lhci/cli
 
+      - name: Compress Images
+        uses: calibreapp/image-actions@main
+        with:
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Run LightHouse CI
         env:
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
-          NOTION_PAGE_ID: ${{ secrets.NOTION_PAGE_ID }}
+          NEXT_PUBLIC_NOTION_PAGE_ID: ${{ secrets.NOTION_PAGE_ID }}
           NEXT_PUBLIC_AWS_IMAGE_URL: ${{ secrets.NEXT_PUBLIC_AWS_IMAGE_URL }}
           NEXT_PUBLIC_LOCAL_URL: ${{ secrets.NEXT_PUBLIC_LOCAL_URL }}
           NEXT_PUBLIC_PRODUCT_URL: ${{ secrets.NEXT_PUBLIC_PRODUCT_URL }}
-          NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
-          NOTION_KEY: ${{ secrets.NOTION_KEY }}
-          NOTION_RESUME_ID: ${{ secrets.NOTION_RESUME_ID }}
+          NEXT_PUBLIC_NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
+          NEXT_PUBLIC_NOTION_KEY: ${{ secrets.NOTION_KEY }}
+          NEXT_PUBLIC_NOTION_RESUME_ID: ${{ secrets.NOTION_RESUME_ID }}
           NEXT_PUBLIC_FIREBASE_API_KEY: ${{ secrets.NEXT_PUBLIC_FIREBASE_API_KEY }}
           NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN: ${{ secrets.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN }}
           NEXT_PUBLIC_FIREBASE_PROJECT_ID: ${{ secrets.NEXT_PUBLIC_FIREBASE_PROJECT_ID }}
