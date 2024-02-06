@@ -22,11 +22,6 @@ jobs:
       - name: Install Packages
         run: npm install && npm install -g @lhci/cli
 
-      - name: Compress Images
-        uses: calibreapp/image-actions@main
-        with:
-          githubToken: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Run LightHouse CI
         env:
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
