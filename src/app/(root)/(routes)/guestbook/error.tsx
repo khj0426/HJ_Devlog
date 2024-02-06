@@ -28,7 +28,7 @@ export default function Error({
       }}
     >
       <ToastContainer enterTimeout={1000} leaveTimeout={1000} />
-      <Link href="/" />
+      <Link href="/" >홈으로 이동</Link>
     </div>
   );
 }
