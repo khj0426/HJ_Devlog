@@ -1,32 +1,11 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 
-import { get } from '@/utils/axiosClient';
-
-type Post = {
-  title: string;
-  date: string;
-  slug: string;
-  category: string;
-  excerpt: string;
-  image: string;
-};
-
-type PostsResponse = {
-  posts: Post[];
-  page: number;
-};
-
-const getPosts = async ({ pageParams }: { pageParams: number }) => {
-  const start = pageParams * 6;
-  const end = start + 6;
-  return (await get<PostsResponse>(`/api/posts?start=${start}&end=${end}`))
-    .data;
-};
+import { getPosts } from '@/services/Post';
 
 export default function usePostQuery() {
   return useInfiniteQuery({
     queryKey: ['getPosts'],
-    queryFn: ({ pageParam = 0 }) => getPosts({ pageParams: pageParam }),
+    queryFn: ({ pageParam }) => getPosts({ pageParams: pageParam }),
     getNextPageParam: (lastPage) => {
       const nextPage = Math.floor(lastPage.page);
       if (lastPage.posts.length === 0) {

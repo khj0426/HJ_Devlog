@@ -11,7 +11,7 @@ export default function PostContainer() {
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
     usePostQuery();
   const { target } = useObserver({
-    threshold: 0.7,
+    threshold: 0.4,
     hasNextPage,
     fetchNextPage,
   });

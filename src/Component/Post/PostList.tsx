@@ -26,7 +26,7 @@ export default function PostList({
 
       <div ref={target}></div>
       {isFetchingNextPage &&
-        Array.from({ length: 5 }).map((value, index) => (
+        Array.from({ length: 6 }).map((value, index) => (
           <Skeleton.Card key={index} />
         ))}
     </>
