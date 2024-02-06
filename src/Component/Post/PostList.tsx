@@ -1,21 +1,23 @@
 'use client';
 
+import type { PostContainerData } from '@/Component/Post/PostContainer';
+
+import { MutableRefObject } from 'react';
+
 import Skeleton from '@/Component/Common/Skeleton/Skeleton';
-import usePostQuery from '@/hooks/queries/usePostQuery';
-import useObserver from '@/hooks/useObserver';
 
 import PostItem from './PostItem';
 
-export default function PostServiceLayer() {
-  //TODO - 스피너 대신 스켈레톤UI로 수정 필요
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
-    usePostQuery();
-  const { target } = useObserver({
-    threshold: 0.1,
-    hasNextPage,
-    fetchNextPage,
-  });
+type PostListProps = PostContainerData & {
+  isFetchingNextPage: boolean;
+  target: MutableRefObject<HTMLDivElement | null>;
+};
 
+export default function PostList({
+  data,
+  target,
+  isFetchingNextPage,
+}: PostListProps) {
   return (
     <>
       {data?.pages?.map((page) =>
