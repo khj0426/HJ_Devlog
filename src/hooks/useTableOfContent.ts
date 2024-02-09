@@ -19,13 +19,13 @@ export default function useTableOfContent() {
             return;
           }
           if (getTOCElement && entry.isIntersecting) {
-            setId(getTOCElement[getTOCElement.length - 1].id);
+            setId(getTOCElement[0].id);
           }
         });
       },
       {
-        threshold: 0.4,
-        rootMargin: '-50px 0px 0px 0px',
+        threshold: 1,
+        rootMargin: '-45px 0px -50% 0px',
       }
     );
 
@@ -36,5 +36,5 @@ export default function useTableOfContent() {
     return () => io.disconnect();
   }, []);
 
-  return { id };
+  return { id, setId };
 }

@@ -47,17 +47,15 @@ const StyledTOCLink = styled.a`
 `;
 
 function TOC({ toc }: { toc: string[] }) {
-  const { id } = useTableOfContent();
+  const { id, setId } = useTableOfContent();
 
   const TOC = toc.map((eachToc) => {
     const makeTOC = replaceStrWithBlank([eachToc, ['#', '##', '###', '####']]);
 
     const handleClickTOC = (e: React.MouseEvent<HTMLElement>) => {
-      const activeElement = document.querySelector('.active');
-      if (activeElement) {
-        activeElement.classList.remove('active');
-      }
-      e.currentTarget.classList.add('active');
+      e.stopPropagation();
+      setId(e.currentTarget.id);
+      e.currentTarget.classList.toggle('active');
     };
     return (
       <li key={uuid4()}>

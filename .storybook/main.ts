@@ -27,7 +27,12 @@ const config: StorybookConfig = {
   ],
   framework: {
     name: '@storybook/nextjs',
-    options: {},
+    options: {
+      image: {
+        loading: 'eager',
+      },
+      nextConfigPath: path.resolve(__dirname, '../next.config.mjs'),
+    },
   },
   docs: {
     autodocs: 'tag',
