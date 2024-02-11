@@ -8,6 +8,7 @@ import Title from '@/Component/About/Title';
 
 const PostCard = styled.div`
   border-radius: 10px;
+  position: relative;
   overflow: hidden;
   width: 350px;
   margin: 20px;
@@ -21,8 +22,6 @@ const PostCard = styled.div`
 `;
 
 const PostImage = styled(Image)`
-  width: 100%;
-  height: 200px;
   object-fit: cover;
 `;
 
@@ -45,9 +44,9 @@ export default function PostItem({
       <Link href={`/blog/${post.slug}`}>
         <PostImage
           src={post.image}
-          alt="블로그 대표 이미지"
-          width={300}
+          width={350}
           height={200}
+          alt="블로그 대표 이미지"
           priority
           placeholder="blur"
           blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNcKgkAAWkAwC+Aq/wAAAAASUVORK5CYII="
@@ -59,6 +58,7 @@ export default function PostItem({
             }}
             title={post.title}
           ></Title>
+          <p>{post.excerpt}</p>
           <PostDate>{post.date}</PostDate>
           <p>{post.content}</p>
         </PostContent>

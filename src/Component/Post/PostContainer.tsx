@@ -1,7 +1,7 @@
 'use client';
 
 import usePostQuery from '@/hooks/queries/usePostQuery';
-import useObserver from '@/hooks/useObserver';
+import useInfiniteQueryObserver from '@/hooks/useInfiniteQueryObserver';
 
 import PostList from './PostList';
 
@@ -10,8 +10,8 @@ export type PostContainerData = Pick<ReturnType<typeof usePostQuery>, 'data'>;
 export default function PostContainer() {
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
     usePostQuery();
-  const { target } = useObserver({
-    threshold: 0.8,
+  const { target } = useInfiniteQueryObserver({
+    threshold: 1,
     hasNextPage,
     fetchNextPage,
   });

@@ -9,12 +9,12 @@ export async function GET(req: NextRequest) {
 
   const startPostNumber = Number(sourceURL.searchParams.get('start')) || 0;
   const endPostNumber =
-    Number(sourceURL.searchParams.get('end')) || startPostNumber + 3;
+    Number(sourceURL.searchParams.get('end')) || startPostNumber + 6;
 
   return new Response(
     JSON.stringify({
       posts: allPosts.slice(startPostNumber, endPostNumber),
-      page: Math.floor(startPostNumber / 3),
+      page: Math.floor(startPostNumber / 6),
     }),
     {
       status: 200,
