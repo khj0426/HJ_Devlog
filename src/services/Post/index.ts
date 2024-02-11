@@ -20,8 +20,8 @@ export const getSearchQueryPostList = async (searchQuery: string) => {
 };
 
 export const getPosts = async ({ pageParams }: { pageParams: number }) => {
-  const start = pageParams * 6;
-  const end = start + 6;
+  const start = pageParams * 3;
+  const end = start + 3;
   return (await get<PostsResponse>(`/api/posts?start=${start}&end=${end}`))
     .data;
 };
