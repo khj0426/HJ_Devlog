@@ -22,13 +22,6 @@ export default async function Home() {
     <>
       <CategoryList category={allCategory}></CategoryList>
       <main
-        style={{
-          minWidth: '65%',
-          maxWidth: '70%',
-          display: 'flex',
-          flexWrap: 'wrap',
-          margin: '0 auto',
-        }}
       >
         <Hydrate state={dehydratePostState}>
           <PostContainer />

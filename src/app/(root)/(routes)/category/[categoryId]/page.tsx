@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 import Title from '@/Component/About/Title';
 import CategoryList from '@/Component/CategoryList/CategoryList';
-import PostLayout from '@/Component/Common/PostLayout';
+import PostItem from '@/Component/Post/PostItem';
 import { getFilteredCategory, getAllCategories } from '~/lib/api';
 
 export default function Home({
@@ -28,33 +28,7 @@ export default function Home({
         }}
       >
         {posts.map((post) => (
-          <PostLayout key={post.title}>
-            <Link href={`/blog/${post.slug}`}>
-              <Title title={post.title} />
-              <p>{post.category}</p>
-              {post.content}
-            </Link>
-
-            <div
-              style={{
-                display: 'flex',
-                position: 'relative',
-                width: '150px',
-                height: '150px',
-              }}
-            >
-              <Image
-                priority
-                width={150}
-                height={150}
-                src={post.image}
-                alt="블로그 대표 이미지"
-                style={{
-                  objectFit: 'cover',
-                }}
-              />
-            </div>
-          </PostLayout>
+          <PostItem key={post.title} post={post} />
         ))}
       </main>
     </>
