@@ -24,9 +24,7 @@ export default function SearchPostButton() {
         src={SearchPostImage}
         onClick={toggleModal}
       />
-      {modal.isOpen && (
-        <PostSearchModal isOpen={modal.isOpen} onCloseModal={toggleModal} />
-      )}
+      {modal.isOpen && <PostSearchModal />}
     </>
   );
 }

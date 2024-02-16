@@ -8,6 +8,7 @@ import Spinner from '@/Component/Common/Spinner/Spinner';
 import useSearchPostQuery from '@/hooks/queries/useSearchPostQuery';
 
 import './index.css';
+import useModal from '@/hooks/useModal';
 const StyledPostSearchModalWrapper = styled.div`
   position: fixed;
   top: 0;
@@ -47,13 +48,8 @@ const StyledPostSearchModal = styled.div`
   overflow: auto;
 `;
 
-export default function PostSearchModal({
-  onCloseModal,
-  isOpen,
-}: {
-  isOpen: boolean;
-  onCloseModal: () => void;
-}) {
+export default function PostSearchModal() {
+  const { modal, closeModal } = useModal('POST_SEARCH_MODAL_STATE');
   const [querySearch, setQuerySearch] = useState<string>('');
   const { data: posts, isFetching } = useSearchPostQuery(querySearch);
 
@@ -67,17 +63,17 @@ export default function PostSearchModal({
 
   return (
     <CSSTransition
-      in={isOpen}
+      in={modal.isOpen}
       appear
       mountOnEnter
       classNames="modal"
       timeout={300}
-      onExited={onCloseModal}
+      onExited={closeModal}
     >
-      <StyledPostSearchModalWrapper onClick={onCloseModal} key={'modal'}>
+      <StyledPostSearchModalWrapper onClick={closeModal} key={'modal'}>
         <StyledPostSearchModal onClick={(e) => e.stopPropagation()}>
           <p
-            onClick={onCloseModal}
+            onClick={closeModal}
             style={{
               cursor: 'pointer',
             }}
@@ -96,7 +92,7 @@ export default function PostSearchModal({
               <Link
                 key={post.title}
                 href={`/blog/${post.slug}`}
-                onClick={() => onCloseModal()}
+                onClick={() => closeModal()}
                 style={{
                   color: 'inherit',
                 }}

@@ -2,8 +2,9 @@
 import Link from 'next/link';
 import styled, { css } from 'styled-components';
 
-import SearchPostButton from '../../Blog/SearchPost/SearchPost';
-import ToggleDarkModeButton from '../../DarkMode/ToggoeButton';
+import RssButton from '@/Component/Blog/RssButton/RssButton';
+import SearchPostButton from '@/Component/Blog/SearchPost/SearchPost';
+import ToggleDarkModeButton from '@/Component/DarkMode/ToggoeButton';
 
 const StyledNavBarLayout = styled.nav`
   position: sticky;
@@ -57,6 +58,7 @@ export default function Navbar() {
           alignItems: 'center',
         }}
       >
+        <RssButton />
         <SearchPostButton />
         <ToggleDarkModeButton />
       </div>
