@@ -5,9 +5,8 @@ import Link from 'next/link';
 import styled from 'styled-components';
 
 import Spinner from '@/Component/Common/Spinner/Spinner';
-import useSearchPostQuery from '@/hooks/queries/useSearchPostQuery';
-
 import './index.css';
+import useSearchPostQuery from '@/hooks/queries/useSearchPostQuery';
 import useModal from '@/hooks/useModal';
 const StyledPostSearchModalWrapper = styled.div`
   position: fixed;

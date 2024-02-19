@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { MutableRefObject, useEffect, useRef, useState } from 'react';
 
 import { InfiniteQueryObserverResult } from '@tanstack/react-query';
 
@@ -9,32 +9,19 @@ type observerProps = {
 };
 
 export default function useInfiniteQueryObserver({
-  threshold = 0.1,
+  threshold = 1,
   hasNextPage,
   fetchNextPage,
 }: observerProps) {
   const target = useRef<HTMLDivElement | null>(null);
-  const [isUserScrolling, setUserScrolling] = useState(false);
 
   const observerCallback: IntersectionObserverCallback = (entries) => {
     entries.forEach((entry) => {
-      if (entry.isIntersecting && hasNextPage && isUserScrolling) {
-        fetchNextPage().then(() => setUserScrolling(false));
+      if (entry.isIntersecting && hasNextPage) {
+        fetchNextPage();
       }
     });
   };
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setUserScrolling(true);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
 
   useEffect(() => {
     if (!target || !target.current) {
@@ -43,10 +30,11 @@ export default function useInfiniteQueryObserver({
 
     const observer = new IntersectionObserver(observerCallback, {
       threshold,
+      rootMargin: '300px',
     });
     observer.observe(target?.current);
     return () => observer.disconnect();
-  }, [target, threshold, observerCallback, isUserScrolling]);
+  }, [target, threshold, observerCallback]);
 
   return {
     target,
