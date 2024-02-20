@@ -49,7 +49,7 @@ export default function CategoryList({
       {category.map(({ category, categoryCount }) => {
         return (
           <CategoryListStyle key={category}>
-            <Link href={`/category/${category}`}>
+            <Link href={`/category/${category}/1`}>
               💻 {category + categoryCount}
             </Link>
           </CategoryListStyle>

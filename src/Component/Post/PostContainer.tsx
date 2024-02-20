@@ -1,5 +1,6 @@
 'use client';
 
+
 import usePostQuery from '@/hooks/queries/usePostQuery';
 import useInfiniteQueryObserver from '@/hooks/useInfiniteQueryObserver';
 

@@ -21,8 +21,7 @@ export default async function Home() {
   return (
     <>
       <CategoryList category={allCategory}></CategoryList>
-      <main
-      >
+      <main>
         <Hydrate state={dehydratePostState}>
           <PostContainer />
         </Hydrate>

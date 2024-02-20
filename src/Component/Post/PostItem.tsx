@@ -11,6 +11,7 @@ const PostCard = styled.div`
   position: relative;
   overflow: hidden;
   width: 350px;
+  height: 350px;
   margin: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;

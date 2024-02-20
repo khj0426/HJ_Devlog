@@ -11,6 +11,25 @@ export async function GET(req: NextRequest) {
   const endPostNumber =
     Number(sourceURL.searchParams.get('end')) || startPostNumber + 6;
 
+  const category = sourceURL.searchParams.get('category');
+
+  const allCategoryPosts = allPosts.filter(
+    (post) => post.category === category
+  );
+  if (category) {
+    return new Response(
+      JSON.stringify({
+        posts: allCategoryPosts,
+      }),
+      {
+        status: 200,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+  }
+
   return new Response(
     JSON.stringify({
       posts: allPosts.slice(startPostNumber, endPostNumber),

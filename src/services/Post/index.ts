@@ -25,3 +25,7 @@ export const getPosts = async ({ pageParams }: { pageParams: number }) => {
   return (await get<PostsResponse>(`/api/posts?start=${start}&end=${end}`))
     .data;
 };
+
+export const getCategoryPosts = async ({ category }: { category: string }) => {
+  return (await get<PostsResponse>(`/api/posts?category=${category}`)).data;
+};
