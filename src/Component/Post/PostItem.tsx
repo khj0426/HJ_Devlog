@@ -26,9 +26,7 @@ const PostImage = styled(Image)`
   object-fit: cover;
 `;
 
-const PostContent = styled.div`
-  padding: 20px;
-`;
+const PostContent = styled.div``;
 
 const PostDate = styled.p`
   margin: 0;

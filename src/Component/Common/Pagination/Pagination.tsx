@@ -3,18 +3,14 @@
 import Button from '@/Component/Common/Button';
 
 interface PaginationProps {
-  totalPage: number;
-  limit: number;
-  handleOnClickPage: (_curPage: number) => void;
+  numPages: number;
+  handleOnClickPage?: (_curPage: number) => void;
 }
 
 export default function Pagination({
-  totalPage,
-  limit,
+  numPages,
   handleOnClickPage,
 }: PaginationProps) {
-  const numPages = Math.ceil(totalPage / limit);
-
   return (
     <div
       style={{
@@ -26,7 +22,7 @@ export default function Pagination({
       {Array.from({ length: numPages }).map((_, i) => {
         return (
           <Button
-            onClick={() => handleOnClickPage(i + 1)}
+            onClick={() => handleOnClickPage && handleOnClickPage(i + 1)}
             label={`${i + 1}`}
             key={i}
             style={{

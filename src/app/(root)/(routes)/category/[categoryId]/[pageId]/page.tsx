@@ -1,10 +1,13 @@
 'use client';
+import { useEffect } from 'react';
+
 import { useRouter } from 'next/navigation';
 
 import Pagination from '@/Component/Common/Pagination/Pagination';
 import Skeleton from '@/Component/Common/Skeleton/Skeleton';
 import PostItem from '@/Component/Post/PostItem';
 import useCategoryPostQuery from '@/hooks/queries/useCategoryPostQuery';
+import usePageNation from '@/hooks/usePagenation';
 export default function Home({
   params,
 }: {
@@ -21,8 +24,14 @@ export default function Home({
     category: params.categoryId,
   });
 
-  const startPostNumber = (params.pageId - 1) * 4;
-  const endPostNumber = startPostNumber + 4;
+  const { pageCount, changePage, pageData } = usePageNation({
+    limit: 4,
+    item: data?.posts ?? [],
+  });
+
+  useEffect(() => {
+    changePage(params.pageId);
+  }, [params.pageId]);
 
   return (
     <>
@@ -39,13 +48,12 @@ export default function Home({
             <Skeleton.Card key={index} />
           ))}
 
-        {data?.posts.slice(startPostNumber, endPostNumber).map((post) => (
+        {pageData().map((post) => (
           <PostItem key={post.title} post={post} />
         ))}
       </main>
       <Pagination
-        limit={4}
-        totalPage={data?.posts?.length ?? 10}
+        numPages={pageCount}
         handleOnClickPage={(page) =>
           route.push(`/category/${params.categoryId}/${page}`)
         }
