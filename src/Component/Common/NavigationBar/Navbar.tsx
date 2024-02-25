@@ -41,7 +41,7 @@ const StyledNavBarTitle = styled(Link)`
 
 const StyledButtonArea = styled.div`
   @media ${({ theme }) => theme?.device?.mobile || theme?.device?.tablet} {
-    opacity: 0;
+    display:none;
   }
   display: flex;
   flex-wrap: wrap;
