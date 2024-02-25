@@ -2,15 +2,15 @@
 
 import type { PostContainerData } from '@/Component/Post/PostContainer';
 
-import { MutableRefObject } from 'react';
+import { MutableRefObject, useRef } from 'react';
 
 import Skeleton from '@/Component/Common/Skeleton/Skeleton';
 
 import PostItem from './PostItem';
 
 type PostListProps = PostContainerData & {
-  isFetchingNextPage: boolean;
-  target: MutableRefObject<HTMLDivElement | null>;
+  isFetchingNextPage?: boolean;
+  target?: MutableRefObject<HTMLDivElement | null>;
 };
 
 export default function PostList({

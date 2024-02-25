@@ -30,6 +30,7 @@ const GuestBookInput = ({ refetch }: { refetch: () => void }) => {
       style={{
         display: 'flex',
         flexWrap: 'wrap',
+        justifyContent: 'center',
         width: '80%',
         margin: '20px auto',
       }}

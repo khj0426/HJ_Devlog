@@ -4,6 +4,7 @@ import styled, { css } from 'styled-components';
 
 import RssButton from '@/Component/Blog/RssButton/RssButton';
 import SearchPostButton from '@/Component/Blog/SearchPost/SearchPost';
+import Drawer from '@/Component/Common/Drawer/Drawer';
 import ToggleDarkModeButton from '@/Component/DarkMode/ToggoeButton';
 
 const StyledNavBarLayout = styled.nav`
@@ -38,6 +39,14 @@ const StyledNavBarTitle = styled(Link)`
     `};
 `;
 
+const StyledButtonArea = styled.div`
+  @media ${({ theme }) => theme?.device?.mobile || theme?.device?.tablet} {
+    opacity: 0;
+  }
+  display: flex;
+  align-items: center;
+`;
+
 export default function Navbar() {
   return (
     <StyledNavBarLayout>
@@ -52,16 +61,11 @@ export default function Navbar() {
         <StyledNavBarTitle href="/guestbook">GuestBook</StyledNavBarTitle>
         <StyledNavBarTitle href="/notion/resume">Resume</StyledNavBarTitle>
       </div>
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-        }}
-      >
+      <StyledButtonArea>
         <RssButton />
         <SearchPostButton />
         <ToggleDarkModeButton />
-      </div>
+      </StyledButtonArea>
     </StyledNavBarLayout>
   );
 }

@@ -1,9 +1,10 @@
 import styled from 'styled-components';
-import { v4 as uuidv4 } from 'uuid';
 
 const StyledGuestBookList = styled.section`
   min-height: 700px;
   width: 500px;
+  max-height: 1000px;
+  overflow-y: scroll;
 
   @media ${({ theme }) => theme.device.mobile} {
     width: 300px;
