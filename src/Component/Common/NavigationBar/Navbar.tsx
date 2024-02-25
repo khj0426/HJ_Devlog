@@ -44,6 +44,7 @@ const StyledButtonArea = styled.div`
     opacity: 0;
   }
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
 `;
 
