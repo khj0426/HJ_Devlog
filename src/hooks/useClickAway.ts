@@ -1,24 +1,20 @@
-import { useEffect, useRef, useCallback } from 'react';
+import { useEffect, MutableRefObject } from 'react';
 
-export default function useClickAway(callback: () => void, deps?: any[]) {
-  const ref = useRef(null);
-
-  const handleClickAway = useCallback(
-    (e: MouseEvent) => {
-      if (!ref || !ref.current) {
+export default function useClickAway<T extends MutableRefObject<any>>(
+  ref: T,
+  callback: () => void,
+  deps?: any[]
+) {
+  useEffect(() => {
+    const listener = (event: MouseEvent) => {
+      if (!ref || !ref.current || ref.current.contains(event.target)) {
         return;
       }
-      if (!(e.target as Node).contains(ref.current)) {
-        callback();
-      }
-    },
-    [callback]
-  );
-
-  useEffect(() => {
-    document.body.addEventListener('click', handleClickAway);
-    return () => document.body.removeEventListener('click', handleClickAway);
-  }, [deps, handleClickAway]);
-
-  return { ref };
+      callback();
+    };
+    document.addEventListener('mousedown', listener);
+    return () => {
+      document.removeEventListener('mousedown', listener);
+    };
+  }, [ref, callback, deps && [...deps]]);
 }

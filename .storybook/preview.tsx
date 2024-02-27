@@ -19,14 +19,6 @@ const ThemeWrapper = ({ children }) => {
 
 const preview: Preview = {
   decorators: [
-    withThemeFromJSXProvider({
-      GlobalStyles: globalStyle,
-      themes: {
-        darkTheme,
-        lightTheme,
-        mediaTheme,
-      },
-    }),
     (Story) => {
       return (
         <RecoilRoot>

@@ -20,7 +20,7 @@ jobs:
           node-version: 20
 
       - name: Install Packages
-        run: npm ci && npm install @lhci/cli
+        run: npm ci && npm install @lhci/cli 0.12.0
 
       - name: Run LightHouse CI
         env:

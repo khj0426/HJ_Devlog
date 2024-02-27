@@ -1,6 +1,6 @@
 'use client';
 
-import { ComponentProps } from 'react';
+import { ComponentProps, useRef } from 'react';
 
 import styled from 'styled-components';
 
@@ -50,11 +50,12 @@ export default function Drawer({
   handleOpen,
   ...rest
 }: DrawerProps) {
-  const { ref } = useClickAway(() => handleOpen && handleOpen(false));
+  const drawerContainer = useRef(null);
+  useClickAway(drawerContainer, () => handleOpen && handleOpen(false));
   return (
     <Dimmer direction={direction} isOpen={isOpen}>
       <Container direction={direction} isOpen={isOpen} {...rest} ref={null}>
-        <Contents ref={ref}>{rest.children}</Contents>
+        <Contents ref={drawerContainer}>{rest.children}</Contents>
       </Container>
     </Dimmer>
   );
