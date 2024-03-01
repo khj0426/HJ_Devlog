@@ -10,6 +10,7 @@ interface DrawerProps extends ComponentProps<'div'> {
   isOpen: boolean;
   direction: 'top' | 'bottom' | 'left' | 'right';
   handleOpen?: (_isOpen: boolean) => void;
+  contentHeight: number;
 }
 
 const Container = styled.div<{ direction: string; isOpen: boolean }>`
@@ -18,22 +19,23 @@ const Container = styled.div<{ direction: string; isOpen: boolean }>`
   justify-content: ${({ direction }) =>
     direction === 'bottom' ? 'flex-end' : 'flex-start'};
   width: 100%;
-  height: 100%;
   position: absolute;
   top: 0;
   left: 0;
 `;
 
-const Dimmer = styled.div<{ direction: string; isOpen: boolean }>`
+const Dimmer = styled.div<{
+  direction: string;
+  isOpen: boolean;
+  height: number;
+}>`
   visibility: ${({ isOpen }) => (isOpen ? 'visible' : 'hidden')};
   position: fixed;
   top: 0;
   left: 0;
-  height: 100%;
   width: 100%;
-
   background-color: ${({ isOpen }) => `rgba(0, 0, 0, ${isOpen ? 0.8 : 0});`};
-  height: 100%;
+  height: ${({ height }) => `${height}px` ?? 'auto'};
   transition: all 0.25s linear;
 `;
 
@@ -48,12 +50,13 @@ export default function Drawer({
   isOpen,
   direction,
   handleOpen,
+  contentHeight,
   ...rest
 }: DrawerProps) {
   const drawerContainer = useRef(null);
   useClickAway(drawerContainer, () => handleOpen && handleOpen(false));
   return (
-    <Dimmer direction={direction} isOpen={isOpen}>
+    <Dimmer direction={direction} isOpen={isOpen} height={contentHeight}>
       <Container direction={direction} isOpen={isOpen} {...rest} ref={null}>
         <Contents ref={drawerContainer}>{rest.children}</Contents>
       </Container>

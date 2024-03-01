@@ -17,8 +17,8 @@ interface ToastListProps {
 export const ToastList = ({
   notifications = [],
   onRequestHide,
-  enterTimeout = 400,
-  leaveTimeout = 400,
+  enterTimeout,
+  leaveTimeout,
 }: ToastListProps) => {
   const handleRequestHide = (toastList: ToastPropsType) => {
     if (onRequestHide) {

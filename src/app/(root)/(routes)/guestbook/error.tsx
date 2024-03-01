@@ -18,17 +18,20 @@ export default function Error({
     ToastManager.error(
       '에러가 발생했습니다',
       '서비스를 이용할 수 없습니다',
-      5000
+      6000
     );
   }, []);
   return (
     <div
       style={{
         height: '100vh',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
       }}
     >
-      <ToastContainer enterTimeout={1000} leaveTimeout={1000} />
-      <Link href="/" >홈으로 이동</Link>
+      <ToastContainer enterTimeout={2000} leaveTimeout={10000} />
+      <Link href="/">홈으로 이동</Link>
     </div>
   );
 }
