@@ -47,8 +47,9 @@ const StyledNavBarTitle = styled(Link)`
 
 const StyledButtonArea = styled.div`
   display: flex;
-  flex-wrap: wrap;
+  width: 100%;
   align-items: center;
+  justify-content: center;
 `;
 
 export default function Navbar() {
@@ -87,7 +88,7 @@ export default function Navbar() {
           <div
             style={{
               display: 'flex',
-              height: '250px',
+              height: '200px',
               background: 'white',
               marginTop: '40px',
             }}

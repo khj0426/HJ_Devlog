@@ -124,7 +124,11 @@ export default function Drawer({
 
   if (drawerRoot && drawerRoot.current) {
     return createPortal(
-      <Dimmer direction={direction} isOpen={isOpen}>
+      <Dimmer
+        direction={direction}
+        isOpen={isOpen}
+        onClick={() => handleOpen && handleOpen(false)}
+      >
         <Container
           direction={direction}
           isOpen={isOpen}
