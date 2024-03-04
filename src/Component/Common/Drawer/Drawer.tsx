@@ -95,12 +95,12 @@ const Dimmer = styled.div<{
   left: 0;
   width: 100%;
   background-color: ${({ isOpen }) => `rgba(0, 0, 0, ${isOpen ? 0.8 : 0});`};
-  height: 100%;
+  z-index: 0;
   transition: all 0.25s linear;
 `;
 
 const Contents = styled.div`
-  z-index: 3;
+  z-index: 0;
   width: 100%;
   max-width: 100vw;
 `;

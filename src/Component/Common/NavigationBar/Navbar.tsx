@@ -15,6 +15,7 @@ import useDevice from '@/hooks/useDevice';
 const StyledNavBarLayout = styled.nav`
   position: sticky;
   top: 0;
+  cursor: pointer;
   left: 0;
   width: 100%;
   display: flex;
@@ -25,7 +26,7 @@ const StyledNavBarLayout = styled.nav`
   background-color: ${({ theme }) => theme.body};
   align-items: center;
   justify-content: space-around;
-  z-index: 1;
+  z-index: 999;
 `;
 
 const StyledNavBarTitle = styled(Link)`
@@ -45,83 +46,60 @@ const StyledNavBarTitle = styled(Link)`
 `;
 
 const StyledButtonArea = styled.div`
-  @media ${({ theme }) => theme?.device?.mobile || theme?.device?.tablet} {
-    display: none;
-  }
   display: flex;
   flex-wrap: wrap;
   align-items: center;
 `;
 
 export default function Navbar() {
-  const { isMobile } = useDevice();
   const [isDrawerOpen, setDrawerOpen] = useState(false);
-  const pathname = usePathname();
-  useEffect(() => {
-    setDrawerOpen(false);
-  }, [pathname]);
+
   return (
     <StyledNavBarLayout>
-      {!isMobile ? (
-        <>
+      <div
+        style={{
+          display: 'flex',
+          gap: '10px',
+          cursor: 'pointer',
+        }}
+      >
+        <StyledNavBarTitle href="/">Blog</StyledNavBarTitle>
+        <StyledNavBarTitle href="/about">About</StyledNavBarTitle>
+        <StyledNavBarTitle href="/guestbook">GuestBook</StyledNavBarTitle>
+        <StyledNavBarTitle href="/notion/resume">Resume</StyledNavBarTitle>
+      </div>
+      <div>
+        <Image
+          src="/images/drawer.png"
+          alt="drawer 이미지"
+          width={32}
+          style={{
+            cursor: 'pointer',
+          }}
+          onClick={() => setDrawerOpen(true)}
+          height={32}
+        />
+        <Drawer
+          direction="top"
+          handleOpen={setDrawerOpen}
+          isOpen={isDrawerOpen}
+        >
           <div
             style={{
               display: 'flex',
-              gap: '10px',
+              height: '250px',
+              background: 'white',
+              marginTop: '40px',
             }}
           >
-            <StyledNavBarTitle href="/">Blog</StyledNavBarTitle>
-            <StyledNavBarTitle href="/about">About</StyledNavBarTitle>
-            <StyledNavBarTitle href="/guestbook">GuestBook</StyledNavBarTitle>
-            <StyledNavBarTitle href="/notion/resume">Resume</StyledNavBarTitle>
+            <StyledButtonArea>
+              <RssButton />
+              <SearchPostButton />
+              <ToggleDarkModeButton />
+            </StyledButtonArea>
           </div>
-          <StyledButtonArea>
-            <RssButton />
-            <SearchPostButton />
-            <ToggleDarkModeButton />
-          </StyledButtonArea>
-        </>
-      ) : (
-        <div>
-          <Image
-            src="/images/drawer.png"
-            alt="drawer 이미지"
-            width={32}
-            onClick={() => setDrawerOpen(true)}
-            height={32}
-          />
-          <Drawer
-            direction="top"
-            handleOpen={setDrawerOpen}
-            isOpen={isDrawerOpen}
-          >
-            <div
-              style={{
-                height: '350px',
-                background: 'white',
-                marginTop: '40px',
-              }}
-            >
-              <div
-                style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '10px',
-                }}
-              >
-                <StyledNavBarTitle href="/">Blog</StyledNavBarTitle>
-                <StyledNavBarTitle href="/about">About</StyledNavBarTitle>
-                <StyledNavBarTitle href="/guestbook">
-                  GuestBook
-                </StyledNavBarTitle>
-                <StyledNavBarTitle href="/notion/resume">
-                  Resume
-                </StyledNavBarTitle>
-              </div>
-            </div>
-          </Drawer>
-        </div>
-      )}
+        </Drawer>
+      </div>
     </StyledNavBarLayout>
   );
 }
