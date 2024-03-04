@@ -2,7 +2,10 @@ import withBundleAnalyzer from '@next/bundle-analyzer';
 import withPlaiceholder from '@plaiceholder/next';
 import { withSentryConfig } from '@sentry/nextjs';
 
-const bundleAnalyzerConfig = withBundleAnalyzer({
+const nextConfig = {
+  async headers() {
+    return [{ source: '/(.*)', headers: securityHeaders }];
+  },
   experimental: {
     serverActions: true,
   },
@@ -39,7 +42,8 @@ const bundleAnalyzerConfig = withBundleAnalyzer({
   },
   compress: true,
   basePath: '/',
-});
+};
+const bundleAnalyzerConfig = withBundleAnalyzer(nextConfig);
 
 const sentryConfig = {
   silent: true,
@@ -51,6 +55,8 @@ const sentryConfig = {
   hideSourceMaps: true,
   disableLogger: true,
 };
+
+const securityHeaders = [{ key: 'X-XSS-Protection', value: '1; mode=block' }];
 
 export default withPlaiceholder(
   withSentryConfig(bundleAnalyzerConfig, sentryConfig)
