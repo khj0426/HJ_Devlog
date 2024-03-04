@@ -1,8 +1,9 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import styled, { css } from 'styled-components';
 
 import RssButton from '@/Component/Blog/RssButton/RssButton';
@@ -54,7 +55,11 @@ const StyledButtonArea = styled.div`
 
 export default function Navbar() {
   const { isMobile } = useDevice();
-  const [isDrawerOpen, setDrawerOpen] = useState(() => isMobile);
+  const [isDrawerOpen, setDrawerOpen] = useState(false);
+  const pathname = usePathname();
+  useEffect(() => {
+    setDrawerOpen(false);
+  }, [pathname]);
   return (
     <StyledNavBarLayout>
       {!isMobile ? (

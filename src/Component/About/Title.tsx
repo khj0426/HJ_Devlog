@@ -11,6 +11,7 @@ const StyledTitle = styled.h3`
   display: flex;
   flex-wrap: wrap;
   font-size: 15px;
+  justify-content: center;
 
   @media ${({ theme }) => theme.device.tablet} {
     display: flex;
