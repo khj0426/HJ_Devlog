@@ -22,6 +22,7 @@ const preview: Preview = {
     (Story) => {
       return (
         <RecoilRoot>
+          <div id="drawer"></div>
           <ThemeWrapper>
             <Story />
           </ThemeWrapper>

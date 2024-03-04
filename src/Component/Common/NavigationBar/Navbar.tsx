@@ -1,4 +1,7 @@
 'use client';
+import { useState } from 'react';
+
+import Image from 'next/image';
 import Link from 'next/link';
 import styled, { css } from 'styled-components';
 
@@ -6,6 +9,7 @@ import RssButton from '@/Component/Blog/RssButton/RssButton';
 import SearchPostButton from '@/Component/Blog/SearchPost/SearchPost';
 import Drawer from '@/Component/Common/Drawer/Drawer';
 import ToggleDarkModeButton from '@/Component/DarkMode/ToggoeButton';
+import useDevice from '@/hooks/useDevice';
 
 const StyledNavBarLayout = styled.nav`
   position: sticky;
@@ -41,7 +45,7 @@ const StyledNavBarTitle = styled(Link)`
 
 const StyledButtonArea = styled.div`
   @media ${({ theme }) => theme?.device?.mobile || theme?.device?.tablet} {
-    display:none;
+    display: none;
   }
   display: flex;
   flex-wrap: wrap;
@@ -49,24 +53,70 @@ const StyledButtonArea = styled.div`
 `;
 
 export default function Navbar() {
+  const { isMobile } = useDevice();
+  const [isDrawerOpen, setDrawerOpen] = useState(() => isMobile);
   return (
     <StyledNavBarLayout>
-      <div
-        style={{
-          display: 'flex',
-          gap: '10px',
-        }}
-      >
-        <StyledNavBarTitle href="/">Blog</StyledNavBarTitle>
-        <StyledNavBarTitle href="/about">About</StyledNavBarTitle>
-        <StyledNavBarTitle href="/guestbook">GuestBook</StyledNavBarTitle>
-        <StyledNavBarTitle href="/notion/resume">Resume</StyledNavBarTitle>
-      </div>
-      <StyledButtonArea>
-        <RssButton />
-        <SearchPostButton />
-        <ToggleDarkModeButton />
-      </StyledButtonArea>
+      {!isMobile ? (
+        <>
+          <div
+            style={{
+              display: 'flex',
+              gap: '10px',
+            }}
+          >
+            <StyledNavBarTitle href="/">Blog</StyledNavBarTitle>
+            <StyledNavBarTitle href="/about">About</StyledNavBarTitle>
+            <StyledNavBarTitle href="/guestbook">GuestBook</StyledNavBarTitle>
+            <StyledNavBarTitle href="/notion/resume">Resume</StyledNavBarTitle>
+          </div>
+          <StyledButtonArea>
+            <RssButton />
+            <SearchPostButton />
+            <ToggleDarkModeButton />
+          </StyledButtonArea>
+        </>
+      ) : (
+        <div>
+          <Image
+            src="/images/drawer.png"
+            alt="drawer 이미지"
+            width={32}
+            onClick={() => setDrawerOpen(true)}
+            height={32}
+          />
+          <Drawer
+            direction="top"
+            handleOpen={setDrawerOpen}
+            isOpen={isDrawerOpen}
+          >
+            <div
+              style={{
+                height: '350px',
+                background: 'white',
+                marginTop: '40px',
+              }}
+            >
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '10px',
+                }}
+              >
+                <StyledNavBarTitle href="/">Blog</StyledNavBarTitle>
+                <StyledNavBarTitle href="/about">About</StyledNavBarTitle>
+                <StyledNavBarTitle href="/guestbook">
+                  GuestBook
+                </StyledNavBarTitle>
+                <StyledNavBarTitle href="/notion/resume">
+                  Resume
+                </StyledNavBarTitle>
+              </div>
+            </div>
+          </Drawer>
+        </div>
+      )}
     </StyledNavBarLayout>
   );
 }

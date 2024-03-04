@@ -12,7 +12,6 @@ import GlobalStyle from '@/style/globalStyle';
 import Recoil from '../Providers/Recoil/Recoil';
 import { ThemeWrapper } from '../Providers/Styled-Component/themeWrapper';
 
-
 declare global {
   interface Window {
     naver: any;
@@ -84,6 +83,7 @@ export default function RootLayout({
               <GlobalStyle />
               <Navbar />
               {children}
+              <div id="drawer"></div>
             </ThemeWrapper>
             <Footer />
           </Recoil>
