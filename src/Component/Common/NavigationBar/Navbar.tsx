@@ -9,6 +9,8 @@ import styled, { css } from 'styled-components';
 import RssButton from '@/Component/Blog/RssButton/RssButton';
 import SearchPostButton from '@/Component/Blog/SearchPost/SearchPost';
 import Drawer from '@/Component/Common/Drawer/Drawer';
+import DrawerImage from '@/Component/Common/Drawer/DrawerImage';
+import Flex from '@/Component/Common/Flex/Flex';
 import ToggleDarkModeButton from '@/Component/DarkMode/ToggoeButton';
 import useDevice from '@/hooks/useDevice';
 
@@ -57,26 +59,15 @@ export default function Navbar() {
 
   return (
     <StyledNavBarLayout>
-      <div
-        style={{
-          display: 'flex',
-          gap: '10px',
-          cursor: 'pointer',
-        }}
-      >
+      <Flex gap={'10px'}>
         <StyledNavBarTitle href="/">Blog</StyledNavBarTitle>
         <StyledNavBarTitle href="/about">About</StyledNavBarTitle>
         <StyledNavBarTitle href="/guestbook">GuestBook</StyledNavBarTitle>
         <StyledNavBarTitle href="/notion/resume">Resume</StyledNavBarTitle>
-      </div>
+      </Flex>
       <div>
-        <Image
-          src="/images/drawer.png"
-          alt="drawer 이미지"
+        <DrawerImage
           width={32}
-          style={{
-            cursor: 'pointer',
-          }}
           onClick={() => setDrawerOpen(true)}
           height={32}
         />
@@ -85,12 +76,13 @@ export default function Navbar() {
           handleOpen={setDrawerOpen}
           isOpen={isDrawerOpen}
         >
-          <div
+          <Flex
+            justifyContent="center"
+            alignItems="center"
+            height={'150px'}
+            margin={'40px auto'}
             style={{
-              display: 'flex',
-              height: '200px',
               background: 'white',
-              marginTop: '40px',
             }}
           >
             <StyledButtonArea>
@@ -98,7 +90,7 @@ export default function Navbar() {
               <SearchPostButton />
               <ToggleDarkModeButton />
             </StyledButtonArea>
-          </div>
+          </Flex>
         </Drawer>
       </div>
     </StyledNavBarLayout>

@@ -1,6 +1,6 @@
 'use client';
-
 import Button from '@/Component/Common/Button';
+import Flex from '@/Component/Common/Flex/Flex';
 
 interface PaginationProps {
   numPages: number;
@@ -12,13 +12,7 @@ export default function Pagination({
   handleOnClickPage,
 }: PaginationProps) {
   return (
-    <div
-      style={{
-        display: 'flex',
-        gap: '2px',
-        marginBottom: '50px',
-      }}
-    >
+    <Flex gap={'2px'} margin={'50px'}>
       {Array.from({ length: numPages }).map((_, i) => {
         return (
           <Button
@@ -33,6 +27,6 @@ export default function Pagination({
           />
         );
       })}
-    </div>
+    </Flex>
   );
 }

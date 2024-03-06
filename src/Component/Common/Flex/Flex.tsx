@@ -1,7 +1,7 @@
 'use client';
 import { CSSProperties, ComponentPropsWithoutRef, ReactNode } from 'react';
 
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 interface FlexProps extends ComponentPropsWithoutRef<'div'> {
   children: ReactNode;
@@ -13,22 +13,22 @@ interface FlexProps extends ComponentPropsWithoutRef<'div'> {
   height?: CSSProperties['height'];
   margin?: CSSProperties['margin'];
   padding?: CSSProperties['padding'];
+  flexWrap?: CSSProperties['flexWrap'];
 }
 
-const flex = css<FlexProps>`
+const StyledFlex = styled.div<FlexProps>`
   display: flex;
   flex-direction: ${({ flexDirection }) => flexDirection};
   align-items: ${({ alignItems }) => alignItems};
   justify-content: ${({ justifyContent }) => justifyContent};
-  gap: ${({ gap }) => gap};
-  width: ${({ width }) => width ?? 'auto'};
-  height: ${({ height }) => height ?? 'auto'};
+  gap: ${({ gap }) => (typeof gap === 'number' ? `${gap}px` : gap)};
+  width: ${({ width }) =>
+    typeof width === 'number' ? `${width}px` : width ?? 'auto'};
+  height: ${({ height }) =>
+    typeof height === 'number' ? `${height}px` : height ?? 'auto'};
   margin: ${({ margin }) => margin};
   padding: ${({ padding }) => padding};
-`;
-
-const StyledFlex = styled.div<FlexProps>`
-  ${flex}
+  flex-wrap: ${({ flexWrap }) => flexWrap};
 `;
 
 export default function Flex({
@@ -41,6 +41,7 @@ export default function Flex({
   height,
   margin,
   padding,
+  flexWrap,
   ...rest
 }: FlexProps) {
   return (
@@ -53,6 +54,7 @@ export default function Flex({
       height={height}
       margin={margin}
       padding={padding}
+      flexWrap={flexWrap}
       {...rest}
     >
       {children}

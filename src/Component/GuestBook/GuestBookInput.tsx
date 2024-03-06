@@ -1,3 +1,4 @@
+import Flex from '@/Component/Common/Flex/Flex';
 import { ToastManager, ToastContainer } from '@/Component/Common/Toast';
 import { Input, InputBox } from '@/Component/Input';
 import usePostGuestBook from '@/hooks/mutations/useGuestBookMutation';
@@ -26,39 +27,39 @@ const GuestBookInput = ({ refetch }: { refetch: () => void }) => {
   };
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'center',
-        width: '80%',
-        margin: '20px auto',
-      }}
+    <Flex
+      alignItems="center"
+      justifyContent="center"
+      flexWrap="wrap"
+      margin={'0 auto'}
+      flexDirection="column"
+      width={'80%'}
     >
-      <InputBox width="350px" color="#f8f9fa">
-        <Input
-          {...guestBookInput}
-          placeholder="😀 방명록을 적어주세요"
+      <Flex>
+        <InputBox width="350px" color="#f8f9fa">
+          <Input
+            {...guestBookInput}
+            placeholder="😀 방명록을 적어주세요"
+            style={{
+              fontSize: '1rem',
+            }}
+          />
+        </InputBox>
+        <Button
+          disabled={guestBookInput.error}
+          label="쓰기"
+          type="button"
           style={{
-            fontSize: '1rem',
+            borderRadius: '7px',
           }}
-        />
-      </InputBox>
-      <Button
-        disabled={guestBookInput.error}
-        label="쓰기"
-        type="button"
-        style={{
-          borderRadius: '7px',
-        }}
-        onClick={handleSubmitGuestBook}
-        backgroundColor="#f8f9fa"
-      >
-        쓰기
-      </Button>
-
+          onClick={handleSubmitGuestBook}
+          backgroundColor="#f8f9fa"
+        >
+          쓰기
+        </Button>
+      </Flex>
       <ToastContainer enterTimeout={1000} leaveTimeout={1000} />
-    </div>
+    </Flex>
   );
 };
 

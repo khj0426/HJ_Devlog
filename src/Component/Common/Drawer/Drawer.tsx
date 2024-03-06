@@ -109,7 +109,6 @@ export default function Drawer({
   isOpen,
   direction,
   handleOpen,
-  contentHeight,
   ...rest
 }: DrawerProps) {
   const drawerContainer = useRef(null);
