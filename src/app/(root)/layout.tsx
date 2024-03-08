@@ -6,6 +6,7 @@ import { Montserrat } from 'next/font/google';
 import Providers from '@/app/Providers/Query/queryClientProvider';
 import Footer from '@/Component/Common/Footer/Footer';
 import Navbar from '@/Component/Common/NavigationBar/Navbar';
+import ScrollToTop from '@/Component/Common/ScrolltoTop/ScrollToTop';
 import GoogleAnalytics from '@/Component/GA/GA';
 import GlobalStyle from '@/style/globalStyle';
 
@@ -83,7 +84,9 @@ export default function RootLayout({
               <GlobalStyle />
               <Navbar />
               {children}
+              <div id="modal"></div>
               <div id="drawer"></div>
+              <ScrollToTop />
             </ThemeWrapper>
             <Footer />
           </Recoil>

@@ -31,12 +31,14 @@ const BottomDrawerStyle = css`
 const RightDrawerStyle = css`
   top: 0;
   left: 0;
+  width: auto;
   transform: translate3d(100%, 0, 0);
 `;
 
 const LeftDrawerStyle = css`
   top: 0;
   right: 0;
+  width: auto;
   transform: translate3d(-100%, 0, 0);
 `;
 
@@ -89,18 +91,17 @@ const Dimmer = styled.div<{
   direction: string;
   isOpen: boolean;
 }>`
-  opacity: ${({ isOpen }) => (isOpen ? '1' : '0')};
+  display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
+  height: 100vh;
   background-color: ${({ isOpen }) => `rgba(0, 0, 0, ${isOpen ? 0.8 : 0});`};
-  z-index: 0;
   transition: all 0.25s linear;
 `;
 
 const Contents = styled.div`
-  z-index: 0;
   width: 100%;
   max-width: 100vw;
 `;

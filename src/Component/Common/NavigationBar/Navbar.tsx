@@ -1,18 +1,11 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState, memo } from 'react';
 
-import Image from 'next/image';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import styled, { css } from 'styled-components';
 
-import RssButton from '@/Component/Blog/RssButton/RssButton';
-import SearchPostButton from '@/Component/Blog/SearchPost/SearchPost';
-import Drawer from '@/Component/Common/Drawer/Drawer';
-import DrawerImage from '@/Component/Common/Drawer/DrawerImage';
+import NavigationBarDrawer from '@/Component/Blog/NavigationBarDrawer/NavigationBarDrawer';
 import Flex from '@/Component/Common/Flex/Flex';
-import ToggleDarkModeButton from '@/Component/DarkMode/ToggoeButton';
-import useDevice from '@/hooks/useDevice';
 
 const StyledNavBarLayout = styled.nav`
   position: sticky;
@@ -47,16 +40,7 @@ const StyledNavBarTitle = styled(Link)`
     `};
 `;
 
-const StyledButtonArea = styled.div`
-  display: flex;
-  width: 100%;
-  align-items: center;
-  justify-content: center;
-`;
-
-export default function Navbar() {
-  const [isDrawerOpen, setDrawerOpen] = useState(false);
-
+function Navbar() {
   return (
     <StyledNavBarLayout>
       <Flex gap={'10px'}>
@@ -65,34 +49,9 @@ export default function Navbar() {
         <StyledNavBarTitle href="/guestbook">GuestBook</StyledNavBarTitle>
         <StyledNavBarTitle href="/notion/resume">Resume</StyledNavBarTitle>
       </Flex>
-      <div>
-        <DrawerImage
-          width={32}
-          onClick={() => setDrawerOpen(true)}
-          height={32}
-        />
-        <Drawer
-          direction="top"
-          handleOpen={setDrawerOpen}
-          isOpen={isDrawerOpen}
-        >
-          <Flex
-            justifyContent="center"
-            alignItems="center"
-            height={'150px'}
-            margin={'40px auto'}
-            style={{
-              background: 'white',
-            }}
-          >
-            <StyledButtonArea>
-              <RssButton />
-              <SearchPostButton />
-              <ToggleDarkModeButton />
-            </StyledButtonArea>
-          </Flex>
-        </Drawer>
-      </div>
+      <NavigationBarDrawer />
     </StyledNavBarLayout>
   );
 }
+
+export default memo(Navbar);

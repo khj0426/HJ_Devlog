@@ -1,4 +1,5 @@
 import { ChangeEvent, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { CSSTransition } from 'react-transition-group';
 
 import Link from 'next/link';
@@ -8,6 +9,7 @@ import Spinner from '@/Component/Common/Spinner/Spinner';
 import './index.css';
 import useSearchPostQuery from '@/hooks/queries/useSearchPostQuery';
 import useModal from '@/hooks/useModal';
+
 const StyledPostSearchModalWrapper = styled.div`
   position: fixed;
   top: 0;
@@ -49,6 +51,7 @@ const StyledPostSearchModal = styled.div`
 
 export default function PostSearchModal() {
   const { modal, closeModal } = useModal('POST_SEARCH_MODAL_STATE');
+
   const [querySearch, setQuerySearch] = useState<string>('');
   const { data: posts, isFetching } = useSearchPostQuery(querySearch);
 
@@ -60,7 +63,7 @@ export default function PostSearchModal() {
     setQuerySearch(e.target.value);
   };
 
-  return (
+  return createPortal(
     <CSSTransition
       in={modal.isOpen}
       appear
@@ -101,6 +104,7 @@ export default function PostSearchModal() {
             ))}
         </StyledPostSearchModal>
       </StyledPostSearchModalWrapper>
-    </CSSTransition>
+    </CSSTransition>,
+    document.getElementById('modal') as HTMLElement
   );
 }

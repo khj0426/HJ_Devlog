@@ -1,5 +1,6 @@
 'use client';
 
+import { SkeletonCard } from '@/Component/Common/Skeleton/Card';
 import usePostQuery from '@/hooks/queries/usePostQuery';
 import useInfiniteQueryObserver from '@/hooks/useInfiniteQueryObserver';
 
@@ -17,10 +18,12 @@ export default function PostContainer() {
   });
 
   return (
-    <PostList
-      data={data}
-      target={target}
-      isFetchingNextPage={isFetchingNextPage}
-    />
+    <>
+      <PostList data={data} target={target} />
+      {isFetchingNextPage &&
+        Array.from({ length: 6 }).map((_, index) => (
+          <SkeletonCard key={index} />
+        ))}
+    </>
   );
 }

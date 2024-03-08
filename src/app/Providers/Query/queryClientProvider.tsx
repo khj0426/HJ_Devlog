@@ -20,7 +20,7 @@ function Providers({ children }: Props) {
         queries: {
           cacheTime: Infinity,
           staleTime: Infinity,
-          retry: 0,
+          suspense: true,
         },
       },
     })

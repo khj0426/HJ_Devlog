@@ -2,22 +2,15 @@
 
 import type { PostContainerData } from '@/Component/Post/PostContainer';
 
-import { MutableRefObject, useRef } from 'react';
-
-import Skeleton from '@/Component/Common/Skeleton/Skeleton';
+import { MutableRefObject } from 'react';
 
 import PostItem from './PostItem';
 
 type PostListProps = PostContainerData & {
-  isFetchingNextPage?: boolean;
   target?: MutableRefObject<HTMLDivElement | null>;
 };
 
-export default function PostList({
-  data,
-  target,
-  isFetchingNextPage,
-}: PostListProps) {
+export default function PostList({ data, target }: PostListProps) {
   return (
     <>
       {data?.pages?.map((page) =>
@@ -25,10 +18,6 @@ export default function PostList({
       )}
 
       <div ref={target}></div>
-      {isFetchingNextPage &&
-        Array.from({ length: 6 }).map((value, index) => (
-          <Skeleton.Card key={index} />
-        ))}
     </>
   );
 }
