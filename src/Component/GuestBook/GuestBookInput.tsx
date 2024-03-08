@@ -1,3 +1,5 @@
+import { useCallback } from 'react';
+
 import Flex from '@/Component/Common/Flex/Flex';
 import { ToastManager, ToastContainer } from '@/Component/Common/Toast';
 import { Input, InputBox } from '@/Component/Input';
@@ -5,10 +7,7 @@ import usePostGuestBook from '@/hooks/mutations/useGuestBookMutation';
 import useInput from '@/hooks/useInput';
 import { Button } from '@/stories/Button';
 const GuestBookInput = ({ refetch }: { refetch: () => void }) => {
-  const guestBookInput = useInput(
-    '',
-    (e) => e.target.value.length <= 150 && e.target.value !== ''
-  );
+  const guestBookInput = useInput('', (e) => e.target.value.length <= 150);
   const { mutate } = usePostGuestBook();
 
   const handleSubmitGuestBook = () => {

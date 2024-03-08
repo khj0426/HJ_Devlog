@@ -1,7 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { debounce } from '@/utils/debounce';
+
 import { Button } from './Button';
 
+const debounced = debounce(() => alert('하'), 5000);
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta: Meta<typeof Button> = {
   title: 'Example/Button',
@@ -26,6 +29,7 @@ export const Primary: Story = {
   args: {
     primary: true,
     label: 'Button',
+    onClick: debounced,
   },
 };
 

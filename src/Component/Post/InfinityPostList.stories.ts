@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import PostList from '@/Component/Post/PostList';
+import PostList from '@/Component/Post/InfinityPostList';
 
 const meta: Meta<typeof PostList> = {
   title: '포스트 아이템 리스트',

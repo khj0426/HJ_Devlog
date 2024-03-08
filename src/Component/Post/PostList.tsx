@@ -1,23 +1,29 @@
-'use client';
+import type { Item } from '@/@types/postItem';
 
-import type { PostContainerData } from '@/Component/Post/PostContainer';
+import Link from 'next/link';
 
-import { MutableRefObject } from 'react';
+import Flex from '@/Component/Common/Flex/Flex';
 
-import PostItem from './PostItem';
+interface PostListProps {
+  posts: Item[] | undefined;
+  onClick?: () => void;
+}
 
-type PostListProps = PostContainerData & {
-  target?: MutableRefObject<HTMLDivElement | null>;
-};
-
-export default function PostList({ data, target }: PostListProps) {
+export default function PostList({ posts, onClick }: PostListProps) {
   return (
-    <>
-      {data?.pages?.map((page) =>
-        page.posts.map((post) => <PostItem post={post} key={post.title} />)
-      )}
-
-      <div ref={target}></div>
-    </>
+    <Flex gap={5} flexDirection="column" alignItems="flex-start">
+      {posts?.map((post) => (
+        <Link
+          key={post.title}
+          onClick={onClick}
+          href={`/blog/${post.slug}`}
+          style={{
+            color: 'inherit',
+          }}
+        >
+          {post.title}
+        </Link>
+      ))}
+    </Flex>
   );
 }

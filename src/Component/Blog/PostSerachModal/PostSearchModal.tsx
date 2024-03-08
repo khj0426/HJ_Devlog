@@ -1,15 +1,28 @@
+import { useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { CSSTransition } from 'react-transition-group';
 
-import Link from 'next/link';
 import styled from 'styled-components';
-import './index.css';
 
-import Spinner from '@/Component/Common/Spinner/Spinner';
+import './index.css';
+import PostSearchModalContent from '@/Component/Blog/PostSerachModal/PostSearchModalContent';
 import { Input, InputBox } from '@/Component/Input';
-import useSearchPostQuery from '@/hooks/queries/useSearchPostQuery';
 import useInput from '@/hooks/useInput';
 import useModal from '@/hooks/useModal';
+
+const StyledInput = styled.input<{ textAlign?: string; color?: string }>`
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: none;
+
+  font-weight: 600;
+  font-size: 18px;
+
+  outline: none;
+  text-align: ${({ textAlign }) => textAlign ?? 'center'};
+  color: ${({ color }) => color ?? 'inherit'};
+`;
 
 const StyledPostSearchModalWrapper = styled.div`
   position: fixed;
@@ -40,12 +53,9 @@ const StyledPostSearchModal = styled.div`
   overflow: auto;
 `;
 
-export default function PostSearchModal() {
+function PostSearchModal() {
   const { modal, closeModal } = useModal('POST_SEARCH_MODAL_STATE');
-
-  const postSearchInput = useInput('', (e) => e.target.value.length < 150);
-
-  const { data: posts, isFetching } = useSearchPostQuery(postSearchInput.value);
+  const [keyword, setKeyWord] = useState('');
 
   return createPortal(
     <CSSTransition
@@ -56,7 +66,7 @@ export default function PostSearchModal() {
       timeout={300}
       onExited={closeModal}
     >
-      <StyledPostSearchModalWrapper onClick={closeModal} key={'modal'}>
+      <StyledPostSearchModalWrapper onClick={closeModal}>
         <StyledPostSearchModal>
           <p
             onClick={closeModal}
@@ -67,29 +77,18 @@ export default function PostSearchModal() {
             X
           </p>
           <InputBox color="rgb(38, 41, 43)">
-            <Input {...postSearchInput} autoFocus color="white" />
+            <StyledInput
+              onChange={(e) => setKeyWord(e.target.value)}
+              autoFocus
+              color="white"
+            />
           </InputBox>
-          {postSearchInput.error && <p>🗯 최대 150자까지 입력해주세요</p>}
-
-          {isFetching ? (
-            <Spinner timing={1} />
-          ) : (
-            posts?.map((post) => (
-              <Link
-                key={post.title}
-                href={`/blog/${post.slug}`}
-                onClick={() => closeModal()}
-                style={{
-                  color: 'inherit',
-                }}
-              >
-                {post.title}
-              </Link>
-            ))
-          )}
+          <PostSearchModalContent keyword={keyword} />
         </StyledPostSearchModal>
       </StyledPostSearchModalWrapper>
     </CSSTransition>,
     document.getElementById('modal') as HTMLElement
   );
 }
+
+export default PostSearchModal;
