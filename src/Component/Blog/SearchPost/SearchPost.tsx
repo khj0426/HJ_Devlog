@@ -7,7 +7,7 @@ import useModal from '@/hooks/useModal';
 import SearchPostImage from '/public/images/search.webp';
 
 export default function SearchPostButton() {
-  const { modal, toggleModal } = useModal('POST_SEARCH_MODAL_STATE');
+  const { modal, openModal } = useModal('POST_SEARCH_MODAL_STATE');
 
   return (
     <>
@@ -22,7 +22,7 @@ export default function SearchPostButton() {
           cursor: 'pointer',
         }}
         src={SearchPostImage}
-        onClick={toggleModal}
+        onClick={openModal}
       />
       {modal.isOpen && <PostSearchModal />}
     </>

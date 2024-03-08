@@ -1,13 +1,14 @@
-import { ChangeEvent, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { CSSTransition } from 'react-transition-group';
 
 import Link from 'next/link';
 import styled from 'styled-components';
+import './index.css';
 
 import Spinner from '@/Component/Common/Spinner/Spinner';
-import './index.css';
+import { Input, InputBox } from '@/Component/Input';
 import useSearchPostQuery from '@/hooks/queries/useSearchPostQuery';
+import useInput from '@/hooks/useInput';
 import useModal from '@/hooks/useModal';
 
 const StyledPostSearchModalWrapper = styled.div`
@@ -16,24 +17,14 @@ const StyledPostSearchModalWrapper = styled.div`
   left: 0;
   backdrop-filter: blur(1px);
   width: 100%;
-  height: 100%;
-`;
-
-const StyledPostSearchInput = styled.input`
-  padding: 14px 24px;
-  width: 100%;
-  height: 100px;
-  box-sizing: border-box;
-  outline: none;
-  border: none;
-  background-color: inherit;
-  color: rgb(255, 255, 255);
-  font-family: inherit;
+  min-height: 100%;
 `;
 
 const StyledPostSearchModal = styled.div`
   width: 350px;
   min-height: 450px;
+  max-height: 500px;
+  overflow-y: scroll;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -52,16 +43,9 @@ const StyledPostSearchModal = styled.div`
 export default function PostSearchModal() {
   const { modal, closeModal } = useModal('POST_SEARCH_MODAL_STATE');
 
-  const [querySearch, setQuerySearch] = useState<string>('');
-  const { data: posts, isFetching } = useSearchPostQuery(querySearch);
+  const postSearchInput = useInput('', (e) => e.target.value.length < 150);
 
-  const handleChangeQuerySearch = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.value.length === 0) {
-      return;
-    }
-
-    setQuerySearch(e.target.value);
-  };
+  const { data: posts, isFetching } = useSearchPostQuery(postSearchInput.value);
 
   return createPortal(
     <CSSTransition
@@ -73,7 +57,7 @@ export default function PostSearchModal() {
       onExited={closeModal}
     >
       <StyledPostSearchModalWrapper onClick={closeModal} key={'modal'}>
-        <StyledPostSearchModal onClick={(e) => e.stopPropagation()}>
+        <StyledPostSearchModal>
           <p
             onClick={closeModal}
             style={{
@@ -82,14 +66,14 @@ export default function PostSearchModal() {
           >
             X
           </p>
-          <StyledPostSearchInput
-            autoFocus
-            placeholder="검색할 내용을 입력해주세요."
-            onChange={handleChangeQuerySearch}
-          />
-          {isFetching && <Spinner timing={1} />}
-          {!isFetching &&
-            posts &&
+          <InputBox color="rgb(38, 41, 43)">
+            <Input {...postSearchInput} autoFocus color="white" />
+          </InputBox>
+          {postSearchInput.error && <p>🗯 최대 150자까지 입력해주세요</p>}
+
+          {isFetching ? (
+            <Spinner timing={1} />
+          ) : (
             posts?.map((post) => (
               <Link
                 key={post.title}
@@ -101,7 +85,8 @@ export default function PostSearchModal() {
               >
                 {post.title}
               </Link>
-            ))}
+            ))
+          )}
         </StyledPostSearchModal>
       </StyledPostSearchModalWrapper>
     </CSSTransition>,

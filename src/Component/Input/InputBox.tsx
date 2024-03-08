@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const InputBox = styled.div<{
+export const InputBox = styled.div<{
   width?: string;
   isError?: boolean;
   color?: string;

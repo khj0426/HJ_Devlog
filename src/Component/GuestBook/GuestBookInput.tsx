@@ -7,11 +7,15 @@ import { Button } from '@/stories/Button';
 const GuestBookInput = ({ refetch }: { refetch: () => void }) => {
   const guestBookInput = useInput(
     '',
-    (e) => e.target.value.length <= 150 && e.target.value.length !== 0
+    (e) => e.target.value.length <= 150 && e.target.value !== ''
   );
   const { mutate } = usePostGuestBook();
 
   const handleSubmitGuestBook = () => {
+    if (guestBookInput.value.length === 0) {
+      ToastManager.error('최소 한글자 이상 입력해주세요');
+      return;
+    }
     mutate(
       {
         comment: guestBookInput.value,
@@ -32,32 +36,29 @@ const GuestBookInput = ({ refetch }: { refetch: () => void }) => {
       justifyContent="center"
       flexWrap="wrap"
       margin={'0 auto'}
-      flexDirection="column"
       width={'80%'}
     >
-      <Flex>
-        <InputBox width="350px" color="#f8f9fa">
-          <Input
-            {...guestBookInput}
-            placeholder="😀 방명록을 적어주세요"
-            style={{
-              fontSize: '1rem',
-            }}
-          />
-        </InputBox>
-        <Button
-          disabled={guestBookInput.error}
-          label="쓰기"
-          type="button"
+      <InputBox width="350px" color="#f8f9fa">
+        <Input
+          {...guestBookInput}
+          placeholder="😀 방명록을 적어주세요"
           style={{
-            borderRadius: '7px',
+            fontSize: '1rem',
           }}
-          onClick={handleSubmitGuestBook}
-          backgroundColor="#f8f9fa"
-        >
-          쓰기
-        </Button>
-      </Flex>
+        />
+      </InputBox>
+      <Button
+        disabled={guestBookInput.error}
+        label="쓰기"
+        type="button"
+        style={{
+          borderRadius: '7px',
+        }}
+        onClick={handleSubmitGuestBook}
+        backgroundColor="#f8f9fa"
+      >
+        쓰기
+      </Button>
       <ToastContainer enterTimeout={1000} leaveTimeout={1000} />
     </Flex>
   );
