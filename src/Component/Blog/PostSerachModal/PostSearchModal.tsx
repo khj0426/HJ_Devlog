@@ -6,23 +6,12 @@ import styled from 'styled-components';
 
 import './index.css';
 import PostSearchModalContent from '@/Component/Blog/PostSerachModal/PostSearchModalContent';
+import Spinner from '@/Component/Common/Spinner/Spinner';
 import { Input, InputBox } from '@/Component/Input';
+import PostList from '@/Component/Post/PostList';
+import useSearchPostQuery from '@/hooks/queries/useSearchPostQuery';
 import useInput from '@/hooks/useInput';
 import useModal from '@/hooks/useModal';
-
-const StyledInput = styled.input<{ textAlign?: string; color?: string }>`
-  width: 100%;
-  height: 100%;
-  border: none;
-  background: none;
-
-  font-weight: 600;
-  font-size: 18px;
-
-  outline: none;
-  text-align: ${({ textAlign }) => textAlign ?? 'center'};
-  color: ${({ color }) => color ?? 'inherit'};
-`;
 
 const StyledPostSearchModalWrapper = styled.div`
   position: fixed;
@@ -54,8 +43,14 @@ const StyledPostSearchModal = styled.div`
 `;
 
 function PostSearchModal() {
+  const {
+    onChange,
+    value: keyword,
+    error,
+  } = useInput('', (e) => e.target.value.length <= 150);
   const { modal, closeModal } = useModal('POST_SEARCH_MODAL_STATE');
-  const [keyword, setKeyWord] = useState('');
+
+  const { isFetching, data: posts } = useSearchPostQuery(keyword);
 
   return createPortal(
     <CSSTransition
@@ -77,13 +72,12 @@ function PostSearchModal() {
             X
           </p>
           <InputBox color="rgb(38, 41, 43)">
-            <StyledInput
-              onChange={(e) => setKeyWord(e.target.value)}
-              autoFocus
-              color="white"
-            />
+            <Input autoFocus onChange={onChange} />
           </InputBox>
-          <PostSearchModalContent keyword={keyword} />
+          {error && (
+            <p style={{ color: '#db4455' }}>최대 150자까지 입력 가능합니다!</p>
+          )}
+          {isFetching ? <Spinner timing={2} /> : <PostList posts={posts} />}
         </StyledPostSearchModal>
       </StyledPostSearchModalWrapper>
     </CSSTransition>,

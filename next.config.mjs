@@ -56,7 +56,13 @@ const sentryConfig = {
   disableLogger: true,
 };
 
-const securityHeaders = [{ key: 'X-XSS-Protection', value: '1; mode=block' }];
+const securityHeaders = [
+  { key: 'X-XSS-Protection', value: '1; mode=block' },
+  {
+    key: 'X-Frame-Options',
+    value: 'DENY',
+  },
+];
 
 export default withPlaiceholder(
   withSentryConfig(bundleAnalyzerConfig, sentryConfig)

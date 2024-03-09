@@ -10,18 +10,12 @@ const useInput = (
 
   const onChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      if (typeof isControlled === 'undefined' || isControlled === false) {
-        return;
-      }
       if (!prevConditionCallback(e)) {
         setError(true);
         return;
       }
       setError(false);
-
-      if (isControlled) {
-        setValue(e.target.value);
-      }
+      setValue(e.target.value);
     },
     [prevConditionCallback, isControlled]
   );
