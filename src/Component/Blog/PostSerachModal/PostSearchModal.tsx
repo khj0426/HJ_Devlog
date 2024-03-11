@@ -1,12 +1,9 @@
-import { useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { CSSTransition } from 'react-transition-group';
 
 import styled from 'styled-components';
 
 import './index.css';
-import PostSearchModalContent from '@/Component/Blog/PostSerachModal/PostSearchModalContent';
-import Spinner from '@/Component/Common/Spinner/Spinner';
 import { Input, InputBox } from '@/Component/Input';
 import PostList from '@/Component/Post/PostList';
 import useSearchPostQuery from '@/hooks/queries/useSearchPostQuery';
@@ -77,7 +74,7 @@ function PostSearchModal() {
           {error && (
             <p style={{ color: '#db4455' }}>최대 150자까지 입력 가능합니다!</p>
           )}
-          {isFetching ? <Spinner timing={2} /> : <PostList posts={posts} />}
+          <PostList posts={posts} />
         </StyledPostSearchModal>
       </StyledPostSearchModalWrapper>
     </CSSTransition>,
