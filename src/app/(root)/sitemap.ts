@@ -21,6 +21,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${process.env.NEXT_PUBLIC_PRODUCT_URL}/about`,
       lastModified: new Date(),
     },
+    {
+      url: `${process.env.NEXT_PUBLIC_PRODUCT_URL}/notion/resume`,
+      lastModified: new Date(),
+    },
+    {
+      url: `${process.env.NEXT_PUBLIC_PRODUCT_URL}/guestbook`,
+      lastModified: new Date(),
+    },
     ...postsSiteMap,
   ];
 }
