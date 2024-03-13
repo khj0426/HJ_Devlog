@@ -6,7 +6,7 @@ const StyledPostLayOut = styled.section`
   padding-left: 5px;
   border-radius: 25px;
   margin: 25px auto;
-  background: ${({ theme }) => theme.backgroundPost};
+  background: ${({ theme }) => theme.currentTheme.backgroundPost};
   max-width: 800px;
   width: 60%;
 

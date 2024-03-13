@@ -8,11 +8,11 @@ import styled from 'styled-components';
 const CategoryListStyle = styled.span`
   display: flex;
   flex-direction: column;
-  color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.currentTheme.text};
   font-size: 18px;
   cursor: pointer;
   &:hover {
-    text-decoration: underline ${({ theme }) => theme.text};
+    text-decoration: underline ${({ theme }) => theme.currentTheme.text};
   }
 
   @media ${({ theme }) => theme?.device?.mobile} {

@@ -19,7 +19,7 @@ const PostCard = styled.div`
     transform: translateY(-10px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
   }
-  background: ${({ theme }) => theme.backgroundPost};
+  background: ${({ theme }) => theme.currentTheme.backgroundPost};
 `;
 
 const PostImage = styled(Image)`

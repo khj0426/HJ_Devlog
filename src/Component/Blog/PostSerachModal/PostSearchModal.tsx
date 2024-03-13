@@ -47,7 +47,7 @@ function PostSearchModal() {
   } = useInput('', (e) => e.target.value.length <= 150);
   const { modal, closeModal } = useModal('POST_SEARCH_MODAL_STATE');
 
-  const { isFetching, data: posts } = useSearchPostQuery(keyword);
+  const { data: posts } = useSearchPostQuery(keyword);
 
   return createPortal(
     <CSSTransition

@@ -8,6 +8,8 @@ const lightTheme = {
   blue: '#1976d2',
 } as const;
 
+export type lightThemeTypes = typeof lightTheme;
+
 const darkTheme = {
   body: '#2f3136',
   text: '#fafafa',
@@ -17,5 +19,7 @@ const darkTheme = {
   backgroundPost: 'rgba(31, 46, 61,0.3)',
   blue: '#1976d2',
 } as const;
+
+export type darkThemeTypes = typeof darkTheme;
 
 export { darkTheme, lightTheme };

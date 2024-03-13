@@ -15,17 +15,17 @@ const StyledNavBarLayout = styled.nav`
   width: 100%;
   display: flex;
   font-size: 20px;
-  color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.currentTheme.text};
   gap: 15px;
   margin: 0 auto;
-  background-color: ${({ theme }) => theme.body};
+  background-color: ${({ theme }) => theme.currentTheme.body};
   align-items: center;
   justify-content: space-around;
   z-index: 999;
 `;
 
 const StyledNavBarTitle = styled(Link)`
-  @media ${({ theme }) => theme?.device?.mobile} {
+  @media ${({ theme }) => theme.device.mobile} {
     font-size: 14px;
   }
   font-weight: 600;

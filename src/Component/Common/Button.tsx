@@ -3,7 +3,7 @@ import type { ButtonProps } from '@/@types/ButtonType';
 import styled from 'styled-components';
 
 const StyledBaseButton = styled.button<ButtonProps>`
-  background-color: ${({ theme }) => theme.backgroundPost};
+  background-color: ${({ theme }) => theme.currentTheme.backgroundPost};
   font-weight: bold;
   border-radius: 0.25rem;
   cursor: pointer;
@@ -14,7 +14,7 @@ const StyledBaseButton = styled.button<ButtonProps>`
     cursor: not-allowed;
     opacity: 0.5;
   }
-  color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.currentTheme.text};
   transition: icon 0.3s ease-in-out;
   border: ${(props) =>
     props.variant === 'outlined' ? '1px rgba(255,255,255,1)' : 'none'};
