@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 
+import { postQueryKey } from '@/hooks/queries/queryKey';
 import { getCategoryPosts } from '@/services/Post';
 
 export default function useCategoryPostQuery({
@@ -8,7 +9,7 @@ export default function useCategoryPostQuery({
   category: string;
 }) {
   return useQuery({
-    queryKey: ['getCategoryPosts', category],
+    queryKey: postQueryKey.filteredCategoryPost(category),
     queryFn: () => getCategoryPosts({ category }),
   });
 }

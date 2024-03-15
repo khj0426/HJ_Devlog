@@ -3,6 +3,7 @@ import { dehydrate } from '@tanstack/react-query';
 import CategoryList from '@/Component/CategoryList/CategoryList';
 import Hydrate from '@/Component/Common/Hydrate';
 import PostContainer from '@/Component/Post/PostContainer';
+import { postQueryKey } from '@/hooks/queries/queryKey';
 import { getPosts } from '@/services/Post';
 import getQueryClient from '@/utils/getQueryClient';
 import { getAllCategories } from '~/lib/api';
@@ -10,7 +11,7 @@ import { getAllCategories } from '~/lib/api';
 export default async function Home() {
   const queryClient = getQueryClient();
   await queryClient.prefetchInfiniteQuery({
-    queryKey: ['getPosts'],
+    queryKey: postQueryKey.all,
     queryFn: () => getPosts({ pageParams: 0 }),
   });
   const dehydratePostState = dehydrate(queryClient, {
