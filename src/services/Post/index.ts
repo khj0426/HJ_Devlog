@@ -1,3 +1,4 @@
+'use server';
 import type { Item } from '@/@types/postItem';
 
 import { get } from '@/utils/axiosClient';
