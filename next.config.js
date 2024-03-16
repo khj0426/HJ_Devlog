@@ -1,6 +1,15 @@
-import withBundleAnalyzer from '@next/bundle-analyzer';
-import withPlaiceholder from '@plaiceholder/next';
-import { withSentryConfig } from '@sentry/nextjs';
+/**
+ * @type {import('next').NextConfig}
+ */
+const withBundleAnalyzer = require('@next/bundle-analyzer');
+const { withSentryConfig } = require('@sentry/nextjs');
+
+const isProduction = process.env.NODE_ENV === 'production';
+
+const securityHeaders = [
+  { key: 'X-XSS-Protection', value: '1; mode=block' },
+  { key: 'X-Frame-Options', value: 'DENY' },
+];
 
 const nextConfig = {
   async headers() {
@@ -27,6 +36,7 @@ const nextConfig = {
     );
     return config;
   },
+
   reactStrictMode: true,
   compiler: {
     styledComponents: true,
@@ -41,9 +51,7 @@ const nextConfig = {
     formats: ['image/avif', 'image/webp'],
   },
   compress: true,
-  basePath: '/',
 };
-const bundleAnalyzerConfig = withBundleAnalyzer(nextConfig);
 
 const sentryConfig = {
   silent: true,
@@ -56,14 +64,4 @@ const sentryConfig = {
   disableLogger: true,
 };
 
-const securityHeaders = [
-  { key: 'X-XSS-Protection', value: '1; mode=block' },
-  {
-    key: 'X-Frame-Options',
-    value: 'DENY',
-  },
-];
-
-export default withPlaiceholder(
-  withSentryConfig(bundleAnalyzerConfig, sentryConfig)
-);
+module.exports = withSentryConfig(nextConfig, sentryConfig);

@@ -31,8 +31,8 @@ const GlobalStyle = createGlobalStyle`
     min-height: 100vh;
     line-height: 1.5;
     max-width: 100%;
-    background-color: ${({ theme }) => theme.background};
-    color: ${({ theme }) => theme.text};
+    background-color: ${({ theme }) => theme.currentTheme.background};
+    color: ${({ theme }) => theme.currentTheme.text};
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -46,6 +46,10 @@ const GlobalStyle = createGlobalStyle`
     white-space: pre-wrap;
     font-family: inherit;
     word-wrap: break-word;
+  }
+
+  a{
+    color:${({ theme }) => theme.currentTheme.text};
   }
 
 `;

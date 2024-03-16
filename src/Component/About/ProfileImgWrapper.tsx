@@ -1,14 +1,10 @@
 import Image from 'next/image';
 
-import getBase64BlurImage from '@/utils/getBase64BlurImage';
 export default async function ProfileImageWrapper({
   imgurl,
 }: {
   imgurl: string;
 }) {
-  const { base64 } = await getBase64BlurImage({
-    src: imgurl,
-  });
   return (
     <Image
       placeholder="blur"
@@ -16,7 +12,7 @@ export default async function ProfileImageWrapper({
       alt="About 페이지 프로필 이미지"
       width={300}
       height={300}
-      blurDataURL={base64}
+      blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNcKgkAAWkAwC+Aq/wAAAAASUVORK5CYII="
       priority
     />
   );
