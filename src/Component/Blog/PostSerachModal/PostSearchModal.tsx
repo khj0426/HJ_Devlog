@@ -4,6 +4,7 @@ import { CSSTransition } from 'react-transition-group';
 import styled from 'styled-components';
 
 import './index.css';
+import ModalPortal from '@/Component/Common/Modal/ModalPortal';
 import { Input, InputBox } from '@/Component/Input';
 import PostList from '@/Component/Post/PostList';
 import useSearchPostQuery from '@/hooks/queries/useSearchPostQuery';
@@ -49,36 +50,39 @@ function PostSearchModal() {
 
   const { data: posts } = useSearchPostQuery(keyword);
 
-  return createPortal(
-    <CSSTransition
-      in={modal.isOpen}
-      appear
-      mountOnEnter
-      classNames="modal"
-      timeout={300}
-      onExited={closeModal}
-    >
-      <StyledPostSearchModalWrapper onClick={closeModal}>
-        <StyledPostSearchModal>
-          <p
-            onClick={closeModal}
-            style={{
-              cursor: 'pointer',
-            }}
-          >
-            X
-          </p>
-          <InputBox color="rgb(38, 41, 43)">
-            <Input autoFocus onChange={onChange} />
-          </InputBox>
-          {error && (
-            <p style={{ color: '#db4455' }}>최대 150자까지 입력 가능합니다!</p>
-          )}
-          <PostList posts={posts} />
-        </StyledPostSearchModal>
-      </StyledPostSearchModalWrapper>
-    </CSSTransition>,
-    document.getElementById('modal') as HTMLElement
+  return (
+    <ModalPortal>
+      <CSSTransition
+        in={modal.isOpen}
+        appear
+        mountOnEnter
+        classNames="modal"
+        timeout={300}
+        onExited={closeModal}
+      >
+        <StyledPostSearchModalWrapper onClick={closeModal}>
+          <StyledPostSearchModal>
+            <p
+              onClick={closeModal}
+              style={{
+                cursor: 'pointer',
+              }}
+            >
+              X
+            </p>
+            <InputBox color="rgb(38, 41, 43)">
+              <Input autoFocus onChange={onChange} />
+            </InputBox>
+            {error && (
+              <p style={{ color: '#db4455' }}>
+                최대 150자까지 입력 가능합니다!
+              </p>
+            )}
+            <PostList posts={posts} />
+          </StyledPostSearchModal>
+        </StyledPostSearchModalWrapper>
+      </CSSTransition>
+    </ModalPortal>
   );
 }
 
