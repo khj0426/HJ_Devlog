@@ -1,4 +1,3 @@
-import { createPortal } from 'react-dom';
 import { CSSTransition } from 'react-transition-group';
 
 import styled from 'styled-components';

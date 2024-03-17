@@ -9,12 +9,21 @@ import { darkTheme, lightTheme } from '../src/style/theme/darkMode';
 import mediaTheme from '../src/style/theme/media';
 import { themeAtom } from '../src/app/Providers/Recoil/globalAtom';
 
+import deviceTheme from '../src/style/theme/media';
 const ThemeWrapper = ({ children }) => {
   const currentTheme = useRecoilValue(themeAtom);
-  const theme = currentTheme === 'light' ? lightTheme : darkTheme;
-  const themeObj = { ...theme, ...mediaTheme };
+  const themeObj = currentTheme === 'light' ? lightTheme : darkTheme;
 
-  return <ThemeProvider theme={themeObj}>{children}</ThemeProvider>;
+  return (
+    <ThemeProvider
+      theme={{
+        currentTheme: themeObj,
+        device: deviceTheme,
+      }}
+    >
+      {children}
+    </ThemeProvider>
+  );
 };
 
 const preview: Preview = {
