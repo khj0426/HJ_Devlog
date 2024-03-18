@@ -3,12 +3,7 @@ import Skeleton from '@/Component/Common/Skeleton/Skeleton';
 export default function AboutLoading() {
   return (
     <main>
-      <Flex
-        width={'80%'}
-        flexDirection="column"
-        flexWrap="wrap"
-        margin={'0 auto'}
-      >
+      <Flex flexDirection="column" flexWrap="wrap" margin={'0 auto'}>
         <Skeleton.Text width={350} height={25} />
         <Flex justifyContent="center" gap={'25px'} flexWrap="wrap">
           <Skeleton.Text width={300} height={300} />
