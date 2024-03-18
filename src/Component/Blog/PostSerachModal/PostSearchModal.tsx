@@ -3,6 +3,7 @@ import { CSSTransition } from 'react-transition-group';
 import styled from 'styled-components';
 
 import './index.css';
+import CloseButton from '@/Component/Common/CloseButton/CloseButton';
 import ModalPortal from '@/Component/Common/Modal/ModalPortal';
 import { Input, InputBox } from '@/Component/Input';
 import PostList from '@/Component/Post/PostList';
@@ -61,14 +62,7 @@ function PostSearchModal() {
       >
         <StyledPostSearchModalWrapper onClick={closeModal}>
           <StyledPostSearchModal>
-            <p
-              onClick={closeModal}
-              style={{
-                cursor: 'pointer',
-              }}
-            >
-              X
-            </p>
+            <CloseButton color="white" />
             <InputBox color="rgb(38, 41, 43)">
               <Input autoFocus onChange={onChange} />
             </InputBox>

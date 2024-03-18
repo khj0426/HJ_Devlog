@@ -1,0 +1,10 @@
+.close-button {
+  transition: transform 300ms;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+.close-button:hover {
+  transform: scale(1.2);
+}
