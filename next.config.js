@@ -39,6 +39,7 @@ const nextConfig = {
 
   reactStrictMode: true,
   compiler: {
+    removeConsole: true,
     styledComponents: true,
   },
   images: {

@@ -20,7 +20,7 @@ const generateRSS = async () => {
 
     for (const post of posts) {
       const rssPost = getPostBySlug(post.slug, ['content']);
-      const url = `${getCurrentBasePath()}/blog/${post.title}`;
+      const url = `${getCurrentBasePath()}/blog/${decodeURIComponent(post.title)}`;
       feed.item({
         title: post.title,
         description: post.description,
