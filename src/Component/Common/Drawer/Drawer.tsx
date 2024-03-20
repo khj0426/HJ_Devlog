@@ -17,29 +17,22 @@ interface DrawerProps extends ComponentProps<'div'> {
 const TopDrawerStyle = css`
   top: 0;
   left: 0;
-  right: 0;
-  transform: translate3d(0, -100%, 0);
 `;
 
 const BottomDrawerStyle = css`
   bottom: 0;
-  left: 0;
-  right: 0;
-  transform: translate3d(0, 100%, 0);
 `;
 
 const RightDrawerStyle = css`
   top: 0;
-  left: 0;
-  width: auto;
-  transform: translate3d(100%, 0, 0);
+  right: 0;
+  width: 150px;
 `;
 
 const LeftDrawerStyle = css`
   top: 0;
-  right: 0;
-  width: auto;
-  transform: translate3d(-100%, 0, 0);
+  left: 0;
+  width: 150px;
 `;
 
 const Container = styled.div<{ direction: string; isOpen: boolean }>`
@@ -50,7 +43,8 @@ const Container = styled.div<{ direction: string; isOpen: boolean }>`
   width: 100%;
   height: 100%;
   position: absolute;
-  transition: all 0.25s ease-in-out;
+
+  transition: all 3s ease-in-out;
   ${({ direction, isOpen }) => {
     switch (direction) {
       case 'top':
@@ -91,19 +85,21 @@ const Dimmer = styled.div<{
   direction: string;
   isOpen: boolean;
 }>`
-  display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
+  display: ${({ isOpen }) => (isOpen ? 'flex' : 'none')};
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
+  height: 100%;
+  z-index: 999;
   background-color: ${({ isOpen }) => `rgba(0, 0, 0, ${isOpen ? 0.8 : 0});`};
-  transition: all 0.25s linear;
 `;
 
-const Contents = styled.div`
+const Contents = styled.div<{ direction: DrawerProps['direction'] }>`
   width: 100%;
   max-width: 100vw;
+  background-color: ${({ direction }) =>
+    (direction === 'left' || direction === 'right') && 'white'};
 `;
 
 export default function Drawer({
@@ -134,7 +130,9 @@ export default function Drawer({
           isOpen={isOpen}
           className={`${rest.className} ${isOpen && open}`}
         >
-          <Contents ref={drawerContainer}>{rest.children}</Contents>
+          <Contents ref={drawerContainer} direction={direction}>
+            {rest.children}
+          </Contents>
         </Container>
       </Dimmer>,
       drawerRoot.current

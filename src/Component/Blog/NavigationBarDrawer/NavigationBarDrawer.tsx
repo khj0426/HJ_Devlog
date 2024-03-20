@@ -16,19 +16,20 @@ export default function NavigationBarDrawer() {
         onClick={() => setDrawerOpen(!isDrawerOpen)}
         height={32}
       />
-      <Drawer direction="top" handleOpen={setDrawerOpen} isOpen={isDrawerOpen}>
+      <Drawer
+        direction="right"
+        handleOpen={setDrawerOpen}
+        isOpen={isDrawerOpen}
+      >
         <Flex
-          height={'150px'}
-          margin={'40px auto'}
-          style={{
-            background: 'white',
-          }}
+          gap={'5px'}
+          margin={'50px auto'}
+          flexDirection="column"
+          height={'100vh'}
         >
-          <Flex width={'100%'} gap={'5px'} justifyContent="center">
-            <RssButton />
-            <SearchPostButton />
-            <ToggleDarkModeButton />
-          </Flex>
+          <RssButton />
+          <SearchPostButton />
+          <ToggleDarkModeButton />
         </Flex>
       </Drawer>
     </div>
