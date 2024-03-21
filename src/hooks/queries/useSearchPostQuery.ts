@@ -1,16 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { postQueryKey } from '@/hooks/queries/queryKey';
-import { getSearchQueryPostList } from '@/services/Post';
-
-//동일한 searchInput이 들어왔을 때 불필요한 api 호출을 최소화해보자
+import { postQueryOptions } from '@/hooks/queries/queryKey';
 
 export default function useSearchPostQuery(searchPostQuery: string) {
-  return useQuery({
-    queryKey:postQueryKey.searchInputPost(searchPostQuery),
-    queryFn: () => getSearchQueryPostList(searchPostQuery),
-    enabled: !!searchPostQuery,
-    staleTime: 60 * 10 * 1000,
-    cacheTime: 60 * 10 * 1000,
-  });
+  return useQuery(postQueryOptions.searchInputPost(searchPostQuery));
 }

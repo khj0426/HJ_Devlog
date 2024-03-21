@@ -70,7 +70,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko" className={baseFont.className}>
-      <GoogleAnalytics />
+      <meta
+        name="naver-site-verification"
+        content="e0f502f252b42b1b2aa8779c7927832b439a42ab"
+      />
       <body className="App">
         <Providers>
           <Recoil>
