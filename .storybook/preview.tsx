@@ -21,6 +21,7 @@ const ThemeWrapper = ({ children }) => {
         device: deviceTheme,
       }}
     >
+      <div id="modal"></div>
       {children}
     </ThemeProvider>
   );
