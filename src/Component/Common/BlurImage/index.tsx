@@ -16,7 +16,7 @@ export default async function BlurImage({
   blurWidth,
   blurSize,
 }: BlurImageProps) {
-  const { base64, img } = await getBase64BlurImage({
+  const { blurImage } = await getBase64BlurImage({
     src: src ?? '',
     blurSize,
   });
@@ -27,7 +27,7 @@ export default async function BlurImage({
       width={blurWidth}
       height={blurHeight}
       placeholder="blur"
-      blurDataURL={base64}
+      blurDataURL={blurImage}
     />
   );
 }
