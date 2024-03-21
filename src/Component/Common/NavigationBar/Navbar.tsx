@@ -1,5 +1,5 @@
 'use client';
-import { useCallback, useEffect, useState, memo } from 'react';
+import { memo } from 'react';
 
 import Link from 'next/link';
 import styled, { css } from 'styled-components';

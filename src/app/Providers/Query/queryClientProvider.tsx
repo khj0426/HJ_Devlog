@@ -5,9 +5,6 @@
 import React from 'react';
 
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
-import { AxiosError } from 'axios';
-
-import { ToastManager } from '@/Component/Common/Toast';
 
 type Props = {
   children: React.ReactNode;

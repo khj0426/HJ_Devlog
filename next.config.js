@@ -1,10 +1,9 @@
 /**
  * @type {import('next').NextConfig}
  */
-const withBundleAnalyzer = require('@next/bundle-analyzer');
-const { withSentryConfig } = require('@sentry/nextjs');
-
-const isProduction = process.env.NODE_ENV === 'production';
+const {
+  withSentryConfig,
+} = require('@sentry/nextjs/cjs/config/withSentryConfig');
 
 const securityHeaders = [
   { key: 'X-XSS-Protection', value: '1; mode=block' },
@@ -12,6 +11,7 @@ const securityHeaders = [
 ];
 
 const nextConfig = {
+  compress: true,
   async headers() {
     return [{ source: '/(.*)', headers: securityHeaders }];
   },

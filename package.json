@@ -23,8 +23,7 @@
   "dependencies": {
     "@giscus/react": "^2.2.8",
     "@next/bundle-analyzer": "^13.4.7",
-    "@plaiceholder/next": "^3.0.0",
-    "@sentry/nextjs": "^7.64.0",
+    "@sentry/nextjs": "^7.15.0",
     "@tanstack/react-query": "^4.33.0",
     "@types/react-transition-group": "^4.4.10",
     "@types/rss": "^0.0.32",
@@ -39,7 +38,6 @@
     "gray-matter": "^4.0.3",
     "next": "13.5",
     "notion-client": "^6.16.0",
-    "plaiceholder": "^3.0.0",
     "postcss": "8.4.24",
     "prism-react-renderer": "^2.0.5",
     "react": "18.2.0",

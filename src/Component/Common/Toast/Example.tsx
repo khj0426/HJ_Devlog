@@ -1,8 +1,8 @@
-import React from 'react';
+import { Component } from 'react';
 
 import { ToastContainer } from '@/Component/Common/Toast/ToastContainer';
 import ToastManager from '@/Component/Common/Toast/ToastManager';
-class Example extends React.Component {
+class Example extends Component {
   createNotification = (type: any) => {
     return () => {
       switch (type) {

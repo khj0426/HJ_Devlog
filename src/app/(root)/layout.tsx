@@ -13,12 +13,6 @@ import GlobalStyle from '@/style/globalStyle';
 import Recoil from '../Providers/Recoil/Recoil';
 import { ThemeWrapper } from '../Providers/Styled-Component/themeWrapper';
 
-declare global {
-  interface Window {
-    naver: any;
-  }
-}
-
 const baseFont = Montserrat({
   subsets: ['latin'],
   preload: true,

@@ -2,8 +2,7 @@ import React, { useCallback, useState } from 'react';
 
 const useInput = (
   initialState: string,
-  prevConditionCallback: (_e: React.ChangeEvent<HTMLInputElement>) => boolean,
-  isControlled?: boolean
+  prevConditionCallback: (_e: React.ChangeEvent<HTMLInputElement>) => boolean
 ) => {
   const [value, setValue] = useState(initialState);
   const [error, setError] = useState(false);
@@ -17,7 +16,7 @@ const useInput = (
       setError(false);
       setValue(e.target.value);
     },
-    [prevConditionCallback, isControlled]
+    [prevConditionCallback]
   );
 
   return {
