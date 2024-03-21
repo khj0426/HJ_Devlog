@@ -36,7 +36,7 @@
     "firebase": "^10.7.1",
     "github-label-sync": "^2.3.1",
     "gray-matter": "^4.0.3",
-    "next": "13.5",
+    "next": "13.4",
     "notion-client": "^6.16.0",
     "postcss": "8.4.24",
     "prism-react-renderer": "^2.0.5",
