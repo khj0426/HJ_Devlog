@@ -1,7 +1,21 @@
+//TODO - useInfinityQueryOptions 관리 시 타입 오류 해결하기.
+
 import { useInfiniteQuery } from '@tanstack/react-query';
 
-import { postQueryOptions } from '@/hooks/queries/queryKey';
+import { postQueryKey } from '@/hooks/queries/queryKey';
+import { getPosts } from '@/services/Post';
 
 export default function usePostQuery() {
-  return useInfiniteQuery(postQueryOptions.all());
+  return useInfiniteQuery({
+    queryKey: postQueryKey.all,
+    suspense: true,
+    queryFn: ({ pageParam }) => getPosts({ pageParams: pageParam }),
+    getNextPageParam: (lastPage) => {
+      const nextPage = Math.floor(lastPage.page);
+      if (lastPage.posts.length === 0) {
+        return null;
+      }
+      return nextPage + 1;
+    },
+  });
 }

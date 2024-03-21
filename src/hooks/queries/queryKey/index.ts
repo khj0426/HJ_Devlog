@@ -19,20 +19,19 @@ const guestBookQueryKey = {
 };
 
 const postQueryOptions = {
-  all: () =>
-    ({
-      suspense: true,
-      queryKey: postQueryKey.all,
-      queryFn: ({ pageParam }: { pageParam: number }) =>
-        getPosts({ pageParams: pageParam }),
-      getNextPageParam: (lastPage: { page: number; posts: string[] }) => {
-        const nextPage = Math.floor(lastPage.page);
-        if (lastPage.posts.length === 0) {
-          return null;
-        }
-        return nextPage + 1;
-      },
-    } as UseInfiniteQueryOptions),
+  all: () => ({
+    suspense: true,
+    queryKey: postQueryKey.all,
+    queryFn: ({ pageParam }: { pageParam: number }) =>
+      getPosts({ pageParams: pageParam }),
+    getNextPageParam: (lastPage: { page: number; posts: string[] }) => {
+      const nextPage = Math.floor(lastPage.page);
+      if (lastPage.posts.length === 0) {
+        return null;
+      }
+      return nextPage + 1;
+    },
+  }),
   filteredCategoryPost: (category: string) => ({
     queryKey: postQueryKey.filteredCategoryPost(category),
     queryFn: () => getCategoryPosts({ category }),
