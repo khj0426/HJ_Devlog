@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import { CSSTransition } from 'react-transition-group';
 
 import styled from 'styled-components';
@@ -8,6 +9,7 @@ import ModalPortal from '@/Component/Common/Modal/ModalPortal';
 import { Input, InputBox } from '@/Component/Input';
 import PostList from '@/Component/Post/PostList';
 import useSearchPostQuery from '@/hooks/queries/useSearchPostQuery';
+import useClickAway from '@/hooks/useClickAway';
 import useInput from '@/hooks/useInput';
 import useModal from '@/hooks/useModal';
 
@@ -48,7 +50,9 @@ function PostSearchModal() {
   } = useInput('', (e) => e.target.value.length <= 150);
   const { modal, closeModal } = useModal('POST_SEARCH_MODAL_STATE');
 
+  const modalRef = useRef(null);
   const { data: posts } = useSearchPostQuery(keyword);
+  useClickAway(modalRef, closeModal);
 
   return (
     <ModalPortal>
@@ -60,19 +64,21 @@ function PostSearchModal() {
         timeout={300}
         onExited={closeModal}
       >
-        <StyledPostSearchModalWrapper onClick={closeModal}>
-          <StyledPostSearchModal>
-            <CloseButton color="white" />
-            <InputBox color="rgb(38, 41, 43)">
-              <Input autoFocus onChange={onChange} />
-            </InputBox>
-            {error && (
-              <p style={{ color: '#db4455' }}>
-                최대 150자까지 입력 가능합니다!
-              </p>
-            )}
-            <PostList posts={posts} />
-          </StyledPostSearchModal>
+        <StyledPostSearchModalWrapper>
+          <div ref={modalRef}>
+            <StyledPostSearchModal>
+              <CloseButton color="white" onClick={closeModal} />
+              <InputBox color="rgb(38, 41, 43)">
+                <Input autoFocus onChange={onChange} />
+              </InputBox>
+              {error && (
+                <p style={{ color: '#db4455' }}>
+                  최대 150자까지 입력 가능합니다!
+                </p>
+              )}
+              <PostList posts={posts} />
+            </StyledPostSearchModal>
+          </div>
         </StyledPostSearchModalWrapper>
       </CSSTransition>
     </ModalPortal>
