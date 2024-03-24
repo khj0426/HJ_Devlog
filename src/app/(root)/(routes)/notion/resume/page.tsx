@@ -1,8 +1,11 @@
 import type { Metadata } from 'next';
 
+import { Suspense } from 'react';
+
 import dynamic from 'next/dynamic';
 import { NotionAPI } from 'notion-client';
 
+import NotionResumeLoading from './loading';
 const ResumeClient = dynamic(
   () => import('@/Component/Notion/NotionresumeClient')
 );
@@ -61,5 +64,9 @@ export default async function ResumePage() {
     `https://notion-api.splitbee.io/v1/page/${process.env.NEXT_PUBLIC_NOTION_PAGE_ID}`
   );
 
-  return <ResumeClient recordMap={recordMap} />;
+  return (
+    <Suspense fallback={<NotionResumeLoading />}>
+      <ResumeClient recordMap={recordMap} />
+    </Suspense>
+  );
 }
