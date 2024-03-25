@@ -1,6 +1,7 @@
 import '../globals.css';
 import { Metadata } from 'next';
 
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Montserrat } from 'next/font/google';
 
 import Providers from '@/app/Providers/Query/queryClientProvider';
@@ -74,8 +75,10 @@ export default function RootLayout({
         name="naver-site-verification"
         content="e0f502f252b42b1b2aa8779c7927832b439a42ab"
       />
+      <GoogleAnalytics />
       <body className="App">
         <Providers>
+          <ReactQueryDevtools initialIsOpen={false} position="bottom-left" />
           <Recoil>
             <ThemeWrapper>
               <GlobalStyle />
