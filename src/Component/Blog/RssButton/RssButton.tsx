@@ -1,23 +1,20 @@
-import Image from 'next/image';
+import { ReactNode } from 'react';
+
+import { Brodcast } from 'iconic-react';
 import Link from 'next/link';
 
-import RssImage from '~/public/images/rss.png';
-
-const RssButton = () => {
+const RssButton = ({ children }: { children?: ReactNode }) => {
   return (
     <Link href="/feed.xml">
-      <Image
-        src={RssImage}
-        alt="RssImage"
-        width={28}
-        height={28}
-        placeholder="blur"
+      <Brodcast
+        size="32"
+        color="#FF8A65"
+        variant="Bold"
         style={{
-          display: 'flex',
-          alignItems: 'center',
           cursor: 'pointer',
         }}
       />
+      {children}
     </Link>
   );
 };

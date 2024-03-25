@@ -25,7 +25,7 @@ const StyledPostSearchModalWrapper = styled.div`
 const StyledPostSearchModal = styled.div`
   width: 350px;
   min-height: 450px;
-  max-height: 500px;
+  max-height: 450px;
   overflow-y: scroll;
   display: flex;
   flex-direction: column;

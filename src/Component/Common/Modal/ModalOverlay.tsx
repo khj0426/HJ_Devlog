@@ -1,5 +1,7 @@
 import { ReactNode, useEffect } from 'react';
+import { CSSTransition } from 'react-transition-group';
 
+import './Modal.css';
 import styled from 'styled-components';
 
 import useModal from '@/hooks/useModal';
@@ -11,8 +13,8 @@ const StyledBackDrop = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
-  width: 100vw;
-  height: 100vh;
+  min-width: 100vw;
+  min-height: 100vh;
   backdrop-filter: blur(1px);
   background-color: rgba(0, 0, 0, 0.5);
 `;
@@ -20,13 +22,18 @@ const StyledBackDrop = styled.div`
 export default function ModalOverlay({
   id,
   children,
-  isOpen,
+  disabledAutoFocus,
+  closeAfterTransition,
+  transitionTime,
 }: {
   id: string;
   children: ReactNode;
-  isOpen: boolean;
+  disabledAutoFocus?: boolean;
+  closeAfterTransition?: boolean;
+  transitionTime?: number;
 }) {
-  const { closeModal } = useModal(id);
+  const { closeModal, modal } = useModal(id);
+
   useEffect(() => {
     const handleEscapeClick = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
@@ -34,17 +41,32 @@ export default function ModalOverlay({
       }
     };
 
-    const handleBackdropClick = (event: MouseEvent) => {
-      event.stopPropagation();
-      closeModal();
-    };
     window.addEventListener('keyup', handleEscapeClick);
-    window.addEventListener('click', handleBackdropClick);
+
     return () => {
       window.removeEventListener('keyup', handleEscapeClick);
-      window.removeEventListener('click', handleBackdropClick);
     };
   }, [closeModal]);
 
-  return isOpen ? <StyledBackDrop>{children}</StyledBackDrop> : null;
+  const transitionDelay = closeAfterTransition && transitionTime;
+
+  return (
+    <>
+      {transitionDelay ? (
+        <CSSTransition
+          in={modal.isOpen}
+          appear
+          unmountOnExit
+          mountOnEnter
+          classNames="modal"
+          timeout={transitionDelay}
+          onExited={closeModal}
+        >
+          {modal.isOpen ? <StyledBackDrop>{children}</StyledBackDrop> : null}
+        </CSSTransition>
+      ) : (
+        <>{modal.isOpen ? <StyledBackDrop>{children}</StyledBackDrop> : null}</>
+      )}
+    </>
+  );
 }

@@ -1,28 +1,20 @@
-import Image from 'next/image';
+import { SearchNormal } from 'iconic-react';
 
 import PostSearchModal from '@/Component/Blog/PostSerachModal/PostSearchModal';
 import useModal from '@/hooks/useModal';
-
-// eslint-disable-next-line import/no-unresolved
-import SearchPostImage from '/public/images/search.webp';
 
 export default function SearchPostButton() {
   const { modal, openModal } = useModal('POST_SEARCH_MODAL_STATE');
 
   return (
     <>
-      <Image
-        alt="블로그 글 검색 이미지"
-        width={28}
-        placeholder="blur"
-        height={28}
+      <SearchNormal
+        size="32"
+        onClick={openModal}
         style={{
-          display: 'flex',
-          alignItems: 'center',
           cursor: 'pointer',
         }}
-        src={SearchPostImage}
-        onClick={openModal}
+        color="#FF8A65"
       />
       {modal.isOpen && <PostSearchModal />}
     </>

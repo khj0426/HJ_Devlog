@@ -10,6 +10,12 @@ footer {
 .active {
   color: rgb(0, 131, 120);
 }
+
+li,
+ul {
+  list-style-type: none;
+}
+
 main {
   font-family: inherit;
   min-height: calc(100vh - 120px);
@@ -21,12 +27,11 @@ main {
 }
 
 @media screen and (max-width: 500px) {
-  main{
+  main {
     width: 100%;
-    margin:0 auto;
+    margin: 0 auto;
   }
 }
-
 
 .TOC {
   text-shadow: -0.01em -0.01em 0.01em #000;

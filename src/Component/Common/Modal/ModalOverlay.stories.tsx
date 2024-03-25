@@ -18,7 +18,6 @@ type Story = StoryObj<typeof ModalOverlay>;
 export const ExampleModalOverlayOpen: Story = {
   args: {
     id: 'ExampleModal',
-    isOpen: true,
     children: <ModalContent backgroundColor="#cdcdcd">Content</ModalContent>,
   },
 };
@@ -26,7 +25,7 @@ export const ExampleModalOverlayOpen: Story = {
 export const ExampleModalOverlayClose: Story = {
   args: {
     id: 'ExampleModal',
-    isOpen: false,
+    disabledAutoFocus: true,
     children: '모달 오버레이',
   },
 };
