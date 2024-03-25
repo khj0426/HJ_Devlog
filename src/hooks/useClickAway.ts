@@ -2,7 +2,7 @@ import { useEffect, MutableRefObject } from 'react';
 
 export default function useClickAway<T extends MutableRefObject<any>>(
   ref: T,
-  callback: () => void,
+  callback?: () => void,
   deps?: any[]
 ) {
   useEffect(() => {
@@ -10,7 +10,8 @@ export default function useClickAway<T extends MutableRefObject<any>>(
       if (!ref || !ref.current || ref.current.contains(event.target)) {
         return;
       }
-      callback();
+      console.log(event, ref.current);
+      callback && callback();
     };
     document.addEventListener('mousedown', listener);
     return () => {

@@ -9,6 +9,15 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
+}
+
+model Post {
+  id         Int    @id @default(autoincrement())
+  created_at String
+  views      Int    @default(0)
+  title      String
+  content    String
+  image_url  String
 }
