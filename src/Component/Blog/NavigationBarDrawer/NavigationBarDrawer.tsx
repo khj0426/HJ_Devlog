@@ -41,13 +41,19 @@ export default function NavigationBarDrawer() {
           }}
         >
           <ButtonListStyle tabIndex={0}>
-            <RssButton />
+            <RssButton>
+              <span>RSS피드</span>
+            </RssButton>
           </ButtonListStyle>
           <ButtonListStyle tabIndex={1}>
-            <SearchPostButton />
+            <SearchPostButton>
+              <span>검색하기</span>
+            </SearchPostButton>
           </ButtonListStyle>
           <ButtonListStyle tabIndex={2}>
-            <ToggleDarkModeButton />
+            <ToggleDarkModeButton>
+              <span>모드변경</span>
+            </ToggleDarkModeButton>
           </ButtonListStyle>
         </ul>
       </Drawer>

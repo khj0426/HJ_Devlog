@@ -1,9 +1,15 @@
+import { ReactNode } from 'react';
+
 import { SearchNormal } from 'iconic-react';
 
 import PostSearchModal from '@/Component/Blog/PostSerachModal/PostSearchModal';
 import useModal from '@/hooks/useModal';
 
-export default function SearchPostButton() {
+export default function SearchPostButton({
+  children,
+}: {
+  children?: ReactNode;
+}) {
   const { modal, openModal } = useModal('POST_SEARCH_MODAL_STATE');
 
   return (
@@ -16,6 +22,7 @@ export default function SearchPostButton() {
         }}
         color="#FF8A65"
       />
+      {children}
       {modal.isOpen && <PostSearchModal />}
     </>
   );

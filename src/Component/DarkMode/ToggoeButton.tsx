@@ -1,10 +1,16 @@
+import { ReactNode } from 'react';
+
 import { Moon, Sun1 } from 'iconic-react';
 import { useRecoilState } from 'recoil';
 
 import { themeAtom } from '@/app/Providers/Recoil/globalAtom';
 import Flex from '@/Component/Common/Flex/Flex';
 
-export default function ToggleDarkModeButton() {
+export default function ToggleDarkModeButton({
+  children,
+}: {
+  children?: ReactNode;
+}) {
   const [currentTheme, setCurrentTheme] = useRecoilState(themeAtom);
 
   const handleClickToggleImage = () => {
