@@ -45,8 +45,6 @@ export default function NavigationBarDrawer() {
           </ButtonListStyle>
           <ButtonListStyle tabIndex={1}>
             <SearchPostButton></SearchPostButton>
-
-            <span>검색하기</span>
           </ButtonListStyle>
           <ButtonListStyle tabIndex={2}>
             <ToggleDarkModeButton></ToggleDarkModeButton>
