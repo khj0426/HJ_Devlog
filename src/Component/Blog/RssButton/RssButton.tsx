@@ -1,12 +1,12 @@
 import { ReactNode } from 'react';
 
-import { Brodcast } from 'iconic-react';
+import { ArchiveMinus } from 'iconic-react';
 import Link from 'next/link';
 
 const RssButton = ({ children }: { children?: ReactNode }) => {
   return (
     <Link href="/feed.xml">
-      <Brodcast
+      <ArchiveMinus
         size="32"
         color="#FF8A65"
         variant="Bold"
