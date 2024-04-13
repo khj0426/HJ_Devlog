@@ -5,6 +5,7 @@ import bash from 'react-syntax-highlighter/dist/cjs/languages/prism/bash';
 import javascript from 'react-syntax-highlighter/dist/cjs/languages/prism/javascript';
 import json from 'react-syntax-highlighter/dist/cjs/languages/prism/json';
 import jsx from 'react-syntax-highlighter/dist/cjs/languages/prism/jsx';
+import tsx from 'react-syntax-highlighter/dist/cjs/languages/prism/tsx';
 // eslint-disable-next-line import/order
 import typescript from 'react-syntax-highlighter/dist/cjs/languages/prism/typescript';
 
@@ -17,6 +18,7 @@ const PrismLight = dynamic(() =>
     res.default.registerLanguage('js', javascript);
     res.default.registerLanguage('json', json);
     res.default.registerLanguage('bash', bash);
+    res.default.registerLanguage('tsx',tsx)
     return res;
   })
 );
