@@ -62,7 +62,9 @@ export default function ModalOverlay({
           timeout={transitionDelay}
           onExited={closeModal}
         >
-          {modal.isOpen ? <StyledBackDrop>{children}</StyledBackDrop> : null}
+          <StyledBackDrop>
+            {modal.isOpen ? <>{children}</> : null}
+          </StyledBackDrop>
         </CSSTransition>
       ) : (
         <>{modal.isOpen ? <StyledBackDrop>{children}</StyledBackDrop> : null}</>

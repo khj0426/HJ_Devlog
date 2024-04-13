@@ -114,7 +114,15 @@ export default function Post({
                 sizes="(max-width: 560px) 360px, (max-width: 1023px) 700px, (max-width: 1260px) 1024px, (min-width: 1261px) 1260px"
               />
             ),
-            code: ({ children }) => <CodeBlock>{children as string}</CodeBlock>,
+            code({ children, className }) {
+              const match = /language-(\w+)/.exec(className || '');
+              if (match) {
+                return (
+                  <CodeBlock lang={match[1]}>{children as string}</CodeBlock>
+                );
+              }
+              return <CodeBlock>{children as string}</CodeBlock>;
+            },
             h2: ({ children }) => {
               return (
                 <h2
@@ -176,13 +184,13 @@ export default function Post({
                 </li>
               );
             },
-            pre: ({ children }) => (
+            pre: (props) => (
               <code
                 style={{
                   fontSize: '1rem',
                 }}
               >
-                {children}
+                {props.children}
               </code>
             ),
           }}

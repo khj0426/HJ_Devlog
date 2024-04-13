@@ -37,3 +37,20 @@ export const LongCodeBlock: Story = {
     `,
   },
 };
+
+export const LongCodeBlockWithTs: Story = {
+  args: {
+    children: `
+      function greet(name) {
+        console.log("안녕하세요, " + name + "님!");
+      }
+      
+      function calculateSum(a, b) {
+        return a + b;
+      }
+      
+      const numbers = [1, 2, 3, 4, 5];
+      const sum = calculateSum(numbers[0], numbers[1]);
+    `,
+  },
+};
