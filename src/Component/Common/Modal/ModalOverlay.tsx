@@ -5,10 +5,11 @@ import './Modal.css';
 import styled from 'styled-components';
 
 import useModal from '@/hooks/useModal';
+import useTimeout from '@/hooks/useTimeout';
 
 const StyledBackDrop = styled.div`
   z-index: 555;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -50,6 +51,7 @@ export default function ModalOverlay({
 
   const transitionDelay = closeAfterTransition && transitionTime;
 
+  useTimeout(closeModal, transitionDelay);
   return (
     <>
       {transitionDelay ? (

@@ -2,7 +2,9 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import CloseButton from '@/Component/Common/CloseButton/CloseButton';
 import Modal from '@/Component/Common/Modal/Modal';
+import ModalCloseButton from '@/Component/Common/Modal/ModalCloseButton';
 import ModalContent from '@/Component/Common/Modal/ModalContent';
+import ModalFooter from '@/Component/Common/Modal/ModalFooter';
 import ModalHeader from '@/Component/Common/Modal/ModalHeader';
 import useModal from '@/hooks/useModal';
 const meta: Meta<typeof Modal> = {
@@ -22,9 +24,13 @@ export const ExampleModal = () => {
     <div>
       <button onClick={openModal}>Click</button>
       <Modal id="ExampleModal" disabledPortal>
-        <ModalHeader as="h3">이곳은 헤더입니다.</ModalHeader>
-        <CloseButton onClick={closeModal} />
-        <ModalContent closeOutSideClick={closeModal}>
+        <ModalContent
+          closeOutSideClick={closeModal}
+          width={'350px'}
+          height={'500px'}
+        >
+          <ModalCloseButton onClick={closeModal} />
+          <ModalHeader as="h3">이곳은 헤더입니다.</ModalHeader>
           이곳은 컨텐츠입니다.
         </ModalContent>
       </Modal>
@@ -42,11 +48,53 @@ export const ExampleModalWithTransition = () => {
         id="ExampleModalSecond"
         disabledPortal
         transitionTime={3000}
-        closeAfterTransition
+        onClick={() => console.log(modal.id)}
       >
-        <ModalHeader as="h3">이곳은 헤더입니다.</ModalHeader>
-        <CloseButton onClick={closeModal} />
-        <ModalContent closeOutSideClick={closeModal}>
+        <ModalContent
+          closeOutSideClick={closeModal}
+          width={'350px'}
+          height={'600px'}
+        >
+          <ModalHeader as="h3">이곳은 헤더입니다.</ModalHeader>
+          <section>
+            이곳은 컨텐츠입니다. 이곳은 컨텐츠입니다. 이곳은 컨텐츠입니다.
+            이곳은 컨텐츠입니다. 이곳은 컨텐츠입니다. 이곳은 컨텐츠입니다.
+            이곳은 컨텐츠입니다. 이곳은 컨텐츠입니다.
+          </section>
+          <ModalFooter>
+            <ModalCloseButton
+              onClick={closeModal}
+              style={{
+                background: '#ededed',
+              }}
+            />
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+    </div>
+  );
+};
+
+export const ExampleModalWithCloseAfterTransition = () => {
+  const { openModal, modal, closeModal } = useModal('ExampleModalThird');
+
+  return (
+    <div>
+      <button onClick={openModal}>Click</button>
+      <Modal
+        id="ExampleModalThird"
+        disabledPortal
+        transitionTime={3000}
+        closeAfterTransition
+        onClick={() => console.log(modal.id)}
+      >
+        <ModalContent
+          closeOutSideClick={closeModal}
+          width={'350px'}
+          height={'600px'}
+        >
+          <ModalCloseButton onClick={closeModal} />
+          <ModalHeader as="h3">이곳은 헤더입니다.</ModalHeader>
           이곳은 컨텐츠입니다.
         </ModalContent>
       </Modal>

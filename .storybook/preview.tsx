@@ -8,17 +8,28 @@ import globalStyle from '../src/style/globalStyle';
 import { darkTheme, lightTheme } from '../src/style/theme/darkMode';
 import mediaTheme from '../src/style/theme/media';
 import { themeAtom } from '../src/app/Providers/Recoil/globalAtom';
+import {
+  fontSizes,
+  fontSizesType,
+  fontWeights,
+  borderRadius,
+} from '../src/style/theme/size';
 
 import deviceTheme from '../src/style/theme/media';
 const ThemeWrapper = ({ children }) => {
   const currentTheme = useRecoilValue(themeAtom);
   const themeObj = currentTheme === 'light' ? lightTheme : darkTheme;
 
+  const sizes = { fontSizes, fontWeights, borderRadius };
+
   return (
     <ThemeProvider
       theme={{
         currentTheme: themeObj,
         device: deviceTheme,
+        fontSize: sizes.fontSizes,
+        fontWeight: sizes.fontWeights,
+        borderRadius: sizes.borderRadius,
       }}
     >
       <div id="modal"></div>
