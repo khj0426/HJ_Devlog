@@ -1,15 +1,16 @@
-import { ComponentPropsWithoutRef } from 'react';
+import { ComponentPropsWithRef } from 'react';
 
 import ModalOverlay from '@/Component/Common/Modal/ModalOverlay';
 import ModalPortal from '@/Component/Common/Modal/ModalPortal';
 import useModal from '@/hooks/useModal';
 
-interface ModalProps extends ComponentPropsWithoutRef<'div'> {
+interface ModalProps extends ComponentPropsWithRef<'div'> {
   closeAfterTransition?: boolean;
   transitionTime?: number;
   disableAutoFocus?: boolean;
   id: string;
   disabledPortal?: boolean;
+  withOutOverlay?:boolean
 }
 
 export default function Modal({
@@ -19,20 +20,13 @@ export default function Modal({
   closeAfterTransition,
   children,
   disabledPortal,
+  withOutOverlay,
+  ref,
 }: ModalProps) {
   const { openModal, modal, closeModal, toggleModal } = useModal(id);
 
   return disabledPortal ? (
-    <ModalOverlay
-      id={modal.id}
-      disabledAutoFocus={disableAutoFocus}
-      closeAfterTransition={closeAfterTransition}
-      transitionTime={transitionTime}
-    >
-      {children}
-    </ModalOverlay>
-  ) : (
-    <ModalPortal>
+    <div ref={ref}>
       <ModalOverlay
         id={modal.id}
         disabledAutoFocus={disableAutoFocus}
@@ -41,6 +35,19 @@ export default function Modal({
       >
         {children}
       </ModalOverlay>
-    </ModalPortal>
+    </div>
+  ) : (
+    <div ref={ref}>
+      <ModalPortal>
+        <ModalOverlay
+          id={modal.id}
+          disabledAutoFocus={disableAutoFocus}
+          closeAfterTransition={closeAfterTransition}
+          transitionTime={transitionTime}
+        >
+          {children}
+        </ModalOverlay>
+      </ModalPortal>
+    </div>
   );
 }

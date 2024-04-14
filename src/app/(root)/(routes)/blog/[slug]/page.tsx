@@ -8,9 +8,10 @@ import rehypeRaw from 'rehype-raw';
 import CodeBlock from '@/Component/Blog/CodeBlock/CodeBlock';
 import PostExtract from '@/Component/Blog/Extract';
 import BlogLayout from '@/Component/Blog/Layout';
+import RecommendPostModal from '@/Component/Blog/RecommendPostModal/RecommendPostModal';
 import Comments from '@/Component/Giscus/Gitcus';
 import TOC from '@/Component/TOC';
-import { getPostBySlug } from '~/lib/api';
+import { getPostBySlug, getRandomPosts } from '~/lib/api';
 import makeTableOfContent from '~/lib/makeTableOfContent';
 export async function generateMetadata({
   params,
@@ -198,6 +199,7 @@ export default function Post({
           {post.content}
         </ReactMarkdown>
 
+        <RecommendPostModal randomPosts={getRandomPosts(post.title)} />
         <Comments />
       </BlogLayout>
       <TOC toc={tableOfContent} />

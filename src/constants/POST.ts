@@ -3,6 +3,12 @@ const POST_CONSTANT = {
   end: 5,
 };
 
-Object.freeze(POST_CONSTANT);
+const RANDOM_POST_RANGE = {
+  start: 0,
+  end: 6,
+};
 
-export { POST_CONSTANT };
+Object.freeze(POST_CONSTANT);
+Object.freeze(RANDOM_POST_RANGE);
+
+export { POST_CONSTANT, RANDOM_POST_RANGE };

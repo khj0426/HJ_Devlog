@@ -3,6 +3,8 @@ import { join } from 'path';
 
 import matter from 'gray-matter';
 
+import { RANDOM_POST_RANGE } from '@/constants/POST';
+
 type PostItem = {
   [key: string]: string;
 };
@@ -80,6 +82,9 @@ export function getAllCategories() {
   });
 }
 
-export function getFilteredCategory(category: string) {
-  return getAllPosts().filter((post) => post.category === category);
+export function getRandomPosts(title: string) {
+  const getPosts = getAllPosts().filter((post) => post.title !== title);
+  return getPosts
+    .slice(Math.floor(Math.random() * (getPosts.length - 1)), getPosts.length)
+    .slice(RANDOM_POST_RANGE.start, RANDOM_POST_RANGE.end);
 }
