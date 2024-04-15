@@ -2,6 +2,8 @@
 
 import type { Item } from '@/@types/postItem';
 
+import { useEffect } from 'react';
+
 import Link from 'next/link';
 
 import Modal from '@/Component/Common/Modal/Modal';
@@ -25,6 +27,9 @@ export default function RecommendPostModal({
     threshold: 1,
     callback: () => openModal(),
   });
+  useEffect(() => {
+    closeModal();
+  }, []);
   return (
     <>
       <Modal id={modal.id} disabledPortal>
