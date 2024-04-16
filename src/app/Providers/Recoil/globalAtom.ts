@@ -33,6 +33,11 @@ export const modalIdAtom = atom<string[]>({
   default: [],
 });
 
+export const postRecommendModalClose = atom<boolean>({
+  key: 'POST_RECOMMEND_MODAL_STATE',
+  default: false,
+});
+
 export const modalSelectorFamily = selectorFamily({
   key: 'MODAL_STATE_FAMILY',
   get:

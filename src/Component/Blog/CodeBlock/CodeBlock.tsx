@@ -9,8 +9,6 @@ import tsx from 'react-syntax-highlighter/dist/cjs/languages/prism/tsx';
 // eslint-disable-next-line import/order
 import typescript from 'react-syntax-highlighter/dist/cjs/languages/prism/typescript';
 
-
-
 const PrismLight = dynamic(() =>
   import('react-syntax-highlighter/dist/esm/prism-light').then((res) => {
     res.default.registerLanguage('ts', typescript);
@@ -18,12 +16,12 @@ const PrismLight = dynamic(() =>
     res.default.registerLanguage('js', javascript);
     res.default.registerLanguage('json', json);
     res.default.registerLanguage('bash', bash);
-    res.default.registerLanguage('tsx',tsx)
+    res.default.registerLanguage('tsx', tsx);
     return res;
   })
 );
 
-import { materialDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { dark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 export default function CodeBlock({
   children,
@@ -35,7 +33,7 @@ export default function CodeBlock({
   return (
     <PrismLight
       language={lang}
-      style={materialDark}
+      style={dark}
       customStyle={{
         fontFamily: '__Do_Hyeon_7b3cf7',
         maxWidth: '100vw',
