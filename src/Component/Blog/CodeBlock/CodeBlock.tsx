@@ -21,7 +21,7 @@ const PrismLight = dynamic(() =>
   })
 );
 
-import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 export default function CodeBlock({
   children,
@@ -33,7 +33,7 @@ export default function CodeBlock({
   return (
     <PrismLight
       language={lang}
-      style={docco}
+      style={vscDarkPlus}
       customStyle={{
         fontFamily: '__Do_Hyeon_7b3cf7',
         maxWidth: '100vw',
