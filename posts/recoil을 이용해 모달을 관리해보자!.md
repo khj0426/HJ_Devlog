@@ -1,5 +1,5 @@
 ---
-title: 'recoil을 이용해 모달을 관리해보자'
+title: 'recoil을 이용해 모달을 관리해보자!'
 excerpt: 'recoil을 배워보자'
 date: '2024-01-25'
 author: '김효중'
