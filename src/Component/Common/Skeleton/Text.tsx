@@ -1,13 +1,13 @@
 'use client';
-import { ComponentPropsWithoutRef } from 'react';
+import { CSSProperties, ComponentPropsWithoutRef } from 'react';
 
 import styled from 'styled-components';
 
 import { Slide } from '@/Component/Common/Skeleton/Image';
 interface SkeletonProps extends ComponentPropsWithoutRef<'div'> {
   variant?: 'circular' | 'rectangular' | 'rounded' | 'text';
-  width?: number;
-  height?: number;
+  width?: number | CSSProperties['width'];
+  height?: number | CSSProperties['height'];
   fontSize?: number;
 }
 

@@ -7,6 +7,15 @@ const meta: Meta<typeof CodeBlock> = {
   component: CodeBlock,
   args: {
     children: 'const hello = 안녕',
+    lang: 'ts',
+  },
+  argTypes: {
+    lang: {
+      control: {
+        type: 'radio',
+      },
+      options: ['js', 'ts', 'tsx', 'jsx', 'bash', 'json'],
+    },
   },
   parameters: {
     layout: 'fullscreen',
@@ -17,12 +26,14 @@ type Story = StoryObj<typeof CodeBlock>;
 
 export const BaseCodeBlock: Story = {
   args: {
+    lang: 'ts',
     children: 'const hello = 안녕',
   },
 };
 
 export const LongCodeBlock: Story = {
   args: {
+    lang: 'ts',
     children: `
       function greet(name) {
         console.log("안녕하세요, " + name + "님!");
@@ -40,6 +51,7 @@ export const LongCodeBlock: Story = {
 
 export const LongCodeBlockWithTs: Story = {
   args: {
+    lang: 'ts',
     children: `
       function greet(name) {
         console.log("안녕하세요, " + name + "님!");

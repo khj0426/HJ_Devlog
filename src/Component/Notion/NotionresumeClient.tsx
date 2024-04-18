@@ -1,8 +1,9 @@
 'use client';
 
+import 'katex/dist/katex.min.css';
+// used for code syntax highlighting (optional)red)
 import 'react-notion-x/src/styles.css';
-
-import 'prismjs/themes/prism-tomorrow.css';
+import './NotionResumeStyle.css';
 import type { ReturnTypeofNotionRecord } from '@/app/(root)/(routes)/notion/resume/page';
 
 import { NotionRenderer } from 'react-notion-x';
@@ -23,8 +24,9 @@ export default function ResumeClient({
 }) {
   const modeState = useRecoilValue(themeAtom);
   return (
-    <div>
+    <div className="content">
       <NotionRenderer
+        className="container"
         darkMode={modeState === 'dark' ? true : false}
         disableHeader
         components={{
