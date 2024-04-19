@@ -38,7 +38,7 @@ export async function GET(req: NextRequest) {
       ],
       metrics: [
         {
-          name: 'scrolledUsers',
+          name: 'totalUsers',
         },
       ],
     });
@@ -53,6 +53,7 @@ export async function GET(req: NextRequest) {
 
   const reportResults = await report();
 
+  console.log(reportResults);
   if (reportResults) {
     return NextResponse.json(
       {
