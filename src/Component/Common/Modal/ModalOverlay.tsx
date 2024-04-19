@@ -26,12 +26,16 @@ export default function ModalOverlay({
   disabledAutoFocus,
   closeAfterTransition,
   transitionTime,
+  onTransitionEnd,
+  onTransitionEnter,
 }: {
   id: string;
   children: ReactNode;
   disabledAutoFocus?: boolean;
   closeAfterTransition?: boolean;
   transitionTime?: number;
+  onTransitionEnd?: () => void;
+  onTransitionEnter?: () => void;
 }) {
   const { closeModal, modal } = useModal(id);
 
@@ -52,6 +56,7 @@ export default function ModalOverlay({
   const transitionDelay = closeAfterTransition && transitionTime;
 
   useTimeout(closeModal, transitionDelay);
+
   return (
     <>
       {transitionDelay ? (
@@ -62,9 +67,14 @@ export default function ModalOverlay({
           mountOnEnter
           classNames="modal"
           timeout={transitionDelay}
-          onExited={closeModal}
+          onExited={() => {
+            closeModal();
+            if (onTransitionEnd) onTransitionEnd();
+          }}
+          onEntering={onTransitionEnter}
+          onEntered={onTransitionEnter}
         >
-          <StyledBackDrop>
+          <StyledBackDrop autoFocus={disabledAutoFocus ? false : true}>
             {modal.isOpen ? <>{children}</> : null}
           </StyledBackDrop>
         </CSSTransition>

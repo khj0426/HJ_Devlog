@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "@giscus/react": "^2.2.8",
+    "@google-analytics/data": "^4.5.0",
     "@next/bundle-analyzer": "^13.4.7",
     "@prisma/client": "^5.11.0",
     "@sentry/nextjs": "^7.15.0",

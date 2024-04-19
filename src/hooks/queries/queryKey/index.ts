@@ -1,5 +1,6 @@
 import { UseInfiniteQueryOptions } from '@tanstack/react-query';
 
+import { getActiveUserCount } from '@/services/BigQuery';
 import { getGuestBook } from '@/services/GuestBook';
 import {
   getCategoryPosts,
@@ -52,9 +53,21 @@ const guestBookQueryOptions = {
   }),
 };
 
+const gaQueryKey = {
+  user: ['user'] as const,
+};
+
+const gaQueryOptions = {
+  user: () => ({
+    queryFn: getActiveUserCount,
+    queryKey: gaQueryKey.user,
+  }),
+};
 export {
   postQueryKey,
   guestBookQueryKey,
   postQueryOptions,
   guestBookQueryOptions,
+  gaQueryKey,
+  gaQueryOptions,
 };

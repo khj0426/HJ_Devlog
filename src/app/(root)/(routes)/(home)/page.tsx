@@ -1,9 +1,11 @@
 import { dehydrate } from '@tanstack/react-query';
 
+import UserCountInfo from '@/Component/Blog/UserCountInfo/UserCountInfo';
 import CategoryList from '@/Component/CategoryList/CategoryList';
 import Hydrate from '@/Component/Common/Hydrate';
 import PostContainer from '@/Component/Post/PostContainer';
 import { postQueryKey } from '@/hooks/queries/queryKey';
+import { getActiveUserCount } from '@/services/BigQuery';
 import { getPosts } from '@/services/Post';
 import getQueryClient from '@/utils/getQueryClient';
 import { getAllCategories } from '~/lib/api';
@@ -21,6 +23,7 @@ export default async function Home() {
 
   return (
     <>
+      <UserCountInfo />
       <CategoryList category={allCategory}></CategoryList>
       <main>
         <Hydrate state={dehydratePostState}>

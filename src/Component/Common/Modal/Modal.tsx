@@ -10,7 +10,9 @@ interface ModalProps extends ComponentPropsWithRef<'div'> {
   disableAutoFocus?: boolean;
   id: string;
   disabledPortal?: boolean;
-  withOutOverlay?:boolean
+  withOutOverlay?: boolean;
+  onTransitionEnter?: () => void;
+  onTransitionEnd?: () => void;
 }
 
 export default function Modal({
@@ -21,23 +23,27 @@ export default function Modal({
   children,
   disabledPortal,
   withOutOverlay,
-  ref,
+  onTransitionEnd,
+  onTransitionEnter,
+  ...rest
 }: ModalProps) {
   const { openModal, modal, closeModal, toggleModal } = useModal(id);
 
   return disabledPortal ? (
-    <div ref={ref}>
+    <div {...rest}>
       <ModalOverlay
         id={modal.id}
         disabledAutoFocus={disableAutoFocus}
         closeAfterTransition={closeAfterTransition}
         transitionTime={transitionTime}
+        onTransitionEnd={onTransitionEnd}
+        onTransitionEnter={onTransitionEnter}
       >
         {children}
       </ModalOverlay>
     </div>
   ) : (
-    <div ref={ref}>
+    <div {...rest}>
       <ModalPortal>
         <ModalOverlay
           id={modal.id}

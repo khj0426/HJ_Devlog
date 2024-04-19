@@ -76,5 +76,7 @@ const sentryConfig = {
   hideSourceMaps: true,
   disableLogger: true,
 };
-
-module.exports = withSentryConfig(nextConfig, sentryConfig);
+if (process.env.NODE_ENV === 'production') {
+  module.exports = withSentryConfig(nextConfig, sentryConfig);
+}
+module.exports = nextConfig;
