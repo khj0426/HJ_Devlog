@@ -1,4 +1,4 @@
-import * as Sentry from '@sentry/nextjs';
+import { setContext, withScope, captureException } from '@sentry/nextjs';
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 const axiosClient = axios.create({
   baseURL:
@@ -16,12 +16,12 @@ axiosClient.interceptors.response.use(
       const errorConfig = error.config;
       const { data, status } = error.response;
 
-      Sentry.setContext('API 응답 에러', {
+      setContext('API 응답 에러', {
         status,
         data,
       });
 
-      Sentry.withScope((scope) => {
+      withScope((scope) => {
         scope.setTag('type', 'api');
         scope.setTag('api-status', status || 'no-value');
         scope.setTag('api-data', data ? JSON.stringify(data) : 'no-value');
@@ -33,7 +33,7 @@ axiosClient.interceptors.response.use(
         ]);
       });
 
-      Sentry.captureException(error, {
+      captureException(error, {
         level: 'error',
         extra: {
           header: error?.config?.headers,

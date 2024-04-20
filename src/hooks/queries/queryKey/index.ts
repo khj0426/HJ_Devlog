@@ -1,4 +1,4 @@
-import { UseInfiniteQueryOptions } from '@tanstack/react-query';
+import { QueryOptions, UseInfiniteQueryOptions } from '@tanstack/react-query';
 
 import { getActiveUserCount } from '@/services/BigQuery';
 import { getGuestBook } from '@/services/GuestBook';
@@ -61,6 +61,7 @@ const gaQueryOptions = {
   user: () => ({
     queryFn: getActiveUserCount,
     queryKey: gaQueryKey.user,
+    staleTime: 0,
   }),
 };
 export {

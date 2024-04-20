@@ -5,15 +5,20 @@ import { uuid4 } from '@sentry/utils';
 export default function DropDownMenu({
   items,
   onClickItem,
+  onKeyDown,
 }: {
   items: dropDownItem[];
-  onClickItem: (item: dropDownItem) => void;
+  onClickItem: (item?: dropDownItem) => void;
+  onKeyDown?: () => void;
 }) {
   return (
     <div className="dropdown-menu">
-      {items.map((item) => (
+      {items.map((item, index) => (
         <div
-          key={uuid4()}
+          data-id={item.id}
+          tabIndex={index}
+          key={item.id}
+          onKeyDown={() => onKeyDown && onKeyDown()}
           onClick={() => onClickItem(item)}
           className="item-container"
         >

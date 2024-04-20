@@ -10,6 +10,7 @@ const UserCountText = styled.p`
   width: 68%;
   margin: 15px auto;
   padding: 0;
+  font-size: ${({ theme }) => theme.fontSize.xs};
 `;
 export default function UserCountInfo() {
   const { data: countData, isLoading } = useGetUsersCountQuery();
@@ -18,7 +19,7 @@ export default function UserCountInfo() {
   }
   return (
     <UserCountText>
-      총 {countData?.datalist[0]?.value}명이 방문했어요🧡
+      어제까지 총 {countData?.datalist[0]?.value}명이 방문했어요🧡
     </UserCountText>
   );
 }
