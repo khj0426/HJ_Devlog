@@ -1,6 +1,10 @@
 import { BetaAnalyticsDataClient } from '@google-analytics/data';
 import { NextRequest, NextResponse } from 'next/server';
 
+import { formatDateToString } from '@/utils/formatDateToString';
+
+export const dynamic = "force-dynamic";
+
 export async function GET(req: NextRequest) {
   const analyticsDataClient = new BetaAnalyticsDataClient({
     credentials: {
@@ -33,7 +37,7 @@ export async function GET(req: NextRequest) {
       dateRanges: [
         {
           startDate: '2020-03-31',
-          endDate: 'today',
+          endDate:formatDateToString(new Date()),
         },
       ],
       metrics: [

@@ -3,6 +3,8 @@ import { NextResponse, NextRequest } from 'next/server';
 
 import { DB } from '../../Providers/firebase';
 
+export const dynamic = "force-dynamic";
+
 export async function GET() {
   const guestbookRef = ref(DB, '/guestbook');
   const snapShot = await get(guestbookRef);
