@@ -4,7 +4,7 @@ excerpt: '공식문서 공부'
 date: '2024-04-21'
 author: '김효중'
 category: 'Next.js'
-image: '/images/postImg/Next13.png'
+image: '/images/postImg/next13.png'
 ---
 
 Next는 여러 캐싱 전략이 존재합니다. 공식문서에서 크게 4가지의 캐싱 전략을 소개하고 있습니다.
