@@ -43,11 +43,8 @@ export const ExampleModalWithTransition = () => {
       <Modal.ModalContainer
         id="ExampleModalSecond"
         disabledPortal
-        transitionTime={3000}
-        onClick={() => console.log(modal.id)}
-        onTransitionEnd={() => console.log('나 사라짐')}
-        onTransitionEnter={() => console.log('나 등장')}
-        onDrag={() => console.log('드래그 시작ㅋ')}
+        transitionTime={5000}
+        closeAfterTransition
       >
         <Modal.ModalContent
           closeOutSideClick={closeModal}

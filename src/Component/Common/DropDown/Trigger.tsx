@@ -1,16 +1,13 @@
 import React from 'react';
 
-// 사용자 클릭을 처리하는 부분을 드롭다운에서 추출
+import { Button } from '@/stories/Button';
+
 export default function Trigger({
   label,
   onClick,
 }: {
-  label: string;
-  onClick: () => void;
+  readonly label: string;
+  readonly onClick: () => void;
 }) {
-  return (
-    <div className="trigger" tabIndex={0} onClick={onClick}>
-      <span className="selection">{label}</span>
-    </div>
-  );
+  return <Button label={label} tabIndex={0} onClick={onClick}></Button>;
 }

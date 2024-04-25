@@ -10,7 +10,6 @@ export default function useClickAway<T extends MutableRefObject<any>>(
       if (!ref || !ref.current || ref.current.contains(event.target)) {
         return;
       }
-      console.log(event, ref.current);
       callback && callback();
     };
     document.addEventListener('mousedown', listener);

@@ -1,53 +1,52 @@
-import { KeyboardEvent, useState } from 'react';
+import { ReactNode, useRef, PropsWithChildren, KeyboardEvent } from 'react';
 
-import { dropDownItem, type dropDownProps } from '@/@types/DropDownType';
+import useClickAway from '@/hooks/useClickAway';
+import useDropDown from '@/hooks/useDropDown';
 
 import DropDownMenu from './DropDownMenu';
 import Trigger from './Trigger';
 
-export default function DropDown({ items }: dropDownProps) {
-  const [isOpen, setIsOpen] = useState(false);
-  const [selectedItem, setSelectedItem] = useState<dropDownItem | null>(null);
+export interface DropDownProps {
+  key: string;
+  text?: string;
+  icon?: string;
+  disabled?: boolean;
+  label: ReactNode;
+}
 
-  const handleKeyDown = (e: KeyboardEvent) => {
-    e.preventDefault();
+export default function DropDown({
+  items,
+}: {
+  items: PropsWithChildren<DropDownProps[]>;
+}) {
+  const { isOpen, index, selectedItem, setIsOpen, setIndex, handleKeyDown } =
+    useDropDown(items);
 
-    const selectedId = e.currentTarget.getAttribute('data-id');
-    if (!selectedId) {
-      return;
-    }
-    switch (e.key) {
-      case 'ArrowUp':
-      case 'ArrowDown':
-        setSelectedItem(
-          items.find((item) => item.id === selectedId) ?? items[0]
-        );
-        break;
-      case 'Enter':
-        setIsOpen(false);
-        console.log(selectedItem);
-        break;
-    }
-  };
-
+  const dropDownContainer = useRef<HTMLDivElement | null>(null);
+  useClickAway(dropDownContainer, () => {
+    setIsOpen(false);
+  });
   return (
-    <div className="dropdown">
+    <div className="dropdown" ref={dropDownContainer}>
       <Trigger
-        label={selectedItem ? selectedItem.text : '아이템을 선택하세요'}
+        label={
+          selectedItem ? (selectedItem?.label as string) : '아이템을 선택하세요'
+        }
         onClick={() => setIsOpen(!isOpen)}
       />
       {isOpen && (
         <DropDownMenu
+          currentSelectedItemIndex={index}
           items={items}
           onKeyDown={() => handleKeyDown}
           onClickItem={(item) => {
             if (item) {
-              setSelectedItem(item);
-              setIsOpen(false);
+              setIndex(item);
             }
           }}
-        />
+        ></DropDownMenu>
       )}
+      {items.children}
     </div>
   );
 }
