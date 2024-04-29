@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 import useGetUsersCountQuery from '@/hooks/queries/useGetUsersCountQuery';
 
-const UserCountText = styled.p`
+export const StyledUserCountText = styled.p`
   display: flex;
   width: 68%;
   margin: 15px auto;
@@ -18,8 +18,8 @@ export default function UserCountInfo() {
     return;
   }
   return (
-    <UserCountText>
+    <StyledUserCountText>
       어제까지 총 {countData?.datalist[0]?.value}명이 방문했어요🧡
-    </UserCountText>
+    </StyledUserCountText>
   );
 }

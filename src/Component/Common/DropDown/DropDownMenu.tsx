@@ -47,7 +47,7 @@ export default function DropDownMenu({
   readonly currentSelectedItemIndex?: number;
   readonly children?: ReactNode;
   readonly items: DropDownProps[];
-  readonly onClickItem: (_index?: number) => void;
+  readonly onClickItem: (_item?: DropDownProps) => void;
   readonly onKeyDown?: () => void;
 }) {
   return (
@@ -65,7 +65,7 @@ export default function DropDownMenu({
             aria-selected={currentSelectedItemIndex === index}
             selected={currentSelectedItemIndex === index}
             key={item.key}
-            onClick={() => onClickItem(index)}
+            onClick={() => onClickItem(item)}
           >
             <label>{item.label}</label>
             <p>{item.text}</p>

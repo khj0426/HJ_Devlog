@@ -6,6 +6,7 @@ export default function useDropDown(items: DropDownProps[]) {
   const [isOpen, setIsOpen] = useState(false);
   const [index, setIndex] = useState(0);
   const [selectedItem, setSelectedItem] = useState<DropDownProps | null>(null);
+
   const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
     e.preventDefault();
     e.currentTarget.focus();
@@ -43,11 +44,6 @@ export default function useDropDown(items: DropDownProps[]) {
     }
   };
 
-  useEffect(() => {
-    setSelectedItem(items[index]);
-    console.log(index, selectedItem);
-  }, [index]);
-
   return {
     handleKeyDown,
     setIsOpen,
@@ -55,5 +51,6 @@ export default function useDropDown(items: DropDownProps[]) {
     isOpen,
     selectedItem,
     index,
+    setSelectedItem,
   };
 }

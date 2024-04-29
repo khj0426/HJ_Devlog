@@ -53,34 +53,22 @@ export default function ModalOverlay({
     };
   }, [closeModal]);
 
-  const transitionDelay = closeAfterTransition && transitionTime;
+  const transitionDelay = closeAfterTransition ? transitionTime : undefined;
 
   useTimeout(closeModal, transitionDelay);
 
   return (
-    <>
-      {transitionDelay ? (
-        <CSSTransition
-          in={modal.isOpen}
-          appear
-          unmountOnExit
-          mountOnEnter
-          classNames="modal"
-          timeout={transitionDelay}
-          onExited={() => {
-            closeModal();
-            if (onTransitionEnd) onTransitionEnd();
-          }}
-          onEntering={onTransitionEnter}
-          onEntered={onTransitionEnter}
-        >
-          <StyledBackDrop autoFocus={disabledAutoFocus ? false : true}>
-            {modal.isOpen ? <>{children}</> : null}
-          </StyledBackDrop>
-        </CSSTransition>
-      ) : (
-        <>{modal.isOpen ? <StyledBackDrop>{children}</StyledBackDrop> : null}</>
-      )}
-    </>
+    <CSSTransition
+      in={modal.isOpen}
+      appear
+      unmountOnExit
+      mountOnEnter
+      classNames="modal"
+      timeout={transitionTime ?? 0}
+      onEntered={onTransitionEnter}
+      onExited={onTransitionEnd}
+    >
+      <StyledBackDrop autoFocus={!disabledAutoFocus}>{children}</StyledBackDrop>
+    </CSSTransition>
   );
 }

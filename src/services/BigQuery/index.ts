@@ -1,3 +1,4 @@
+import { SelectDateOptionsProps } from '@/@types/BackOfficeProps';
 import { get } from '@/utils/axiosClient';
 
 interface Response {
@@ -11,4 +12,12 @@ interface item {
 }
 export const getActiveUserCount = async () => {
   return (await get<Response>('/api/active-users')).data;
+};
+
+export const getActiveUserCountByDate = async ({
+  start,
+}: {
+  start: SelectDateOptionsProps;
+}) => {
+  return (await get<Response>(`/api/active-users?date=${start}`)).data;
 };

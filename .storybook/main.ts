@@ -31,7 +31,7 @@ const config: StorybookConfig = {
       image: {
         loading: 'eager',
       },
-      nextConfigPath: path.resolve(__dirname, '../next.config.mjs'),
+      nextConfigPath: path.resolve(__dirname, '../next.config.js'),
     },
   },
   docs: {

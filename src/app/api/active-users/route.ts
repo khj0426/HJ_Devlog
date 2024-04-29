@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 
 import { formatDateToString } from '@/utils/formatDateToString';
 
-export const dynamic = "force-dynamic";
+export const dynamic = 'force-dynamic';
 
 export async function GET(req: NextRequest) {
   const analyticsDataClient = new BetaAnalyticsDataClient({
@@ -17,6 +17,19 @@ export async function GET(req: NextRequest) {
       private_key_id: 'fece05c370269798717c1096e90c0d73a24e36b6',
     },
   });
+
+  const startDate = req.nextUrl.searchParams.get('date');
+
+  const now = new Date();
+
+  const queryStringToDate = new Map([
+    ['오늘', formatDateToString(now)],
+    ['어제', formatDateToString(new Date(now.setDate(now.getDate() - 1)))],
+    ['7일', formatDateToString(new Date(now.setDate(now.getDate() - 7)))],
+    ['30일', formatDateToString(new Date(now.setMonth(now.getMonth() - 1)))],
+    ['90일', formatDateToString(new Date(now.setMonth(now.getMonth() - 3)))],
+    ['1년', formatDateToString(new Date(now.setMonth(now.getMonth() - 12)))],
+  ]);
 
   const report = async function runReport() {
     const [response] = await analyticsDataClient.runReport({
@@ -34,10 +47,14 @@ export async function GET(req: NextRequest) {
           },
         },
       },
+      //시작 일자가 있으면 해당 시작일자로 고정 그렇지 않으면 전체 기간
       dateRanges: [
         {
-          startDate: '2020-03-31',
-          endDate:formatDateToString(new Date()),
+          startDate: startDate
+            ? queryStringToDate.get(startDate)
+            : '2020-03-11',
+          //현재 시간으로 설정
+          endDate: formatDateToString(new Date()),
         },
       ],
       metrics: [
@@ -57,7 +74,6 @@ export async function GET(req: NextRequest) {
 
   const reportResults = await report();
 
-  console.log(reportResults);
   if (reportResults) {
     return NextResponse.json(
       {

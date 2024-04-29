@@ -1,13 +1,16 @@
 import { QueryOptions, UseInfiniteQueryOptions } from '@tanstack/react-query';
 
-import { getActiveUserCount } from '@/services/BigQuery';
+import { SelectDateOptionsProps } from '@/@types/BackOfficeProps';
+import {
+  getActiveUserCount,
+  getActiveUserCountByDate,
+} from '@/services/BigQuery';
 import { getGuestBook } from '@/services/GuestBook';
 import {
   getCategoryPosts,
   getPosts,
   getSearchQueryPostList,
 } from '@/services/Post';
-
 const postQueryKey = {
   all: ['allPosts'] as const,
   filteredCategoryPost: (category: string) =>
@@ -55,13 +58,21 @@ const guestBookQueryOptions = {
 
 const gaQueryKey = {
   user: ['user'] as const,
+  visitedUserByDate: (date: SelectDateOptionsProps) => [
+    ...gaQueryKey.user,
+    date,
+  ],
 };
 
 const gaQueryOptions = {
   user: () => ({
     queryFn: getActiveUserCount,
     queryKey: gaQueryKey.user,
-    staleTime: 0,
+  }),
+  visitedUserByDate: (date: SelectDateOptionsProps) => ({
+    queryFn: () => getActiveUserCountByDate({ start: date }),
+    queryKey: gaQueryKey.visitedUserByDate(date),
+    suspense: true,
   }),
 };
 export {

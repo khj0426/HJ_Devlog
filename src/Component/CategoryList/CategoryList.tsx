@@ -22,11 +22,11 @@ const CategoryListStyle = styled.span`
 
 const CategoryListWrapper = styled.div`
   @media ${({ theme }) => theme?.device?.mobile} {
-    opacity: 0;
+    display:none;
   }
 
   @media ${({ theme }) => theme?.device?.tablet} {
-    opacity: 0;
+    display:none;
   }
 
   gap: 15px;

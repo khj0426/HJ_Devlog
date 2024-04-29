@@ -14,13 +14,22 @@ export interface DropDownProps {
   label: ReactNode;
 }
 
-export default function DropDown({
+export default function DropDown<T>({
   items,
+  onChangeSelectedItem,
 }: {
   items: PropsWithChildren<DropDownProps[]>;
+  onChangeSelectedItem?: (_item: T) => void;
 }) {
-  const { isOpen, index, selectedItem, setIsOpen, setIndex, handleKeyDown } =
-    useDropDown(items);
+  const {
+    isOpen,
+    index,
+    selectedItem,
+    setIsOpen,
+    setIndex,
+    handleKeyDown,
+    setSelectedItem,
+  } = useDropDown(items);
 
   const dropDownContainer = useRef<HTMLDivElement | null>(null);
   useClickAway(dropDownContainer, () => {
@@ -32,7 +41,9 @@ export default function DropDown({
         label={
           selectedItem ? (selectedItem?.label as string) : '아이템을 선택하세요'
         }
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={() => {
+          setIsOpen(!isOpen);
+        }}
       />
       {isOpen && (
         <DropDownMenu
@@ -41,7 +52,10 @@ export default function DropDown({
           onKeyDown={() => handleKeyDown}
           onClickItem={(item) => {
             if (item) {
-              setIndex(item);
+              setSelectedItem(item);
+            }
+            if (onChangeSelectedItem && item?.text) {
+              onChangeSelectedItem(item?.text as T);
             }
           }}
         ></DropDownMenu>
