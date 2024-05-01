@@ -17,7 +17,7 @@ export default function SelectedDateUserCountInfo({
   }
   return (
     <StyledUserCountText>
-      어제까지 총 {countData?.datalist[0]?.value}명이 방문했어요🧡
+      {date}동안 총 {countData?.datalist[0]?.value}명이 방문했어요🧡
     </StyledUserCountText>
   );
 }

@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 import styled from 'styled-components';
 
+import ReportButton from '@/Component/Blog/ReportButton/ReportButton';
 import RssButton from '@/Component/Blog/RssButton/RssButton';
 import SearchPostButton from '@/Component/Blog/SearchPost/SearchPost';
 import Drawer from '@/Component/Common/Drawer/Drawer';
@@ -13,7 +14,6 @@ const ButtonListStyle = styled.li`
   height: 32px;
   font-size: 16px;
   align-items: center;
-  gap: 5px;
   color: ${({ theme }) => theme.currentTheme.text};
 `;
 
@@ -41,12 +41,15 @@ export default function NavigationBarDrawer() {
           }}
         >
           <ButtonListStyle tabIndex={0}>
+            <ReportButton />
+          </ButtonListStyle>
+          <ButtonListStyle tabIndex={0}>
             <RssButton></RssButton>
           </ButtonListStyle>
-          <ButtonListStyle tabIndex={1}>
+          <ButtonListStyle tabIndex={0}>
             <SearchPostButton></SearchPostButton>
           </ButtonListStyle>
-          <ButtonListStyle tabIndex={2}>
+          <ButtonListStyle tabIndex={0}>
             <ToggleDarkModeButton></ToggleDarkModeButton>
           </ButtonListStyle>
         </ul>
