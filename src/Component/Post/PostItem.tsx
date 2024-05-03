@@ -13,11 +13,11 @@ const PostCard = styled.div`
   width: 350px;
   height: 350px;
   margin: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.04);
   transition: all 0.3s ease;
   &:hover {
     transform: translateY(-10px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.04);
   }
   background: ${({ theme }) => theme.currentTheme.backgroundPost};
   color: ${({ theme }) => theme.currentTheme.text};
