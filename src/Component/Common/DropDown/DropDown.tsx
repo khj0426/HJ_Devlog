@@ -11,7 +11,7 @@ export interface DropDownProps {
   text?: string;
   icon?: string;
   disabled?: boolean;
-  label: ReactNode;
+  label: string;
 }
 
 export default function DropDown<T>({
@@ -19,7 +19,7 @@ export default function DropDown<T>({
   onChangeSelectedItem,
 }: {
   items: PropsWithChildren<DropDownProps[]>;
-  onChangeSelectedItem?: (_item: T) => void;
+  onChangeSelectedItem?: (_item?: DropDownProps) => void;
 }) {
   const {
     isOpen,
@@ -38,9 +38,7 @@ export default function DropDown<T>({
   return (
     <div className="dropdown" ref={dropDownContainer}>
       <Trigger
-        label={
-          selectedItem ? (selectedItem?.label as string) : '아이템을 선택하세요'
-        }
+        label={selectedItem ? selectedItem.label : items[0].label}
         onClick={() => {
           setIsOpen(!isOpen);
         }}
@@ -54,8 +52,8 @@ export default function DropDown<T>({
             if (item) {
               setSelectedItem(item);
             }
-            if (onChangeSelectedItem && item?.text) {
-              onChangeSelectedItem(item?.text as T);
+            if (onChangeSelectedItem) {
+              onChangeSelectedItem(item);
             }
           }}
         ></DropDownMenu>

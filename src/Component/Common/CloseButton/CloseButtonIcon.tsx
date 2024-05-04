@@ -1,23 +1,28 @@
 import { CSSProperties } from 'react';
 
+interface CloseButtonProps {
+  sizes?: number;
+  darkMode?: boolean;
+  fill?: CSSProperties['color'];
+  disabled?: boolean;
+}
+
 export default function CloseButtonIcon({
   sizes,
   darkMode,
   fill,
-}: {
-  sizes?: number;
-  darkMode?: boolean;
-  color?: string;
-  fill?: CSSProperties['color'];
-}) {
-  const currentModeColor = darkMode ? '#fafafa' : '#1c1e21';
+  disabled,
+}: CloseButtonProps) {
+  const darkModeColor = darkMode ? '#fafafa' : '#1c1e21';
+  const currentColor = disabled ? '#cdcdcd' : darkModeColor;
+
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       height={sizes ?? '24px'}
       viewBox="0 0 24 24"
       width={sizes ?? '24px'}
-      fill={fill ?? currentModeColor}
+      fill={fill ?? currentColor}
       style={{
         cursor: 'pointer',
       }}

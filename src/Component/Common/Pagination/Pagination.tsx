@@ -1,5 +1,5 @@
 'use client';
-import Button from '@/Component/Common/Button';
+import Button from '@/Component/Common/Button/Button';
 import Flex from '@/Component/Common/Flex/Flex';
 
 interface PaginationProps {
@@ -16,15 +16,16 @@ export default function Pagination({
       {Array.from({ length: numPages }).map((_, i) => {
         return (
           <Button
+            variant="secondary"
             onClick={() => handleOnClickPage && handleOnClickPage(i + 1)}
-            label={`${i + 1}`}
             key={i}
             style={{
               width: '50px',
               height: '50px',
-              borderRadius: '5px',
+              border: '2.5px solid',
             }}
-          />
+            label={i + 1}
+          ></Button>
         );
       })}
     </Flex>

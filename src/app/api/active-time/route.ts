@@ -1,8 +1,6 @@
 import { BetaAnalyticsDataClient } from '@google-analytics/data';
 import { NextRequest, NextResponse } from 'next/server';
 
-import { formatDateToString } from '@/utils/formatDateToString';
-
 export const dynamic = 'force-dynamic';
 export async function GET(req: NextRequest) {
   const getQueryStringDate = req.nextUrl.searchParams.get('page');
@@ -52,7 +50,7 @@ export async function GET(req: NextRequest) {
       ],
       metrics: [
         {
-          name: 'totalUsers',
+          name: 'averageSessionDuration',
         },
       ],
     });

@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import Pagination from '@/Component/Common/Pagination/Pagination';
 import usePageNation from '@/hooks/usePagenation';
+
+import Pagination from './Pagination';
 const PageNationExample = () => {
   const { changePage, pageCount, pageData } = usePageNation({
     limit: 5,

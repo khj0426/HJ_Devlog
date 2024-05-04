@@ -32,7 +32,12 @@ const CloseButton = forwardRef<HTMLButtonElement, CloseButtonProps>(
         backgroundColor={backgroundColor}
         {...props}
       >
-        <CloseButtonIcon sizes={size} darkMode={darkMode} fill={fill} />
+        <CloseButtonIcon
+          sizes={size}
+          darkMode={darkMode}
+          fill={fill}
+          disabled={isDisabled}
+        />
       </StyledCloseButtonBackDrop>
     );
   }

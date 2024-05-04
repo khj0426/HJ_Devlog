@@ -20,7 +20,14 @@ const borderRadius = {
   xl: '14px',
 } as const;
 
-export { fontSizes, fontWeights, borderRadius };
+const lineHeights = {
+  condensed: '1.25',
+  normal: '1.5',
+  expanded: '1.75',
+} as const;
+
+export { fontSizes, fontWeights, borderRadius, lineHeights };
 export type fontSizesType = typeof fontSizes;
 export type fontWeightsType = typeof fontWeights;
 export type borderRadiusType = typeof borderRadius;
+export type lineHeightsType = typeof lineHeights;

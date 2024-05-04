@@ -6,6 +6,8 @@ import { RecoilRoot, useRecoilValue } from 'recoil';
 import { ThemeProvider } from 'styled-components';
 import globalStyle from '../src/style/globalStyle';
 import { darkTheme, lightTheme } from '../src/style/theme/darkMode';
+
+import { buttonTheme } from '../src/style/theme/button';
 import mediaTheme from '../src/style/theme/media';
 import { themeAtom } from '../src/app/Providers/Recoil/globalAtom';
 import {
@@ -25,6 +27,7 @@ const ThemeWrapper = ({ children }) => {
   return (
     <ThemeProvider
       theme={{
+        buttonTheme: buttonTheme,
         currentTheme: themeObj,
         device: deviceTheme,
         fontSize: sizes.fontSizes,

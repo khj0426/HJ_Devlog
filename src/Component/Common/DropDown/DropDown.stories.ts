@@ -2,13 +2,6 @@ import { Meta, StoryObj } from '@storybook/react';
 
 import DropDown from '@/Component/Common/DropDown/DropDown';
 
-interface Item {
-  id: string;
-  text: string;
-  icon: string;
-  description: string;
-}
-
 const meta: Meta<typeof DropDown> = {
   title: '메뉴를 선택 가능한 드롭다운 컴포넌트',
   component: DropDown,
@@ -35,6 +28,24 @@ export const DefaultDropDown: StoryObj<typeof DropDown> = {
         text: '설명 2',
         icon: '/path/to/icon2.png',
         disabled: true, // 이 항목은 비활성화 상태임을 나타냄
+      },
+    ],
+  },
+};
+
+export const BigQueryDropDown: StoryObj<typeof DropDown> = {
+  args: {
+    onChangeSelectedItem: (item) => console.log(item?.key),
+    items: [
+      {
+        key: '참여 시간',
+        label: '참여 시간',
+        text: '사용자의 참여 시간입니다',
+      },
+      {
+        key: '총 사용자 수',
+        label: '총 사용자 수',
+        text: '사용자의 총 사용자 수입니다.',
       },
     ],
   },

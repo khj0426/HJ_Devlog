@@ -1,7 +1,7 @@
 export const dropDownItems = [
   {
-    key: 'oneDay',
-    label: '오늘까지',
+    key: '사용자 수',
+    label: '사용자 수 ',
     text: '오늘',
   },
   {

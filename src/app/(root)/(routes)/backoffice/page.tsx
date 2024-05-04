@@ -6,7 +6,8 @@ import styled from 'styled-components';
 import { SelectDateOptionsProps } from '@/@types/BackOfficeProps';
 import ActiveUserChart from '@/Component/BackOffice/ActiveUserChart/ActiveUserChart';
 import SelectedDateUserCountInfo from '@/Component/BackOffice/SelectedDateUserCount/SelectedDateUserCount';
-import Button from '@/Component/Common/Button';
+import Button from '@/Component/Common/Button/Button';
+import ButtonGroup from '@/Component/Common/ButtonGroup/ButtonGroup';
 import DropDown from '@/Component/Common/DropDown/DropDown';
 import Flex from '@/Component/Common/Flex/Flex';
 import Spinner from '@/Component/Common/Spinner/Spinner';
@@ -22,40 +23,62 @@ const StyledMain = styled.main`
 `;
 
 export default function BackOfficePage() {
+  const [dataType, setDataType] = useState<'총 사용자 수' | '참여 시간'>(
+    '총 사용자 수'
+  );
   const [date, setDate] = useState<'7일' | '30일' | '90일'>('7일');
 
   return (
     <StyledMain>
-      <Flex width={'80%'} margin={'0 auto'} gap={'15px'}>
+      <DropDown
+        onChangeSelectedItem={(item) => {
+          if (item && item?.key === '참여 시간') {
+            setDataType(item?.key);
+          }
+          if (item && item?.key === '총 사용자 수') {
+            setDataType(item?.key);
+          }
+        }}
+        items={[
+          {
+            key: '총 사용자 수',
+            label: '총 사용자 수',
+            text: '사용자의 총 사용자 수입니다.',
+          },
+          {
+            key: '참여 시간',
+            label: '참여 시간',
+            text: '사용자의 참여 시간입니다',
+          },
+        ]}
+      />
+      <ButtonGroup spacing={15}>
         <Button
-          label="30일간 사용자 수"
+          label="30일"
+          variant="primary"
+          size="small"
           onClick={() => setDate('30일')}
-          style={{
-            padding: '15px',
-          }}
         ></Button>
         <Button
-          style={{
-            padding: '15px',
-          }}
-          label="7일간 사용자 수"
+          size="small"
+          label="7일"
+          variant="primary"
           onClick={() => setDate('7일')}
         ></Button>
         <Button
-          style={{
-            padding: '15px',
-          }}
-          label="90일간 사용자 수"
+          label="90일"
+          size="small"
+          variant="primary"
           onClick={() => setDate('90일')}
         ></Button>
-      </Flex>
+      </ButtonGroup>
 
       <Flex>
         <Suspense fallback={<Spinner />}>
           <SelectedDateUserCountInfo date={date} />
         </Suspense>
       </Flex>
-      <ActiveUserChart selectDate={date} />
+      <ActiveUserChart selectDate={date} type={dataType} />
     </StyledMain>
   );
 }

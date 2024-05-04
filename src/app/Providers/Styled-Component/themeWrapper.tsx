@@ -3,6 +3,7 @@
 import { useRecoilValue } from 'recoil';
 import { ThemeProvider } from 'styled-components';
 
+import { buttonTheme } from '@/style/theme/button';
 import { darkTheme, lightTheme } from '@/style/theme/darkMode';
 import deviceTheme from '@/style/theme/media';
 import { fontSizes, fontWeights, borderRadius } from '@/style/theme/size';
@@ -19,6 +20,7 @@ export function ThemeWrapper({ children }: { children: React.ReactNode }) {
     <StyledComponentsRegistry>
       <ThemeProvider
         theme={{
+          buttonTheme: buttonTheme,
           currentTheme: themeObj,
           device: deviceTheme,
           fontSize: sizes.fontSizes,
