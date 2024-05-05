@@ -7,6 +7,7 @@ import RssButton from '@/Component/Blog/RssButton/RssButton';
 import SearchPostButton from '@/Component/Blog/SearchPost/SearchPost';
 import Drawer from '@/Component/Common/Drawer/Drawer';
 import DrawerImage from '@/Component/Common/Drawer/DrawerImage';
+import IconButton from '@/Component/Common/IconButton/IconButton';
 import ToggleDarkModeButton from '@/Component/DarkMode/ToggoeButton';
 
 const ButtonListStyle = styled.li`
@@ -40,18 +41,34 @@ export default function NavigationBarDrawer() {
             cursor: 'pointer',
           }}
         >
-          <ButtonListStyle tabIndex={0}>
-            <ReportButton />
-          </ButtonListStyle>
-          <ButtonListStyle tabIndex={0}>
-            <RssButton></RssButton>
-          </ButtonListStyle>
-          <ButtonListStyle tabIndex={0}>
-            <SearchPostButton></SearchPostButton>
-          </ButtonListStyle>
-          <ButtonListStyle tabIndex={0}>
-            <ToggleDarkModeButton></ToggleDarkModeButton>
-          </ButtonListStyle>
+          <IconButton
+            icon={<ReportButton />}
+            tabIndex={0}
+            style={{
+              border: 'none',
+            }}
+          />
+          <IconButton
+            icon={<RssButton />}
+            tabIndex={0}
+            style={{
+              border: 'none',
+            }}
+          />
+          <IconButton
+            icon={<SearchPostButton />}
+            tabIndex={0}
+            style={{
+              border: 'none',
+            }}
+          />
+          <IconButton
+            icon={<ToggleDarkModeButton />}
+            tabIndex={0}
+            style={{
+              border: 'none',
+            }}
+          />
         </ul>
       </Drawer>
     </div>
