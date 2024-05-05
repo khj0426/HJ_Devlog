@@ -32,9 +32,12 @@ const StyledDropDownItem = styled.li<{ selected: boolean }>`
 const StyledDropDownMenu = styled.div`
   background-color: white;
   width: 320px;
+  position: absolute;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.24), 0px 0px 1px rgba(0, 0, 0, 0.24);
   padding: 8px 0;
   border-radius: 4px;
+  max-height: 350px;
+  overflow-y: scroll;
 `;
 
 export default function DropDownMenu({
@@ -68,6 +71,7 @@ export default function DropDownMenu({
             onClick={() => onClickItem(item)}
           >
             <label>{item.label}</label>
+            <Image src={item.icon ?? ''} alt="avatar" width={30} height={30} />
             <p>{item.text}</p>
           </StyledDropDownItem>
         ))}

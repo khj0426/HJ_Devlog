@@ -7,7 +7,7 @@ export default function Loading() {
       {Array.from({ length: 50 }).map((_, index) => (
         <div key={index}>
           <Skeleton.Text
-            height={50}
+            height={55}
             className="loading_skeleton"
             style={{
               display: 'flex',

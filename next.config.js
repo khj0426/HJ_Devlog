@@ -5,28 +5,8 @@ const {
   withSentryConfig,
 } = require('@sentry/nextjs/cjs/config/withSentryConfig');
 
-const securityHeaders = [
-  { key: 'X-XSS-Protection', value: '1; mode=block' },
-  { key: 'X-Frame-Options', value: 'DENY' },
-  {
-    key: 'Referrer-Policy',
-    value: 'strict-origin-when-cross-origin',
-  },
-  {
-    key: 'X-Content-Type-Options',
-    value: 'nosniff',
-  },
-  {
-    key: 'X-DNS-Prefetch-Control',
-    value: 'on',
-  },
-];
-
 const nextConfig = {
   compress: true,
-  async headers() {
-    return [{ source: '/(.*)', headers: securityHeaders }];
-  },
   experimental: {
     serverActions: true,
   },
@@ -55,6 +35,9 @@ const nextConfig = {
     styledComponents: true,
   },
   images: {
+    dangerouslyAllowSVG: true,
+    contentDispositionType: 'attachment',
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
     remotePatterns: [
       {
         protocol: 'https',
@@ -63,7 +46,6 @@ const nextConfig = {
     ],
     formats: ['image/avif', 'image/webp'],
   },
-  compress: true,
 };
 
 const sentryConfig = {

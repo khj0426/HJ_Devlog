@@ -3,6 +3,7 @@ export type GuestBook = {
     [key: string]: {
       comment: string;
       commentTime: string;
+      avatar: string;
     };
   };
 };

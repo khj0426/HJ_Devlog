@@ -1,4 +1,9 @@
-import { ReactNode, useRef, PropsWithChildren, KeyboardEvent } from 'react';
+import {
+  useRef,
+  PropsWithChildren,
+  ComponentPropsWithoutRef,
+  forwardRef,
+} from 'react';
 
 import useClickAway from '@/hooks/useClickAway';
 import useDropDown from '@/hooks/useDropDown';
@@ -6,7 +11,7 @@ import useDropDown from '@/hooks/useDropDown';
 import DropDownMenu from './DropDownMenu';
 import Trigger from './Trigger';
 
-export interface DropDownProps {
+export interface DropDownProps extends ComponentPropsWithoutRef<'div'> {
   key: string;
   text?: string;
   icon?: string;
@@ -55,6 +60,7 @@ export default function DropDown<T>({
             if (onChangeSelectedItem) {
               onChangeSelectedItem(item);
             }
+            setIsOpen(false);
           }}
         ></DropDownMenu>
       )}

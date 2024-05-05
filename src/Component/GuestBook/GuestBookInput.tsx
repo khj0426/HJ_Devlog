@@ -1,5 +1,11 @@
+import { useState } from 'react';
+
+import Image from 'next/image';
+
+import DropDown from '@/Component/Common/DropDown/DropDown';
 import Flex from '@/Component/Common/Flex/Flex';
 import { ToastManager, ToastContainer } from '@/Component/Common/Toast';
+import { GuestBookAvatarList } from '@/Component/GuestBook/constants';
 import { Input, InputBox } from '@/Component/Input';
 import usePostGuestBook from '@/hooks/mutations/useGuestBookMutation';
 import useInput from '@/hooks/useInput';
@@ -7,6 +13,7 @@ import { Button } from '@/stories/Button';
 const GuestBookInput = ({ refetch }: { refetch: () => void }) => {
   const guestBookInput = useInput('', (e) => e.target.value.length <= 150);
   const { mutate } = usePostGuestBook();
+  const [avatar, setAvatar] = useState<string | null>(null);
 
   const handleSubmitGuestBook = () => {
     if (guestBookInput.value.length === 0) {
@@ -16,6 +23,7 @@ const GuestBookInput = ({ refetch }: { refetch: () => void }) => {
     mutate(
       {
         comment: guestBookInput.value,
+        avatar: avatar ?? GuestBookAvatarList[0].icon,
       },
       {
         onSuccess: () => {
@@ -35,6 +43,21 @@ const GuestBookInput = ({ refetch }: { refetch: () => void }) => {
       margin={'0 auto'}
       width={'80%'}
     >
+      <Image
+        src={avatar ?? GuestBookAvatarList[0].icon}
+        alt="avatar"
+        width={30}
+        height={30}
+      />
+      <DropDown
+        items={GuestBookAvatarList}
+        onChangeSelectedItem={(item) => {
+          if (item?.icon) {
+            setAvatar(item.icon);
+          }
+        }}
+      />
+
       <InputBox width="350px" color="#f8f9fa">
         <Input
           {...guestBookInput}

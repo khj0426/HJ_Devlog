@@ -1,4 +1,7 @@
+import Image from 'next/image';
 import styled from 'styled-components';
+
+import Flex from '@/Component/Common/Flex/Flex';
 
 const StyledGuestBookList = styled.section`
   min-height: 700px;
@@ -16,11 +19,6 @@ const StyledGuestBookList = styled.section`
   background-color: #f8f9fa;
 `;
 
-const Entry = styled.div`
-  border-bottom: 1px solid #dee2e6;
-  padding: 10px 0;
-`;
-
 const EntryContent = styled.p`
   color: #343a40;
   white-space: nowrap;
@@ -32,6 +30,7 @@ type guestBookListProps = {
   id: string;
   comment: string;
   commentTime: string;
+  avatar: string;
 };
 
 const GuestBookList = ({
@@ -43,9 +42,19 @@ const GuestBookList = ({
     <StyledGuestBookList>
       {guestbookList.map((value) => {
         return (
-          <Entry key={value.id}>
+          <Flex
+            key={value.id}
+            justifyContent="space-between"
+            width={'100%'}
+            flexDirection="row"
+            padding={'10px 0'}
+            style={{
+              borderBottom: '1px solid #dee2e6',
+            }}
+          >
+            <Image src={value.avatar} width={30} height={30} alt="avatar" />
             <EntryContent>{value.comment}</EntryContent>
-          </Entry>
+          </Flex>
         );
       })}
     </StyledGuestBookList>

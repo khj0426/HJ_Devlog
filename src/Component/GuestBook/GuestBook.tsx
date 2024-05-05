@@ -10,10 +10,11 @@ export default function GuestBook() {
   const { data, refetch } = useGetGuestBook();
 
   const guestBookList = useMemo(() => {
-    if (data && data.guestbook) {
+    if (data && data?.guestbook) {
       return Array.from(Object.entries(data.guestbook)).map((value) => {
         return {
           comment: value[1].comment,
+          avatar: value[1].avatar,
           commentTime: value[1].commentTime,
           id: value[0],
         };

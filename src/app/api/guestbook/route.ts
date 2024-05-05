@@ -3,7 +3,7 @@ import { NextResponse, NextRequest } from 'next/server';
 
 import { DB } from '../../Providers/firebase';
 
-export const dynamic = "force-dynamic";
+export const dynamic = 'force-dynamic';
 
 export async function GET() {
   const guestbookRef = ref(DB, '/guestbook');
@@ -37,6 +37,7 @@ export async function POST(req: NextRequest) {
     const val = await push(ref(DB, '/guestbook'), {
       comment: body.comment,
       commentTime: body.time,
+      avatar: body.avatar,
     });
 
     return NextResponse.json(
