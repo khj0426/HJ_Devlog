@@ -41,7 +41,7 @@ export default function PostItem({
 }) {
   return (
     <PostCard>
-      <Link href={`/blog/${post.slug}`}>
+      <Link href={`/blog/${encodeURIComponent(post.slug)}`}>
         <PostImage
           src={post.image}
           width={350}
