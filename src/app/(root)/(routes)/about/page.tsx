@@ -23,7 +23,13 @@ export default async function About() {
         maxWidth: '80%',
       }}
     >
-      <Title title={AboutContent.title} />
+      <Title
+        title={AboutContent.title}
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+        }}
+      />
       <article
         style={{
           display: 'flex',
