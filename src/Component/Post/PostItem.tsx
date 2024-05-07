@@ -5,6 +5,8 @@ import Link from 'next/link';
 import styled from 'styled-components';
 
 import Title from '@/Component/About/Title';
+import Badge from '@/Component/Common/Badge/Badge';
+import Flex from '@/Component/Common/Flex/Flex';
 
 const PostCard = styled.div`
   border-radius: 10px;
@@ -29,11 +31,6 @@ const PostImage = styled(Image)`
 
 const PostContent = styled.div``;
 
-const PostDate = styled.p`
-  margin: 0;
-  font-size: 14px;
-`;
-
 export default function PostItem({
   post,
 }: {
@@ -54,13 +51,19 @@ export default function PostItem({
         <PostContent>
           <Title
             style={{
-              justifyContent: 'flex-start',
+              width: '300px',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              whiteSpace: 'nowrap',
             }}
             title={post.title}
           ></Title>
           <p>{post.excerpt}</p>
-          <PostDate>{post.date}</PostDate>
           <p>{post.content}</p>
+          <Flex gap={3}>
+            <Badge variant="secondary">{post.date}</Badge>
+            <Badge>{post.category}</Badge>
+          </Flex>
         </PostContent>
       </Link>
     </PostCard>

@@ -22,10 +22,9 @@ export const SkeletonCard = () => {
   return (
     <PostCard>
       <SkeletonText variant="rectangular" width={300} height={200} />
-      <div style={{ padding: '20px' }}>
-        <SkeletonText width={300} height={20} fontSize={15} />
-        <SkeletonText width={150} height={20} />
-      </div>
+
+      <SkeletonText width={300} height={20} fontSize={15} />
+      <SkeletonText width={150} height={20} />
     </PostCard>
   );
 };

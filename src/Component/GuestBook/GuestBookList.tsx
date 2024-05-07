@@ -52,7 +52,10 @@ const GuestBookList = ({
               borderBottom: '1px solid #dee2e6',
             }}
           >
-            <Image src={value.avatar} width={30} height={30} alt="avatar" />
+            <Image src={value.avatar} width={30} height={30} alt="avatar" 
+            placeholder='blur'
+            blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNcKgkAAWkAwC+Aq/wAAAAASUVORK5CYII='
+            />
             <EntryContent>{value.comment}</EntryContent>
           </Flex>
         );
