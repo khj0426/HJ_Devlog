@@ -1,6 +1,5 @@
 import { Metadata } from 'next';
 
-import { useMemo } from 'react';
 import ReactMarkdown from 'react-markdown';
 
 import dynamic from 'next/dynamic';
@@ -83,12 +82,9 @@ export default function Post({
     'image',
   ]);
 
-  const tableOfContent = useMemo(() => {
-    if (post?.content) {
-      return makeTableOfContent({ children: post.content });
-    }
-    return [];
-  }, [post.content]);
+  const TableOfContent = makeTableOfContent({
+    children: post?.content,
+  });
 
   return (
     <>
@@ -206,7 +202,7 @@ export default function Post({
         <RecommendPostModal randomPosts={getRandomPosts(post.title)} />
         <Comments />
       </BlogLayout>
-      <TOC toc={tableOfContent} />
+      <TOC toc={TableOfContent ?? []} />
     </>
   );
 }

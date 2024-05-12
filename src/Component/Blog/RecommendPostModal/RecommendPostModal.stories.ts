@@ -58,7 +58,11 @@ const meta: Meta<typeof RecommentPostModal> = {
       },
     ],
   },
-  argTypes: {},
+  argTypes: {
+    randomPosts: {
+      description: '랜덤한 글의 목록이 필요합니다.',
+    },
+  },
 };
 
 export default meta;

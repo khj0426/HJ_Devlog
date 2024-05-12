@@ -10,7 +10,26 @@ const meta: Meta<typeof Badge> = {
   },
   tags: ['autodocs'],
   args: {},
-  argTypes: {},
+  argTypes: {
+    variant: {
+      defaultValue: 'primary',
+      description: '다양한 뱃지 형식을 선택할 수 있습니다.',
+      control: {
+        type: 'radio',
+      },
+
+      options: ['primary', 'negative', 'secondary', 'positive', ''],
+    },
+
+    size: {
+      defaultValue: 'small',
+      description: '뱃지의 크기를 선택할 수 있습니다.',
+      control: {
+        type: 'radio',
+      },
+      options: ['small', 'default'],
+    },
+  },
 };
 
 export default meta;

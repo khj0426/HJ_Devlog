@@ -11,6 +11,8 @@ const meta: Meta<typeof CodeBlock> = {
   },
   argTypes: {
     lang: {
+      description:
+        '코드블록 컴포넌트입니다. js,ts,tsx,jsx,bash,json형식이 가능합니다',
       control: {
         type: 'radio',
       },

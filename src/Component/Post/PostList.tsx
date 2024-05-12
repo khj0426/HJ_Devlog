@@ -15,7 +15,7 @@ export default function PostList({ posts, onClick }: PostListProps) {
     <Flex gap={5} flexDirection="column" alignItems="flex-start">
       {posts?.length === 0 && (
         <Flex>
-          <span tabIndex={0}>글이 존재하지 않습니다.</span>
+          <span>글이 존재하지 않습니다.</span>
           <EmojiSad size={32} color="#FF8A65" />
         </Flex>
       )}

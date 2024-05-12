@@ -31,9 +31,5 @@ export default function GlobalError({
       });
     });
   }, []);
-  return (
-    <html lang="ko">
-      <ErrorFallback error={error} reset={reset} />
-    </html>
-  );
+  return <ErrorFallback error={error} reset={reset} />;
 }
