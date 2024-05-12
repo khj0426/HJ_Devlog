@@ -51,7 +51,7 @@ const nextConfig = {
 const sentryConfig = {
   silent: true,
   org: 'kim0426-00d4b8e8c',
-  project: 'my-blog',
+  project: 'hj-devlog',
   widenClientFileUpload: true,
   transpileClientSDK: true,
   tunnelRoute: '/monitoring',
