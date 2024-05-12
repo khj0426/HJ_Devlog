@@ -17,7 +17,7 @@ export default function useQueryString(
 
   useEffect(() => {
     setQueryStringState(
-      queryString.get(key) ??
+      queryString?.get(key) ??
         (typeof defaultValue === 'function' ? defaultValue() : defaultValue)
     );
   }, [defaultValue, key, queryString]);
