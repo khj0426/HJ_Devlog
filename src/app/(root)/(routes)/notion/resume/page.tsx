@@ -5,6 +5,8 @@ import { Suspense } from 'react';
 import dynamic from 'next/dynamic';
 import { NotionAPI } from 'notion-client';
 
+import getCurrentBasePath from '@/utils/getCurrentBasePath';
+
 import NotionResumeLoading from './loading';
 const ResumeClient = dynamic(
   () => import('@/Component/Notion/NotionresumeClient')
@@ -14,6 +16,9 @@ export async function generateMetadata(): Promise<Metadata> {
   const dynamicMetaTag: Metadata = {
     icons: {
       icon: '/images/favicon.webp',
+    },
+    alternates: {
+      canonical: `${getCurrentBasePath()}/notion/resume`,
     },
     metadataBase: new URL('https://hj-devlog.vercel.app/'),
     title: '프론트엔드 개발자 김효중 이력서',

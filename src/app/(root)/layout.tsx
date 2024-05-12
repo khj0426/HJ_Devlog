@@ -1,4 +1,3 @@
-import '../globals.css';
 import { Metadata } from 'next';
 
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
@@ -10,6 +9,7 @@ import Navbar from '@/Component/Common/NavigationBar/Navbar';
 import ScrollToTop from '@/Component/Common/ScrolltoTop/ScrollToTop';
 import GoogleAnalytics from '@/Component/GA/GA';
 import GlobalStyle from '@/style/globalStyle';
+import getCurrentBasePath from '@/utils/getCurrentBasePath';
 
 import Recoil from '../Providers/Recoil/Recoil';
 import { ThemeWrapper } from '../Providers/Styled-Component/themeWrapper';
@@ -28,6 +28,9 @@ export const metadata: Metadata = {
     icon: '/images/favicon.webp',
   },
   metadataBase: new URL('https://hj-devlog.vercel.app/'),
+  alternates: {
+    canonical: `${getCurrentBasePath()}`,
+  },
   openGraph: {
     url: 'https://hj-devlog.vercel.app',
     title: 'HJ`s Blog',

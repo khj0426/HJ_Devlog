@@ -8,8 +8,9 @@ export default function useQueryString(
   defaultValue: string | (() => string)
 ): [string, Dispatch<SetStateAction<string>>] {
   const queryString = useSearchParams();
+
   const queryStringValue =
-    queryString.get(key) ??
+    queryString?.get(key) ??
     (typeof defaultValue === 'function' ? defaultValue() : defaultValue);
 
   const [queryStringState, setQueryStringState] = useState(queryStringValue);

@@ -11,6 +11,7 @@ import BlogLayout from '@/Component/Blog/Layout';
 const TOC = dynamic(() => import('@/Component/TOC'));
 import RecommendPostModal from '@/Component/Blog/RecommendPostModal/RecommendPostModal';
 import Comments from '@/Component/Giscus/Gitcus';
+import getCurrentBasePath from '@/utils/getCurrentBasePath';
 import { getPostBySlug, getRandomPosts } from '~/lib/api';
 import makeTableOfContent from '~/lib/makeTableOfContent';
 export async function generateMetadata({
@@ -32,6 +33,11 @@ export async function generateMetadata({
   const dynamicMetaTag: Metadata = {
     title: post.title,
     description: post.excerpt,
+    alternates: {
+      canonical: `${getCurrentBasePath()}/blog/${decodeURIComponent(
+        params.slug
+      )}`,
+    },
     openGraph: {
       images: [
         {
