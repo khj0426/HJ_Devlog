@@ -3,14 +3,15 @@ import { Metadata } from 'next';
 import { useMemo } from 'react';
 import ReactMarkdown from 'react-markdown';
 
+import dynamic from 'next/dynamic';
 import rehypeRaw from 'rehype-raw';
 
 import CodeBlock from '@/Component/Blog/CodeBlock/CodeBlock';
 import PostExtract from '@/Component/Blog/Extract';
 import BlogLayout from '@/Component/Blog/Layout';
+const TOC = dynamic(() => import('@/Component/TOC'));
 import RecommendPostModal from '@/Component/Blog/RecommendPostModal/RecommendPostModal';
 import Comments from '@/Component/Giscus/Gitcus';
-import TOC from '@/Component/TOC';
 import { getPostBySlug, getRandomPosts } from '~/lib/api';
 import makeTableOfContent from '~/lib/makeTableOfContent';
 export async function generateMetadata({
@@ -83,7 +84,10 @@ export default function Post({
   ]);
 
   const tableOfContent = useMemo(() => {
-    return makeTableOfContent({ children: post.content }) || [];
+    if (post?.content) {
+      return makeTableOfContent({ children: post.content });
+    }
+    return [];
   }, [post.content]);
 
   return (

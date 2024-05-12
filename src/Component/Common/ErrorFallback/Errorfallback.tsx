@@ -14,7 +14,7 @@ import ErrorImage from '~/public/images/error.webp';
 export default function ErrorFallback({
   error,
 }: {
-  error: NextApiResponse;
+  error: Error;
   reset: () => void;
 }) {
   useEffect(() => {
