@@ -39,14 +39,6 @@ export async function generateMetadata({
       )}`,
     },
     openGraph: {
-      images: [
-        {
-          url: `${post.image}`,
-          width: 800,
-          height: 600,
-          alt: '블로그 대표 이미지',
-        },
-      ],
       type: 'website',
       siteName: `${post.title}`,
       locale: 'ko-KR',
