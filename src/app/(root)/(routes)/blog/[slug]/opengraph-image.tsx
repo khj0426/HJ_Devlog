@@ -1,9 +1,9 @@
-import fs from 'fs/promises';
-import { join } from 'path';
+import { URL } from 'url';
 
+import { data } from 'autoprefixer';
 import { ImageResponse } from 'next/server';
-import sharp from 'sharp';
 
+import convertRemoteImageToBase64 from '@/utils/convertRemoteImagetoBase64';
 import getCurrentBasePath from '@/utils/getCurrentBasePath';
 import { getPostBySlug } from '~/lib/api';
 
@@ -21,7 +21,7 @@ export default async function Image({
     slug: string;
   };
 }) {
-  const post = getPostBySlug(params.slug, [
+  const post = getPostBySlug(decodeURIComponent(params.slug), [
     'title',
     'data',
     'slug',
@@ -30,79 +30,55 @@ export default async function Image({
     'date',
     'image',
   ]);
-  try {
-    const convertImage = await sharp(`${post.image}`)
-      .resize({
-        width: 1200,
-        height: 630,
-        fit: sharp.fit.cover,
-      })
-      .toFormat('png')
-      .toBuffer();
 
-    return new ImageResponse(
-      (
+  const imageURL = decodeURIComponent(`${getCurrentBasePath()}${post.image}`);
+
+  const getResizedImage = await convertRemoteImageToBase64(imageURL, 350, 350);
+
+  return new ImageResponse(
+    (
+      <div
+        style={{
+          display: 'flex',
+          zIndex: '99',
+          width: '100%',
+          height: '100%',
+          background: 'white',
+          justifyContent: 'space-around',
+        }}
+      >
+        <img
+          src={`${getResizedImage}`}
+          style={{
+            width: '350px',
+            height: 'auto',
+            objectFit: 'contain',
+          }}
+        ></img>
         <div
           style={{
-            fontSize: 48,
-            backgroundImage: `
-          data:image/png;base64,${convertImage.toString('base64')}`,
-            backgroundRepeat: 'no-repeat',
-            backgroundSize: 'contain',
             display: 'flex',
-            width: '100%',
-            height: '100%',
-            alignItems: 'center',
-            justifyContent: 'center',
             flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'flex-start',
+            padding: '0 20px',
           }}
         >
-          <div
+          <p
             style={{
-              display: 'flex',
-              flexDirection: 'column',
+              fontSize: '38px',
+              fontWeight: 'bold',
+              margin: '0 0 10px 0',
             }}
           >
-            <p>{post.title}</p>
-            <p>{post.excerpt}</p>
-          </div>
+            {post.title}
+          </p>
+          <p style={{ fontSize: '32px', margin: '0' }}>{post.excerpt}</p>
         </div>
-      ),
-      {
-        ...size,
-      }
-    );
-  } catch (e) {
-    console.error(e);
-    return new ImageResponse(
-      (
-        <div
-          style={{
-            fontSize: 48,
-            backgroundRepeat: 'no-repeat',
-            backgroundSize: 'contain',
-            display: 'flex',
-            width: '100%',
-            height: '100%',
-            alignItems: 'center',
-            justifyContent: 'center',
-            flexDirection: 'column',
-          }}
-        >
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-            }}
-          >
-            <p>{post.title}</p>
-            <p>{post.excerpt}</p>
-          </div>
-        </div>
-      ),
-      {
-        ...size,
-      }
-    );
-  }
+      </div>
+    ),
+    {
+      ...size,
+    }
+  );
 }
