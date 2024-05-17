@@ -2,6 +2,7 @@ import type { ThemeType } from '@/@types/ThemeType';
 
 import { atom, atomFamily, selectorFamily } from 'recoil';
 
+import { sessionStorageEffect } from '@/app/Providers/Recoil/sessionStorageEffect';
 import { POST_CONSTANT } from '@/constants/POST';
 
 export const themeAtom = atom<ThemeType>({
@@ -36,6 +37,7 @@ export const modalIdAtom = atom<string[]>({
 export const postRecommendModalClose = atom<boolean>({
   key: 'POST_RECOMMEND_MODAL_STATE',
   default: false,
+  effects: [sessionStorageEffect<boolean>('POST_SEARCH_MODAL_STATE')],
 });
 
 export const modalSelectorFamily = selectorFamily({
