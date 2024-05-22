@@ -37,7 +37,7 @@ export const modalIdAtom = atom<string[]>({
 export const postRecommendModalClose = atom<boolean>({
   key: 'POST_RECOMMEND_MODAL_STATE',
   default: false,
-  effects: [sessionStorageEffect<boolean>('POST_SEARCH_MODAL_STATE')],
+  effects: [sessionStorageEffect<boolean>('POST_RECOMMEND_MODAL_STATE')],
 });
 
 export const modalSelectorFamily = selectorFamily({

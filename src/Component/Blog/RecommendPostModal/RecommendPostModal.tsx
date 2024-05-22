@@ -28,7 +28,9 @@ export default function RecommendPostModal({
   randomPosts: Item[];
 }) {
   const [close, setClose] = useRecoilState(postRecommendModalClose);
-  const { modal, closeModal, openModal } = useModal('RECOMMEND_POST_MODAL');
+  const { modal, closeModal, openModal } = useModal(
+    'POST_RECOMMEND_MODAL_STATE'
+  );
   const { target } = useIntersectionObserver({
     threshold: 1,
     callback: () => openModal(),
