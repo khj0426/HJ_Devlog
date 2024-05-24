@@ -2,11 +2,27 @@
 
 import Flex from '@/Component/Common/Flex/Flex';
 import Skeleton from '@/Component/Common/Skeleton/Skeleton';
+import Spinner from '@/Component/Common/Spinner/Spinner';
+import useDevice from '@/hooks/useDevice';
 import useIsDarkMode from '@/hooks/useIsDarkMode';
 
 export default function NotionResumeLoading() {
   const { isDarkMode } = useIsDarkMode();
+  const isMobile = useDevice();
   const pageWrapperBackground = isDarkMode ? '#2f3437' : '#fff';
+
+  if (isMobile) {
+    return (
+      <Flex
+        width={'100vw'}
+        height={'100vh'}
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Spinner />
+      </Flex>
+    );
+  }
   return (
     <main
       style={{
@@ -22,7 +38,6 @@ export default function NotionResumeLoading() {
         flexWrap="wrap"
         margin={'0 auto'}
         style={{
-          padding: '5px',
           background: pageWrapperBackground,
         }}
       >
@@ -40,7 +55,7 @@ export default function NotionResumeLoading() {
           width={'100%'}
         >
           <Flex gap={'3px'} flexDirection="column">
-            {Array.from({ length: 4 }).map((_, index) => (
+            {Array.from({ length: 3 }).map((_, index) => (
               <Skeleton.Text width={350} height={27} key={index} />
             ))}
           </Flex>
