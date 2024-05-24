@@ -1,7 +1,12 @@
 import type { ThemeType } from '@/@types/ThemeType';
 
-import { atom, atomFamily, selectorFamily } from 'recoil';
+import queryString from 'query-string';
+import { atom, atomFamily, selector, selectorFamily } from 'recoil';
 
+import {
+  QueryStringEffect,
+  initQueryObject,
+} from '@/app/Providers/Recoil/QueryStringEffect';
 import { sessionStorageEffect } from '@/app/Providers/Recoil/sessionStorageEffect';
 import { POST_CONSTANT } from '@/constants/POST';
 
@@ -55,4 +60,19 @@ export const modalSelectorFamily = selectorFamily({
         set(modalIdAtom, (prev) => Array.from([...prev, newModalInfo.id]));
       }
     },
+});
+
+export const queryObjectAtom = atom({
+  key: 'QUERY_STRING_STATE',
+  default: initQueryObject(),
+  effects: [QueryStringEffect('QUERY_STRING_STATE')],
+});
+
+export const queryObjectSelector = selector({
+  key: 'QUERY_STRING_SELECTOR',
+  get: ({ get }) => {
+    const queryObject = get(queryObjectAtom);
+    const stringifyQueryObject = queryString.stringify(queryObject);
+    return stringifyQueryObject;
+  },
 });

@@ -10,6 +10,7 @@ import PostList from '@/Component/Post/PostList';
 import useSearchPostQuery from '@/hooks/queries/useSearchPostQuery';
 import useInput from '@/hooks/useInput';
 import useModal from '@/hooks/useModal';
+import { useQueryString } from '@/hooks/useQueryString';
 
 const StyledPostSearchModal = styled.div`
   width: 350px;
@@ -33,13 +34,10 @@ const StyledPostSearchModal = styled.div`
 `;
 
 function PostSearchModal() {
-  const {
-    onChange,
-    value: keyword,
-    error,
-  } = useInput('', (e) => e.target.value.length <= 150);
+  const { onChange, error } = useInput('', (e) => e.target.value.length <= 150);
   const { modal, closeModal } = useModal('POST_SEARCH_MODAL_STATE');
-  const { data: posts, isLoading } = useSearchPostQuery(keyword);
+  const { setQueryObject, queryObject } = useQueryString();
+  const { data: posts } = useSearchPostQuery(queryObject['keyword']);
 
   return (
     <Modal.ModalContainer id={modal.id}>
@@ -52,7 +50,13 @@ function PostSearchModal() {
         <StyledPostSearchModal>
           <Modal.ModalCloseButton onClick={closeModal} />
           <InputBox color="rgb(38, 41, 43)">
-            <Input autoFocus onChange={onChange} />
+            <Input
+              autoFocus
+              onChange={(e) => {
+                onChange(e);
+                setQueryObject({ keyword: e.target.value });
+              }}
+            />
           </InputBox>
           {error && (
             <p style={{ color: '#db4455' }}>최대 150자까지 입력 가능합니다!</p>

@@ -1,26 +1,17 @@
-'use client';
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { useRecoilState, useRecoilValue } from 'recoil';
 
-import { useSearchParams } from 'next/navigation';
+import {
+  queryObjectAtom,
+  queryObjectSelector,
+} from '@/app/Providers/Recoil/globalAtom';
 
-export default function useQueryString(
-  key: string,
-  defaultValue: string | (() => string)
-): [string, Dispatch<SetStateAction<string>>] {
-  const queryString = useSearchParams();
+export const useQueryString = () => {
+  const [queryObject, setQueryObject] = useRecoilState(queryObjectAtom);
+  const queryString = useRecoilValue(queryObjectSelector);
 
-  const queryStringValue =
-    queryString?.get(key) ??
-    (typeof defaultValue === 'function' ? defaultValue() : defaultValue);
-
-  const [queryStringState, setQueryStringState] = useState(queryStringValue);
-
-  useEffect(() => {
-    setQueryStringState(
-      queryString?.get(key) ??
-        (typeof defaultValue === 'function' ? defaultValue() : defaultValue)
-    );
-  }, [defaultValue, key, queryString]);
-
-  return [queryStringState, setQueryStringState];
-}
+  return {
+    queryObject,
+    setQueryObject,
+    queryString,
+  };
+};

@@ -5,7 +5,6 @@ import useSearchPostQuery from '@/hooks/queries/useSearchPostQuery';
 const PostSearchModalContent = ({ keyword }: { keyword: string }) => {
   const { data: posts, isFetching } = useSearchPostQuery(keyword);
 
-  console.log(isFetching);
   return (
     <>
       {isFetching ? (
