@@ -59,40 +59,38 @@ export default function Post({
   };
 
   return (
-    <>
-      <BlogLayout>
-        <h3>{post.title}</h3>
-        <PostExtract extract={post.excerpt} />
-        <p
-          style={{
-            fontWeight: '700',
-            fontSize: '16px',
-          }}
-        >
-          {post.date}
-        </p>
+    <BlogLayout>
+      <h3>{post.title}</h3>
+      <PostExtract extract={post.excerpt} />
+      <p
+        style={{
+          fontWeight: '700',
+          fontSize: '16px',
+        }}
+      >
+        {post.date}
+      </p>
 
-        <ReactMarkdown
-          rehypePlugins={[rehypeRaw]}
-          components={{
-            img: ({ ...props }) => (
-              <img
-                src={props.src || ''}
-                alt="마크다운 이미지"
-                style={{
-                  maxWidth: '100%',
-                  height: 'auto',
-                  objectFit: 'contain',
-                }}
-              />
-            ),
-            code: ({ children }) => <CodeBlock>{children as string}</CodeBlock>,
-          }}
-        >
-          {post.content}
-        </ReactMarkdown>
-        <Comments />
-      </BlogLayout>
-    </>
+      <ReactMarkdown
+        rehypePlugins={[rehypeRaw]}
+        components={{
+          img: ({ ...props }) => (
+            <img
+              src={props.src || ''}
+              alt="마크다운 이미지"
+              style={{
+                maxWidth: '100%',
+                height: 'auto',
+                objectFit: 'contain',
+              }}
+            />
+          ),
+          code: ({ children }) => <CodeBlock>{children as string}</CodeBlock>,
+        }}
+      >
+        {post.content}
+      </ReactMarkdown>
+      <Comments />
+    </BlogLayout>
   );
 }
