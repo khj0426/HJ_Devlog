@@ -4,6 +4,7 @@ import { SelectDateOptionsProps } from '@/@types/BackOfficeProps';
 import {
   getActiveUserCount,
   getActiveUserCountByDate,
+  getPostDetailViewsCount,
 } from '@/services/BigQuery';
 import { getGuestBook } from '@/services/GuestBook';
 import {
@@ -62,6 +63,7 @@ const gaQueryKey = {
     ...gaQueryKey.user,
     date,
   ],
+  visitedViewsByDetailPost: (slug: string) => [...gaQueryKey.user, slug],
 };
 
 const gaQueryOptions = {
@@ -73,6 +75,13 @@ const gaQueryOptions = {
     queryFn: () => getActiveUserCountByDate({ start: date }),
     queryKey: gaQueryKey.visitedUserByDate(date),
     suspense: true,
+  }),
+  visitedViewsByDetailPost: (slug: string) => ({
+    queryFn: () =>
+      getPostDetailViewsCount({
+        slug,
+      }),
+    queryKey: gaQueryKey.visitedViewsByDetailPost(slug),
   }),
 };
 export {

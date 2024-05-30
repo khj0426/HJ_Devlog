@@ -20,7 +20,6 @@ interface chartProps {
 }
 
 export default function ActiveUserChart({ selectDate, type }: chartProps) {
-  console.log(selectDate, type);
   const fetchBigQueryData = async () => {
     switch (type) {
       case '총 사용자 수':

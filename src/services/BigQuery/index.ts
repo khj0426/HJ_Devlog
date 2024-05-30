@@ -21,3 +21,7 @@ export const getActiveUserCountByDate = async ({
 }) => {
   return (await get<Response>(`/api/active-users?date=${start}`)).data;
 };
+
+export const getPostDetailViewsCount = async ({ slug }: { slug: string }) => {
+  return (await get<{ pageViewCount: number }>(`/api/posts/${slug}`)).data;
+};

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 const StyledPostExtract = styled.h5`
   color: #808080;
+  display: flex;
   @media ${({ theme }) => theme.device.laptop} {
     font-size: 14px;
   }

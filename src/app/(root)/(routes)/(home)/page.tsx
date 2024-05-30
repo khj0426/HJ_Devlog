@@ -5,7 +5,6 @@ import CategoryList from '@/Component/CategoryList/CategoryList';
 import Hydrate from '@/Component/Common/Hydrate';
 import PostContainer from '@/Component/Post/PostContainer';
 import { postQueryKey } from '@/hooks/queries/queryKey';
-import { getActiveUserCount } from '@/services/BigQuery';
 import { getPosts } from '@/services/Post';
 import getQueryClient from '@/utils/getQueryClient';
 import { getAllCategories } from '~/lib/api';
