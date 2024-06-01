@@ -42,44 +42,42 @@ export default function ActiveUserChart({ selectDate, type }: chartProps) {
   }, [selectDate, type]);
 
   return (
-    <Flex width={'80%'} margin={'0 auto'} justifyContent="center">
-      <ResponsiveContainer width={'100%'} height={400}>
-        <LineChart data={userCountData}>
-          <Line
-            type="monotone"
-            dataKey="data"
-            format="string"
-            stroke="#2D8CFF"
-            strokeWidth={2}
-          ></Line>
-          <XAxis
-            dataKey="date"
-            tickMargin={10}
-            tickLine={false}
-            padding={{
-              left: 13,
-              right: 13,
+    <ResponsiveContainer width={720} height={400}>
+      <LineChart data={userCountData}>
+        <Line
+          type="monotone"
+          dataKey="data"
+          format="string"
+          stroke="#2D8CFF"
+          strokeWidth={2}
+        ></Line>
+        <XAxis
+          dataKey="date"
+          tickMargin={10}
+          tickLine={false}
+          padding={{
+            left: 13,
+            right: 13,
+          }}
+        />
+        {type === '참여 시간' && (
+          <Tooltip
+            formatter={(data: number) => {
+              const minutes = Math.floor(data / 60);
+              const seconds = Math.floor(data % 60);
+              return `${minutes}분:${seconds}초`;
             }}
-          />
-          {type === '참여 시간' && (
-            <Tooltip
-              formatter={(data: number) => {
-                const minutes = Math.floor(data / 60);
-                const seconds = Math.floor(data % 60);
-                return `${minutes}분:${seconds}초`;
-              }}
-            ></Tooltip>
-          )}
+          ></Tooltip>
+        )}
 
-          {type === '총 사용자 수' && (
-            <Tooltip
-              formatter={(data: number) => {
-                return data;
-              }}
-            ></Tooltip>
-          )}
-        </LineChart>
-      </ResponsiveContainer>
-    </Flex>
+        {type === '총 사용자 수' && (
+          <Tooltip
+            formatter={(data: number) => {
+              return data;
+            }}
+          ></Tooltip>
+        )}
+      </LineChart>
+    </ResponsiveContainer>
   );
 }
