@@ -5,6 +5,7 @@ import {
   getActiveUserCount,
   getActiveUserCountByDate,
   getPostDetailViewsCount,
+  getPlatformUserCount,
 } from '@/services/BigQuery';
 import { getGuestBook } from '@/services/GuestBook';
 import {
@@ -59,6 +60,10 @@ const guestBookQueryOptions = {
 
 const gaQueryKey = {
   user: ['user'] as const,
+  userFilteredByPlatFormCategory: () => [
+    ...gaQueryKey.user,
+    'platformCategory',
+  ],
   visitedUserByDate: (date: SelectDateOptionsProps) => [
     ...gaQueryKey.user,
     date,
@@ -82,6 +87,10 @@ const gaQueryOptions = {
         slug,
       }),
     queryKey: gaQueryKey.visitedViewsByDetailPost(slug),
+  }),
+  userFilteredByPlatFormCategory: () => ({
+    queryKey: gaQueryKey.userFilteredByPlatFormCategory(),
+    queryFn: getPlatformUserCount,
   }),
 };
 export {

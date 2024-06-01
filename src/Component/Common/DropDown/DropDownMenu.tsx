@@ -71,7 +71,14 @@ export default function DropDownMenu({
             onClick={() => onClickItem(item)}
           >
             <label>{item.label}</label>
-            <Image src={item.icon ?? ''} alt="avatar" width={30} height={30} />
+            {item.icon && (
+              <Image
+                src={item.icon ?? ''}
+                alt="avatar"
+                width={30}
+                height={30}
+              />
+            )}
             <p>{item.text}</p>
           </StyledDropDownItem>
         ))}

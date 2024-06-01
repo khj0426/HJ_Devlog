@@ -1,3 +1,5 @@
+import { google } from '@google-analytics/data/build/protos/protos';
+
 import { SelectDateOptionsProps } from '@/@types/BackOfficeProps';
 import { get } from '@/utils/axiosClient';
 
@@ -24,4 +26,12 @@ export const getActiveUserCountByDate = async ({
 
 export const getPostDetailViewsCount = async ({ slug }: { slug: string }) => {
   return (await get<{ pageViewCount: number }>(`/api/posts/${slug}`)).data;
+};
+
+export const getPlatformUserCount = async () => {
+  return (
+    await get<google.analytics.data.v1beta.IRunReportResponse>(
+      `/api/platform-category`
+    )
+  ).data;
 };
