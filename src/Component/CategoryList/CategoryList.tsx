@@ -10,6 +10,7 @@ const CategoryListStyle = styled.span`
   flex-direction: column;
   color: ${({ theme }) => theme.currentTheme.text};
   font-size: 18px;
+  overflow: hidden;
   cursor: pointer;
   &:hover {
     text-decoration: underline ${({ theme }) => theme.currentTheme.text};
@@ -22,11 +23,11 @@ const CategoryListStyle = styled.span`
 
 const CategoryListWrapper = styled.div`
   @media ${({ theme }) => theme?.device?.mobile} {
-    display:none;
+    display: none;
   }
 
   @media ${({ theme }) => theme?.device?.tablet} {
-    display:none;
+    display: none;
   }
 
   gap: 15px;
@@ -36,7 +37,8 @@ const CategoryListWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   max-height: 350px;
-  overflow-y: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 `;
 
 export default function CategoryList({
