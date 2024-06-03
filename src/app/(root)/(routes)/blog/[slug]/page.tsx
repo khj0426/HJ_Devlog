@@ -3,6 +3,7 @@ import { Metadata } from 'next';
 import ReactMarkdown from 'react-markdown';
 
 import dynamic from 'next/dynamic';
+import { redirect } from 'next/navigation';
 import rehypeRaw from 'rehype-raw';
 
 import CodeBlock from '@/Component/Blog/CodeBlock/CodeBlock';
@@ -11,6 +12,7 @@ import BlogLayout from '@/Component/Blog/Layout';
 const TOC = dynamic(() => import('@/Component/TOC'));
 import PageView from '@/Component/Blog/PageView/PageView';
 import RecommendPostModal from '@/Component/Blog/RecommendPostModal/RecommendPostModal';
+import NotFoundErrorFallback from '@/Component/Common/ErrorFallback/NotFoundErrorfallback';
 import Flex from '@/Component/Common/Flex/Flex';
 import Comments from '@/Component/Giscus/Gitcus';
 import useGetPostDetailPageView from '@/hooks/queries/useGetPostDetailPageViewQuery';
@@ -82,6 +84,10 @@ export default function Post({
     'author',
     'image',
   ]);
+
+  if (!post.title) {
+    return <NotFoundErrorFallback />;
+  }
 
   const TableOfContent = makeTableOfContent({
     children: post?.content,

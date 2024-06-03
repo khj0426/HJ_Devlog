@@ -12,35 +12,43 @@ type PostItem = {
 const postDirectory = join(process.cwd(), 'posts');
 
 export function getPostSlug() {
-  return fs.readdirSync(postDirectory);
+  try {
+    return fs.readdirSync(postDirectory);
+  } catch (e) {
+    throw e;
+  }
 }
 
 export function getPostBySlug(slug: string, fields: string[]) {
-  const decodedSlug = decodeURIComponent(slug.replace(/\.md/, ''));
+  try {
+    const decodedSlug = decodeURIComponent(slug.replace(/\.md/, ''));
+    const postPath = join(postDirectory, `${decodedSlug}.md`);
+    const fileContent = fs.readFileSync(postPath, 'utf-8');
+    const { data, content } = matter(fileContent);
 
-  const postPath = join(postDirectory, `${decodedSlug}.md`);
-  const fileContent = fs.readFileSync(postPath, 'utf-8');
-  const { data, content } = matter(fileContent);
+    const postItems: PostItem = {};
 
-  const postItems: PostItem = {};
+    fields.forEach((field) => {
+      if (field === 'slug') {
+        postItems[field] = decodedSlug;
+      }
+      if (field === 'content') {
+        postItems[field] = content;
+      }
+      if (typeof data[field] !== 'undefined') {
+        postItems[field] = data[field];
+      }
+    });
 
-  fields.forEach((field) => {
-    if (field === 'slug') {
-      postItems[field] = decodedSlug;
-    }
-    if (field === 'content') {
-      postItems[field] = content;
-    }
-    if (typeof data[field] !== 'undefined') {
-      postItems[field] = data[field];
-    }
-  });
-
-  return postItems;
+    return postItems;
+  } catch (e) {
+    return {};
+  }
 }
 
 export function getAllPosts() {
   const slugs = getPostSlug();
+
   return slugs
     .map((slug) =>
       getPostBySlug(slug, [

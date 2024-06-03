@@ -89,7 +89,7 @@ export default function BackOfficePage() {
           alignItems="center"
         >
           <SelectedDateUserCountInfo date={date} />
-          <Flex>
+          <Flex justifyContent="space-around">
             <ActiveUserChart selectDate={date} type={dataType} />
             <ActiveUSerSessionChart />
           </Flex>

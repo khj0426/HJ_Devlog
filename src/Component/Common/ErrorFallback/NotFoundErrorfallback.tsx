@@ -1,9 +1,7 @@
 'use client';
-'use client';
 
 import { useEffect } from 'react';
 
-import * as Sentry from '@sentry/nextjs';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -11,29 +9,13 @@ import Flex from '@/Component/Common/Flex/Flex';
 import { ToastContainer, ToastManager } from '@/Component/Common/Toast';
 import ErrorImage from '~/public/images/404-Space.png';
 
-export default function NotFoundErrorFallback({
-  error,
-}: {
-  error: Error;
-  reset: () => void;
-}) {
+export default function NotFoundErrorFallback() {
   useEffect(() => {
     ToastManager.error(
       '페이지를 찾을 수 없습니다',
       '서비스를 이용할 수 없습니다',
       6000
     );
-    Sentry.setContext('404페이지 에러', {
-      error,
-    });
-
-    Sentry.captureException(error, {
-      level: 'error',
-      extra: {
-        type: '404 Not Found 에러',
-        ...error,
-      },
-    });
   }, []);
   return (
     <div
@@ -44,7 +26,12 @@ export default function NotFoundErrorFallback({
         alignItems: 'center',
       }}
     >
-      <Flex justifyContent="center" alignItems="center" flexDirection="column">
+      <Flex
+        justifyContent="center"
+        alignItems="center"
+        flexDirection="column"
+        gap="50px"
+      >
         <Image
           src={ErrorImage}
           alt="에러 메시지"
