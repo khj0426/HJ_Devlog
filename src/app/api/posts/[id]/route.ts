@@ -8,6 +8,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { PAGE_LOCATION } from '@/app/api/posts/constants';
 import analyticsDataClient from '@/utils/bigQueryClient';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(req: NextRequest) {
   const blogDetailSlugArray = req.nextUrl.pathname.split('/');
   const detailSlug = blogDetailSlugArray[blogDetailSlugArray.length - 1];
