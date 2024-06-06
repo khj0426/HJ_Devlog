@@ -1,0 +1,8 @@
+.fallback_spinner {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.fallback_spinner::-webkit-scrollbar {
+  display: none;
+}
