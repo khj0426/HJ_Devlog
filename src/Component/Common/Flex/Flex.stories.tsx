@@ -1,5 +1,6 @@
 import type { Meta, Story } from '@storybook/react';
 
+import Divider from '@/Component/Common/Divider/Divider';
 import Flex from '@/Component/Common/Flex/Flex';
 
 export default {
@@ -57,4 +58,23 @@ AlignItemsFlexEndFlex.args = {
   gap: '10px',
   width: '100px',
   height: '100px',
+};
+
+export const FlexWithDivider = () => {
+  return (
+    <Flex justifyContent="center" alignItems="center" gap={'20px'}>
+      {Array.from({ length: 15 }).map((_, index) => (
+        <>
+          <span>{index}</span>
+          <Divider
+            key={index}
+            orientation="vertical"
+            length="20px" // 글자 크기를 가정하여 길이 조정
+            thickness="2px"
+            margin="10px 0"
+          />
+        </>
+      ))}
+    </Flex>
+  );
 };

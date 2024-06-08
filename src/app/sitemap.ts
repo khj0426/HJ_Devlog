@@ -8,7 +8,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const postsSiteMap = posts.map((post) => {
     return {
       url: `${process.env.NEXT_PUBLIC_PRODUCT_URL}/blog/${post.title}`,
-      lastModified: new Date(post.date),
+      lastModified: post.date ? new Date(post.date) : new Date(),
     };
   });
 

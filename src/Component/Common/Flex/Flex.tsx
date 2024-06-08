@@ -4,7 +4,7 @@ import { CSSProperties, ComponentPropsWithoutRef, ReactNode } from 'react';
 import styled from 'styled-components';
 
 interface FlexProps extends ComponentPropsWithoutRef<'div'> {
-  children: ReactNode;
+  children?: ReactNode;
   flexDirection?: CSSProperties['flexDirection'];
   justifyContent?: CSSProperties['justifyContent'];
   alignItems?: CSSProperties['alignItems'];

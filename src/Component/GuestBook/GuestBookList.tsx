@@ -2,7 +2,7 @@ import Image from 'next/image';
 import styled from 'styled-components';
 
 import Flex from '@/Component/Common/Flex/Flex';
-
+import ItemList from '@/Component/Common/ItemList/ItemList';
 const StyledGuestBookList = styled.section`
   min-height: 700px;
   width: 500px;
@@ -40,26 +40,31 @@ const GuestBookList = ({
 }) => {
   return (
     <StyledGuestBookList>
-      {guestbookList.map((value) => {
-        return (
-          <Flex
-            key={value.id}
-            justifyContent="space-between"
-            width={'100%'}
-            flexDirection="row"
-            padding={'10px 0'}
-            style={{
-              borderBottom: '1px solid #dee2e6',
-            }}
-          >
-            <Image src={value.avatar} width={30} height={30} alt="avatar" 
-            placeholder='blur'
-            blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNcKgkAAWkAwC+Aq/wAAAAASUVORK5CYII='
-            />
-            <EntryContent>{value.comment}</EntryContent>
-          </Flex>
-        );
-      })}
+      <ItemList
+        hasDivider
+        data={guestbookList}
+        renderItem={(value) => {
+          return (
+            <Flex
+              key={value.id}
+              justifyContent="space-between"
+              width={'100%'}
+              flexDirection="row"
+              padding={'10px 0'}
+            >
+              <Image
+                src={value.avatar}
+                width={30}
+                height={30}
+                alt="avatar"
+                placeholder="blur"
+                blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNcKgkAAWkAwC+Aq/wAAAAASUVORK5CYII="
+              />
+              <EntryContent>{value.comment}</EntryContent>
+            </Flex>
+          );
+        }}
+      />
     </StyledGuestBookList>
   );
 };
