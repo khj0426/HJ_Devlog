@@ -1,10 +1,16 @@
 'use client';
-import { memo } from 'react';
+
+interface NavBarProps {
+  to: string;
+  linkName: string;
+}
+
+import { CSSProperties, ReactNode } from 'react';
 
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import styled, { css } from 'styled-components';
 
-import NavigationBarDrawer from '@/Component/Blog/NavigationBarDrawer/NavigationBarDrawer';
 import Flex from '@/Component/Common/Flex/Flex';
 
 const StyledNavBarLayout = styled.nav`
@@ -40,18 +46,63 @@ const StyledNavBarTitle = styled(Link)`
     `};
 `;
 
-function Navbar() {
-  return (
-    <StyledNavBarLayout>
-      <Flex gap={'10px'}>
-        <StyledNavBarTitle href="/">Blog</StyledNavBarTitle>
-        <StyledNavBarTitle href="/about">About</StyledNavBarTitle>
-        <StyledNavBarTitle href="/guestbook">GuestBook</StyledNavBarTitle>
-        <StyledNavBarTitle href="/notion/resume">Resume</StyledNavBarTitle>
-      </Flex>
-      <NavigationBarDrawer />
-    </StyledNavBarLayout>
-  );
+function Navbar({
+  links,
+  hasDrawer,
+  drawer,
+  direction = 'row',
+  activeStyle,
+}: {
+  readonly links: NavBarProps[];
+  readonly hasDrawer?: boolean;
+  readonly drawer?: ReactNode;
+  readonly direction?: 'row' | 'column';
+  readonly activeStyle?: CSSProperties;
+}) {
+  const currentPath = usePathname();
+
+  const currentPathStyle = (link: string) => {
+    if (link === currentPath) {
+      return activeStyle;
+    }
+    return {};
+  };
+  switch (direction) {
+    case 'row':
+      return (
+        <StyledNavBarLayout>
+          <Flex gap={'10px'}>
+            {links.map((link) => (
+              <StyledNavBarTitle
+                style={currentPathStyle(link.to)}
+                href={link.to}
+                key={link.linkName}
+              >
+                {link.linkName}
+              </StyledNavBarTitle>
+            ))}
+          </Flex>
+          {hasDrawer && drawer}
+        </StyledNavBarLayout>
+      );
+    case 'column':
+      return (
+        <StyledNavBarLayout>
+          <Flex gap={'10px'} flexDirection="column">
+            {links.map((link) => (
+              <StyledNavBarTitle
+                style={currentPathStyle(link.to)}
+                href={link.to}
+                key={link.linkName}
+              >
+                {link.linkName}
+              </StyledNavBarTitle>
+            ))}
+          </Flex>
+          {hasDrawer && drawer}
+        </StyledNavBarLayout>
+      );
+  }
 }
 
-export default memo(Navbar);
+export default Navbar;

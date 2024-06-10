@@ -2,7 +2,7 @@ import {
   useRef,
   PropsWithChildren,
   ComponentPropsWithoutRef,
-  forwardRef,
+  CSSProperties,
 } from 'react';
 
 import useClickAway from '@/hooks/useClickAway';
@@ -22,7 +22,9 @@ export interface DropDownProps extends ComponentPropsWithoutRef<'div'> {
 export default function DropDown<T>({
   items,
   onChangeSelectedItem,
+  style,
 }: {
+  style?: CSSProperties;
   items: PropsWithChildren<DropDownProps[]>;
   onChangeSelectedItem?: (_item?: DropDownProps) => void;
 }) {
@@ -41,7 +43,7 @@ export default function DropDown<T>({
     setIsOpen(false);
   });
   return (
-    <div className="dropdown" ref={dropDownContainer}>
+    <div className="dropdown" ref={dropDownContainer} style={style}>
       <Trigger
         label={selectedItem ? selectedItem.label : items[0].label}
         onClick={() => {

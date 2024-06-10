@@ -1,4 +1,4 @@
-import '../globals.css';
+import './globals.css';
 
 import { Metadata } from 'next';
 
@@ -6,15 +6,15 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Montserrat } from 'next/font/google';
 
 import Providers from '@/app/Providers/Query/queryClientProvider';
+import Recoil from '@/app/Providers/Recoil/Recoil';
+import { ThemeWrapper } from '@/app/Providers/Styled-Component/themeWrapper';
+import NavigationBarDrawer from '@/Component/Blog/NavigationBarDrawer/NavigationBarDrawer';
 import Footer from '@/Component/Common/Footer/Footer';
 import Navbar from '@/Component/Common/NavigationBar/Navbar';
 import ScrollToTop from '@/Component/Common/ScrolltoTop/ScrollToTop';
 import GoogleAnalytics from '@/Component/GA/GA';
 import GlobalStyle from '@/style/globalStyle';
 import getCurrentBasePath from '@/utils/getCurrentBasePath';
-
-import Recoil from '../Providers/Recoil/Recoil';
-import { ThemeWrapper } from '../Providers/Styled-Component/themeWrapper';
 
 const baseFont = Montserrat({
   subsets: ['latin'],
@@ -87,7 +87,28 @@ export default function RootLayout({
           <Recoil>
             <ThemeWrapper>
               <GlobalStyle />
-              <Navbar />
+              <Navbar
+                drawer={<NavigationBarDrawer />}
+                hasDrawer
+                links={[
+                  {
+                    to: '/',
+                    linkName: 'Blog',
+                  },
+                  {
+                    to: '/about',
+                    linkName: 'About',
+                  },
+                  {
+                    to: '/guestbook',
+                    linkName: 'GuestBook',
+                  },
+                  {
+                    to: '/notion/resume',
+                    linkName: 'Resume',
+                  },
+                ]}
+              />
               {children}
               <div id="modal"></div>
               <div id="drawer"></div>
