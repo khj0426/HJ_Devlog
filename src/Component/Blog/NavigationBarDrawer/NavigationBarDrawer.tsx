@@ -1,6 +1,6 @@
-import { useState } from 'react';
+'use client';
 
-import styled from 'styled-components';
+import { useState } from 'react';
 
 import ReportButton from '@/Component/Blog/ReportButton/ReportButton';
 import RssButton from '@/Component/Blog/RssButton/RssButton';
@@ -9,14 +9,6 @@ import Drawer from '@/Component/Common/Drawer/Drawer';
 import DrawerImage from '@/Component/Common/Drawer/DrawerImage';
 import IconButton from '@/Component/Common/IconButton/IconButton';
 import ToggleDarkModeButton from '@/Component/DarkMode/ToggoeButton';
-
-const ButtonListStyle = styled.li`
-  display: flex;
-  height: 32px;
-  font-size: 16px;
-  align-items: center;
-  color: ${({ theme }) => theme.currentTheme.text};
-`;
 
 export default function NavigationBarDrawer() {
   const [isDrawerOpen, setDrawerOpen] = useState(false);
@@ -43,11 +35,11 @@ export default function NavigationBarDrawer() {
         >
           <IconButton
             icon={<ReportButton />}
-            tabIndex={0}
             style={{
               border: 'none',
             }}
           />
+
           <IconButton
             icon={<RssButton />}
             tabIndex={0}
@@ -62,6 +54,7 @@ export default function NavigationBarDrawer() {
               border: 'none',
             }}
           />
+
           <IconButton
             icon={<ToggleDarkModeButton />}
             tabIndex={0}
