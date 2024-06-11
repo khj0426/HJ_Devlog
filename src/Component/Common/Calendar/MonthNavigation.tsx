@@ -1,4 +1,4 @@
-import { useState } from 'react';
+
 
 import { getYear, getMonth } from 'date-fns';
 import { ArrowLeft, ArrowRight } from 'iconic-react';
@@ -6,6 +6,7 @@ import { ArrowLeft, ArrowRight } from 'iconic-react';
 import DropDown from '@/Component/Common/DropDown/DropDown';
 import Flex from '@/Component/Common/Flex/Flex';
 import IconButton from '@/Component/Common/IconButton/IconButton';
+import useBoolean from '@/hooks/useBoolean';
 interface MonthNavigationProps {
   readonly date: Date;
   readonly setCurrentDate: (_newYear: string) => void;
@@ -21,32 +22,28 @@ const MonthNavigation = ({
 }: MonthNavigationProps) => {
   const years = Array.from({ length: 20 }).map((year, index) => {
     return {
-      key: (getYear(date) - 10 + index).toString(),
-      label: (getYear(date) - 10 + index).toString(),
+      key: (getYear(date) + index).toString(),
+      label: (getYear(date) + index).toString(),
     };
   });
-  const [clickedYear, setClickedYear] = useState(false);
+
+  const { setFalse, state: clickedYear, toggle } = useBoolean();
   return (
     <Flex justifyContent="space-around" width={'100%'}>
       <Flex
         style={{
           position: 'relative',
+          cursor: 'pointer',
         }}
       >
-        <span
-          onClick={() => {
-            setClickedYear(!clickedYear);
-          }}
-        >
-          {getYear(date)}년
-        </span>
+        <span onClick={toggle}>{getYear(date)}년</span>
         {clickedYear && (
           <DropDown
             items={years}
             onChangeSelectedItem={(item) => {
               if (item) {
                 setCurrentDate(item.key);
-                setClickedYear(false);
+                setFalse();
               }
             }}
           />
