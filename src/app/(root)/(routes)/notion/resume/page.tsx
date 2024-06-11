@@ -24,19 +24,6 @@ export async function generateMetadata(): Promise<Metadata> {
     title: '프론트엔드 개발자 김효중 이력서',
     description: '프론트엔드 개발자가 되고 싶은 김효중의 이력서',
     openGraph: {
-      images: [
-        {
-          url: 'https://avatars.githubusercontent.com/u/59411107?v=4',
-          width: 800,
-          height: 600,
-        },
-        {
-          url: 'https://avatars.githubusercontent.com/u/59411107?v=4',
-          width: 1800,
-          height: 1600,
-          alt: 'My custom alt',
-        },
-      ],
       type: 'website',
       siteName: 'hj-devlog',
       locale: 'ko-KR',

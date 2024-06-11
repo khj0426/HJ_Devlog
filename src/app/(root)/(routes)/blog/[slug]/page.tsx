@@ -2,18 +2,19 @@ import './index.css';
 import { Metadata } from 'next';
 
 import { Suspense } from 'react';
-import ReactMarkdown from 'react-markdown';
 
 import dynamic from 'next/dynamic';
+import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 import rehypeRaw from 'rehype-raw';
 
+import Title from '@/Component/About/Title';
 import CodeBlock from '@/Component/Blog/CodeBlock/CodeBlock';
 import PostExtract from '@/Component/Blog/Extract';
 import BlogLayout from '@/Component/Blog/Layout';
 const TOC = dynamic(() => import('@/Component/TOC'));
 import PageView from '@/Component/Blog/PageView/PageView';
-import RecommendPostModal from '@/Component/Blog/RecommendPostModal/RecommendPostModal';
 import Flex from '@/Component/Common/Flex/Flex';
+import NavigationButton from '@/Component/Common/NavigationButton/NavigationButton';
 import Spinner from '@/Component/Common/Spinner/Spinner';
 import Comments from '@/Component/Giscus/Gitcus';
 import getCurrentBasePath from '@/utils/getCurrentBasePath';
@@ -89,6 +90,8 @@ export default function Post({
   const TableOfContent = makeTableOfContent({
     children: post?.content,
   });
+
+  const randomPosts = getRandomPosts(params.slug);
 
   return (
     <Suspense
@@ -224,8 +227,29 @@ export default function Post({
         >
           {post.content}
         </ReactMarkdown>
-
-        <RecommendPostModal randomPosts={getRandomPosts(post.title)} />
+        <Flex
+          flexWrap="wrap"
+          justifyContent="space-around"
+          margin={'35px auto'}
+          width={'100%'}
+        >
+          <NavigationButton link={randomPosts[0].title} type="prev">
+            <Title
+              title={randomPosts[0].title}
+              style={{
+                fontSize: '14px',
+              }}
+            ></Title>
+          </NavigationButton>
+          <NavigationButton link={randomPosts[1].title} type="next">
+            <Title
+              title={randomPosts[1].title}
+              style={{
+                fontSize: '14px',
+              }}
+            ></Title>
+          </NavigationButton>
+        </Flex>
         <Comments />
 
         <TOC toc={TableOfContent ?? []} />

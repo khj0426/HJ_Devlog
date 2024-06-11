@@ -1,5 +1,5 @@
 ---
-title: 'RestFul하다는게 무엇일까?'
+title: 'RestFul하다는게 무엇일까'
 excerpt: 'RestFul하다는 게 무슨 의미일까?'
 date: '2023-12-31'
 author: '김효중'

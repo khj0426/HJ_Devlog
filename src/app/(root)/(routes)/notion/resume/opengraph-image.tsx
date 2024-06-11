@@ -2,7 +2,6 @@ import { ImageResponse } from 'next/server';
 
 import convertRemoteImageToBase64 from '@/utils/convertRemoteImagetoBase64';
 import getCurrentBasePath from '@/utils/getCurrentBasePath';
-import { getPostBySlug } from '~/lib/api';
 
 export const size = {
   width: 1200,

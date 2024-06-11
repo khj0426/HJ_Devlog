@@ -69,6 +69,7 @@ const gaQueryKey = {
     date,
   ],
   visitedViewsByDetailPost: (slug: string) => [...gaQueryKey.user, slug],
+  visitedUserSession: () => [...gaQueryKey.user, 'session'],
 };
 
 const gaQueryOptions = {
@@ -91,6 +92,9 @@ const gaQueryOptions = {
   userFilteredByPlatFormCategory: () => ({
     queryKey: gaQueryKey.userFilteredByPlatFormCategory(),
     queryFn: getPlatformUserCount,
+  }),
+  visitedUserSession: () => ({
+    queryKey: gaQueryKey.visitedUserSession,
   }),
 };
 export {
