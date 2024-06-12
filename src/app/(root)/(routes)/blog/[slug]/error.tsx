@@ -1,6 +1,6 @@
 'use client';
 
-import ErrorFallback from '@/Component/Common/ErrorFallback/Errorfallback';
+import NotFoundErrorFallback from "@/Component/Common/ErrorFallback/NotFoundErrorfallback";
 
 export default function BlogSlugErrorPage({
   error,
@@ -9,5 +9,5 @@ export default function BlogSlugErrorPage({
   error: Error;
   reset: () => void;
 }) {
-  return <ErrorFallback error={error} reset={reset} />;
+  return <NotFoundErrorFallback />;
 }
