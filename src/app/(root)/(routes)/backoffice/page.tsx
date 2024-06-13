@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import ActiveUserChart from '@/Component/BackOffice/ActiveUserChart/ActiveUserChart';
 import ActiveUSerSessionChart from '@/Component/BackOffice/ActiveUserSessionChart/ActiveUserSessionChart';
 import SelectedDateUserCountInfo from '@/Component/BackOffice/SelectedDateUserCount/SelectedDateUserCount';
+import UserSessionInfo from '@/Component/Blog/UserSessionInfo/UserSessionInfo';
 import Button from '@/Component/Common/Button/Button';
 import ButtonGroup from '@/Component/Common/ButtonGroup/ButtonGroup';
 import DropDown from '@/Component/Common/DropDown/DropDown';
@@ -92,6 +93,10 @@ export default function BackOfficePage() {
           <Flex justifyContent="space-around">
             <ActiveUserChart selectDate={date} type={dataType} />
             <ActiveUSerSessionChart />
+          </Flex>
+
+          <Flex>
+            <UserSessionInfo />
           </Flex>
         </Flex>
       </Suspense>

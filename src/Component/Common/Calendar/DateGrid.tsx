@@ -1,16 +1,21 @@
 import { useState } from 'react';
 
 import { getDate, isSaturday, isSunday, isToday } from 'date-fns';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 interface DateGridProps {
   prevMonthDates: Date[];
   currentMonthDates: Date[];
+  onSelectDate?: (_newDate: Date) => void;
 }
 
 const DAYS = ['일', '월', '화', '수', '목', '금', '토'];
 
-const DateGrid = ({ prevMonthDates, currentMonthDates }: DateGridProps) => {
+const DateGrid = ({
+  prevMonthDates,
+  currentMonthDates,
+  onSelectDate,
+}: DateGridProps) => {
   const [currentCell, setCurrentCell] = useState<null | Date>(null);
   return (
     <GridContainer>
@@ -24,7 +29,10 @@ const DateGrid = ({ prevMonthDates, currentMonthDates }: DateGridProps) => {
       ))}
       {currentMonthDates.map((currentDate) => (
         <DateCell
-          onClick={() => setCurrentCell(currentDate)}
+          onClick={() => {
+            onSelectDate && onSelectDate(currentDate);
+            setCurrentCell(currentDate);
+          }}
           key={currentDate.toString()}
           isToday={isToday(currentDate)}
           isSaturDay={isSaturday(currentDate)}

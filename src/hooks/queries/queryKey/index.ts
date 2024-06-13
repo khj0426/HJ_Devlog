@@ -6,6 +6,7 @@ import {
   getActiveUserCountByDate,
   getPostDetailViewsCount,
   getPlatformUserCount,
+  getUserSessionInfo,
 } from '@/services/BigQuery';
 import { getGuestBook } from '@/services/GuestBook';
 import {
@@ -94,7 +95,8 @@ const gaQueryOptions = {
     queryFn: getPlatformUserCount,
   }),
   visitedUserSession: () => ({
-    queryKey: gaQueryKey.visitedUserSession,
+    queryKey: gaQueryKey.visitedUserSession(),
+    queryFn: getUserSessionInfo,
   }),
 };
 export {

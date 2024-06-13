@@ -35,3 +35,11 @@ export const getPlatformUserCount = async () => {
     )
   ).data;
 };
+
+export const getUserSessionInfo = async () => {
+  return (
+    await get<google.analytics.data.v1beta.IRunReportResponse>(
+      '/api/user-session'
+    )
+  ).data;
+};
