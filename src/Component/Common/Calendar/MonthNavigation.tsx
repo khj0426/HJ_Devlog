@@ -1,5 +1,3 @@
-
-
 import { getYear, getMonth } from 'date-fns';
 import { ArrowLeft, ArrowRight } from 'iconic-react';
 
@@ -22,8 +20,8 @@ const MonthNavigation = ({
 }: MonthNavigationProps) => {
   const years = Array.from({ length: 20 }).map((year, index) => {
     return {
-      key: (getYear(date) + index).toString(),
-      label: (getYear(date) + index).toString(),
+      key: (getYear(date) - index).toString(),
+      label: (getYear(date) - index).toString(),
     };
   });
 

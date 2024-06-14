@@ -39,6 +39,8 @@ export default function RadioButton({
   isInValid = false,
   ...rest
 }: RadioButtonProps) {
+  const id = value?.toString();
+
   return (
     <Flex
       {...rest}
@@ -50,15 +52,16 @@ export default function RadioButton({
       }}
     >
       <StyledRadioButton
+        id={id}
         type="radio"
         colorScheme={colorScheme}
-        value={value?.toString()}
+        value={id}
         isInValid={isInValid}
         isDisabled={isDisabled}
       ></StyledRadioButton>
 
       <StyledRadioButtonLabel
-        htmlFor={value?.toString()}
+        htmlFor={id}
         colorScheme={colorScheme}
         buttonSize={buttonSize}
         isInValid={isInValid}
