@@ -3,10 +3,13 @@ import { useState } from 'react';
 import { getDate, isSaturday, isSunday, isToday } from 'date-fns';
 import styled from 'styled-components';
 
+import { buttonTheme } from '@/style/theme/button';
+
 interface DateGridProps {
   prevMonthDates: Date[];
   currentMonthDates: Date[];
   onSelectDate?: (_newDate: Date) => void;
+  isDateWithRange?: (_newDate: Date) => boolean;
 }
 
 const DAYS = ['일', '월', '화', '수', '목', '금', '토'];
@@ -15,6 +18,7 @@ const DateGrid = ({
   prevMonthDates,
   currentMonthDates,
   onSelectDate,
+  isDateWithRange,
 }: DateGridProps) => {
   const [currentCell, setCurrentCell] = useState<null | Date>(null);
   return (
@@ -23,21 +27,27 @@ const DateGrid = ({
         <DayHeader key={day}>{day}</DayHeader>
       ))}
       {prevMonthDates.map((prevDate) => (
-        <DateCell key={prevDate.toString()} isPrevMonth>
+        <DateCell
+          key={prevDate.toString()}
+          isPrevMonth
+          isSelected={currentCell === prevDate || isDateWithRange?.(prevDate)}
+        >
           {getDate(prevDate)}
         </DateCell>
       ))}
       {currentMonthDates.map((currentDate) => (
         <DateCell
           onClick={() => {
-            onSelectDate && onSelectDate(currentDate);
+            onSelectDate?.(currentDate);
             setCurrentCell(currentDate);
           }}
           key={currentDate.toString()}
           isToday={isToday(currentDate)}
           isSaturDay={isSaturday(currentDate)}
           isWeekend={isSaturday(currentDate) || isSunday(currentDate)}
-          isSelected={currentCell === currentDate}
+          isSelected={
+            currentCell === currentDate || isDateWithRange?.(currentDate)
+          }
           isSunday={isSunday(currentDate)}
         >
           {getDate(currentDate)}
@@ -75,7 +85,12 @@ const DateCell = styled.div<DateCellProps>`
   padding: 10px;
   text-align: center;
   cursor: pointer;
-  background-color: ${(props) => (props.isPrevMonth ? '#e0e0e0' : 'none')};
+  background-color: ${(props) =>
+    props.isSelected
+      ? buttonTheme.variant_backgroundColor.light_blue
+      : props.isPrevMonth
+      ? '#e0e0e0'
+      : 'none'};
   color: ${(props) =>
     props.isToday
       ? 'red'
@@ -85,5 +100,4 @@ const DateCell = styled.div<DateCellProps>`
       ? 'red'
       : 'black'};
   font-weight: ${(props) => (props.isToday ? 'bold' : 'normal')};
-  box-shadow: ${(props) => (props.isSelected ? '0 0 0 1px black' : '')};
 `;

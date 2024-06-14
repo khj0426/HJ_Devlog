@@ -3,7 +3,13 @@ import MonthNavigation from '@/Component/Common/Calendar/MonthNavigation';
 import Flex from '@/Component/Common/Flex/Flex';
 import useCalendar from '@/hooks/useCalendar';
 
-const Calendar = () => {
+const Calendar = ({
+  onSelectDate,
+  isDateInRange,
+}: {
+  isDateInRange?: (_newDate: Date) => boolean;
+  onSelectDate?: (_newDate: Date) => void;
+}) => {
   //가능적인 로직은 모두 캘린더 훅으로 분리하고
   const {
     currentDate,
@@ -22,18 +28,20 @@ const Calendar = () => {
         prevMonth={prevMonth}
         date={currentDate}
         setCurrentDate={(_newYear: string) => {
-          setCurrentDate(
-            new Date(
-              Number(_newYear),
-              currentDate.getMonth(),
-              currentDate.getDate()
-            )
+          const selectDate = new Date(
+            Number(_newYear),
+            currentDate.getMonth(),
+            currentDate.getDate()
           );
+          setCurrentDate(selectDate);
+          onSelectDate?.(selectDate);
         }}
       />
       <DateGrid
         currentMonthDates={currentMonthDates()}
         prevMonthDates={prevMonthDates()}
+        onSelectDate={onSelectDate}
+        isDateWithRange={isDateInRange}
       />
     </Flex>
   );

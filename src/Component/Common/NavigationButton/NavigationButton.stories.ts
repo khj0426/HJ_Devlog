@@ -18,6 +18,7 @@ export const NextNavigationButton: Story = {
   args: {
     type: 'next',
     children: '반갑습니다',
+    link: 'https://github.com/khj0426/HJ_Devlog',
   },
 };
 
@@ -25,5 +26,6 @@ export const PrevNavigationButton: Story = {
   args: {
     type: 'prev',
     children: '반갑습니다.',
+    link: 'https://github.com/khj0426/HJ_Devlog',
   },
 };
