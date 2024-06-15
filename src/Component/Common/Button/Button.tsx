@@ -16,6 +16,7 @@ export default function Button({
   size = 'small',
   disabled,
   onClick,
+  label,
   children,
   ...rest
 }: ButtonProps) {
@@ -31,6 +32,7 @@ export default function Button({
       role="button"
       {...rest}
     >
+      {label}
       {children}
     </StyledBaseButton>
   );

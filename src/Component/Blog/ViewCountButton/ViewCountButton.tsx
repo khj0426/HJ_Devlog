@@ -15,13 +15,13 @@ const ViewCountButton = ({ viewCount }: { viewCount: number }) => {
   return (
     <StyledViewCountButtonContainer>
       <IconButton
+      label = {viewCount}
         icon={<Eye width={100} height={25} />}
         style={{
           border: 'none',
           fontWeight: '400',
           color: isDarkMode ? '#fafafa' : '#495057',
         }}
-        label={viewCount}
       ></IconButton>
     </StyledViewCountButtonContainer>
   );
