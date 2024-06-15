@@ -63,6 +63,7 @@ const GridContainer = styled.div`
   display: grid;
   width: 300px;
   grid-template-columns: repeat(7, 1fr);
+  background-color: #f5f5f5;
 `;
 
 const DayHeader = styled.div`
@@ -87,7 +88,7 @@ const DateCell = styled.div<DateCellProps>`
   cursor: pointer;
   background-color: ${(props) =>
     props.isSelected
-      ? buttonTheme.variant_backgroundColor.light_blue
+      ? 'rgb(255, 138, 101)'
       : props.isPrevMonth
       ? '#e0e0e0'
       : 'none'};

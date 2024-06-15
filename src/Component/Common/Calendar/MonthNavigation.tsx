@@ -51,8 +51,20 @@ const MonthNavigation = ({
         <span>{getMonth(date) + 1}월</span>
       </Flex>
       <Flex gap={'5px'}>
-        <IconButton icon={<ArrowLeft />} onClick={prevMonth} />
-        <IconButton icon={<ArrowRight />} onClick={nextMonth} />
+        <IconButton
+          style={{
+            border: 'none',
+          }}
+          icon={<ArrowLeft color="rgb(255, 138, 101)" />}
+          onClick={prevMonth}
+        />
+        <IconButton
+          icon={<ArrowRight color="rgb(255, 138, 101)" />}
+          onClick={nextMonth}
+          style={{
+            border: 'none',
+          }}
+        />
       </Flex>
     </Flex>
   );

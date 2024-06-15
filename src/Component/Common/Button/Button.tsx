@@ -17,7 +17,6 @@ export default function Button({
   disabled,
   onClick,
   children,
-  label = 'Button',
   ...rest
 }: ButtonProps) {
   return (
@@ -32,7 +31,6 @@ export default function Button({
       role="button"
       {...rest}
     >
-      {label}
       {children}
     </StyledBaseButton>
   );

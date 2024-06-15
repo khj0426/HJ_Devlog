@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { compareAsc, isWithinInterval } from 'date-fns';
 
@@ -6,12 +6,14 @@ interface UseDateRangeCalenDarProps {
   onStartDateSelect?: () => void;
   onEndDateSelect?: () => void;
   isFutureDaysRestricted?: boolean;
+  onSelectDateRange?: (_startDate: Date, _endDate: Date) => void;
 }
 
 export default function useDateRangeCalendar({
   onStartDateSelect,
   onEndDateSelect,
   isFutureDaysRestricted,
+  onSelectDateRange,
 }: UseDateRangeCalenDarProps) {
   const currentDate = new Date();
   const [hasError, setError] = useState(false);
@@ -66,6 +68,10 @@ export default function useDateRangeCalendar({
 
     return false;
   };
+
+  useEffect(() => {
+    if (startDate && endDate) onSelectDateRange?.(startDate, endDate);
+  }, [startDate, endDate]);
 
   return {
     isDateWithRange,

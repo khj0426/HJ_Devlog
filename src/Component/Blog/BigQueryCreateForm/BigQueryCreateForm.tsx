@@ -1,21 +1,17 @@
+import { useRef, useState } from 'react';
+
 import styled from 'styled-components';
 
+import Button from '@/Component/Common/Button/Button';
 import DateRangePicker from '@/Component/Common/DateRangePicker/DateRangePicker';
 import Flex from '@/Component/Common/Flex/Flex';
 
-const BIGQUERY_VALUE = [
+export const BIGQUERY_VALUE = [
   '총 사용자 수',
   '참여 시간',
   '도시별 한 페이지 당 방문 세션 수',
   '방문자의 기기 유형(모바일,PC)',
-];
-
-const Form = styled.form`
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  background-color: #f9f9f9;
-  margin: 0 auto;
-`;
+] as const;
 
 const Label = styled.label`
   display: flex;
@@ -27,26 +23,21 @@ const RadioButton = styled.input`
   margin-right: 10px;
 `;
 
-const SubmitButton = styled.button`
-  background-color: #007bff;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
-  margin-top: 20px;
+export default function BigQueryCreateForm({
+  onSubmit,
+}: {
+  onSubmit?: (
+    _type: typeof BIGQUERY_VALUE[number],
+    _startDate: Date,
+    _endDate: Date
+  ) => void;
+}) {
+  const dateRef = useRef<null | {
+    startDate: Date;
+    endDate: Date;
+  }>(null);
 
-  &:hover {
-    background-color: #0056b3;
-  }
-`;
-
-export default function BigQueryCreateForm() {
-  const handleSubmit = (e: SubmitEvent) => {
-    e.preventDefault();
-  };
-
+  const [type, setType] = useState<null | typeof BIGQUERY_VALUE[number]>(null);
   return (
     <Flex flexDirection="column" width="100%" gap="50px">
       <Flex
@@ -59,7 +50,14 @@ export default function BigQueryCreateForm() {
         <Flex gap="15px" flexWrap="wrap" justifyContent="center">
           {BIGQUERY_VALUE.map((value) => (
             <Label key={value}>
-              <RadioButton type="radio" value={value} name="reportType" />
+              <RadioButton
+                type="radio"
+                value={value}
+                name="reportType"
+                onClick={() => {
+                  setType(value);
+                }}
+              />
               {value}
             </Label>
           ))}
@@ -68,8 +66,28 @@ export default function BigQueryCreateForm() {
 
       <Flex flexDirection="column" gap="25px">
         <h4>📆 날짜를 선택해주세요</h4>
-        <DateRangePicker />
-        <SubmitButton type="submit">보고서 생성</SubmitButton>
+        <DateRangePicker
+          onSelectDateRange={(startDate, endDate) => {
+            dateRef.current = {
+              startDate,
+              endDate,
+            };
+          }}
+        />
+        <Button
+          label="보고서 생성"
+          variant="secondary"
+          onClick={() => {
+            if (type && dateRef.current)
+              onSubmit?.(
+                type,
+                dateRef.current?.startDate,
+                dateRef.current.endDate
+              );
+          }}
+        >
+          보고서 생성
+        </Button>
       </Flex>
     </Flex>
   );

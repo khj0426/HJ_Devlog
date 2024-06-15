@@ -6,13 +6,20 @@ import { ToastContainer, ToastManager } from '@/Component/Common/Toast';
 import useDateRangeCalendar from '@/hooks/useDateRangeCalendar';
 interface DateRangePickerProps {
   readonly isFutureDaysRestricted?: boolean;
+  readonly onSelectDateRange?: (_startDate: Date, _endDate: Date) => void;
 }
 
 const DateRangePicker = ({
   isFutureDaysRestricted = true,
+  onSelectDateRange,
 }: DateRangePickerProps) => {
-  const { selectCurrentDate, selectEndDate, hasError, isDateWithRange } =
-    useDateRangeCalendar({ isFutureDaysRestricted });
+  const {
+    selectCurrentDate,
+    startDate,
+    selectEndDate,
+    hasError,
+    isDateWithRange,
+  } = useDateRangeCalendar({ isFutureDaysRestricted, onSelectDateRange });
 
   useEffect(() => {
     if (hasError) {
@@ -26,10 +33,13 @@ const DateRangePicker = ({
         onSelectDate={(newDate) => selectCurrentDate(newDate)}
         isDateInRange={isDateWithRange}
       />
-      <Calendar
-        onSelectDate={(newDate) => selectEndDate(newDate)}
-        isDateInRange={isDateWithRange}
-      />
+
+      {startDate && (
+        <Calendar
+          onSelectDate={(newDate) => selectEndDate(newDate)}
+          isDateInRange={isDateWithRange}
+        />
+      )}
       <ToastContainer enterTimeout={500} leaveTimeout={1000} />
     </Flex>
   );

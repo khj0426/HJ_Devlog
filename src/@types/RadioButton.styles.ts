@@ -54,6 +54,7 @@ export const getRadioButtonStyle = (props: RadioButtonProps) => {
   const color = props?.isInValid ? '#E53E3E' : props?.colorScheme ?? 'inherit';
 
   return css`
+    cursor: pointer;
     color: ${color};
     border-radius: 0;
     ${getSizeStyle};
