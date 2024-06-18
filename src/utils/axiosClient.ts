@@ -1,10 +1,9 @@
 import { setContext, withScope, captureException } from '@sentry/nextjs';
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
+
+import getCurrentBasePath from '@/utils/getCurrentBasePath';
 const axiosClient = axios.create({
-  baseURL:
-    process.env.NODE_ENV === 'production'
-      ? process.env.NEXT_PUBLIC_PRODUCT_URL
-      : process.env.NEXT_PUBLIC_LOCAL_URL,
+  baseURL: getCurrentBasePath(),
 });
 
 axiosClient.interceptors.response.use(

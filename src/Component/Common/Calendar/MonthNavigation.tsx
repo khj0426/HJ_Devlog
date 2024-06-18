@@ -5,6 +5,7 @@ import DropDown from '@/Component/Common/DropDown/DropDown';
 import Flex from '@/Component/Common/Flex/Flex';
 import IconButton from '@/Component/Common/IconButton/IconButton';
 import useBoolean from '@/hooks/useBoolean';
+import { generateYearOptionsFromDate } from '@/utils/generateYearOptions';
 interface MonthNavigationProps {
   readonly date: Date;
   readonly setCurrentDate: (_newYear: string) => void;
@@ -18,12 +19,7 @@ const MonthNavigation = ({
   prevMonth,
   nextMonth,
 }: MonthNavigationProps) => {
-  const years = Array.from({ length: 20 }).map((year, index) => {
-    return {
-      key: (getYear(date) - index).toString(),
-      label: (getYear(date) - index).toString(),
-    };
-  });
+  const selectableYearOptions = generateYearOptionsFromDate();
 
   const { setFalse, state: clickedYear, toggle } = useBoolean();
   return (
@@ -37,7 +33,7 @@ const MonthNavigation = ({
         <span onClick={toggle}>{getYear(date)}년</span>
         {clickedYear && (
           <DropDown
-            items={years}
+            items={selectableYearOptions}
             onChangeSelectedItem={(item) => {
               if (item) {
                 setCurrentDate(item.key);

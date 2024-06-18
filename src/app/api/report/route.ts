@@ -5,17 +5,28 @@ import { formatDateToString } from '@/utils/formatDateToString';
 
 export async function POST(req: NextRequest) {
   const { type, startDate, endDate } = await req.json();
-  console.log(startDate, endDate);
+
   switch (type) {
     case '총 사용자 수':
-      return (
-        await get(
-          `/api/active-users?startDate=${formatDateToString(
-            new Date(startDate)
-          )}&endDate=${formatDateToString(new Date(endDate))}`
-        )
-      ).data;
-      return {};
+      try {
+        const response = await get('/api/active-users', {
+          params: {
+            startDate: formatDateToString(new Date(startDate)),
+            endDate: formatDateToString(new Date(endDate)),
+          },
+        });
+        const responseData = await response.data;
+        return NextResponse.json(responseData, {
+          status: 200,
+        });
+      } catch (e) {
+        console.error(e);
+        return NextResponse.json(JSON.stringify(e), {
+          status: 500,
+          statusText: JSON.stringify(e),
+        });
+      }
+
     case '참여 시간':
       return {};
     case '도시별 한 페이지 당 방문 세션 수':

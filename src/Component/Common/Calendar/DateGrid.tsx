@@ -3,8 +3,6 @@ import { useState } from 'react';
 import { getDate, isSaturday, isSunday, isToday } from 'date-fns';
 import styled from 'styled-components';
 
-import { buttonTheme } from '@/style/theme/button';
-
 interface DateGridProps {
   prevMonthDates: Date[];
   currentMonthDates: Date[];
@@ -94,7 +92,7 @@ const DateCell = styled.div<DateCellProps>`
       : 'none'};
   color: ${(props) =>
     props.isToday
-      ? 'red'
+      ? '#2D8CFF'
       : props.isSaturDay
       ? 'blue'
       : props.isSunday
