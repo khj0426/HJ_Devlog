@@ -1,3 +1,4 @@
+import { google } from '@google-analytics/data/build/protos/protos';
 import { useMutation } from '@tanstack/react-query';
 
 import { BIGQUERY_VALUE } from '@/Component/Blog/BigQueryCreateForm/BigQueryCreateForm';
@@ -11,11 +12,14 @@ export const postGAReport = async ({
   startDate: Date;
   endDate: Date;
 }) => {
-  return await post('/api/report', {
-    type,
-    startDate,
-    endDate,
-  }).then((Res) => console.log(Res));
+  return await post<google.analytics.data.v1beta.IRunReportResponse>(
+    '/api/report',
+    {
+      type,
+      startDate,
+      endDate,
+    }
+  );
 };
 
 const usePostGAReport = () => {

@@ -6,6 +6,12 @@ export const dynamic = 'force-dynamic';
 export async function GET(req: NextRequest) {
   const getQueryStringDate = req.nextUrl.searchParams.get('page');
 
+  const startDate =
+    req.nextUrl.searchParams.get('startDate') ??
+    `${getQueryStringDate}daysAgo` ??
+    'today';
+  const endDate = req.nextUrl.searchParams.get('endDate') ?? 'today';
+
   const report = async function runReport() {
     const [response] = await analyticsDataClient.runReport({
       property: `properties/401292897`,
@@ -33,9 +39,8 @@ export async function GET(req: NextRequest) {
       //시작 일자가 있으면 해당 시작일자로 고정 그렇지 않으면 전체 기간
       dateRanges: [
         {
-          startDate: `${getQueryStringDate}daysAgo`,
-          //현재 시간으로 설정
-          endDate: 'today',
+          startDate,
+          endDate,
         },
       ],
       metrics: [

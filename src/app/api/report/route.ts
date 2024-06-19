@@ -9,7 +9,7 @@ export async function POST(req: NextRequest) {
   switch (type) {
     case '총 사용자 수':
       try {
-        const response = await get('/api/active-users', {
+        const response = await get('/api/all-users', {
           params: {
             startDate: formatDateToString(new Date(startDate)),
             endDate: formatDateToString(new Date(endDate)),
@@ -28,6 +28,23 @@ export async function POST(req: NextRequest) {
       }
 
     case '참여 시간':
+      try {
+        const response = await get('/api/active-time', {
+          params: {
+            startDate: formatDateToString(new Date(startDate)),
+            endDate: formatDateToString(new Date(endDate)),
+          },
+        });
+        const responseData = await response.data;
+        return NextResponse.json(responseData, {
+          status: 200,
+        });
+      } catch (e) {
+        return NextResponse.json(JSON.stringify(e), {
+          status: 500,
+          statusText: JSON.stringify(e),
+        });
+      }
       return {};
     case '도시별 한 페이지 당 방문 세션 수':
       return {};
