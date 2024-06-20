@@ -11,6 +11,8 @@ interface MonthNavigationProps {
   readonly setCurrentDate: (_newYear: string) => void;
   readonly prevMonth: () => void;
   readonly nextMonth: () => void;
+  //최대 선택가능환 연도
+  readonly maxSelectableYear?: number;
 }
 
 const MonthNavigation = ({
@@ -18,8 +20,12 @@ const MonthNavigation = ({
   setCurrentDate,
   prevMonth,
   nextMonth,
+  maxSelectableYear,
 }: MonthNavigationProps) => {
-  const selectableYearOptions = generateYearOptionsFromDate();
+  const selectableYearOptions = generateYearOptionsFromDate(
+    new Date(),
+    maxSelectableYear
+  );
 
   const { setFalse, state: clickedYear, toggle } = useBoolean();
   return (

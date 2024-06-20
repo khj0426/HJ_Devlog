@@ -30,6 +30,18 @@ const StyledNavBarLayout = styled.nav`
   z-index: 100;
 `;
 
+const StyledNavBarColumnLayout = styled.nav`
+  position: sticky;
+  top: 0;
+  cursor: pointer;
+  display: block;
+  left: 0;
+  width: 350px;
+  font-size: 20px;
+  background-color: ${({ theme }) => theme.currentTheme.body};
+  z-index: 100;
+`;
+
 const StyledNavBarTitle = styled(Link)`
   @media ${({ theme }) => theme.device.mobile} {
     font-size: 14px;
@@ -87,8 +99,13 @@ function Navbar({
       );
     case 'column':
       return (
-        <StyledNavBarLayout>
-          <Flex gap={'10px'} flexDirection="column">
+        <StyledNavBarColumnLayout>
+          <Flex
+            gap={'10px'}
+            flexDirection="column"
+            alignItems="flex-start"
+            justifyContent="flex-start"
+          >
             {links.map((link) => (
               <StyledNavBarTitle
                 style={currentPathStyle(link.to)}
@@ -100,7 +117,7 @@ function Navbar({
             ))}
           </Flex>
           {hasDrawer && drawer}
-        </StyledNavBarLayout>
+        </StyledNavBarColumnLayout>
       );
   }
 }

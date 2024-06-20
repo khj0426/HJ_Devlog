@@ -30,6 +30,7 @@ const DateRangePicker = ({
   return (
     <Flex flexWrap="wrap">
       <Calendar
+        maxSelectableYear={2}
         onSelectDate={(newDate) => selectCurrentDate(newDate)}
         isDateInRange={isDateWithRange}
       />
@@ -38,6 +39,7 @@ const DateRangePicker = ({
         <Calendar
           onSelectDate={(newDate) => selectEndDate(newDate)}
           isDateInRange={isDateWithRange}
+          maxSelectableYear={2}
         />
       )}
       <ToastContainer enterTimeout={500} leaveTimeout={1000} />

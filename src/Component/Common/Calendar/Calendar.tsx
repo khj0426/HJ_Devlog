@@ -5,8 +5,10 @@ import useCalendar from '@/hooks/useCalendar';
 
 const Calendar = ({
   onSelectDate,
+  maxSelectableYear,
   isDateInRange,
 }: {
+  maxSelectableYear?: number;
   isDateInRange?: (_newDate: Date) => boolean;
   onSelectDate?: (_newDate: Date) => void;
 }) => {
@@ -24,6 +26,7 @@ const Calendar = ({
   return (
     <Flex width={'350px'} flexDirection="column">
       <MonthNavigation
+        maxSelectableYear={maxSelectableYear}
         nextMonth={nextMonth}
         prevMonth={prevMonth}
         date={currentDate}
