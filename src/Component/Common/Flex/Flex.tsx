@@ -14,6 +14,7 @@ interface FlexProps extends ComponentPropsWithoutRef<'div'> {
   margin?: CSSProperties['margin'];
   padding?: CSSProperties['padding'];
   flexWrap?: CSSProperties['flexWrap'];
+  flexGrow?: CSSProperties['flexGrow'];
 }
 
 const StyledFlex = styled.div<FlexProps>`
@@ -29,6 +30,7 @@ const StyledFlex = styled.div<FlexProps>`
   margin: ${({ margin }) => margin};
   padding: ${({ padding }) => padding};
   flex-wrap: ${({ flexWrap }) => flexWrap};
+  flex-grow: ${({ flexGrow }) => flexGrow};
 `;
 
 export default function Flex({
@@ -39,6 +41,7 @@ export default function Flex({
   gap = '0px',
   width,
   height,
+  flexGrow,
   margin,
   padding,
   flexWrap,
@@ -52,6 +55,7 @@ export default function Flex({
       gap={gap}
       width={width}
       height={height}
+      flexGrow={flexGrow}
       margin={margin}
       padding={padding}
       flexWrap={flexWrap}

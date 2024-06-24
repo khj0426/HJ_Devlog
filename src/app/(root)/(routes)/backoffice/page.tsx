@@ -1,13 +1,11 @@
 'use client';
 import { Suspense } from 'react';
 
-import styled, { ThemeConsumer } from 'styled-components';
+import styled from 'styled-components';
 
 import ActiveUserChart from '@/Component/BackOffice/ActiveUserChart/ActiveUserChart';
 import ActiveUSerSessionChart from '@/Component/BackOffice/ActiveUserSessionChart/ActiveUserSessionChart';
 import BackOfficeDrawer from '@/Component/BackOffice/BackOfficeDrawer/BackOfficeDrawer';
-import SelectedDateUserCountInfo from '@/Component/BackOffice/SelectedDateUserCount/SelectedDateUserCount';
-import UserCountInfo from '@/Component/Blog/UserCountInfo/UserCountInfo';
 import UserSessionInfo from '@/Component/Blog/UserSessionInfo/UserSessionInfo';
 import Flex from '@/Component/Common/Flex/Flex';
 import ModalHeader from '@/Component/Common/Modal/ModalHeader';
@@ -33,6 +31,7 @@ const Container = styled.main`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  gap: 50px;
   width: 80%;
 `;
 
@@ -43,10 +42,8 @@ const CardContainer = styled(Flex)`
 `;
 
 export default function BackOffice() {
-  const { data: countData, isLoading } = useGetUsersCountQuery();
-  if (isLoading) {
-    return <Spinner></Spinner>;
-  }
+  const { data: countData } = useGetUsersCountQuery();
+
   return (
     <Container>
       <Flex justifyContent="flex-start" width={'100%'}>
@@ -54,31 +51,46 @@ export default function BackOffice() {
         <ModalHeader as="h1">BackOffice</ModalHeader>
       </Flex>
 
-      <Suspense
-        fallback={
-          <Flex
-            justifyContent="center"
-            alignItems="center"
-            width={'100%'}
-            height={'100%'}
-          >
-            <Spinner />
-          </Flex>
-        }
-      >
-        <CardContainer justifyContent="space-around" alignItems="center">
-          <Card>
-            <CardText>All Users</CardText>
-            <CardText>{countData?.datalist[0]?.value}</CardText>
-          </Card>
-          <Card>
-            <CardText>User Device Information Statistics</CardText>
-            <ActiveUSerSessionChart />
-          </Card>
-        </CardContainer>
+      <CardContainer justifyContent="space-around" alignItems="center">
+        <Card>
+          <CardText>All Users</CardText>
+          <CardText>{countData?.datalist[0]?.value}</CardText>
+        </Card>
+        <Card>
+          <CardText>User Device Information Statistics</CardText>
+          <ActiveUSerSessionChart />
+        </Card>
+      </CardContainer>
 
-        <UserSessionInfo />
-      </Suspense>
+      <CardContainer justifyContent="space-around" alignItems="center">
+        <Card>
+          <CardText>7Days TotalUsers</CardText>
+          <ActiveUserChart
+            selectDate="7일"
+            type="총 사용자 수"
+            width={400}
+            height={400}
+          />
+        </Card>
+        <Card>
+          <CardText>30Days TotalUsers</CardText>
+          <ActiveUserChart
+            selectDate="30일"
+            type="총 사용자 수"
+            width={650}
+            height={400}
+          />
+        </Card>
+      </CardContainer>
+
+      <CardContainer justifyContent="space-around" alignItems="center">
+        <Card>
+          <CardText>90Days TotalUsers</CardText>
+          <ActiveUserChart selectDate="90일" type="총 사용자 수" />
+        </Card>
+      </CardContainer>
+
+      <UserSessionInfo />
     </Container>
   );
 }
