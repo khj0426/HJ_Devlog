@@ -1,4 +1,4 @@
-import type { ButtonProps } from '@mui/material/Button';
+import type { ButtonProps } from '@/@types/ButtonType';
 
 import type {
   CSSProperties,
