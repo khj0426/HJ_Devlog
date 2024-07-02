@@ -28,7 +28,7 @@ const TabContext = createContext<{ index: number }>({
   index: 0,
 });
 
-const TabPanelContext = createContext<{
+export const TabPanelContext = createContext<{
   isActive?: boolean;
   index?: number;
 }>({
