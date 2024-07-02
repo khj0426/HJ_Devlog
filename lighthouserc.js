@@ -1,5 +1,7 @@
-const { basename, join } = require('path');
 const fs = require('fs');
+const { basename, join } = require('path');
+
+const { createServer } = require('@lhci/server');
 
 const makeURLS = () => {
   const Prefix = 'https://hj-devlog.vercel.app/';
@@ -17,6 +19,15 @@ const makeURLS = () => {
 
 module.exports = {
   ci: {
+    assert: {
+      assertions: {
+        'categories:performance': ['warn', { minScore: 0.9 }],
+        'categories:accessibility': ['warn', { minScore: 0.9 }],
+        'categories:best-practices': ['warn', { minScore: 0.9 }],
+        'categories:seo': ['warn', { minScore: 0.9 }],
+      },
+    },
+    server: {},
     collect: {
       startServerCommand: 'npm run start',
       url: makeURLS().allPostPaths,

@@ -55,3 +55,8 @@ jobs:
           NEXT_PUBLIC_PRIVATE_KEY_ID: ${{secrets.NEXT_PUBLIC_PRIVATE_KEY_ID}}
 
         run: npm run lhci
+      - name: Run Lighthouse Mobile
+        run: Ihci collect --additive --config=.mobile-lighthouserc.js
+
+      - name: Run Lighthouse Desktop
+        run: Ihci collect --additive --config=.desktop-lighthouserc.js
