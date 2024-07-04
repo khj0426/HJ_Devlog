@@ -1,3 +1,5 @@
+const fs = require('fs');
+const { join } = require('path');
 const makeURLS = () => {
   const Prefix = 'https://hj-devlog.vercel.app/';
 

@@ -56,7 +56,7 @@ jobs:
 
         run: npm run lhci
       - name: Run Lighthouse Mobile
-        run: Ihci collect --additive --config=.mobile-lighthouserc.js
+        run: npm run lhci-mobile
 
       - name: Run Lighthouse Desktop
-        run: Ihci collect --additive --config=.desktop-lighthouserc.js
+        run: npm run lhci-desktop

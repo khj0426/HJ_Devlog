@@ -19,7 +19,9 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "chromatic": "npx chromatic --project-token=chpt_8e999058f856b43",
-    "test": "jest"
+    "test": "jest",
+    "lhci-mobile": "next build && lhci collect --additive --config=mobile-lighthouserc.js",
+    "lhci-desktop": "next build && lhci collect --additive --config=desktop-lighthouserc.js"
   },
   "dependencies": {
     "@giscus/react": "^2.2.8",

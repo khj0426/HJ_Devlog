@@ -1,3 +1,5 @@
+const fs = require('fs');
+const { join } = require('path');
 const makeURLS = () => {
   const Prefix = 'https://hj-devlog.vercel.app/';
 
@@ -14,6 +16,7 @@ const makeURLS = () => {
       ...allPostPath,
       Prefix + `${'?mobile'}`,
       Prefix + 'about?mobile',
+      Prefix + `notion/resume?mobile`,
     ],
   };
 };
@@ -22,7 +25,7 @@ module.exports = {
   ci: {
     collect: {
       settings: {
-        startServerCommand: 'npm run start',
+        startServerCommand: 'npm run lhci-mobile',
         additive: 'true',
       },
       url: makeURLS().allPostPaths,
