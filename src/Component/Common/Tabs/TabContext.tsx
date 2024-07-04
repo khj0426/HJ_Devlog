@@ -1,4 +1,4 @@
-import type { TabProps } from './tabs';
+import type { TabProps } from './tabProps';
 
 import {
   Dispatch,

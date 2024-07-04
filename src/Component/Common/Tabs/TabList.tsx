@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import Flex from '@/Component/Common/Flex/Flex';
 import { TabProvider } from '@/Component/Common/Tabs/TabContext';
-import { TabProps } from '@/Component/Common/Tabs/tabs';
+import { TabProps } from '@/Component/Common/Tabs/tabProps';
 
 interface TabListProps extends TabProps {
   margin?: CSSProperties['margin'];

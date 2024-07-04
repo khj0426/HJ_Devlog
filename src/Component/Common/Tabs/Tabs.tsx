@@ -1,9 +1,8 @@
-import type { TabProps } from './tabs';
+import type { TabProps } from './tabProps';
 
 import Flex from '@/Component/Common/Flex/Flex';
 
 import { TabsContextProvider } from './TabContext';
-
 const Tabs = (props: TabProps) => {
   return (
     <TabsContextProvider

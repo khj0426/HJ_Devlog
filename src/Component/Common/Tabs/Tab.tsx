@@ -9,6 +9,7 @@ const Tab = (props: ButtonProps) => {
   const { selected, setSelected, onChange } = useTabs();
   const { index } = useTab();
   const isSelected = props.isActive ?? selected === index;
+  const buttonVariant = isSelected ? 'secondary' : 'primary';
 
   useEffect(() => {
     if (onChange) {
@@ -26,6 +27,7 @@ const Tab = (props: ButtonProps) => {
         }
       }}
       {...props}
+      variant={buttonVariant}
       type="button"
       label={props.label}
       role="tab"

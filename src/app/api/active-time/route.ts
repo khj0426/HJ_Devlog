@@ -7,6 +7,8 @@ export async function GET(req: NextRequest) {
   const getStartDate = req.nextUrl.searchParams.get('startDate');
   const getEndDate = req.nextUrl.searchParams.get('endDate');
   const getQueryStringDate = req.nextUrl.searchParams.get('page');
+  const startDate = getStartDate ?? `${getQueryStringDate}daysAgo` ?? 'today';
+  const endDate = getEndDate ?? 'today';
 
   const report = async function runReport() {
     const [response] = await analyticsDataClient.runReport({
@@ -35,10 +37,9 @@ export async function GET(req: NextRequest) {
       //시작 일자가 있으면 해당 시작일자로 고정 그렇지 않으면 전체 기간
       dateRanges: [
         {
-          startDate:
-            `${getStartDate}` ?? `${getQueryStringDate}daysAgo` ?? 'today',
+          startDate,
           //현재 시간으로 설정
-          endDate: `${getEndDate}` || 'today',
+          endDate,
         },
       ],
       metrics: [

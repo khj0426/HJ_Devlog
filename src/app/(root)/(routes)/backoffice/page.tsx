@@ -90,6 +90,33 @@ export default function BackOffice() {
         </Card>
       </CardContainer>
 
+      <CardContainer justifyContent="space-around" alignItems="center">
+        <Card>
+          <CardText>7Days Active Time</CardText>
+          <ActiveUserChart
+            selectDate="7일"
+            type="참여 시간"
+            width={400}
+            height={400}
+          />
+        </Card>
+        <Card>
+          <CardText>30Days Active Time</CardText>
+          <ActiveUserChart
+            selectDate="30일"
+            type="참여 시간"
+            width={650}
+            height={400}
+          />
+        </Card>
+      </CardContainer>
+      <CardContainer justifyContent="space-around" alignItems="center">
+        <Card>
+          <CardText>90Days Active Time</CardText>
+          <ActiveUserChart selectDate="90일" type="참여 시간" />
+        </Card>
+      </CardContainer>
+
       <UserSessionInfo />
     </Container>
   );
