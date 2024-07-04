@@ -8,9 +8,7 @@ import { NotionAPI } from 'notion-client';
 import getCurrentBasePath from '@/utils/getCurrentBasePath';
 
 import NotionResumeLoading from './loading';
-const ResumeClient = dynamic(
-  () => import('@/Component/Notion/NotionresumeClient')
-);
+const ResumeClient = dynamic(() => import('@/Component/Blog/Resume/Resume'));
 
 export async function generateMetadata(): Promise<Metadata> {
   const dynamicMetaTag: Metadata = {
@@ -58,7 +56,7 @@ export default async function ResumePage() {
 
   return (
     <Suspense fallback={<NotionResumeLoading />}>
-      <ResumeClient recordMap={recordMap} />
+      <ResumeClient />
     </Suspense>
   );
 }

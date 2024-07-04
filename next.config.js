@@ -11,6 +11,7 @@ const nextConfig = {
     serverActions: true,
   },
   webpack: (config, { webpack }) => {
+    config.resolve.alias.canvas = false;
     config.plugins.push(
       new webpack.DefinePlugin({
         __SENTRY_DEBUG__: false,
