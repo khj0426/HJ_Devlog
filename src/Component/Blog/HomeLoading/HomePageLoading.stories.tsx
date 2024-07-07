@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import BlogHomeLoading from './loading';
+import BlogHomeLoading from './HomeLoading';
 
 const meta: Meta<typeof BlogHomeLoading> = {
   title: '메인 페이지 로딩화면',
