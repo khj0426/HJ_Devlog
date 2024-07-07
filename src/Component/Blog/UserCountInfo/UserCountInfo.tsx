@@ -7,7 +7,7 @@ import useGetUsersCountQuery from '@/hooks/queries/useGetUsersCountQuery';
 
 export const StyledUserCountText = styled.p`
   display: flex;
-  width: 68%;
+  width: 80%;
   margin: 15px auto;
   padding: 0;
   font-size: ${({ theme }) => theme.fontSize.xs};
