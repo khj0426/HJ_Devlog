@@ -5,7 +5,7 @@ import { Meta } from '@storybook/react';
 import { useQueryString } from '@/hooks/useQueryString';
 
 const meta: Meta = {
-  title: '쿼리스트링으로 상태를 관리하는 useQueryString훅',
+  title: 'hooks/useQueryString',
   tags: ['autodocs'],
   parameters: {
     layout: 'fullscreen',

@@ -5,7 +5,7 @@ import { Meta } from '@storybook/react';
 import useKeyboard from '@/hooks/useKeyboard';
 
 const meta: Meta = {
-  title: '키보드 이벤트를 편하게 쓰는 useKeyboard훅',
+  title: 'hooks/useKeyboard',
   tags: ['autodocs'],
   parameters: {
     layout: 'fullscreen',

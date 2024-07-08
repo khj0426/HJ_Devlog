@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import ViewCountButton from '@/Component/Blog/ViewCountButton/ViewCountButton';
 const meta: Meta<typeof ViewCountButton> = {
-  title: '조회 수 표시 버튼',
+  title: 'Component/Blog/ViewCountButton',
   component: ViewCountButton,
   parameters: {
     layout: 'centered',

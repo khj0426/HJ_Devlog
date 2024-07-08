@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { SkeletonCard } from '@/Component/Common/Skeleton/Card';
 
 const meta: Meta<typeof SkeletonCard> = {
-  title: '스켈레톤 카드',
+  title: 'Component/SkeletonCard',
   component: SkeletonCard,
   parameters: {
     layout: 'fullscreen',

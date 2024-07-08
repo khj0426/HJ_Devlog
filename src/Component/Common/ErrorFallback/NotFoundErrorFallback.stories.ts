@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import NotFoundErrorFallback from '@/Component/Common/ErrorFallback/NotFoundErrorfallback';
 const meta: Meta<typeof NotFoundErrorFallback> = {
-  title: '404페이지',
+  title: 'Component/404',
   component: NotFoundErrorFallback,
   parameters: {
     layout: 'centered',

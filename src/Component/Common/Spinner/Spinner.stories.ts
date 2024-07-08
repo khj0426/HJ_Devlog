@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import Spinner from '@/Component/Common/Spinner/Spinner';
 const meta: Meta<typeof Spinner> = {
-  title: '스피너 컴포넌트',
+  title: 'Component/Spinner',
   component: Spinner,
   parameters: {
     layout: 'centered',

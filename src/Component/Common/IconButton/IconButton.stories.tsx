@@ -4,7 +4,7 @@ import { EmojiHappy } from 'iconic-react';
 import IconButton from '@/Component/Common/IconButton/IconButton';
 
 const meta: Meta<typeof IconButton> = {
-  title: '아이콘버튼 컴포넌트',
+  title: 'Component/IconButton',
   component: IconButton,
   parameters: {
     layout: 'fullscreen',

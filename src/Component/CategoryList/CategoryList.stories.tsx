@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import CategoryList from '@/Component/CategoryList/CategoryList';
 
 const meta: Meta<typeof CategoryList> = {
-  title: '블로그 카테고리 리스트 컴포넌트',
+  title: 'Component/Blog/CategoryList',
   component: CategoryList,
   parameters: {
     layout: 'fullscreen',

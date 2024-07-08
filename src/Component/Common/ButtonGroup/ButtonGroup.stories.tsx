@@ -5,7 +5,7 @@ import Button from '@/Component/Common/Button/Button';
 import ButtonGroup from './ButtonGroup';
 
 const meta: Meta<typeof ButtonGroup> = {
-  title: '버튼그룹컴포넌트',
+  title: 'Component/ButtonGroup',
   component: ButtonGroup,
   parameters: {
     layout: 'centered',

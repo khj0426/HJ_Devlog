@@ -4,7 +4,7 @@ import CloseButton from '@/Component/Common/CloseButton/CloseButton';
 import { Modal } from '@/Component/Common/Modal';
 import useModal from '@/hooks/useModal';
 const meta: Meta<typeof Modal> = {
-  title: '모달 컴포넌트 예시',
+  title: 'Component/Modal',
   parameters: {
     layout: 'centered',
   },

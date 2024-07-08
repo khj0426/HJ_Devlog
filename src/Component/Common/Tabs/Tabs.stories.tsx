@@ -23,7 +23,7 @@ const ExampleTab = () => {
 };
 
 const meta: Meta<typeof Tabs> = {
-  title: '텝 컴포넌트 예시',
+  title: 'Component/Tabs',
   component: ExampleTab,
   parameters: {
     layout: 'fullscreen',

@@ -22,7 +22,7 @@ const renderItem = (item: any) => (
 );
 
 const meta: Meta<typeof ItemList> = {
-  title: '아이템 목록을 렌더링해주는 아이템리스트 컴포넌트',
+  title: 'Component/ItemList',
   component: ItemList,
   parameters: {
     layout: 'fullscreen',

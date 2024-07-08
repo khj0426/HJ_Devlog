@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import RecommentPostModal from './RecommendPostModal';
 
 const meta: Meta<typeof RecommentPostModal> = {
-  title: '랜덤 글 추천 모달',
+  title: 'Component/Blog/RecommendModal',
   component: RecommentPostModal,
   parameters: {
     layout: 'centered',

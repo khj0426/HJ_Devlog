@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import Badge from './Badge';
 
 const meta: Meta<typeof Badge> = {
-  title: '기본적인 뱃지 컴포넌트',
+  title: 'Component/Badge',
   component: Badge,
   parameters: {
     layout: 'centered',

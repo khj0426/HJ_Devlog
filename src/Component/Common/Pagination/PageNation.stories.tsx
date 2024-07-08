@@ -34,7 +34,7 @@ const PageNationExample = () => {
 };
 
 const meta: Meta<typeof Pagination> = {
-  title: '페이지네이션 컴포넌트',
+  title: 'Component/PageNation',
   component: PageNationExample,
   parameters: {
     layout: 'fullscreen',

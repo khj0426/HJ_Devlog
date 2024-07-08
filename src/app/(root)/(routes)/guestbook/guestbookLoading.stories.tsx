@@ -5,7 +5,7 @@ import Flex from '@/Component/Common/Flex/Flex';
 import GuestBookLoading from './loading';
 
 const meta: Meta<typeof GuestBookLoading> = {
-  title: '방명록 페이지 로딩화면',
+  title: 'Loading/GuestBookPage',
   component: GuestBookLoading,
 
   parameters: {

@@ -9,7 +9,7 @@ export const ExampleWithTimeoutHook = () => {
 };
 
 const meta: Meta = {
-  title: '지정된 타이머 후 콜백을 실행하는 useTimeout훅',
+  title: 'hooks/useTimeOut',
   tags: ['autodocs'],
   parameters: {
     layout: 'fullscreen',

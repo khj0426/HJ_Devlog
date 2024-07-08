@@ -87,7 +87,7 @@ export const TopDrawer = () => {
 };
 
 const meta: Meta<typeof Drawer> = {
-  title: 'Drawer 컴포넌트',
+  title: 'Component/Drawer',
   component: TopDrawer,
   parameters: {
     layout: 'fullscreen',

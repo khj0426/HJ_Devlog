@@ -17,7 +17,6 @@ const StyledPostSearchModal = styled.div`
   min-height: 450px;
   max-height: 450px;
   font-size: 14px;
-  overflow-y: scroll;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -30,7 +29,7 @@ const StyledPostSearchModal = styled.div`
   color: rgb(236, 237, 238);
   box-shadow: 0 15px 30px 0 rgba(#000, 0.25);
   border-radius: 15px;
-  overflow: auto;
+  overflow: hidden;
 `;
 
 function PostSearchModal() {

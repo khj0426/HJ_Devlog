@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import CodeBlock from '@/Component/Blog/CodeBlock/CodeBlock';
 
 const meta: Meta<typeof CodeBlock> = {
-  title: '코드블록 컴포넌트',
+  title: 'Component/Blog/CodeBlock',
   component: CodeBlock,
   args: {
     children: 'const hello = 안녕',

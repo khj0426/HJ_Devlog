@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import Button from './Button';
 
 const meta: Meta<typeof Button> = {
-  title: '기본적인 버튼 컴포넌트',
+  title: 'Component/Button',
   component: Button,
   parameters: {
     layout: 'centered',

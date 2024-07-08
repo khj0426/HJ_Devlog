@@ -3,7 +3,7 @@ import { Meta } from '@storybook/react';
 import ToggleDarkModeButton from '@/Component/DarkMode/ToggoeButton';
 
 const meta: Meta = {
-  title: '다크모드 토글 버튼',
+  title: 'Component/DarkModeButton',
   component: ToggleDarkModeButton,
   tags: ['autodocs'],
   parameters: {

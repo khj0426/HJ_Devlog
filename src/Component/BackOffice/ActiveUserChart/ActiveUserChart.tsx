@@ -4,7 +4,6 @@ import { CSSProperties, useEffect, useState } from 'react';
 
 import { LineChart, Line, XAxis, Tooltip, ResponsiveContainer } from 'recharts';
 
-import Flex from '@/Component/Common/Flex/Flex';
 import Spinner from '@/Component/Common/Spinner/Spinner';
 import { get } from '@/utils/axiosClient';
 

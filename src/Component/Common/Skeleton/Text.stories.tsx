@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { SkeletonText } from '@/Component/Common/Skeleton/Text';
 
 const meta: Meta<typeof SkeletonText> = {
-  title: '스켈레톤 텍스트',
+  title: 'Component/SkeletonText',
   component: SkeletonText,
   parameters: {
     layout: 'fullscreen',

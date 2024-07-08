@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import BigQueryForm from '@/Component/Blog/BigQueryCreateForm/BigQueryCreateForm';
 const meta: Meta<typeof BigQueryForm> = {
-  title: 'GA 데이터 보고서 생성 폼',
+  title: 'Component/Blog/BigQueryForm',
   component: BigQueryForm,
   parameters: {
     layout: 'centered',

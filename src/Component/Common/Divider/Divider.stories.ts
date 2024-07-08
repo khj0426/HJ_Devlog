@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import Divider from './Divider';
 
 const meta: Meta<typeof Divider> = {
-  title: '구분선 컴포넌트',
+  title: 'Component/Divider',
   component: Divider,
   tags: ['autodocs'],
   parameters: {

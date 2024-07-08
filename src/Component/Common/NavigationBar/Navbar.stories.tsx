@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import Navbar from '@/Component/Common/NavigationBar/Navbar';
 
 const meta: Meta<typeof Navbar> = {
-  title: 'Navbar 컴포넌트',
+  title: 'Component/Navbar',
   component: Navbar,
   parameters: {
     layout: 'fullscreen',

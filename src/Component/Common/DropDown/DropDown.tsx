@@ -43,7 +43,7 @@ export default function DropDown<T>({
     setIsOpen(false);
   });
   return (
-    <div className="dropdown" ref={dropDownContainer} style={style}>
+    <div className="dropdown" ref={dropDownContainer}>
       <Trigger
         label={selectedItem ? selectedItem.label : items[0].label}
         onClick={() => {

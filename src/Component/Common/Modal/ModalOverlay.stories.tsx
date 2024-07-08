@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import ModalContent from '@/Component/Common/Modal/ModalContent';
 import ModalOverlay from '@/Component/Common/Modal/ModalOverlay';
 const meta: Meta<typeof ModalOverlay> = {
-  title: '모달 컴포넌트 오버레이 예시',
+  title: 'Component/ModalOverlay',
   component: ModalOverlay,
   parameters: {
     layout: 'centered',

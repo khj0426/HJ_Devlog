@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import NavigationButton from '@/Component/Common/NavigationButton/NavigationButton';
 const meta: Meta<typeof NavigationButton> = {
-  title: '페이지 이동가능한 버튼',
+  title: 'Component/NavigationButton',
   component: NavigationButton,
   parameters: {
     layout: 'centered',

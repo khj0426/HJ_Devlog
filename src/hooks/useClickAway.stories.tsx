@@ -33,7 +33,7 @@ export const DropdownMenu = () => {
 };
 
 const meta: Meta = {
-  title: '배경을 누르면 발생하는 콜백을 실행하는 ClickAway훅',
+  title: 'hooks/useClickAway',
   tags: ['autodocs'],
   parameters: {
     layout: 'fullscreen',

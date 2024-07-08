@@ -4,7 +4,7 @@ import Divider from '@/Component/Common/Divider/Divider';
 import Flex from '@/Component/Common/Flex/Flex';
 
 export default {
-  title: 'Flex 컴포넌트',
+  title: 'Component/Flex',
   component: Flex,
   parameters: {
     layout: 'fullscreen',

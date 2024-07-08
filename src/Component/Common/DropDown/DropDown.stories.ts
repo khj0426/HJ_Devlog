@@ -3,7 +3,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import DropDown from '@/Component/Common/DropDown/DropDown';
 
 const meta: Meta<typeof DropDown> = {
-  title: '메뉴를 선택 가능한 드롭다운 컴포넌트',
+  title: 'Component/DropDown',
   component: DropDown,
   parameters: {
     layout: 'fullscreen',
@@ -13,20 +13,24 @@ const meta: Meta<typeof DropDown> = {
 export default meta;
 
 export const DefaultDropDown: StoryObj<typeof DropDown> = {
+  argTypes: {
+    items: {
+      description:
+        '드롭다운 항목 배열. 각 항목은 key, label, text, icon, disabled 속성을 가질 수 있습니다.',
+    },
+  },
   args: {
     items: [
       {
         key: 'item1', // 고유한 키 값
         label: '항목 1', // 레이블 노드, ReactNode 타입
         text: '설명 1', // 옵셔널, 항목에 대한 설명이나 추가 텍스트
-        icon: '/path/to/icon1.png', // 옵셔널, 아이콘의 경로
         disabled: false, // 옵셔널, 항목이 비활성화 상태인지 여부
       },
       {
         key: 'item2',
         label: '항목 2',
         text: '설명 2',
-        icon: '/path/to/icon2.png',
         disabled: true, // 이 항목은 비활성화 상태임을 나타냄
       },
     ],
@@ -34,6 +38,16 @@ export const DefaultDropDown: StoryObj<typeof DropDown> = {
 };
 
 export const BigQueryDropDown: StoryObj<typeof DropDown> = {
+  argTypes: {
+    onChangeSelectedItem: {
+      description:
+        '선택한 항목이 변경될 때 호출되는 함수. 선택된 항목을 인자로 받습니다.',
+    },
+    items: {
+      description:
+        '드롭다운 항목 배열. 각 항목은 key, label, text 속성을 가질 수 있습니다.',
+    },
+  },
   args: {
     onChangeSelectedItem: (item) => console.log(item?.key),
     items: [
@@ -52,10 +66,16 @@ export const BigQueryDropDown: StoryObj<typeof DropDown> = {
 };
 
 export const DiceBearAvatarSelectDropDown: StoryObj<typeof DropDown> = {
+  argTypes: {
+    items: {
+      description:
+        '드롭다운 항목 배열. 각 항목은 key, label, icon 속성을 가질 수 있습니다.',
+    },
+  },
   args: {
     items: [
       {
-        key: ' Abby',
+        key: 'Abby',
         label: 'Abby',
         icon: 'https://api.dicebear.com/8.x/adventurer-neutral/svg?seed=Abby',
       },
@@ -155,5 +175,31 @@ export const DiceBearAvatarSelectDropDown: StoryObj<typeof DropDown> = {
         icon: 'https://api.dicebear.com/8.x/adventurer-neutral/svg?seed=Trouble',
       },
     ],
+  },
+};
+
+export const CustomStyleDropDown: StoryObj<typeof DropDown> = {
+  args: {
+    items: [
+      {
+        key: 'dropdown1',
+        label: 'dropdown1',
+      },
+      {
+        key: 'dropdown2',
+        label: 'dropdown2',
+      },
+      {
+        key: 'dropdown3',
+        label: 'dropdown1',
+      },
+      {
+        key: 'dropdown3',
+        label: 'dropdown3',
+      },
+    ],
+    style: {
+      background: 'yellow',
+    },
   },
 };

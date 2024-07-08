@@ -4,7 +4,7 @@ import { Meta } from '@storybook/react';
 import useModal from '@/hooks/useModal';
 
 const meta: Meta = {
-  title: '모달을 관리하는 커스텀 useModal 훅',
+  title: 'hooks/useModal',
   tags: ['autodocs'],
   parameters: {
     layout: 'fullscreen',

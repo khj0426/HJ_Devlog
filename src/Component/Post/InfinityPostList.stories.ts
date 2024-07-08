@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import InfinityPostList from '@/Component/Post/InfinityPostList';
 
 const meta: Meta<typeof InfinityPostList> = {
-  title: '무한스크롤 포스트 아이템 리스트',
+  title: 'Component/InfinityPostList',
   component: InfinityPostList,
   tags: ['autodocs'],
   parameters: {

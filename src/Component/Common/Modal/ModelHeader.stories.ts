@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import ModalHeader from '@/Component/Common/Modal/ModalHeader';
 const meta: Meta<typeof ModalHeader> = {
-  title: '모달 헤더 컴포넌트',
+  title: 'Component/ModalHeader',
   component: ModalHeader,
   parameters: {
     layout: 'centered',

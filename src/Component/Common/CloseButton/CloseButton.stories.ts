@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import CloseButton from '@/Component/Common/CloseButton/CloseButton';
 
 const meta: Meta<typeof CloseButton> = {
-  title: '모달이나 Drawer에서 사용될 닫기 버튼 컴포넌트',
+  title: 'Component/CloseButton',
   component: CloseButton,
   parameters: {
     layout: 'fullscreen',
