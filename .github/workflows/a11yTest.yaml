@@ -1,0 +1,20 @@
+name: 'a11y-test'
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    timeout-minutes: 120
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+      - name: Install dependencies
+        run: npm
+      - name: Install Playwright
+        run: npx playwright install --with-deps
+      - name: Run Storybook allyTests
+        run: npm run storybook && npm run test-storybook

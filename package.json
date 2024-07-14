@@ -4,7 +4,7 @@
   "private": true,
   "homepage": "https://github.com/khj0426/HJ_Devlog",
   "scripts": {
-    "test-storybook": "test-storybook",
+    "test-storybook": "test-storybook --json",
     "lhci": "next build && lhci autorun",
     "dev": "next dev",
     "build": "next build",
@@ -83,7 +83,7 @@
     "@storybook/nextjs": "^7.6.7",
     "@storybook/react": "^7.6.7",
     "@storybook/test": "^7.6.7",
-    "@storybook/test-runner": "^0.18.1",
+    "@storybook/test-runner": "^0.18.2",
     "@testing-library/jest-dom": "^6.2.0",
     "@testing-library/react": "^14.1.2",
     "@types/glob": "^8.1.0",
