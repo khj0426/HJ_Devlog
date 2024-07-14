@@ -4,7 +4,7 @@
   "private": true,
   "homepage": "https://github.com/khj0426/HJ_Devlog",
   "scripts": {
-    "test-storybook": "test-storybook --json",
+    "test-storybook": "test-storybook && npx storybook-a11y-report",
     "lhci": "next build && lhci autorun",
     "dev": "next dev",
     "build": "next build",
@@ -108,6 +108,7 @@
     "prisma": "^5.11.0",
     "sqlite3": "^5.1.7",
     "storybook": "^7.6.7",
+    "storybook-a11y-report": "^0.0.21",
     "tsconfig-paths-webpack-plugin": "^4.1.0"
   },
   "readme": "ERROR: No README data found!",
