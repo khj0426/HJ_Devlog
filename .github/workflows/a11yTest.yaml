@@ -16,5 +16,9 @@ jobs:
         run: npm install
       - name: Install Playwright
         run: npx playwright install --with-deps
+      - name: Start Storybook
+        run: npm run storybook & # 스토리북을 백그라운드에서 실행
+      - name: Wait for Storybook to be ready
+        run: npx wait-on http://localhost:6006 # 스토리북이 준비될 때까지 대기
       - name: Run Storybook allyTests
-        run: npm run storybook && npm run test-storybook
+        run: npm run test-storybooks
