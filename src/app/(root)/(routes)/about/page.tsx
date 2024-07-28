@@ -60,7 +60,6 @@ export default async function About() {
                             fontSize: '14px',
                         }}
                     >
-                        <span>2024.08~ 업사이트 프론트엔드 개발 인턴</span>
                         <span>2023.06~2023.12 프로그래머스 웹 데브코스 4기</span>
                         <span>2024.01 ~ 멋쟁이사자처럼 SKHU 프론트엔드 운영진</span>
                         <span>2022.08~2023.06 GDSC SKHU 프론트엔드 파트</span>
