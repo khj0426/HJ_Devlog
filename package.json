@@ -7,7 +7,7 @@
     "test-storybook": "test-storybook && npx storybook-a11y-report",
     "lhci": "next build && lhci autorun",
     "dev": "next dev",
-    "build": "env-cmd -f ./env/.env next build",
+    "build": "next build",
     "dev:https": "next dev --experimental-https",
     "start": "next start",
     "lint": "next lint",
