@@ -3,13 +3,14 @@
  */
 const {
   withSentryConfig,
-} = require('@sentry/nextjs/cjs/config/withSentryConfig');
+} = require("@sentry/nextjs/cjs/config/withSentryConfig");
 
 const nextConfig = {
   compress: true,
   experimental: {
     serverActions: true,
   },
+  output: "standalone",
   webpack: (config, { webpack }) => {
     config.resolve.alias.canvas = false;
     config.plugins.push(
@@ -37,29 +38,29 @@ const nextConfig = {
   },
   images: {
     dangerouslyAllowSVG: true,
-    contentDispositionType: 'attachment',
+    contentDispositionType: "attachment",
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: '**',
+        protocol: "https",
+        hostname: "**",
       },
     ],
-    formats: ['image/avif', 'image/webp'],
+    formats: ["image/avif", "image/webp"],
   },
 };
 
 const sentryConfig = {
   silent: true,
-  org: 'kim0426-00d4b8e8c',
-  project: 'hj-devlog',
+  org: "kim0426-00d4b8e8c",
+  project: "hj-devlog",
   widenClientFileUpload: true,
   transpileClientSDK: true,
-  tunnelRoute: '/monitoring',
+  tunnelRoute: "/monitoring",
   hideSourceMaps: true,
   disableLogger: true,
 };
-if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === "production") {
   module.exports = withSentryConfig(nextConfig, sentryConfig);
 } else {
   module.exports = nextConfig;

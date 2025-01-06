@@ -1,19 +1,19 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
-import Link from 'next/link';
-import styled from 'styled-components';
+import Image from "next/image";
+import Link from "next/link";
+import styled from "styled-components";
 
-import Title from '@/Component/About/Title';
-import Badge from '@/Component/Common/Badge/Badge';
-import Flex from '@/Component/Common/Flex/Flex';
+import Title from "@/Component/About/Title";
+import Badge from "@/Component/Common/Badge/Badge";
+import Flex from "@/Component/Common/Flex/Flex";
 
 const PostCard = styled.div`
   border-radius: 10px;
   position: relative;
   overflow: hidden;
   width: 350px;
-  height: 350px;
+  height: 375px;
   margin: 20px;
   box-shadow: 4px 4px 16px 4px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
@@ -29,7 +29,9 @@ const PostImage = styled(Image)`
   object-fit: cover;
 `;
 
-const PostContent = styled.div``;
+const PostContent = styled.div`
+  padding: 20px;
+`;
 
 export default function PostItem({
   post,
@@ -51,16 +53,16 @@ export default function PostItem({
         <PostContent>
           <Title
             style={{
-              width: '300px',
-              overflow: 'hidden',
-              textOverflow: 'ellipsis',
-              whiteSpace: 'nowrap',
+              width: "300px",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              whiteSpace: "nowrap",
             }}
             title={post.title}
           ></Title>
           <p>{post.excerpt}</p>
           <p>{post.content}</p>
-          <Flex gap={3}>
+          <Flex gap={3} padding={20} margin={2}>
             <Badge variant="secondary">{post.date}</Badge>
             <Badge>{post.category}</Badge>
           </Flex>
