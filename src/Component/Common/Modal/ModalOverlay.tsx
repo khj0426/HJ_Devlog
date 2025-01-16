@@ -1,11 +1,11 @@
-import { ReactNode, useEffect } from 'react';
-import { CSSTransition } from 'react-transition-group';
+import { ReactNode, useEffect } from "react";
+import { CSSTransition } from "react-transition-group";
 
-import './Modal.css';
-import styled from 'styled-components';
+import "./Modal.css";
+import styled from "styled-components";
 
-import useModal from '@/hooks/useModal';
-import useTimeout from '@/hooks/useTimeout';
+import useModal from "@/hooks/useModal";
+import useTimeout from "@/hooks/useTimeout";
 
 const StyledBackDrop = styled.div`
   z-index: 555;
@@ -13,9 +13,8 @@ const StyledBackDrop = styled.div`
   top: 0;
   left: 0;
   right: 0;
+  overflow: hidden;
   bottom: 0;
-  min-width: 100vw;
-  min-height: 100vh;
   backdrop-filter: blur(1px);
   background-color: rgba(0, 0, 0, 0.5);
 `;
@@ -41,15 +40,15 @@ export default function ModalOverlay({
 
   useEffect(() => {
     const handleEscapeClick = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
+      if (event.key === "Escape") {
         closeModal();
       }
     };
 
-    window.addEventListener('keyup', handleEscapeClick);
+    window.addEventListener("keyup", handleEscapeClick);
 
     return () => {
-      window.removeEventListener('keyup', handleEscapeClick);
+      window.removeEventListener("keyup", handleEscapeClick);
     };
   }, [closeModal]);
 

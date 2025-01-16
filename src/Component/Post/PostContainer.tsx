@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import { SkeletonCard } from '@/Component/Common/Skeleton/Card';
-import InfinityPostList from '@/Component/Post/InfinityPostList';
-import usePostQuery from '@/hooks/queries/usePostQuery';
-import useInfiniteQueryObserver from '@/hooks/useInfiniteQueryObserver';
+import { SkeletonCard } from "@/Component/Common/Skeleton/Card";
+import InfinityPostList from "@/Component/Post/InfinityPostList";
+import usePostQuery from "@/hooks/queries/usePostQuery";
+import useInfiniteQueryObserver from "@/hooks/useInfiniteQueryObserver";
 
-export type PostContainerData = Pick<ReturnType<typeof usePostQuery>, 'data'>;
+export type PostContainerData = Pick<ReturnType<typeof usePostQuery>, "data">;
 
 export default function PostContainer() {
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =

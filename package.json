@@ -20,6 +20,7 @@
     "build-storybook": "storybook build",
     "chromatic": "npx chromatic --project-token=chpt_8e999058f856b43",
     "test": "jest",
+    "cypress": "cypress open",
     "lhci-mobile": "lhci collect --additive --config=mobile-lighthouserc.js",
     "lhci-desktop": "lhci collect --additive --config=desktop-lighthouserc.js"
   },

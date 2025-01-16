@@ -1,21 +1,20 @@
-'use client';
+"use client";
 
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import './index.css';
+import "./index.css";
 
-import { Modal } from '@/Component/Common/Modal';
-import { Input, InputBox } from '@/Component/Input';
-import PostList from '@/Component/Post/PostList';
-import useSearchPostQuery from '@/hooks/queries/useSearchPostQuery';
-import useInput from '@/hooks/useInput';
-import useModal from '@/hooks/useModal';
-import { useQueryString } from '@/hooks/useQueryString';
+import { Modal } from "@/Component/Common/Modal";
+import { Input, InputBox } from "@/Component/Input";
+import PostList from "@/Component/Post/PostList";
+import useSearchPostQuery from "@/hooks/queries/useSearchPostQuery";
+import useInput from "@/hooks/useInput";
+import useModal from "@/hooks/useModal";
+import { useQueryString } from "@/hooks/useQueryString";
 
 const StyledPostSearchModal = styled.div`
   width: 350px;
-  min-height: 450px;
-  max-height: 450px;
+  min-height: 380px;
   font-size: 14px;
   display: flex;
   flex-direction: column;
@@ -33,16 +32,16 @@ const StyledPostSearchModal = styled.div`
 `;
 
 function PostSearchModal() {
-  const { onChange, error } = useInput('', (e) => e.target.value.length <= 150);
-  const { modal, closeModal } = useModal('POST_SEARCH_MODAL_STATE');
+  const { onChange, error } = useInput("", (e) => e.target.value.length <= 150);
+  const { modal, closeModal } = useModal("POST_SEARCH_MODAL_STATE");
   const { setQueryObject, queryObject } = useQueryString();
-  const { data: posts } = useSearchPostQuery(queryObject['keyword']);
+  const { data: posts } = useSearchPostQuery(queryObject["keyword"]);
 
   return (
     <Modal.ModalContainer id={modal.id}>
       <Modal.ModalContent
-        width={'350px'}
-        height={'500px'}
+        width={"350px"}
+        height={"500px"}
         closeOutSideClick={closeModal}
         backgroundColor="rgb(38,41,43)"
       >
@@ -58,7 +57,7 @@ function PostSearchModal() {
             />
           </InputBox>
           {error && (
-            <p style={{ color: '#db4455' }}>최대 150자까지 입력 가능합니다!</p>
+            <p style={{ color: "#db4455" }}>최대 150자까지 입력 가능합니다!</p>
           )}
           <PostList posts={posts} />
         </StyledPostSearchModal>

@@ -1,13 +1,13 @@
-import { CSSProperties, ReactNode, useRef } from 'react';
+import { CSSProperties, ReactNode, useRef } from "react";
 
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import useClickAway from '@/hooks/useClickAway';
+import useClickAway from "@/hooks/useClickAway";
 
 const StyledModalContent = styled.div<{
-  backgroundColor?: CSSProperties['backgroundColor'];
-  width?: CSSProperties['width'];
-  height?: CSSProperties['height'];
+  backgroundColor?: CSSProperties["backgroundColor"];
+  width?: CSSProperties["width"];
+  height?: CSSProperties["height"];
 }>`
   border: 0;
   border-radius: 0.5rem;
@@ -19,13 +19,14 @@ const StyledModalContent = styled.div<{
   gap: 10px;
   flex-direction: column;
   align-items: center;
+  color: #000000;
   width: 100%;
   margin: 0 auto;
-  background-color: ${({ backgroundColor }) => backgroundColor ?? 'white'};
-  width: ${({ width }) => width ?? 'auto'};
-  height: ${({ height }) => height ?? 'auto'};
+  background-color: ${({ backgroundColor }) => backgroundColor ?? "white"};
+  width: ${({ width }) => width ?? "auto"};
+  height: ${({ height }) => height ?? "auto"};
   outline: none;
-  overflow: scroll;
+  overflow: hidden;
 `;
 
 export default function ModalContent({
@@ -36,10 +37,10 @@ export default function ModalContent({
   height,
 }: {
   children: ReactNode;
-  backgroundColor?: CSSProperties['backgroundColor'];
+  backgroundColor?: CSSProperties["backgroundColor"];
   closeOutSideClick?: () => void;
-  width?: CSSProperties['width'];
-  height?: CSSProperties['height'];
+  width?: CSSProperties["width"];
+  height?: CSSProperties["height"];
 }) {
   const contentRef = useRef<HTMLDivElement | null>(null);
   useClickAway(contentRef, closeOutSideClick);

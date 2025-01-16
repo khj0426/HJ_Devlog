@@ -2,11 +2,14 @@ import "./globals.css";
 
 import { Metadata } from "next";
 
+import dynamic from "next/dynamic";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Montserrat } from "next/font/google";
 
-import Providers from "@/app/Providers/Query/queryClientProvider";
-import Recoil from "@/app/Providers/Recoil/Recoil";
+const Recoil = dynamic(() => import("@/app/Providers/Recoil/Recoil"));
+const Providers = dynamic(
+  () => import("@/app/Providers/Query/queryClientProvider")
+);
 import { ThemeWrapper } from "@/app/Providers/Styled-Component/themeWrapper";
 import NavigationBarDrawer from "@/Component/Blog/NavigationBarDrawer/NavigationBarDrawer";
 import Footer from "@/Component/Common/Footer/Footer";
