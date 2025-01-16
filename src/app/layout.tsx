@@ -2,8 +2,8 @@ import "./globals.css";
 
 import { Metadata } from "next";
 
-import dynamic from "next/dynamic";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import dynamic from "next/dynamic";
 import { Montserrat } from "next/font/google";
 
 const Recoil = dynamic(() => import("@/app/Providers/Recoil/Recoil"));
