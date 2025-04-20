@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
-import type { CategoryItem } from '@/@types/CategoryType';
+import type { CategoryItem } from "@/@types/CategoryType";
 
-import Link from 'next/link';
-import styled from 'styled-components';
+import Link from "next/link";
+import styled from "styled-components";
 
 const CategoryListStyle = styled.span`
   display: flex;
   flex-direction: column;
-  color: ${({ theme }) => theme.currentTheme.text};
+  color: ${({ theme }) => theme?.currentTheme?.text};
   font-size: 18px;
   overflow: hidden;
   cursor: pointer;

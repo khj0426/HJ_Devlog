@@ -7,6 +7,8 @@ import styled from "styled-components";
 import useModal from "@/hooks/useModal";
 import useTimeout from "@/hooks/useTimeout";
 
+import { SwitchCase } from "../Switcase/Switcase";
+
 const StyledBackDrop = styled.div`
   z-index: 555;
   position: fixed;
