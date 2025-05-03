@@ -30,4 +30,4 @@ export { fontSizes, fontWeights, borderRadius, lineHeights };
 export type fontSizesType = typeof fontSizes;
 export type fontWeightsType = typeof fontWeights;
 export type borderRadiusType = typeof borderRadius;
-export type lineHeightsType = typeof lineHeights;
+type lineHeightsType = typeof lineHeights;

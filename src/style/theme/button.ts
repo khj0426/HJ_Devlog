@@ -24,6 +24,6 @@ const buttonTheme = {
   },
 } as const;
 
-export type buttonThemeType = typeof buttonTheme;
+type buttonThemeType = typeof buttonTheme;
 
 export { buttonTheme };

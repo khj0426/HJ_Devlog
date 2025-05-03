@@ -1,6 +1,7 @@
 /**
  * @type {import('next').NextConfig}
  */
+const createMDX = require("@next/mdx");
 const {
   withSentryConfig,
 } = require("@sentry/nextjs/cjs/config/withSentryConfig");
@@ -61,7 +62,7 @@ const sentryConfig = {
   disableLogger: true,
 };
 if (process.env.NODE_ENV === "production") {
-  module.exports = withSentryConfig(nextConfig, sentryConfig);
+  module.exports = createMDX(withSentryConfig(nextConfig, sentryConfig));
 } else {
-  module.exports = nextConfig;
+  module.exports = createMDX(nextConfig);
 }

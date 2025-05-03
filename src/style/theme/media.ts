@@ -4,7 +4,7 @@ const deviceSizes = {
   laptop: '1024px',
 } as const;
 
-export type deviceSizesType = typeof deviceSizes;
+type deviceSizesType = typeof deviceSizes;
 
 const device = {
   mobile: `screen and (max-width:${deviceSizes.mobile})`,

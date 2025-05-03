@@ -62,7 +62,7 @@ export const post = async <T>(
   return await axiosClient.post(url, data, config);
 };
 
-export const patch = async <T>(
+const patch = async <T>(
   url: string,
   data?: any,
   config?: AxiosRequestConfig
@@ -70,7 +70,7 @@ export const patch = async <T>(
   return await axiosClient.patch(url, data, config);
 };
 
-export const put = async <T>(
+const put = async <T>(
   url: string,
   data?: any,
   config?: AxiosRequestConfig
@@ -78,7 +78,7 @@ export const put = async <T>(
   return await axiosClient.put(url, data, config);
 };
 
-export const del = async <T>(
+const del = async <T>(
   url: string,
   config?: AxiosRequestConfig
 ): Promise<AxiosResponse<T>> => {

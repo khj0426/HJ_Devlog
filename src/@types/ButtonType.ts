@@ -10,7 +10,7 @@ export type ButtonVariant =
   | 'outlined'
   | 'transparent';
 
-export type ButtonStylesProps = {
+type ButtonStylesProps = {
   variant: ButtonVariant;
   size: ButtonSize;
   isActive: boolean;

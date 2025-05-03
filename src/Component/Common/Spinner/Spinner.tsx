@@ -2,7 +2,7 @@
 
 import styled, { keyframes } from 'styled-components';
 
-export interface SpinnerProps {
+interface SpinnerProps {
   timing?: number;
   size?: number;
   width?: number;

@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
 
 import { post } from '@/utils/axiosClient';
-export const postGuestBook = async ({
+const postGuestBook = async ({
   comment,
   avatar,
 }: {

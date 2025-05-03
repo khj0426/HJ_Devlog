@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 import useGetUsersCountQuery from '@/hooks/queries/useGetUsersCountQuery';
 
-export const StyledUserCountText = styled.p`
+const StyledUserCountText = styled.p`
   display: flex;
   width: 80%;
   margin: 15px auto;

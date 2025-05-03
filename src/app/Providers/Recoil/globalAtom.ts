@@ -15,17 +15,17 @@ export const themeAtom = atom<ThemeType>({
   default: 'light',
 });
 
-export const postSearchModalAtom = atom<boolean>({
+const postSearchModalAtom = atom<boolean>({
   key: 'POST_SEARCH_MODAL_STATE',
   default: false,
 });
 
-export const postCurPageNumberAtom = atom<number>({
+const postCurPageNumberAtom = atom<number>({
   key: 'POST_PAGE_STATE',
   default: POST_CONSTANT.end,
 });
 
-export const modalState = atomFamily({
+const modalState = atomFamily({
   key: 'MODAL_STATE',
   default: (id: string) => ({
     id,
@@ -34,7 +34,7 @@ export const modalState = atomFamily({
   }),
 });
 
-export const modalIdAtom = atom<string[]>({
+const modalIdAtom = atom<string[]>({
   key: 'MODAL_ID_STATE',
   default: [],
 });

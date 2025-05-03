@@ -11,7 +11,7 @@ type PostItem = {
 
 const postDirectory = join(process.cwd(), 'posts');
 
-export function getPostSlug() {
+function getPostSlug() {
   try {
     return fs.readdirSync(postDirectory);
   } catch (e) {
@@ -64,7 +64,7 @@ export function getAllPosts() {
     .sort((post1, post2) => (post1.date > post2.date ? -1 : 1));
 }
 
-export function getInitPost() {
+function getInitPost() {
   return getAllPosts().slice(0, 6);
 }
 

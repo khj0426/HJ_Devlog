@@ -4,4 +4,4 @@ import ToastManager from '@/Component/Common/Toast/ToastManager';
 import { Toast } from './Toast';
 import { ToastList } from './ToastList';
 
-export { Toast, ToastList, ToastManager, ToastContainer };
+export {   ToastManager, ToastContainer };

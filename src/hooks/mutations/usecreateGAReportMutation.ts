@@ -3,7 +3,7 @@ import { useMutation } from '@tanstack/react-query';
 
 import { BIGQUERY_VALUE } from '@/Component/Blog/BigQueryCreateForm/BigQueryCreateForm';
 import { post } from '@/utils/axiosClient';
-export const postGAReport = async ({
+const postGAReport = async ({
   type,
   startDate,
   endDate,
