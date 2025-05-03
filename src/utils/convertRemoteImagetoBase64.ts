@@ -1,6 +1,6 @@
-import sharp from 'sharp';
+import sharp from "sharp";
 
-import { get } from './axiosClient';
+import { get } from "./axiosClient";
 const convertRemoteImageToBase64 = async (
   url: string,
   width: number,
@@ -8,7 +8,7 @@ const convertRemoteImageToBase64 = async (
 ) => {
   try {
     const inputBuffer = await get<Buffer>(url, {
-      responseType: 'arraybuffer',
+      responseType: "arraybuffer",
     });
 
     const outputBuffer = sharp(inputBuffer.data)
@@ -16,11 +16,11 @@ const convertRemoteImageToBase64 = async (
       .resize({
         width,
         height,
-        fit: 'cover',
+        fit: "cover",
       })
       .toBuffer();
 
-    const outputBufferToBase64 = (await outputBuffer).toString('base64');
+    const outputBufferToBase64 = (await outputBuffer).toString("base64");
 
     return `data:image/png;base64,${outputBufferToBase64}`;
   } catch (e) {

@@ -1,10 +1,19 @@
-'use client';
-import React from 'react';
+"use client";
+import React from "react";
 
-import { SelectDateOptionsProps } from '@/@types/BackOfficeProps';
-import { StyledUserCountText } from '@/Component/Blog/UserCountInfo/UserCountInfo';
-import Spinner from '@/Component/Common/Spinner/Spinner';
-import useGetUsersCountByDateQuery from '@/hooks/queries/useGetUsersByDateQuery';
+import styled from "styled-components";
+
+import { SelectDateOptionsProps } from "@/@types/BackOfficeProps";
+import Spinner from "@/Component/Common/Spinner/Spinner";
+import useGetUsersCountByDateQuery from "@/hooks/queries/useGetUsersByDateQuery";
+
+const StyledUserCountText = styled.p`
+  display: flex;
+  width: 80%;
+  margin: 15px auto;
+  padding: 0;
+  font-size: ${({ theme }) => theme.fontSize.xs};
+`;
 
 export default function SelectedDateUserCountInfo({
   date,

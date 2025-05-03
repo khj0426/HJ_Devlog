@@ -11,7 +11,6 @@ const nextConfig = {
   experimental: {
     serverActions: true,
   },
-  output: "standalone",
   webpack: (config, { webpack }) => {
     config.resolve.alias.canvas = false;
     config.plugins.push(
