@@ -1,0 +1,13 @@
+{
+  "name": "@hj-devlog/shared",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "storybook dev -p 6000"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

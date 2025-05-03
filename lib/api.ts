@@ -1,15 +1,15 @@
-import fs from 'fs';
-import { join } from 'path';
+import fs from "fs";
+import { join } from "path";
 
-import matter from 'gray-matter';
+import matter from "gray-matter";
 
-import { RANDOM_POST_RANGE } from '@/constants/POST';
+import { RANDOM_POST_RANGE } from "~/packages/blog/src/constants/POST";
 
 type PostItem = {
   [key: string]: string;
 };
 
-const postDirectory = join(process.cwd(), 'posts');
+const postDirectory = join(process.cwd(), "posts");
 
 function getPostSlug() {
   try {
@@ -21,21 +21,21 @@ function getPostSlug() {
 
 export function getPostBySlug(slug: string, fields: string[]) {
   try {
-    const decodedSlug = decodeURIComponent(slug.replace(/\.md/, ''));
+    const decodedSlug = decodeURIComponent(slug.replace(/\.md/, ""));
     const postPath = join(postDirectory, `${decodedSlug}.md`);
-    const fileContent = fs.readFileSync(postPath, 'utf-8');
+    const fileContent = fs.readFileSync(postPath, "utf-8");
     const { data, content } = matter(fileContent);
 
     const postItems: PostItem = {};
 
     fields.forEach((field) => {
-      if (field === 'slug') {
+      if (field === "slug") {
         postItems[field] = decodedSlug;
       }
-      if (field === 'content') {
+      if (field === "content") {
         postItems[field] = content;
       }
-      if (typeof data[field] !== 'undefined') {
+      if (typeof data[field] !== "undefined") {
         postItems[field] = data[field];
       }
     });
@@ -52,13 +52,13 @@ export function getAllPosts() {
   return slugs
     .map((slug) =>
       getPostBySlug(slug, [
-        'title',
-        'data',
-        'slug',
-        'category',
-        'excerpt',
-        'date',
-        'image',
+        "title",
+        "data",
+        "slug",
+        "category",
+        "excerpt",
+        "date",
+        "image",
       ])
     )
     .sort((post1, post2) => (post1.date > post2.date ? -1 : 1));
@@ -85,7 +85,7 @@ export function getAllCategories() {
   return Array.from(allCategory).map(([category, categoryCount]) => {
     return {
       category: category,
-      categoryCount: categoryCount + '',
+      categoryCount: categoryCount + "",
     };
   });
 }
