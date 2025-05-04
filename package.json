@@ -8,7 +8,8 @@
     "start": "storybook dev -p 6000",
     "shared": "pnpm -F @hj-devlog/shared start",
     "test-storybook": "test-storybook && npx storybook-a11y-report",
-    "blog": "pnpm -F @hj-devlog/blog build"
+    "blog": "pnpm -F @hj-devlog/blog build",
+    "build": "pnpm -F @hj-devlog/blog build"
   },
   "keywords": [],
   "author": "",
