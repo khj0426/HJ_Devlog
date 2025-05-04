@@ -10,8 +10,7 @@ import { CSSProperties, ReactNode } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import styled, { css } from "styled-components";
-
-import Flex from "~/packages/shared/src/components/Flex/Flex";
+import Flex from "../Flex/Flex";
 
 const StyledNavBarLayout = styled.nav`
   position: sticky;

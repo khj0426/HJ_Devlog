@@ -1,8 +1,7 @@
 "use client";
 
 import styled from "styled-components";
-
-import { SkeletonText } from "~/packages/shared/src/components/Skeleton/Text";
+import { SkeletonText } from "./Text";
 
 const PostCard = styled.div`
   border-radius: 10px;
@@ -15,7 +14,7 @@ const PostCard = styled.div`
     transform: translateY(-10px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
   }
-  background: ${({ theme }) => theme.backgroundPost};
+  background: ${({ theme }) => theme.currentTheme.backgroundPost};
 `;
 
 export const SkeletonCard = () => {

@@ -1,10 +1,10 @@
 import { ReactNode } from "react";
 
-import { Moon, Sun1 } from "iconic-react";
+import Flex from "@hj-devlog/shared/src/components/Flex/Flex";
+import { Moon, Sun1 } from "@hj-devlog/shared/libraryies/icon";
 import { useRecoilState } from "recoil";
 
-import { themeAtom } from "~/packages/blog/src/app/Providers/Recoil/globalAtom";
-import Flex from "~/packages/shared/src/components/Flex/Flex";
+import { themeAtom } from "~/src/app/Providers/Recoil/globalAtom";
 
 export default function ToggleDarkModeButton({
   children,

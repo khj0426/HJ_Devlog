@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import CodeBlock from "~/packages/blog/src/Component/Blog/CodeBlock/CodeBlock";
+import CodeBlock from "./CodeBlock";
 
 const meta: Meta<typeof CodeBlock> = {
   title: "Component/Blog/CodeBlock",

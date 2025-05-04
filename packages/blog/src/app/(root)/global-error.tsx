@@ -2,9 +2,8 @@
 
 import { useEffect } from "react";
 
+import ErrorFallback from "@hj-devlog/shared/src/components/ErrorFallback/Errorfallback";
 import * as Sentry from "@sentry/nextjs";
-
-import ErrorFallback from "~/packages/shared/src/components/ErrorFallback/Errorfallback";
 
 export default function GlobalError({
   error,

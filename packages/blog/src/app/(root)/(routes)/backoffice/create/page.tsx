@@ -1,12 +1,12 @@
 "use client";
 import { useState } from "react";
 
+import Flex from "@hj-devlog/shared/src/components/Flex/Flex";
+import Spinner from "@hj-devlog/shared/src/components/Spinner/Spinner";
 import { ResponsiveContainer, LineChart, Line, XAxis, Tooltip } from "recharts";
 
-import BigQueryCreateForm from "~/packages/blog/src/Component/Blog/BigQueryCreateForm/BigQueryCreateForm";
-import Flex from "~/packages/shared/src/components/Flex/Flex";
-import Spinner from "~/packages/shared/src/components/Spinner/Spinner";
-import usePostGAReport from "~/packages/blog/src/hooks/mutations/usecreateGAReportMutation";
+import BigQueryCreateForm from "~/src/Component/Blog/BigQueryCreateForm/BigQueryCreateForm";
+import usePostGAReport from "~/src/hooks/mutations/usecreateGAReportMutation";
 
 export default function GaReportCreatePage() {
   const { mutate, isLoading } = usePostGAReport();

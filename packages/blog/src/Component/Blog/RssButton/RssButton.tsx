@@ -1,7 +1,7 @@
-import { ReactNode } from 'react';
+import { ReactNode } from "react";
 
-import { ArchiveMinus } from 'iconic-react';
-import Link from 'next/link';
+import { ArchiveMinus } from "@hj-devlog/shared/libraryies/icon";
+import Link from "next/link";
 
 const RssButton = ({ children }: { children?: ReactNode }) => {
   return (
@@ -11,7 +11,7 @@ const RssButton = ({ children }: { children?: ReactNode }) => {
         color="#FF8A65"
         variant="Bold"
         style={{
-          cursor: 'pointer',
+          cursor: "pointer",
         }}
       />
       {children}

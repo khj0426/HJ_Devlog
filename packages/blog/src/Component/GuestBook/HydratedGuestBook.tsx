@@ -1,9 +1,9 @@
-import { dehydrate } from "@tanstack/react-query";
+import { dehydrate, Hydrate } from "@tanstack/react-query";
 
-import Hydrate from "~/packages/shared/src/components/Hydrate";
-import GuestBook from "~/packages/blog/src/Component/GuestBook/GuestBook";
-import { getGuestBook } from "~/packages/blog/src/services/GuestBook";
-import getQueryClient from "~/packages/blog/src/utils/getQueryClient";
+import { getGuestBook } from "~/src/services/GuestBook";
+import getQueryClient from "~/src/utils/getQueryClient";
+
+import GuestBook from "./GuestBook";
 
 export default async function HydratedGuestBook() {
   const queryClient = getQueryClient();

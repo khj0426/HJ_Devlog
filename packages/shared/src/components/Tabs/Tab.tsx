@@ -1,21 +1,16 @@
-import type { ButtonProps } from '@/@types/ButtonType';
+import type { ButtonProps } from "~/packages/shared/@types/ButtonType";
 
-import { useEffect } from 'react';
-
-import Button from '@/Component/Common/Button/Button';
-import { useTabs, useTab } from '@/Component/Common/Tabs/TabContext';
+import Button from "~/packages/shared/src/components/Button/Button";
+import {
+  useTabs,
+  useTab,
+} from "~/packages/shared/src/components/Tabs/TabContext";
 
 const Tab = (props: ButtonProps) => {
   const { selected, setSelected, onChange } = useTabs();
   const { index } = useTab();
   const isSelected = props.isActive ?? selected === index;
-  const buttonVariant = isSelected ? 'secondary' : 'primary';
-
-  useEffect(() => {
-    if (onChange) {
-      onChange(selected);
-    }
-  }, [onChange, selected]);
+  const buttonVariant = isSelected ? "secondary" : "primary";
 
   return (
     <Button

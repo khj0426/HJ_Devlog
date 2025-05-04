@@ -1,7 +1,6 @@
-import type { BadgeProps } from "~/packages/blog/src/@types/BadgeType";
-
 import styled from "styled-components";
-import { getBadgeStyle } from "~/packages/blog/src/@types/Badge.styles";
+import { getBadgeStyle } from "../../@types/Badge.styles";
+import { BadgeProps } from "../../@types/BadgeType";
 
 const StyledBadge = styled.button<BadgeProps>`
   ${(props) => getBadgeStyle(props)}

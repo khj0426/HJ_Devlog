@@ -1,6 +1,6 @@
-import { SkeletonCard } from "~/packages/shared/src/components/Skeleton/Card";
-import { SkeletonImage } from "~/packages/shared/src/components/Skeleton/Image";
-import { SkeletonText } from "~/packages/shared/src/components/Skeleton/Text";
+import { SkeletonCard } from "./Card";
+import { SkeletonImage } from "./Image";
+import { SkeletonText } from "./Text";
 
 const Skeleton = {
   Image: SkeletonImage,

@@ -1,13 +1,13 @@
-import type { Meta, Story } from '@storybook/react';
+import type { Meta, Story } from "@storybook/react";
 
-import Divider from '@/Component/Common/Divider/Divider';
-import Flex from '@/Component/Common/Flex/Flex';
+import Divider from "~/packages/shared/src/components/Divider/Divider";
+import Flex from "~/packages/shared/src/components/Flex/Flex";
 
 export default {
-  title: 'Component/Flex',
+  title: "Component/Flex",
   component: Flex,
   parameters: {
-    layout: 'fullscreen',
+    layout: "fullscreen",
   },
 } as Meta;
 
@@ -22,47 +22,47 @@ export const BaseFlex = Template.bind({});
 
 export const RowFlex = Template.bind({});
 RowFlex.args = {
-  flexDirection: 'row',
-  justifyContent: 'center',
-  alignItems: 'center',
-  gap: '10px',
-  width: '100px',
-  height: '100px',
+  flexDirection: "row",
+  justifyContent: "center",
+  alignItems: "center",
+  gap: "10px",
+  width: "100px",
+  height: "100px",
 };
 
 export const ColumnFlex = Template.bind({});
 ColumnFlex.args = {
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'flex-start',
-  gap: '10px',
-  width: '100px',
-  height: '100px',
+  flexDirection: "column",
+  justifyContent: "center",
+  alignItems: "flex-start",
+  gap: "10px",
+  width: "100px",
+  height: "100px",
 };
 
 export const JustifySpaceBetweenFlex = Template.bind({});
 JustifySpaceBetweenFlex.args = {
-  flexDirection: 'row',
-  justifyContent: 'space-between',
-  alignItems: 'center',
-  gap: '10px',
-  width: '100px',
-  height: '100px',
+  flexDirection: "row",
+  justifyContent: "space-between",
+  alignItems: "center",
+  gap: "10px",
+  width: "100px",
+  height: "100px",
 };
 
 export const AlignItemsFlexEndFlex = Template.bind({});
 AlignItemsFlexEndFlex.args = {
-  flexDirection: 'row',
-  justifyContent: 'flex-start',
-  alignItems: 'flex-end',
-  gap: '10px',
-  width: '100px',
-  height: '100px',
+  flexDirection: "row",
+  justifyContent: "flex-start",
+  alignItems: "flex-end",
+  gap: "10px",
+  width: "100px",
+  height: "100px",
 };
 
 export const FlexWithDivider = () => {
   return (
-    <Flex justifyContent="center" alignItems="center" gap={'20px'}>
+    <Flex justifyContent="center" alignItems="center" gap={"20px"}>
       {Array.from({ length: 15 }).map((_, index) => (
         <>
           <span>{index}</span>

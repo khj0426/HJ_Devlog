@@ -4,12 +4,11 @@ import { NextApiResponse } from "next";
 
 import { useEffect } from "react";
 
-import Link from "next/link";
-
 import {
   ToastContainer,
   ToastManager,
-} from "~/packages/shared/src/components/Toast";
+} from "@hj-devlog/shared/src/components/Toast";
+import Link from "next/link";
 
 export default function Error({
   error,

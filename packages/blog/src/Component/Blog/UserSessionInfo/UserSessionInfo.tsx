@@ -1,7 +1,7 @@
+import Flex from "@hj-devlog/shared/src/components/Flex/Flex";
 import { BarChart, YAxis, Tooltip, Bar, CartesianGrid } from "recharts";
 
-import Flex from "~/packages/shared/src/components/Flex/Flex";
-import useGetUserSessionInfoQuery from "~/packages/blog/src/hooks/queries/useGetUserSessionInfoQuery";
+import useGetUserSessionInfoQuery from "~/src/hooks/queries/useGetUserSessionInfoQuery";
 
 const UserSessionInfo = () => {
   const { data } = useGetUserSessionInfoQuery();

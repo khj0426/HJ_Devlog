@@ -1,12 +1,12 @@
 "use client";
 
+import Badge from "@hj-devlog/shared/src/components/Badge/Badge";
+import Flex from "@hj-devlog/shared/src/components/Flex/Flex";
 import Image from "next/image";
 import Link from "next/link";
 import styled from "styled-components";
 
-import Title from "@/Component/About/Title";
-import Badge from "@/Component/Common/Badge/Badge";
-import Flex from "@/Component/Common/Flex/Flex";
+import Title from "../About/Title";
 
 const PostCard = styled.div`
   border-radius: 10px;

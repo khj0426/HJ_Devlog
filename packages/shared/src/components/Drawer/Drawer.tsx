@@ -4,8 +4,7 @@ import { ComponentProps, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 
 import styled, { css } from "styled-components";
-
-import useClickAway from "~/packages/shared/src/hooks/useClickAway";
+import useClickAway from "../../hooks/useClickAway";
 
 interface DrawerProps extends ComponentProps<"div"> {
   isOpen: boolean;

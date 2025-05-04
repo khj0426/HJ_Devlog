@@ -5,11 +5,10 @@ import {
   CSSProperties,
 } from "react";
 
-import useClickAway from "~/packages/shared/src/hooks/useClickAway";
-import useDropDown from "~/packages/shared/src/hooks/useDropDown";
-
 import DropDownMenu from "./DropDownMenu";
 import Trigger from "./Trigger";
+import useClickAway from "../../hooks/useClickAway";
+import useDropDown from "../../hooks/useDropDown";
 
 export interface DropDownProps extends ComponentPropsWithoutRef<"div"> {
   key: string;

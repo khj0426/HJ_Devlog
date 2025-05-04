@@ -1,9 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import BigQueryForm from "~/packages/blog/src/Component/Blog/BigQueryCreateForm/BigQueryCreateForm";
-const meta: Meta<typeof BigQueryForm> = {
+const meta: Meta<typeof BigQuery> = {
   title: "Component/Blog/BigQueryForm",
-  component: BigQueryForm,
+  component: BigQuery,
   parameters: {
     layout: "centered",
   },
@@ -11,6 +10,6 @@ const meta: Meta<typeof BigQueryForm> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof BigQueryForm>;
+type Story = StoryObj<typeof BigQuery>;
 
 export const BasicBigQueryForm: Story = {};

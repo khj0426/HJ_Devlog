@@ -1,9 +1,8 @@
-import type { Item } from "~/packages/blog/src/@types/postItem";
-
-import { EmojiSad } from "iconic-react";
+import Flex from "@hj-devlog/shared/src/components/Flex/Flex";
+import { EmojiSad } from "@hj-devlog/shared/libraryies/icon";
 import Link from "next/link";
 
-import Flex from "~/packages/shared/src/components/Flex/Flex";
+import { Item } from "~/@types/postItem";
 
 interface PostListProps {
   posts: Item[] | undefined;

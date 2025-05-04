@@ -3,23 +3,22 @@ import { Metadata } from "next";
 
 import { Suspense } from "react";
 
-import dynamic from "next/dynamic";
+import Flex from "@hj-devlog/shared/src/components/Flex/Flex";
+import NavigationButton from "@hj-devlog/shared/src/components/NavigationButton/NavigationButton";
+import Spinner from "@hj-devlog/shared/src/components/Spinner/Spinner";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import rehypeRaw from "rehype-raw";
 
-import Title from "~/packages/blog/src/Component/About/Title";
-import CodeBlock from "~/packages/blog/src/Component/Blog/CodeBlock/CodeBlock";
-import PostExtract from "~/packages/blog/src/Component/Blog/Extract";
-import BlogLayout from "~/packages/blog/src/Component/Blog/Layout";
-const TOC = dynamic(() => import("~/packages/blog/src/Component/TOC"));
-import PageView from "~/packages/blog/src/Component/Blog/PageView/PageView";
-import Flex from "~/packages/shared/src/components/Flex/Flex";
-import NavigationButton from "~/packages/shared/src/components/NavigationButton/NavigationButton";
-import Spinner from "~/packages/shared/src/components/Spinner/Spinner";
-import Comments from "~/packages/blog/src/Component/Giscus/Gitcus";
-import getCurrentBasePath from "~/packages/blog/src/utils/getCurrentBasePath";
 import { getPostBySlug, getRandomPosts } from "~/lib/api";
 import makeTableOfContent from "~/lib/makeTableOfContent";
+import Title from "~/src/Component/About/Title";
+import CodeBlock from "~/src/Component/Blog/CodeBlock/CodeBlock";
+import PostExtract from "~/src/Component/Blog/Extract";
+import BlogLayout from "~/src/Component/Blog/Layout";
+import PageView from "~/src/Component/Blog/PageView/PageView";
+import Comments from "~/src/Component/Giscus/Gitcus";
+import TOC from "~/src/Component/TOC";
+import getCurrentBasePath from "~/src/utils/getCurrentBasePath";
 
 export async function generateMetadata({
   params,

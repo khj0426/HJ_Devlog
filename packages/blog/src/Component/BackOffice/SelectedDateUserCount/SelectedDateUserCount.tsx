@@ -1,11 +1,11 @@
 "use client";
 import React from "react";
 
+import Spinner from "@hj-devlog/shared/src/components/Spinner/Spinner";
 import styled from "styled-components";
 
-import { SelectDateOptionsProps } from "~/packages/blog/src/@types/BackOfficeProps";
-import Spinner from "~/packages/shared/src/components/Spinner/Spinner";
-import useGetUsersCountByDateQuery from "~/packages/blog/src/hooks/queries/useGetUsersByDateQuery";
+import { SelectDateOptionsProps } from "~/@types/BackOfficeProps";
+import useGetUsersCountByDate from "~/src/hooks/queries/useGetUsersByDateQuery";
 
 const StyledUserCountText = styled.p`
   display: flex;
@@ -20,7 +20,7 @@ export default function SelectedDateUserCountInfo({
 }: {
   readonly date: SelectDateOptionsProps;
 }) {
-  const { data: countData, isLoading } = useGetUsersCountByDateQuery(date);
+  const { data: countData, isLoading } = useGetUsersCountByDate(date);
   if (isLoading) {
     return <Spinner />;
   }

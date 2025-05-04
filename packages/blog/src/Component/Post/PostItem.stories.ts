@@ -1,13 +1,13 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from "@storybook/react";
 
-import PostItem from '@/Component/Post/PostItem';
+import PostItem from "./PostItem";
 
 const meta: Meta<typeof PostItem> = {
-  title: 'Component/PostItem',
+  title: "Component/PostItem",
   component: PostItem,
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   parameters: {
-    layout: 'fullscreen',
+    layout: "fullscreen",
   },
 };
 
@@ -17,13 +17,13 @@ type Story = StoryObj<typeof PostItem>;
 export const DefaultPostItem: Story = {
   args: {
     post: {
-      title: '2023 7월 회고',
-      excerpt: '나는 무엇을 했나!',
-      date: '2023-08-07',
-      author: '김효중',
-      category: '회고',
-      image: '/images/postImg/reflection.jpg',
-      content: '내용내용',
+      title: "2023 7월 회고",
+      excerpt: "나는 무엇을 했나!",
+      date: "2023-08-07",
+      author: "김효중",
+      category: "회고",
+      image: "/images/postImg/reflection.jpg",
+      content: "내용내용",
     },
   },
 };

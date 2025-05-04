@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import Flex from "~/packages/shared/src/components/Flex/Flex";
+import Flex from "@hj-devlog/shared/src/components/Flex/Flex";
 
 import GuestBookLoading from "./loading";
 

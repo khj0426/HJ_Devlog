@@ -1,9 +1,8 @@
-'use client';
+"use client";
 
-import styled from 'styled-components';
+import useGetPostDetailPageView from "~/src/hooks/queries/useGetPostDetailPageViewQuery";
 
-import ViewCountButton from '@/Component/Blog/ViewCountButton/ViewCountButton';
-import useGetPostDetailPageView from '@/hooks/queries/useGetPostDetailPageViewQuery';
+import ViewCountButton from "../ViewCountButton/ViewCountButton";
 
 const PageView = ({ slug }: { slug: string }) => {
   const { data } = useGetPostDetailPageView(slug);

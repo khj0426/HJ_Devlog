@@ -1,6 +1,7 @@
-import Image from 'next/image';
+import Image from "next/image";
 
-import getBase64BlurImage from '@/utils/getBase64BlurImage';
+import getBase64BlurImage from "../../utils/getBase64BlurImage";
+
 export default async function ProfileImageWrapper({
   imgurl,
 }: {

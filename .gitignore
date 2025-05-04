@@ -5,6 +5,9 @@
 /.pnp
 .pnp.js
 
+/packages/blog/.next
+/packages/blog/.env
+
 # testing
 /coverage
 

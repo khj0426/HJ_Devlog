@@ -1,9 +1,7 @@
-import type { ToastPropsType } from "~/packages/shared/src/components/Toast/Toast";
-
 import React, { Component } from "react";
-
-import { ToastList } from "~/packages/shared/src/components/Toast/ToastList";
-import ToastManager from "~/packages/shared/src/components/Toast/ToastManager";
+import { ToastManager } from ".";
+import { ToastPropsType } from "./Toast";
+import { ToastList } from "./ToastList";
 
 interface ToastContainerProps {
   enterTimeout: number;

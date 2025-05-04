@@ -2,11 +2,12 @@
 
 import { memo } from "react";
 
+import useTableOfContent from "@hj-devlog/shared/src/hooks/useTableOfContent";
 import { uuid4 } from "@sentry/utils";
 import styled from "styled-components";
 
-import useTableOfContent from "~/packages/shared/src/hooks/useTableOfContent";
 import replaceStrWithBlank from "~/lib/replaceStr";
+
 
 const StyledTOCList = styled.ul`
   position: fixed;

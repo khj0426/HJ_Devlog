@@ -1,6 +1,5 @@
-import { useState, KeyboardEvent, useMemo, useEffect } from "react";
-
-import { DropDownProps } from "~/packages/shared/src/components/DropDown/DropDown";
+import { useState, KeyboardEvent } from "react";
+import { DropDownProps } from "../components/DropDown/DropDown";
 
 export default function useDropDown(items: DropDownProps[]) {
   const [isOpen, setIsOpen] = useState(false);

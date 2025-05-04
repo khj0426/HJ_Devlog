@@ -1,7 +1,7 @@
-import { ReactNode } from 'react';
+import { ReactNode } from "react";
 
-import { TrendUp } from 'iconic-react';
-import Link from 'next/link';
+import { TrendUp } from "@hj-devlog/shared/libraryies/icon";
+import Link from "next/link";
 
 const ReportButton = ({ children }: { children?: ReactNode }) => {
   return (
@@ -11,7 +11,7 @@ const ReportButton = ({ children }: { children?: ReactNode }) => {
         color="#FF8A65"
         variant="Bold"
         style={{
-          cursor: 'pointer',
+          cursor: "pointer",
         }}
       />
       {children}

@@ -1,7 +1,8 @@
-'use server';
-import type { Item } from '@/@types/postItem';
+"use server";
 
-import { get } from '@/utils/axiosClient';
+import { get } from "@hj-devlog/shared/src/api/blogaxiosClient";
+
+import { Item } from "~/@types/postItem";
 
 type Post = {
   title: string;

@@ -1,6 +1,6 @@
 "use client";
 
-import useIsDarkMode from "~/packages/shared/src/hooks/useIsDarkMode";
+import useIsDarkMode from "../../../../blog/src/hooks/useIsDarkMode";
 
 export default function ScrollToTop() {
   const { isDarkMode } = useIsDarkMode();

@@ -1,6 +1,5 @@
 import { ComponentPropsWithoutRef } from "react";
-
-import useIsDarkMode from "~/packages/shared/src/hooks/useIsDarkMode";
+import useIsDarkMode from "../../../../blog/src/hooks/useIsDarkMode";
 
 interface DrawerImageProps extends ComponentPropsWithoutRef<"svg"> {}
 

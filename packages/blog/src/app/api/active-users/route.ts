@@ -1,34 +1,33 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from "next/server";
+import analyticsDataClient from "~/src/utils/bigQueryClient";
+import { formatDateToString } from "~/src/utils/formatDateToString";
 
-import analyticsDataClient from '@/utils/bigQueryClient';
-import { formatDateToString } from '@/utils/formatDateToString';
-
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 
 export async function GET(req: NextRequest) {
-  const date = req.nextUrl.searchParams.get('date');
-  const startDate = req.nextUrl.searchParams.get('startDate');
-  const endDate = req.nextUrl.searchParams.get('endDate');
+  const date = req.nextUrl.searchParams.get("date");
+  const startDate = req.nextUrl.searchParams.get("startDate");
+  const endDate = req.nextUrl.searchParams.get("endDate");
 
   const now = new Date();
 
   const queryStringToDate = new Map([
-    ['오늘', formatDateToString(new Date())],
-    ['어제', formatDateToString(new Date(now.getTime() - 24 * 60 * 60 * 1000))],
+    ["오늘", formatDateToString(new Date())],
+    ["어제", formatDateToString(new Date(now.getTime() - 24 * 60 * 60 * 1000))],
     [
-      '7일',
+      "7일",
       formatDateToString(new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000)),
     ],
     [
-      '30일',
+      "30일",
       formatDateToString(new Date(new Date().setMonth(now.getMonth() - 1))),
     ],
     [
-      '90일',
+      "90일",
       formatDateToString(new Date(new Date().setMonth(now.getMonth() - 3))),
     ],
     [
-      '1년',
+      "1년",
       formatDateToString(
         new Date(new Date().setFullYear(now.getFullYear() - 1))
       ),
@@ -40,14 +39,14 @@ export async function GET(req: NextRequest) {
       property: `properties/401292897`,
       dimensions: [
         {
-          name: 'country',
+          name: "country",
         },
       ],
       dimensionFilter: {
         filter: {
-          fieldName: 'country',
+          fieldName: "country",
           stringFilter: {
-            value: 'South Korea',
+            value: "South Korea",
           },
         },
       },
@@ -55,13 +54,13 @@ export async function GET(req: NextRequest) {
       dateRanges: [
         {
           startDate:
-            startDate || (date && queryStringToDate.get(date)) || '2020-03-11',
+            startDate || (date && queryStringToDate.get(date)) || "2020-03-11",
           endDate: endDate ?? formatDateToString(new Date()),
         },
       ],
       metrics: [
         {
-          name: 'totalUsers',
+          name: "totalUsers",
         },
       ],
     });
@@ -79,7 +78,7 @@ export async function GET(req: NextRequest) {
   if (reportResults) {
     return NextResponse.json(
       {
-        data: 'Report finished',
+        data: "Report finished",
         datalist: reportResults[0]?.activeUsers?.metricValues || [],
       },
       {
@@ -90,7 +89,7 @@ export async function GET(req: NextRequest) {
 
   return NextResponse.json(
     {
-      data: 'Report failed',
+      data: "Report failed",
     },
     {
       status: 502,

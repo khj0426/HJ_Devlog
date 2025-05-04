@@ -1,16 +1,15 @@
 "use client";
 
+import useInput from "@hj-devlog/shared/src/hooks/useInput";
 import styled from "styled-components";
 
-import "./index.css";
+import useSearchPostQuery from "~/src/hooks/queries/useSearchPostQuery";
+import useModal from "~/src/hooks/useModal";
+import { useQueryString } from "~/src/hooks/useQueryString";
 
-import { Modal } from "~/packages/shared/src/components/Modal";
-import { Input, InputBox } from "~/packages/blog/src/Component/Input";
-import PostList from "~/packages/blog/src/Component/Post/PostList";
-import useSearchPostQuery from "~/packages/blog/src/hooks/queries/useSearchPostQuery";
-import useInput from "~/packages/shared/src/hooks/useInput";
-import useModal from "~/packages/shared/src/hooks/useModal";
-import { useQueryString } from "~/packages/shared/src/hooks/useQueryString";
+import { InputBox, Input } from "../../Input";
+import { Modal } from "../../Modal";
+import PostList from "../../Post/PostList";
 
 const StyledPostSearchModal = styled.div`
   width: 350px;

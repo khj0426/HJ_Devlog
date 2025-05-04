@@ -5,7 +5,7 @@ import styled from "styled-components";
 import {
   getRadioButtonStyle,
   sizeToRadioButtonStyles,
-} from "~/packages/blog/src/@types/RadioButton.styles";
+} from "~/packages/shared/@types/RadioButton.styles";
 import Flex from "~/packages/shared/src/components/Flex/Flex";
 
 type ExcludeSizePropsFromInput = Omit<

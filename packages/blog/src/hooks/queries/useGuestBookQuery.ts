@@ -1,6 +1,6 @@
-import { useQuery } from '@tanstack/react-query';
+import { useQuery } from "@tanstack/react-query";
 
-import { guestBookQueryOptions } from '@/hooks/queries/queryKey';
+import { guestBookQueryOptions } from "./queryKey";
 
 export default function useGetGuestBook() {
   return useQuery(guestBookQueryOptions.all());

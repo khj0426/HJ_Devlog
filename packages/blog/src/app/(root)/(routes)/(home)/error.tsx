@@ -1,6 +1,6 @@
 "use client";
 
-import ErrorFallback from "~/packages/shared/src/components/ErrorFallback/Errorfallback";
+import ErrorFallback from "@hj-devlog/shared/src/components/ErrorFallback/Errorfallback";
 
 export default function Error({
   error,

@@ -5,12 +5,8 @@ import { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-import Flex from "~/packages/shared/src/components/Flex/Flex";
-import {
-  ToastContainer,
-  ToastManager,
-} from "~/packages/shared/src/components/Toast";
-import ErrorImage from "~/public/images/404-Space.png";
+import Flex from "../Flex/Flex";
+import { ToastManager, ToastContainer } from "../Toast";
 
 export default function NotFoundErrorFallback() {
   useEffect(() => {
@@ -36,7 +32,9 @@ export default function NotFoundErrorFallback() {
         gap="50px"
       >
         <Image
-          src={ErrorImage}
+          src={
+            "https://img.freepik.com/free-vector/oops-404-error-with-broken-robot-concept-illustration_114360-5529.jpg"
+          }
           alt="에러 메시지"
           width={350}
           height={350}

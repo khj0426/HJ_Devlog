@@ -1,18 +1,20 @@
 import { useState } from "react";
 
-import Image from "next/image";
-
-import DropDown from "~/packages/shared/src/components/DropDown/DropDown";
-import Flex from "~/packages/shared/src/components/Flex/Flex";
+import DropDown from "@hj-devlog/shared/src/components/DropDown/DropDown";
+import Flex from "@hj-devlog/shared/src/components/Flex/Flex";
 import {
   ToastManager,
   ToastContainer,
-} from "~/packages/shared/src/components/Toast";
-import { GuestBookAvatarList } from "~/packages/blog/src/Component/GuestBook/constants";
-import { Input, InputBox } from "~/packages/blog/src/Component/Input";
-import usePostGuestBook from "~/packages/blog/src/hooks/mutations/useGuestBookMutation";
-import useInput from "~/packages/shared/src/hooks/useInput";
-import { Button } from "~/packages/blog/src/stories/Button";
+} from "@hj-devlog/shared/src/components/Toast";
+import useInput from "@hj-devlog/shared/src/hooks/useInput";
+import Image from "next/image";
+
+import usePostGuestBook from "~/src/hooks/mutations/useGuestBookMutation";
+
+import { Input, InputBox } from "../Input";
+
+import { GuestBookAvatarList } from "./constants";
+import { Button } from "@hj-devlog/shared/src/Button";
 const GuestBookInput = ({ refetch }: { refetch: () => void }) => {
   const guestBookInput = useInput("", (e) => e.target.value.length <= 150);
   const { mutate } = usePostGuestBook();

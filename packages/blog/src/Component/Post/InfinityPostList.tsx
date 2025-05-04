@@ -1,10 +1,9 @@
-'use client';
+"use client";
 
-import type { PostContainerData } from '@/Component/Post/PostContainer';
+import { MutableRefObject } from "react";
 
-import { MutableRefObject } from 'react';
-
-import PostItem from './PostItem';
+import { PostContainerData } from "./PostContainer";
+import PostItem from "./PostItem";
 
 type PostListProps = PostContainerData & {
   target?: MutableRefObject<HTMLDivElement | null>;

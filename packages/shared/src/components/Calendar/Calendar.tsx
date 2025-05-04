@@ -1,7 +1,7 @@
-import DateGrid from "~/packages/shared/src/components/Calendar/DateGrid";
-import MonthNavigation from "~/packages/shared/src/components/Calendar/MonthNavigation";
-import Flex from "~/packages/shared/src/components/Flex/Flex";
-import useCalendar from "~/packages/shared/src/hooks/useCalendar";
+import useCalendar from "../../hooks/useCalendar";
+import Flex from "../Flex/Flex";
+import DateGrid from "./DateGrid";
+import MonthNavigation from "./MonthNavigation";
 
 const Calendar = ({
   onSelectDate,

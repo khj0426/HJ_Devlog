@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import ViewCountButton from "~/packages/blog/src/Component/Blog/ViewCountButton/ViewCountButton";
+import ViewCountButton from "./ViewCountButton";
+
 const meta: Meta<typeof ViewCountButton> = {
   title: "Component/Blog/ViewCountButton",
   component: ViewCountButton,

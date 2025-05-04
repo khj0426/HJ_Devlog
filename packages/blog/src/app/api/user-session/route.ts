@@ -1,8 +1,8 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from "next/server";
 
-import analyticsDataClient from '@/utils/bigQueryClient';
+import analyticsDataClient from "~/src/utils/bigQueryClient";
 
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 
 export async function GET(_req: NextRequest) {
   const report = async function runReport() {
@@ -10,26 +10,26 @@ export async function GET(_req: NextRequest) {
       property: `properties/401292897`,
       dimensions: [
         {
-          name: 'city',
+          name: "city",
         },
       ],
       dimensionFilter: {
         filter: {
-          fieldName: 'country',
+          fieldName: "country",
           stringFilter: {
-            value: 'South Korea',
+            value: "South Korea",
           },
         },
       },
       dateRanges: [
         {
           startDate: `365daysAgo`,
-          endDate: 'today',
+          endDate: "today",
         },
       ],
       metrics: [
         {
-          name: 'screenPageViewsPerSession',
+          name: "screenPageViewsPerSession",
         },
       ],
     });

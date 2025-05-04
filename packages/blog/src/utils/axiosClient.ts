@@ -1,7 +1,8 @@
-import { setContext, withScope, captureException } from '@sentry/nextjs';
-import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
+import { setContext, withScope, captureException } from "@sentry/nextjs";
+import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
 
-import getCurrentBasePath from '@/utils/getCurrentBasePath';
+import getCurrentBasePath from "./getCurrentBasePath";
+
 const axiosClient = axios.create({
   baseURL: getCurrentBasePath(),
 });
@@ -15,30 +16,30 @@ axiosClient.interceptors.response.use(
       const errorConfig = error.config;
       const { data, status } = error.response;
 
-      setContext('API 응답 에러', {
+      setContext("API 응답 에러", {
         status,
         data,
       });
 
       withScope((scope) => {
-        scope.setTag('type', 'api');
-        scope.setTag('api-status', status || 'no-value');
-        scope.setTag('api-data', data ? JSON.stringify(data) : 'no-value');
+        scope.setTag("type", "api");
+        scope.setTag("api-status", status || "no-value");
+        scope.setTag("api-data", data ? JSON.stringify(data) : "no-value");
 
         scope.setFingerprint([
-          errorConfig?.method ?? '',
-          status + '',
-          errorConfig?.url ?? '',
+          errorConfig?.method ?? "",
+          status + "",
+          errorConfig?.url ?? "",
         ]);
       });
 
       captureException(error, {
-        level: 'error',
+        level: "error",
         extra: {
           header: error?.config?.headers,
           response: error.response?.data,
           request: error.request,
-          type: '네트워크 에러',
+          type: "네트워크 에러",
         },
       });
     }

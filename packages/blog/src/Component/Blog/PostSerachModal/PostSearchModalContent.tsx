@@ -1,6 +1,8 @@
-import Spinner from "~/packages/shared/src/components/Spinner/Spinner";
-import PostList from "~/packages/blog/src/Component/Post/PostList";
-import useSearchPostQuery from "~/packages/blog/src/hooks/queries/useSearchPostQuery";
+import Spinner from "@hj-devlog/shared/src/components/Spinner/Spinner";
+
+import useSearchPostQuery from "~/src/hooks/queries/useSearchPostQuery";
+
+import PostList from "../../Post/PostList";
 
 const PostSearchModalContent = ({ keyword }: { keyword: string }) => {
   const { data: posts, isFetching } = useSearchPostQuery(keyword);

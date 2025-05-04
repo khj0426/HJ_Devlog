@@ -1,6 +1,4 @@
-import React from 'react';
-
-import { Button } from '@/stories/Button';
+import Button from "../Button/Button";
 
 export default function Trigger({
   label,

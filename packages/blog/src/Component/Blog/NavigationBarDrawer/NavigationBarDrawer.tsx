@@ -2,13 +2,14 @@
 
 import { useState } from "react";
 
-import ReportButton from "~/packages/blog/src/Component/Blog/ReportButton/ReportButton";
-import RssButton from "~/packages/blog/src/Component/Blog/RssButton/RssButton";
-import SearchPostButton from "~/packages/blog/src/Component/Blog/SearchPost/SearchPost";
-import ToggleDarkModeButton from "~/packages/blog/src/Component/DarkMode/ToggoeButton";
-import Drawer from "~/packages/shared/src/components/Drawer/Drawer";
-import DrawerImage from "~/packages/shared/src/components/Drawer/DrawerImage";
-import IconButton from "~/packages/shared/src/components/IconButton/IconButton";
+import Drawer from "@hj-devlog/shared/src/components/Drawer/Drawer";
+import DrawerImage from "@hj-devlog/shared/src/components/Drawer/DrawerImage";
+import IconButton from "@hj-devlog/shared/src/components/IconButton/IconButton";
+
+import ToggleDarkModeButton from "../../DarkMode/ToggoeButton";
+import ReportButton from "../ReportButton/ReportButton";
+import RssButton from "../RssButton/RssButton";
+import SearchPostButton from "../SearchPost/SearchPost";
 
 export default function NavigationBarDrawer() {
   const [isDrawerOpen, setDrawerOpen] = useState(false);

@@ -1,38 +1,38 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from "next/server";
 
-import analyticsDataClient from '@/utils/bigQueryClient';
+import analyticsDataClient from "~/src/utils/bigQueryClient";
 
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 export async function GET(req: NextRequest) {
-  const getQueryStringDate = req.nextUrl.searchParams.get('page');
+  const getQueryStringDate = req.nextUrl.searchParams.get("page");
 
   const startDate =
-    req.nextUrl.searchParams.get('startDate') ??
+    req.nextUrl.searchParams.get("startDate") ??
     `${getQueryStringDate}daysAgo` ??
-    'today';
-  const endDate = req.nextUrl.searchParams.get('endDate') ?? 'today';
+    "today";
+  const endDate = req.nextUrl.searchParams.get("endDate") ?? "today";
 
   const report = async function runReport() {
     const [response] = await analyticsDataClient.runReport({
       property: `properties/401292897`,
       dimensions: [
         {
-          name: 'date',
+          name: "date",
         },
       ],
       orderBys: [
         {
           dimension: {
-            dimensionName: 'date',
+            dimensionName: "date",
           },
           desc: false,
         },
       ],
       dimensionFilter: {
         filter: {
-          fieldName: 'country',
+          fieldName: "country",
           stringFilter: {
-            value: 'South Korea',
+            value: "South Korea",
           },
         },
       },
@@ -45,7 +45,7 @@ export async function GET(req: NextRequest) {
       ],
       metrics: [
         {
-          name: 'totalUsers',
+          name: "totalUsers",
         },
       ],
     });

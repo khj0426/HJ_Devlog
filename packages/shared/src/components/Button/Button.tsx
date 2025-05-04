@@ -1,7 +1,6 @@
-import type { ButtonProps } from "~/packages/blog/src/@types/ButtonType";
-
 import styled from "styled-components";
-import { getStyles } from "~/packages/blog/src/@types/Button.styles";
+import { getStyles } from "../../@types/Button.styles";
+import { ButtonProps } from "../../@types/ButtonType";
 
 const StyledBaseButton = styled.button<ButtonProps>`
   ${(props) => getStyles(props)}

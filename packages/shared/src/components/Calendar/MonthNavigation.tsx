@@ -1,11 +1,21 @@
 import { getYear, getMonth } from "date-fns";
 import { ArrowLeft, ArrowRight } from "iconic-react";
+import useBoolean from "../../hooks/useBoolean";
+import DropDown from "../DropDown/DropDown";
+import Flex from "../Flex/Flex";
+import IconButton from "../IconButton/IconButton";
 
-import { generateYearOptionsFromDate } from "~/packages/blog/src/utils/generateYearOptions";
-import DropDown from "~/packages/shared/src/components/DropDown/DropDown";
-import Flex from "~/packages/shared/src/components/Flex/Flex";
-import IconButton from "~/packages/shared/src/components/IconButton/IconButton";
-import useBoolean from "~/packages/shared/src/hooks/useBoolean";
+const generateYearOptionsFromDate = (date: Date = new Date(), length = 20) => {
+  return Array.from({ length })
+    .map((year, index) => {
+      return {
+        key: (getYear(date) - index).toString(),
+        label: (getYear(date) - index).toString(),
+      };
+    })
+    .reverse();
+};
+
 interface MonthNavigationProps {
   readonly date: Date;
   readonly setCurrentDate: (_newYear: string) => void;

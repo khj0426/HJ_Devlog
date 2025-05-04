@@ -1,16 +1,14 @@
 "use client";
-import { Suspense } from "react";
 
+import Flex from "@hj-devlog/shared/src/components/Flex/Flex";
 import styled from "styled-components";
 
-import ActiveUserChart from "~/packages/blog/src/Component/BackOffice/ActiveUserChart/ActiveUserChart";
-import ActiveUSerSessionChart from "~/packages/blog/src/Component/BackOffice/ActiveUserSessionChart/ActiveUserSessionChart";
-import BackOfficeDrawer from "~/packages/blog/src/Component/BackOffice/BackOfficeDrawer/BackOfficeDrawer";
-import UserSessionInfo from "~/packages/blog/src/Component/Blog/UserSessionInfo/UserSessionInfo";
-import useGetUsersCountQuery from "~/packages/blog/src/hooks/queries/useGetUsersCountQuery";
-import Flex from "~/packages/shared/src/components/Flex/Flex";
-import ModalHeader from "~/packages/shared/src/components/Modal/ModalHeader";
-import Spinner from "~/packages/shared/src/components/Spinner/Spinner";
+import ActiveUserChart from "~/src/Component/BackOffice/ActiveUserChart/ActiveUserChart";
+import ActiveUSerSessionChart from "~/src/Component/BackOffice/ActiveUserSessionChart/ActiveUserSessionChart";
+import BackOfficeDrawer from "~/src/Component/BackOffice/BackOfficeDrawer/BackOfficeDrawer";
+import UserSessionInfo from "~/src/Component/Blog/UserSessionInfo/UserSessionInfo";
+import ModalHeader from "~/src/Component/Modal/ModalHeader";
+import useGetUsersCountQuery from "~/src/hooks/queries/useGetUsersCountQuery";
 
 const Card = styled.div`
   background-color: ${({ theme }) => theme.currentTheme.backgroundPost};

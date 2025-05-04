@@ -1,8 +1,7 @@
-import { Eye } from "iconic-react";
+import IconButton from "@hj-devlog/shared/src/components/IconButton/IconButton";
+import { Eye } from "@hj-devlog/shared/libraryies/icon";
 import styled from "styled-components";
-
-import IconButton from "~/packages/shared/src/components/IconButton/IconButton";
-import useIsDarkMode from "~/packages/shared/src/hooks/useIsDarkMode";
+import useIsDarkMode from "~/src/hooks/useIsDarkMode";
 
 const StyledViewCountButtonContainer = styled.div`
   color: ${({ theme }) => theme.currentTheme.text};
@@ -15,7 +14,7 @@ const ViewCountButton = ({ viewCount }: { viewCount: number }) => {
   return (
     <StyledViewCountButtonContainer>
       <IconButton
-        label={viewCount}
+        label={viewCount + ""}
         icon={<Eye width={100} height={25} />}
         style={{
           border: "none",

@@ -1,8 +1,5 @@
-import type { ToastPropsType } from "~/packages/shared/src/components/Toast/Toast";
-
 import { EventEmitter } from "events";
-
-import { uuid4 } from "@sentry/utils";
+import { ToastPropsType } from "./Toast";
 
 type toast = Omit<ToastPropsType, "onRequestHide">;
 
@@ -21,7 +18,7 @@ class ToastManager extends EventEmitter {
     type?: string
   ) {
     const defaultNotify = {
-      id: uuid4(),
+      id: this.toastList.length + 1,
       type: "info",
       title: null,
       message: null,

@@ -1,13 +1,13 @@
-import { Meta } from '@storybook/react';
+import { Meta } from "@storybook/react";
 
-import ToggleDarkModeButton from '@/Component/DarkMode/ToggoeButton';
+import ToggleDarkModeButton from "./ToggoeButton";
 
 const meta: Meta = {
-  title: 'Component/DarkModeButton',
+  title: "Component/DarkModeButton",
   component: ToggleDarkModeButton,
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   parameters: {
-    layout: 'fullscreen',
+    layout: "fullscreen",
   },
 };
 

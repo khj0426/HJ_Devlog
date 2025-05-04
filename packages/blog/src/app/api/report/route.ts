@@ -1,15 +1,15 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { get } from "@hj-devlog/shared/src/api/blogaxiosClient";
+import { NextRequest, NextResponse } from "next/server";
 
-import { get } from '@/utils/axiosClient';
-import { formatDateToString } from '@/utils/formatDateToString';
+import { formatDateToString } from "~/src/utils/formatDateToString";
 
 export async function POST(req: NextRequest) {
   const { type, startDate, endDate } = await req.json();
 
   switch (type) {
-    case '총 사용자 수':
+    case "총 사용자 수":
       try {
-        const response = await get('/api/all-users', {
+        const response = await get("/api/all-users", {
           params: {
             startDate: formatDateToString(new Date(startDate)),
             endDate: formatDateToString(new Date(endDate)),
@@ -27,9 +27,9 @@ export async function POST(req: NextRequest) {
         });
       }
 
-    case '참여 시간':
+    case "참여 시간":
       try {
-        const response = await get('/api/active-time', {
+        const response = await get("/api/active-time", {
           params: {
             startDate: formatDateToString(new Date(startDate)),
             endDate: formatDateToString(new Date(endDate)),
@@ -45,10 +45,9 @@ export async function POST(req: NextRequest) {
           statusText: JSON.stringify(e),
         });
       }
+    case "도시별 한 페이지 당 방문 세션 수":
       return {};
-    case '도시별 한 페이지 당 방문 세션 수':
-      return {};
-    case '방문자의 기기 유형(모바일,PC)':
+    case "방문자의 기기 유형(모바일,PC)":
       return {};
   }
 

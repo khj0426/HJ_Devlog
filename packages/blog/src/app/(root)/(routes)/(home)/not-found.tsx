@@ -1,7 +1,7 @@
 "use client";
 
-import NotFoundErrorFallback from "~/packages/shared/src/components/ErrorFallback/NotFoundErrorfallback";
+import NotFoundErrorFallback from "@hj-devlog/shared/src/components/ErrorFallback/NotFoundErrorfallback";
 
-export default function GlobalNotFound() {
+export default function GlobalNotFoundErrorFallback() {
   return <NotFoundErrorFallback />;
 }

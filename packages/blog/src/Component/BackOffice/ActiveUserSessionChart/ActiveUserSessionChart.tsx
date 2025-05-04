@@ -1,6 +1,6 @@
-import { Cell, Pie, PieChart } from 'recharts';
+import { Cell, Pie, PieChart } from "recharts";
 
-import useGetUserByPlatform from '@/hooks/queries/useGetUserByPlatform';
+import useGetUserByPlatform from "~/src/hooks/queries/useGetUserByPlatform";
 
 const ActiveUSerSessionChart = () => {
   const { data, isLoading } = useGetUserByPlatform();
@@ -20,18 +20,18 @@ const ActiveUSerSessionChart = () => {
   });
 
   const mappingNameToCount = platformName?.map((platform, index) => {
-    if (platform !== 'smartTV') {
+    if (platform !== "smartTV") {
       return {
         name: platform,
         value: Number(platformCounts?.[index]),
       };
     }
     return {
-      name: '',
+      name: "",
       value: 0,
     };
   });
-  const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#030303'];
+  const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#030303"];
 
   const totalUserCount = mappingNameToCount.reduce((sum, current) => {
     return sum + current.value;

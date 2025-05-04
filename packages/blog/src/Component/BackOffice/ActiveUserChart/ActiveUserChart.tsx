@@ -2,10 +2,10 @@
 
 import { CSSProperties, useEffect, useState } from "react";
 
+import { get } from "@hj-devlog/shared/src/api/blogaxiosClient";
+import Spinner from "@hj-devlog/shared/src/components/Spinner/Spinner";
 import { LineChart, Line, XAxis, Tooltip, ResponsiveContainer } from "recharts";
 
-import Spinner from "~/packages/shared/src/components/Spinner/Spinner";
-import { get } from "~/packages/blog/src/utils/axiosClient";
 
 interface chartProps {
   type: "총 사용자 수" | "참여 시간";

@@ -4,9 +4,8 @@ import { ReactNode } from "react";
 import { ArrowLeft2, ArrowRight2 } from "iconic-react";
 import Link from "next/link";
 import styled from "styled-components";
-
-import Flex from "~/packages/shared/src/components/Flex/Flex";
-import IconButton from "~/packages/shared/src/components/IconButton/IconButton";
+import Flex from "../Flex/Flex";
+import IconButton from "../IconButton/IconButton";
 
 export default function NavigationButton({
   type,

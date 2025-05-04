@@ -1,9 +1,10 @@
 import { ReactNode } from "react";
 
-import { SearchNormal } from "iconic-react";
+import { SearchNormal } from "@hj-devlog/shared/libraryies/icon";
 
-import PostSearchModal from "~/packages/blog/src/Component/Blog/PostSerachModal/PostSearchModal";
-import useModal from "~/packages/shared/src/hooks/useModal";
+import useModal from "~/src/hooks/useModal";
+
+import PostSearchModal from "../PostSerachModal/PostSearchModal";
 
 export default function SearchPostButton({
   children,

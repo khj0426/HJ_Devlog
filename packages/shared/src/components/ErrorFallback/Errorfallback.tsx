@@ -1,18 +1,11 @@
 "use client";
 
-import { NextApiResponse } from "next";
-
 import { useEffect } from "react";
 
 import Image from "next/image";
 import Link from "next/link";
-
-import Flex from "~/packages/shared/src/components/Flex/Flex";
-import {
-  ToastContainer,
-  ToastManager,
-} from "~/packages/shared/src/components/Toast";
-import ErrorImage from "~/public/images/error.webp";
+import Flex from "../Flex/Flex";
+import { ToastManager, ToastContainer } from "../Toast";
 
 export default function ErrorFallback({
   error,
@@ -38,7 +31,9 @@ export default function ErrorFallback({
     >
       <Flex justifyContent="center" alignItems="center" flexDirection="column">
         <Image
-          src={ErrorImage}
+          src={
+            "https://img.freepik.com/premium-vector/window-operating-system-error-warning-dialog-window-popup-message-with-system-failure-flat-design_812892-54.jpg"
+          }
           alt="에러 메시지"
           width={350}
           height={350}

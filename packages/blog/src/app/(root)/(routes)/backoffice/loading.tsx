@@ -1,5 +1,6 @@
-import Flex from "~/packages/shared/src/components/Flex/Flex";
-import Spinner from "~/packages/shared/src/components/Spinner/Spinner";
+import Flex from "@hj-devlog/shared/src/components/Flex/Flex";
+import Spinner from "@hj-devlog/shared/src/components/Spinner/Spinner";
+
 export default function BackOfficeLoading() {
   return (
     <Flex

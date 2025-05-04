@@ -1,22 +1,21 @@
 "use client";
 
-import type { Item } from "~/packages/blog/src/@types/postItem";
-
 import { useEffect } from "react";
 
+import useIntersectionObserver from "@hj-devlog/shared/src/hooks/useIntersectionObserver";
 import Link from "next/link";
 import { useRecoilState } from "recoil";
 import styled from "styled-components";
 
-import { postRecommendModalClose } from "~/packages/blog/src/app/Providers/Recoil/globalAtom";
-import Modal from "~/packages/shared/src/components/Modal/Modal";
-import ModalCloseButton from "~/packages/shared/src/components/Modal/ModalCloseButton";
-import ModalContent from "~/packages/shared/src/components/Modal/ModalContent";
-import ModalFooter from "~/packages/shared/src/components/Modal/ModalFooter";
-import ModalHeader from "~/packages/shared/src/components/Modal/ModalHeader";
-import PostItem from "~/packages/blog/src/Component/Post/PostItem";
-import useIntersectionObserver from "~/packages/shared/src/hooks/useIntersectionObserver";
-import useModal from "~/packages/shared/src/hooks/useModal";
+import { Item } from "~/@types/postItem";
+import { postRecommendModalClose } from "~/src/app/Providers/Recoil/globalAtom";
+import useModal from "~/src/hooks/useModal";
+
+import Modal from "../../Modal/Modal";
+import ModalCloseButton from "../../Modal/ModalCloseButton";
+import ModalContent from "../../Modal/ModalContent";
+import ModalFooter from "../../Modal/ModalFooter";
+import ModalHeader from "../../Modal/ModalHeader";
 
 const StyledRecommendPostModalWrapper = styled.div`
   color: ${({ theme }) => theme.currentTheme.text};

@@ -1,12 +1,10 @@
-import type { AboutProps } from "~/packages/blog/src/@types/AboutProps";
+import Flex from "@hj-devlog/shared/src/components/Flex/Flex";
 
-import Content from "~/packages/blog/src/Component/About/Content";
-import ProfileImageWrapper from "~/packages/blog/src/Component/About/ProfileImgWrapper";
-import Title from "~/packages/blog/src/Component/About/Title";
-import Flex from "~/packages/shared/src/components/Flex/Flex";
+import { AboutProps } from "~/@types/AboutProps";
+import Content from "~/src/Component/About/Content";
+import Title from "~/src/Component/About/Title";
 const AboutContent: AboutProps = {
   title: "안녕하세요! 항상 팀에 기여하고 싶은 개발자 김효중입니다",
-  imgurl: "/images/Profile.jpg",
   content: [
     "새로운 기술이 왜 등장했고, 어떤 문제를 해결하는 지 공부하는 것에 즐거움을 느낍니다",
     "몰입할 수 있는 환경에서 개발하는 것을 즐깁니다",
@@ -42,7 +40,6 @@ export default async function About() {
           flexWrap: "wrap",
         }}
       >
-        <ProfileImageWrapper imgurl={AboutContent.imgurl} />
         <Content content={AboutContent.content} />
         <br />
         <Flex

@@ -1,10 +1,8 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
-import Link from 'next/link';
-import styled from 'styled-components';
-
-import InstagramImage from '~/public/images/Instagramgram.webp';
+import Image from "next/image";
+import Link from "next/link";
+import styled from "styled-components";
 
 const StyledFooter = styled.footer`
   height: 30px;
@@ -37,7 +35,7 @@ export default function Footer() {
         </Link>
         <Link href="https://www.instagram.com/gimhyojung30/" target="_blank">
           <Image
-            src={InstagramImage}
+            src={"https://cdn-icons-png.flaticon.com/512/4922/4922972.png"}
             alt="인스타그램 주소"
             width={24}
             height={24}

@@ -1,14 +1,14 @@
-import { Metadata } from 'next';
+import { Metadata } from "next";
 
-import ReactMarkdown from 'react-markdown';
+import ReactMarkdown from "react-markdown";
 
-import rehypeRaw from 'rehype-raw';
+import rehypeRaw from "rehype-raw";
 
-import CodeBlock from '@/Component/Blog/CodeBlock/CodeBlock';
-import PostExtract from '@/Component/Blog/Extract';
-import BlogLayout from '@/Component/Blog/Layout';
-import Comments from '@/Component/Giscus/Gitcus';
-import { getPostBySlug } from '~/lib/api';
+import { getPostBySlug } from "~/lib/api";
+import CodeBlock from "~/src/Component/Blog/CodeBlock/CodeBlock";
+import PostExtract from "~/src/Component/Blog/Extract";
+import BlogLayout from "~/src/Component/Blog/Layout";
+import Comments from "~/src/Component/Giscus/Gitcus";
 
 export default function Post({
   params,
@@ -19,12 +19,12 @@ export default function Post({
   };
 }) {
   const post = getPostBySlug(decodeURIComponent(params.slug), [
-    'title',
-    'content',
-    'excerpt',
-    'date',
-    'author',
-    'image',
+    "title",
+    "content",
+    "excerpt",
+    "date",
+    "author",
+    "image",
   ]);
 
   const dynamicMetaData: Metadata = {
@@ -50,11 +50,11 @@ export default function Post({
       },
     },
     viewport: {
-      width: 'device-width',
+      width: "device-width",
       initialScale: 1,
     },
     verification: {
-      google: 'g3Daim29whdK1ZzL1CE6pvkYyvSgM5-6C898-TVjiz0',
+      google: "g3Daim29whdK1ZzL1CE6pvkYyvSgM5-6C898-TVjiz0",
     },
   };
 
@@ -64,8 +64,8 @@ export default function Post({
       <PostExtract extract={post.excerpt} />
       <p
         style={{
-          fontWeight: '700',
-          fontSize: '16px',
+          fontWeight: "700",
+          fontSize: "16px",
         }}
       >
         {post.date}
@@ -76,12 +76,12 @@ export default function Post({
         components={{
           img: ({ ...props }) => (
             <img
-              src={props.src || ''}
+              src={props.src || ""}
               alt="마크다운 이미지"
               style={{
-                maxWidth: '100%',
-                height: 'auto',
-                objectFit: 'contain',
+                maxWidth: "100%",
+                height: "auto",
+                objectFit: "contain",
               }}
             />
           ),

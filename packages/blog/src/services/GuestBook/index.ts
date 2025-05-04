@@ -1,7 +1,8 @@
 "use server";
-import type { GuestBook } from "~/packages/blog/src/@types/GuestBookType";
 
-import { get } from "~/packages/blog/src/utils/axiosClient";
+import { get } from "@hj-devlog/shared/src/api/blogaxiosClient";
+
+import { GuestBook } from "~/@types/GuestBookType";
 
 export const getGuestBook = async () => {
   return (await get<GuestBook>("/api/guestbook")).data;

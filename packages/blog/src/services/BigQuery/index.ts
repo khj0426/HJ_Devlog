@@ -1,7 +1,7 @@
-import { google } from '@google-analytics/data/build/protos/protos';
+import { google } from "@google-analytics/data/build/protos/protos";
+import { get } from "@hj-devlog/shared/src/api/blogaxiosClient";
 
-import { SelectDateOptionsProps } from '@/@types/BackOfficeProps';
-import { get } from '@/utils/axiosClient';
+import { SelectDateOptionsProps } from "~/@types/BackOfficeProps";
 
 interface Response {
   data: string;
@@ -13,7 +13,7 @@ interface item {
   oneValue: string;
 }
 export const getActiveUserCount = async () => {
-  return (await get<Response>('/api/active-users')).data;
+  return (await get<Response>("/api/active-users")).data;
 };
 
 export const getActiveUserCountByDate = async ({
@@ -39,7 +39,7 @@ export const getPlatformUserCount = async () => {
 export const getUserSessionInfo = async () => {
   return (
     await get<google.analytics.data.v1beta.IRunReportResponse>(
-      '/api/user-session'
+      "/api/user-session"
     )
   ).data;
 };

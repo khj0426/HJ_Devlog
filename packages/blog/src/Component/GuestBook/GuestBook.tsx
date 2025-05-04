@@ -1,10 +1,11 @@
-'use client';
+"use client";
 
-import { useMemo } from 'react';
+import { useMemo } from "react";
 
-import GuestBookInput from '@/Component/GuestBook/GuestBookInput';
-import GuestBookList from '@/Component/GuestBook/GuestBookList';
-import useGetGuestBook from '@/hooks/queries/useGuestBookQuery';
+import useGetGuestBook from "~/src/hooks/queries/useGuestBookQuery";
+
+import GuestBookInput from "./GuestBookInput";
+import GuestBookList from "./GuestBookList";
 
 export default function GuestBook() {
   const { data, refetch } = useGetGuestBook();

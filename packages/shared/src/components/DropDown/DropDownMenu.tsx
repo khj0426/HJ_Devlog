@@ -2,8 +2,7 @@ import { ReactNode } from "react";
 
 import Image from "next/image";
 import styled, { css } from "styled-components";
-
-import { DropDownProps } from "~/packages/shared/src/components/DropDown/DropDown";
+import { DropDownProps } from "./DropDown";
 
 const StyledDropDownItem = styled.li<{ selected: boolean }>`
   list-style: none;

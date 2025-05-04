@@ -1,12 +1,12 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from "@storybook/react";
 
-import CategoryList from '@/Component/CategoryList/CategoryList';
+import CategoryList from "./CategoryList";
 
 const meta: Meta<typeof CategoryList> = {
-  title: 'Component/Blog/CategoryList',
+  title: "Component/Blog/CategoryList",
   component: CategoryList,
   parameters: {
-    layout: 'fullscreen',
+    layout: "fullscreen",
   },
 };
 export default meta;
@@ -16,12 +16,12 @@ export const BaseCategoryList: Story = {
   args: {
     category: [
       {
-        category: 'js',
-        categoryCount: '1',
+        category: "js",
+        categoryCount: "1",
       },
       {
-        category: 'react',
-        categoryCount: '2',
+        category: "react",
+        categoryCount: "2",
       },
     ],
   },

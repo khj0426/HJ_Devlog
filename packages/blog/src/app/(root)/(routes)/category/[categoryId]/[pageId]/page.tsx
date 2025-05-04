@@ -1,13 +1,14 @@
 "use client";
 import { useEffect } from "react";
 
+import Flex from "@hj-devlog/shared/src/components/Flex/Flex";
+import Pagination from "@hj-devlog/shared/src/components/Pagination/Pagination";
+import usePageNation from "@hj-devlog/shared/src/hooks/usePagenation";
 import { useRouter } from "next/navigation";
 
-import Flex from "~/packages/shared/src/components/Flex/Flex";
-import Pagination from "~/packages/shared/src/components/Pagination/Pagination";
-import PostItem from "~/packages/blog/src/Component/Post/PostItem";
-import useCategoryPostQuery from "~/packages/blog/src/hooks/queries/useCategoryPostQuery";
-import usePageNation from "~/packages/shared/src/hooks/usePagenation";
+import PostItem from "~/src/Component/Post/PostItem";
+import useCategoryPostQuery from "~/src/hooks/queries/useCategoryPostQuery";
+
 export default function Home({
   params,
 }: {

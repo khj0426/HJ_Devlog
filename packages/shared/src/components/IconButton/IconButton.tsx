@@ -1,7 +1,12 @@
-import { ButtonProps } from "~/packages/blog/src/@types/ButtonType";
-
-import Button from "~/packages/shared/src/components/Button/Button";
-import Flex from "~/packages/shared/src/components/Flex/Flex";
+interface ButtonProps extends React.ComponentPropsWithoutRef<"button"> {
+  variant?: "primary" | "secondary" | "transparent";
+  size?: "small" | "medium" | "large";
+  label?: string;
+  icon?: React.ReactNode;
+  style?: React.CSSProperties;
+}
+import Button from "../Button/Button";
+import Flex from "../Flex/Flex";
 
 interface IconButtonProps extends ButtonProps {
   icon: React.ReactNode;

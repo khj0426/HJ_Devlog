@@ -1,6 +1,6 @@
-import { useMutation } from '@tanstack/react-query';
+import { post } from "@hj-devlog/shared/src/api/blogaxiosClient";
+import { useMutation } from "@tanstack/react-query";
 
-import { post } from '@/utils/axiosClient';
 const postGuestBook = async ({
   comment,
   avatar,
@@ -8,7 +8,7 @@ const postGuestBook = async ({
   comment: string;
   avatar: string;
 }) => {
-  return await post('api/guestbook', {
+  return await post("api/guestbook", {
     comment,
     avatar,
     time: new Date().toUTCString(),

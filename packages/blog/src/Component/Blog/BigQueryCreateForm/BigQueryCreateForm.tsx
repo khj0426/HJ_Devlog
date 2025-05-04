@@ -1,10 +1,10 @@
 import { useRef, useState } from "react";
 
-import styled from "styled-components";
 
-import Button from "~/packages/shared/src/components/Button/Button";
-import DateRangePicker from "~/packages/shared/src/components/DateRangePicker/DateRangePicker";
-import Flex from "~/packages/shared/src/components/Flex/Flex";
+import Button from "@hj-devlog/shared/src/components/Button/Button";
+import DateRangePicker from "@hj-devlog/shared/src/components/DateRangePicker/DateRangePicker";
+import Flex from "@hj-devlog/shared/src/components/Flex/Flex";
+import styled from "styled-components";
 
 export const BIGQUERY_VALUE = [
   "총 사용자 수",

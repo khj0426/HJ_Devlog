@@ -1,8 +1,8 @@
-import fs from 'fs/promises'; // Node.js의 File System Promises API를 사용
-import path from 'node:path';
-import { join } from 'path';
+import fs from "fs/promises"; // Node.js의 File System Promises API를 사용
+import path from "node:path";
+import { join } from "path";
 
-import sharp from 'sharp';
+import sharp from "sharp";
 
 export default async function getBase64BlurImage({
   src,
@@ -15,7 +15,7 @@ export default async function getBase64BlurImage({
   height?: number;
   blurSize?: number;
 }) {
-  const publicDirectory = join(process.cwd(), 'public');
+  const publicDirectory = join(process.cwd(), "public");
 
   const imageBuffer = await fs.readFile(join(publicDirectory, src));
 
@@ -24,7 +24,7 @@ export default async function getBase64BlurImage({
     .blur(blurSize ?? 10)
     .toBuffer();
 
-  const img = `data:image/png;base64,${blurImage.toString('base64')}`;
+  const img = `data:image/png;base64,${blurImage.toString("base64")}`;
   return {
     blurImage: img,
     img: {

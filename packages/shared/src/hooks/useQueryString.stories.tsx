@@ -2,7 +2,7 @@ import { ChangeEvent } from "react";
 
 import { Meta } from "@storybook/react";
 
-import { useQueryString } from "~/packages/shared/src/hooks/useQueryString";
+import { useQueryString } from "@/hooks/useQueryString";
 
 const meta: Meta = {
   title: "hooks/useQueryString",

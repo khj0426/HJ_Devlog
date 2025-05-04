@@ -2,8 +2,8 @@
 import { CSSProperties, ComponentPropsWithoutRef } from "react";
 
 import styled from "styled-components";
+import { Slide } from "./Image";
 
-import { Slide } from "~/packages/shared/src/components/Skeleton/Image";
 interface SkeletonProps extends ComponentPropsWithoutRef<"div"> {
   variant?: "circular" | "rectangular" | "rounded" | "text";
   width?: number | CSSProperties["width"];

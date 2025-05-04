@@ -1,9 +1,8 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from "@storybook/react";
 
-import { useState } from 'react';
-
-import Drawer from '@/Component/Common/Drawer/Drawer';
-import Flex from '@/Component/Common/Flex/Flex';
+import { useState } from "react";
+import Flex from "../Flex/Flex";
+import Drawer from "./Drawer";
 
 export const RightDrawer = () => {
   const [open, setOpen] = useState(false);
@@ -16,12 +15,12 @@ export const RightDrawer = () => {
         handleOpen={setOpen}
       >
         <Flex
-          height={'100vh'}
+          height={"100vh"}
           alignItems="center"
-          gap={'5px'}
-          margin={'50px auto'}
+          gap={"5px"}
+          margin={"50px auto"}
           style={{
-            background: 'white',
+            background: "white",
           }}
           flexDirection="column"
         >
@@ -43,12 +42,12 @@ export const BottomDrawer = () => {
         handleOpen={setOpen}
       >
         <Flex
-          height={'500px'}
+          height={"500px"}
           alignItems="center"
-          gap={'5px'}
-          margin={'50px auto'}
+          gap={"5px"}
+          margin={"50px auto"}
           style={{
-            background: 'white',
+            background: "white",
           }}
           flexDirection="column"
         >
@@ -70,11 +69,11 @@ export const TopDrawer = () => {
         handleOpen={setOpen}
       >
         <Flex
-          height={'500px'}
-          gap={'5px'}
-          margin={'50px auto'}
+          height={"500px"}
+          gap={"5px"}
+          margin={"50px auto"}
           style={{
-            background: 'white',
+            background: "white",
           }}
           flexDirection="column"
         >
@@ -87,10 +86,10 @@ export const TopDrawer = () => {
 };
 
 const meta: Meta<typeof Drawer> = {
-  title: 'Component/Drawer',
+  title: "Component/Drawer",
   component: TopDrawer,
   parameters: {
-    layout: 'fullscreen',
+    layout: "fullscreen",
   },
 };
 export default meta;

@@ -1,6 +1,5 @@
-import Skeleton from "~/packages/shared/src/components/Skeleton/Skeleton";
-
 import "./index.css";
+import Skeleton from "@hj-devlog/shared/src/components/Skeleton/Skeleton";
 export default function Loading() {
   return (
     <div className="loading_container">

@@ -1,8 +1,5 @@
 import styled from "styled-components";
-import {
-  getDividerStyle,
-  DividerProps,
-} from "~/packages/blog/src/@types/Divider.styles";
+import { DividerProps, getDividerStyle } from "../../@types/Divider.styles";
 
 const StyledDivider = styled.div<DividerProps>`
   ${(props) => getDividerStyle(props)}

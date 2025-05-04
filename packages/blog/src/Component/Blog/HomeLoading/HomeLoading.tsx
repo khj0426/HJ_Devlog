@@ -1,5 +1,5 @@
-import Flex from "~/packages/shared/src/components/Flex/Flex";
-import Skeleton from "~/packages/shared/src/components/Skeleton/Skeleton";
+import Flex from "@hj-devlog/shared/src/components/Flex/Flex";
+import Skeleton from "@hj-devlog/shared/src/components/Skeleton/Skeleton";
 
 export default function BlogHomeLoading() {
   return (

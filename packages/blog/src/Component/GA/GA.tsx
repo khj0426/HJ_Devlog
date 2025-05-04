@@ -1,6 +1,6 @@
 import Script from "next/script";
 
-import isProductionMode from "@/utils/isProductMode";
+import isProductionMode from "~/src/utils/isProductMode";
 
 const GoogleAnalytics = () => {
   if (isProductionMode()) {

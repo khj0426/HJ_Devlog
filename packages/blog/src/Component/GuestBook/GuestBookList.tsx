@@ -1,8 +1,8 @@
+import Flex from "@hj-devlog/shared/src/components/Flex/Flex";
+import ItemList from "@hj-devlog/shared/src/components/ItemList/ItemList";
 import Image from "next/image";
 import styled from "styled-components";
 
-import Flex from "~/packages/shared/src/components/Flex/Flex";
-import ItemList from "~/packages/shared/src/components/ItemList/ItemList";
 const StyledGuestBookList = styled.section`
   min-height: 700px;
   width: 500px;

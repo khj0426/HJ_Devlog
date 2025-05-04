@@ -1,9 +1,9 @@
-'use client';
-import React from 'react';
+"use client";
+import React from "react";
 
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import useGetUsersCountQuery from '@/hooks/queries/useGetUsersCountQuery';
+import useGetUsersCountQuery from "~/src/hooks/queries/useGetUsersCountQuery";
 
 const StyledUserCountText = styled.p`
   display: flex;

@@ -1,9 +1,11 @@
 "use client";
 
-import { SkeletonCard } from "~/packages/shared/src/components/Skeleton/Card";
-import InfinityPostList from "~/packages/blog/src/Component/Post/InfinityPostList";
-import usePostQuery from "~/packages/blog/src/hooks/queries/usePostQuery";
-import useInfiniteQueryObserver from "~/packages/shared/src/hooks/useInfiniteQueryObserver";
+import { SkeletonCard } from "@hj-devlog/shared/src/components/Skeleton/Card";
+
+import usePostQuery from "../../hooks/queries/usePostQuery";
+
+import InfinityPostList from "./InfinityPostList";
+import useInfiniteQueryObserver from "~/src/hooks/useInfiniteQueryObserver";
 
 export type PostContainerData = Pick<ReturnType<typeof usePostQuery>, "data">;
 

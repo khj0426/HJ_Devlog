@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-
-import { SkeletonImage } from "~/packages/shared/src/components/Skeleton/Image";
+import { SkeletonImage } from "./Image";
 
 const meta: Meta<typeof SkeletonImage> = {
   title: "Component/SkeletonImage",

@@ -1,8 +1,8 @@
 import { ImageResponse } from "next/og";
 
-import convertRemoteImageToBase64 from "@/utils/convertRemoteImagetoBase64";
-import getCurrentBasePath from "@/utils/getCurrentBasePath";
 import { getPostBySlug } from "~/lib/api";
+import convertRemoteImageToBase64 from "~/src/utils/convertRemoteImagetoBase64";
+import getCurrentBasePath from "~/src/utils/getCurrentBasePath";
 
 export const size = {
   width: 1200,

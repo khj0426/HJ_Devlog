@@ -1,28 +1,27 @@
-import { QueryOptions, UseInfiniteQueryOptions } from '@tanstack/react-query';
-
-import { SelectDateOptionsProps } from '@/@types/BackOfficeProps';
+import { SelectDateOptionsProps } from "~/@types/BackOfficeProps";
 import {
   getActiveUserCount,
   getActiveUserCountByDate,
   getPostDetailViewsCount,
   getPlatformUserCount,
   getUserSessionInfo,
-} from '@/services/BigQuery';
-import { getGuestBook } from '@/services/GuestBook';
+} from "~/src/services/BigQuery";
+import { getGuestBook } from "~/src/services/GuestBook";
 import {
-  getCategoryPosts,
   getPosts,
+  getCategoryPosts,
   getSearchQueryPostList,
-} from '@/services/Post';
+} from "~/src/services/Post";
+
 const postQueryKey = {
-  all: ['allPosts'] as const,
+  all: ["allPosts"] as const,
   filteredCategoryPost: (category: string) =>
     [...postQueryKey.all, category] as const,
   searchInputPost: (input: string) => [...postQueryKey.all, input] as const,
 };
 
 const guestBookQueryKey = {
-  all: ['guestBook'] as const,
+  all: ["guestBook"] as const,
 };
 
 const postQueryOptions = {
@@ -60,17 +59,17 @@ const guestBookQueryOptions = {
 };
 
 const gaQueryKey = {
-  user: ['user'] as const,
+  user: ["user"] as const,
   userFilteredByPlatFormCategory: () => [
     ...gaQueryKey.user,
-    'platformCategory',
+    "platformCategory",
   ],
   visitedUserByDate: (date: SelectDateOptionsProps) => [
     ...gaQueryKey.user,
     date,
   ],
   visitedViewsByDetailPost: (slug: string) => [...gaQueryKey.user, slug],
-  visitedUserSession: () => [...gaQueryKey.user, 'session'],
+  visitedUserSession: () => [...gaQueryKey.user, "session"],
 };
 
 const gaQueryOptions = {

@@ -2,24 +2,20 @@ import "./globals.css";
 
 import { Metadata } from "next";
 
+import Footer from "@hj-devlog/shared/src/components/Footer/Footer";
+import Navbar from "@hj-devlog/shared/src/components/NavigationBar/Navbar";
+import ScrollToTop from "@hj-devlog/shared/src/components/ScrolltoTop/ScrollToTop";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import dynamic from "next/dynamic";
 import { Montserrat } from "next/font/google";
 
-const Recoil = dynamic(
-  () => import("~/packages/blog/src/app/Providers/Recoil/Recoil")
-);
-const Providers = dynamic(
-  () => import("~/packages/blog/src/app/Providers/Query/queryClientProvider")
-);
-import { ThemeWrapper } from "~/packages/blog/src/app/Providers/Styled-Component/themeWrapper";
-import NavigationBarDrawer from "~/packages/blog/src/Component/Blog/NavigationBarDrawer/NavigationBarDrawer";
-import Footer from "~/packages/shared/src/components/Footer/Footer";
-import Navbar from "~/packages/shared/src/components/NavigationBar/Navbar";
-import ScrollToTop from "~/packages/shared/src/components/ScrolltoTop/ScrollToTop";
-import GoogleAnalytics from "~/packages/blog/src/Component/GA/GA";
-import GlobalStyle from "~/packages/blog/src/style/globalStyle";
-import getCurrentBasePath from "~/packages/blog/src/utils/getCurrentBasePath";
+import NavigationBarDrawer from "../Component/Blog/NavigationBarDrawer/NavigationBarDrawer";
+import GoogleAnalytics from "../Component/GA/GA";
+import GlobalStyle from "@hj-devlog/shared/src/style/globalStyle";
+import getCurrentBasePath from "../utils/getCurrentBasePath";
+
+import Providers from "./Providers/Query/queryClientProvider";
+import Recoil from "./Providers/Recoil/Recoil";
+import { ThemeWrapper } from "./Providers/Styled-Component/themeWrapper";
 
 const baseFont = Montserrat({
   subsets: ["latin"],

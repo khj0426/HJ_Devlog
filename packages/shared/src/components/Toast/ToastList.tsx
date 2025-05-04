@@ -1,11 +1,9 @@
 "use client";
 
-import type { ToastPropsType } from "~/packages/shared/src/components/Toast/Toast";
-
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 
-import { Toast } from "~/packages/shared/src/components/Toast/Toast";
 import "./index.css";
+import { ToastPropsType, Toast } from "./Toast";
 
 interface ToastListProps {
   notifications?: ToastPropsType[];
