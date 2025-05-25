@@ -2,7 +2,7 @@
 
 블로그를 만들게 된 계기는 기존의 블로그 템플릿에서 벗어나, 저만의 독창적인 블로그를 만들고 싶어서 입니다.
 
-자세한 링크는 하단의 글에서 볼 수 있어요!@
+자세한 링크는 하단의 글에서 볼 수 있어요!
 
 https://hj-devlog.vercel.app/blog/Next%20js%20app%20route%EB%A1%9C%20%EB%B8%94%EB%A1%9C%EA%B7%B8%20%EB%A7%8C%EB%93%A4%EA%B8%B0
 
@@ -68,7 +68,7 @@ http://localhost:3000/api/posts?start=1&end=5
 
 <hr />
 
-### 구현한 목록들
+### 구현한 목록
 
 - 여러 공통 컴포넌트(스켈레톤,Drawer,페이지네이션,스피너,ScrollToTop,토스트 등) 구현 및 CI단에서 문서화
   [스토리북주소](https://65957ec0c4b6100ce2f96f92-lctdejunii.chromatic.com/?path=/docs/configure-your-project--docs)
