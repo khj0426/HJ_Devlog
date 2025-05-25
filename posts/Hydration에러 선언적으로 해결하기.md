@@ -84,7 +84,7 @@ function LastUpdated() {
 
 이 훅의 주요 용도는 리액트 내부적인 store(props, context API, useState, useReducer)를 사용하지 않는 외부 저장소를 구독하는 것이지만, Hydration 에러를 야무지게 해결하는 용도로도 사용할 수 있습니다.
 
-이 훅의 숨겨진 **또 다른** **강점은** **CSR에서 마운트되었는지 SSR+Hydration에서 마운트 되었는지 구분할 수 있다는 것인데요. 기본적인 훅의 구성은 아래와 같습니다.**
+이 훅의 숨겨진 또 다른 강점은 CSR에서 마운트되었는지 SSR+Hydration에서 마운트 되었는지 구분할 수 있다는 것인데요. 기본적인 훅의 구성은 아래와 같습니다.
 
 ```tsx
 const snapshot = useSyncExternalStore(
@@ -100,13 +100,13 @@ const snapshot = useSyncExternalStore(
 
 해당 훅을 이용해 ClientGate라는 컴포넌트를 만들었어요.
 
-`ClientGate` 컴포넌트는 실제 외부 스토어를 구독하는 것이 목적이 아니므로, 여기서는 아무것도 하지 않는 빈 함수 `() => () => {}`를 넘겨줍니다.
+ClientGate 컴포넌트는 실제 외부 스토어를 구독하는 것이 목적이 아니므로, 여기서는 아무것도 하지 않는 빈 함수 () => () => {}를 넘겨줍니다.
 
-\***\*클라이언트 환경에서는 `useSyncExternalStore`가 이 함수의 반환값인 `false`를 `isServer` 변수에 할당하게 됩니다. 하이드레이션이 끝난 후에도 이 값은 `false`로 유지됩니다**.\*\*
+클라이언트 환경에서는 `useSyncExternalStore`가 이 함수의 반환값인 `false`를 `isServer` 변수에 할당하게 됩니다. 하이드레이션이 끝난 후에도 이 값은 `false`로 유지됩니다
 
 서버 렌더링 시에는 이 함수의 반환값인 `true`가 `isServer` 변수에 할당됩니다.
 
-클라이언트에서 하이드레이션을 시작할 때도 초기에는 이 값이 사용됩니다. \*\*\*\*
+클라이언트에서 하이드레이션을 시작할 때도 초기에는 이 값이 사용됩니다.
 
 ```tsx
 "use client";
