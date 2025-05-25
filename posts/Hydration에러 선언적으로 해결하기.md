@@ -102,9 +102,9 @@ const snapshot = useSyncExternalStore(
 
 ClientGate 컴포넌트는 실제 외부 스토어를 구독하는 것이 목적이 아니므로, 여기서는 아무것도 하지 않는 빈 함수 () => () => {}를 넘겨줍니다.
 
-클라이언트 환경에서는 `useSyncExternalStore`가 이 함수의 반환값인 `false`를 `isServer` 변수에 할당하게 됩니다. 하이드레이션이 끝난 후에도 이 값은 `false`로 유지됩니다
+클라이언트 환경에서는 useSyncExternalStore가 이 함수의 반환값인 false를 isServer변수에 할당하게 됩니다. 하이드레이션이 끝난 후에도 이 값은 `false`로 유지됩니다
 
-서버 렌더링 시에는 이 함수의 반환값인 `true`가 `isServer` 변수에 할당됩니다.
+서버 렌더링 시에는 이 함수의 반환값인 true가 isServer변수에 할당됩니다.
 
 클라이언트에서 하이드레이션을 시작할 때도 초기에는 이 값이 사용됩니다.
 
@@ -181,8 +181,6 @@ export default function Page() {
   );
 }
 ```
-
-![image.png](attachment:26540bf5-5739-4149-93d9-29021aea99e7:image.png)
 
 참고한 글
 
