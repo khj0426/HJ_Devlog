@@ -60,7 +60,9 @@ export default async function About() {
                             fontSize: '14px',
                         }}
                     >
-                        <span>2023.06~2023.12 프로그래머스 웹 데브코스 4기</span>
+                        <span>💙 토스증권 프론트엔드 어시스턴트 Product Stability Team (2025.03.10 ~ )</span>
+                        <span>💙 주식회사 업사이트 프론트엔드 인턴 (2024.08 ~ 2024.11)</span>
+                        <span>💙 프로그래머스 프론트엔드 데브코스 (2023.06 ~ 2023.11)</span>
                         <span>2024.01 ~ 멋쟁이사자처럼 SKHU 프론트엔드 운영진</span>
                         <span>2022.08~2023.06 GDSC SKHU 프론트엔드 파트</span>
                     </Flex>
