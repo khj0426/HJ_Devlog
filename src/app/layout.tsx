@@ -99,10 +99,6 @@ export default function RootLayout({
                     linkName: "Blog",
                   },
                   {
-                    to: "/about",
-                    linkName: "About",
-                  },
-                  {
                     to: "/guestbook",
                     linkName: "GuestBook",
                   },
