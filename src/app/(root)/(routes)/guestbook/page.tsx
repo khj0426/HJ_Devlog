@@ -9,9 +9,7 @@ import getQueryClient from '@/utils/getQueryClient';
 export default async function Home() {
   const queryClient = getQueryClient();
   await queryClient.prefetchQuery(guestBookQueryKey.all, getGuestBook);
-  const dehydratedState = dehydrate(queryClient, {
-    shouldDehydrateQuery: () => true,
-  });
+  const dehydratedState = dehydrate(queryClient);
   return (
     <Hydrate state={dehydratedState}>
       <GuestBook />
