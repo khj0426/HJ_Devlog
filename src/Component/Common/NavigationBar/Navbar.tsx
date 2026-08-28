@@ -9,7 +9,7 @@ import { CSSProperties, ReactNode } from 'react';
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 import Flex from '@/Component/Common/Flex/Flex';
 
@@ -49,13 +49,6 @@ const StyledNavBarTitle = styled(Link)`
   font-weight: 600;
   text-decoration: none;
   color: inherit;
-  ${({ href }) =>
-    href === '/notion/resume' &&
-    css`
-      @media (max-width: 1024px) {
-        opacity: 0;
-      }
-    `};
 `;
 
 function Navbar({
