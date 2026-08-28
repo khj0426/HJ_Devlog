@@ -87,7 +87,7 @@
     "@storybook/react": "^7.6.7",
     "@storybook/test": "^7.6.7",
     "@storybook/test-runner": "^0.18.2",
-    "@testing-library/jest-dom": "^6.2.0",
+    "@testing-library/jest-dom": "6.9.1",
     "@testing-library/react": "^14.1.2",
     "@types/glob": "^8.1.0",
     "@types/node": "20.2.5",
