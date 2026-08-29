@@ -1,18 +1,7 @@
-import { dehydrate } from '@tanstack/react-query';
-
-import Hydrate from '@/Component/Common/Hydrate';
 import GuestBook from '@/Component/GuestBook/GuestBook';
-import { guestBookQueryKey } from '@/hooks/queries/queryKey';
-import { getGuestBook } from '@/services/GuestBook';
-import getQueryClient from '@/utils/getQueryClient';
 
-export default async function Home() {
-  const queryClient = getQueryClient();
-  await queryClient.prefetchQuery(guestBookQueryKey.all, getGuestBook);
-  const dehydratedState = dehydrate(queryClient);
-  return (
-    <Hydrate state={dehydratedState}>
-      <GuestBook />
-    </Hydrate>
-  );
+export const dynamic = 'force-dynamic';
+
+export default function Home() {
+  return <GuestBook />;
 }
