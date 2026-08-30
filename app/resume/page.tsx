@@ -101,12 +101,9 @@ export default function ResumePage() {
         </div>
       </ResumeSection>
 
-      <ResumeSection title="Activity & Education">
+      <ResumeSection title="Activity">
         <SimpleEntry title="프로그래머스 데브코스" period="2023.06 — 2023.12">
           두 번의 팀 프로젝트와 코드 리뷰, 동료 피드백을 통해 프론트엔드 제품 개발을 학습했습니다.
-        </SimpleEntry>
-        <SimpleEntry title="성공회대학교" period="2019.03 — 졸업 예정">
-          소프트웨어공학 전공
         </SimpleEntry>
       </ResumeSection>
 
