@@ -5,13 +5,6 @@
 /.pnp
 .pnp.js
 
-# testing
-/coverage
-
-# lighthouseci
-.lighthouseci
-/lhci_reports/
-
 # next.js
 /.next/
 /out/
@@ -38,10 +31,11 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# Sentry Auth Token
-.sentryclirc
-
 # package.json
 package-lock.json
 
 certificates
+
+# local migration and design artifacts
+/.migration/
+/.superpowers/
