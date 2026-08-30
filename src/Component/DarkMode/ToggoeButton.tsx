@@ -1,16 +1,10 @@
-import { ReactNode } from 'react';
-
+import { ActionButton } from '@seed-design/react';
 import { Moon, Sun1 } from 'iconic-react';
 import { useRecoilState } from 'recoil';
 
 import { themeAtom } from '@/app/Providers/Recoil/globalAtom';
-import Flex from '@/Component/Common/Flex/Flex';
 
-export default function ToggleDarkModeButton({
-  children,
-}: {
-  children?: ReactNode;
-}) {
+export default function ToggleDarkModeButton() {
   const [currentTheme, setCurrentTheme] = useRecoilState(themeAtom);
 
   const handleClickToggleImage = () => {
@@ -23,28 +17,26 @@ export default function ToggleDarkModeButton({
     setCurrentTheme('light');
   };
   return (
-    <Flex onClick={handleClickToggleImage}>
+    <ActionButton
+      variant="ghost"
+      size="small"
+      onClick={handleClickToggleImage}
+      aria-label={currentTheme === 'light' ? '다크 모드로 전환' : '라이트 모드로 전환'}
+    >
       {currentTheme === 'light' ? (
         <Moon
-          tabIndex={0}
-          size="32"
+          size="22"
           variant="Bold"
-          color="#FF8A65"
-          style={{
-            cursor: 'pointer',
-          }}
+          color="currentColor"
         />
       ) : (
         <Sun1
-          tabIndex={0}
           variant="Bold"
-          size="32"
-          color="#FF8A65"
-          style={{
-            cursor: 'pointer',
-          }}
+          size="22"
+          color="currentColor"
         />
       )}
-    </Flex>
+      <span style={{ marginLeft: 6 }}>테마</span>
+    </ActionButton>
   );
 }

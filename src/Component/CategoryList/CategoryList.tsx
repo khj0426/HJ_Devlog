@@ -2,61 +2,24 @@
 
 import type { CategoryItem } from "@/@types/CategoryType";
 
-import Link from "next/link";
-import styled from "styled-components";
+import { Chip } from "@seed-design/react";
+import { useRouter } from "next/navigation";
 
-const CategoryListStyle = styled.span`
-  display: flex;
-  flex-direction: column;
-  color: ${({ theme }) => theme?.currentTheme?.text};
-  font-size: 18px;
-  overflow: hidden;
-  cursor: pointer;
-  &:hover {
-    text-decoration: underline ${({ theme }) => theme.currentTheme.text};
-  }
+import styles from "./category-list.module.css";
 
-  @media ${({ theme }) => theme?.device?.mobile} {
-    font-size: 11px;
-  }
-`;
+export default function CategoryList({ category }: { category: CategoryItem[] }) {
+  const router = useRouter();
 
-const CategoryListWrapper = styled.div`
-  @media ${({ theme }) => theme?.device?.mobile} {
-    display: none;
-  }
-
-  @media ${({ theme }) => theme?.device?.tablet} {
-    display: none;
-  }
-
-  gap: 15px;
-  position: fixed;
-  margin-top: 80px;
-  right: 0;
-  flex-direction: column;
-  justify-content: center;
-  max-height: 350px;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-`;
-
-export default function CategoryList({
-  category,
-}: {
-  category: CategoryItem[];
-}) {
   return (
-    <CategoryListWrapper>
-      {category.map(({ category, categoryCount }) => {
-        return (
-          <CategoryListStyle key={category}>
-            <Link href={`/category/${category}/1`}>
-              💻 {category + categoryCount}
-            </Link>
-          </CategoryListStyle>
-        );
-      })}
-    </CategoryListWrapper>
+    <nav className={styles.wrapper} aria-label="게시글 카테고리">
+      <Chip.Root variant="solid" size="medium" onClick={() => router.push('/')}>
+        <Chip.Label>전체</Chip.Label>
+      </Chip.Root>
+      {category.map(({ category: name, categoryCount }) => (
+        <Chip.Root variant="outlineStrong" size="medium" key={name} onClick={() => router.push(`/category/${encodeURIComponent(name)}/1`)}>
+          <Chip.Label>{name} {categoryCount}</Chip.Label>
+        </Chip.Root>
+      ))}
+    </nav>
   );
 }

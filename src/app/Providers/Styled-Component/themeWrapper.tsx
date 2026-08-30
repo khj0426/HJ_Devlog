@@ -1,5 +1,7 @@
 'use client';
 
+import { useEffect } from 'react';
+
 import { useRecoilValue } from 'recoil';
 import { ThemeProvider } from 'styled-components';
 
@@ -16,6 +18,12 @@ export function ThemeWrapper({ children }: { children: React.ReactNode }) {
   const currentTheme = useRecoilValue(themeAtom);
   const themeObj = currentTheme === 'light' ? lightTheme : darkTheme;
   const sizes = { fontSizes, fontWeights, borderRadius };
+
+  useEffect(() => {
+    document.documentElement.dataset.seedColorMode =
+      currentTheme === 'light' ? 'light-only' : 'dark-only';
+  }, [currentTheme]);
+
   return (
     <StyledComponentsRegistry>
       <ThemeProvider

@@ -4,6 +4,14 @@ footer {
   align-items: center;
   margin: 5px auto;
 }
+
+html {
+  background: var(--seed-color-bg-layer-default);
+}
+
+body {
+  margin: 0;
+}
 ::-webkit-scrollbar {
   width: 12px;
 }
@@ -38,15 +46,13 @@ main {
   font-family: inherit;
   min-height: calc(100vh - 120px);
   font-size: 1rem;
-  width: 70%;
-  display: flex;
-  flex-wrap: wrap;
+  width: min(100% - 40px, 1120px);
   margin: 0 auto;
 }
 
 @media screen and (max-width: 500px) {
   main {
-    width: 100%;
+    width: min(100% - 32px, 1120px);
     margin: 0 auto;
   }
 }
