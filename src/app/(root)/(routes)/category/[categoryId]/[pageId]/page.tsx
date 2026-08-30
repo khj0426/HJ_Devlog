@@ -3,7 +3,6 @@ import { useEffect } from 'react';
 
 import { useRouter } from 'next/navigation';
 
-import Flex from '@/Component/Common/Flex/Flex';
 import Pagination from '@/Component/Common/Pagination/Pagination';
 import PostItem from '@/Component/Post/PostItem';
 import useCategoryPostQuery from '@/hooks/queries/useCategoryPostQuery';
@@ -34,26 +33,22 @@ export default function Home({
   }, [params.pageId]);
 
   return (
-    <>
-      <h2>{params.categoryId}</h2>
-      <main>
-        <Flex
-          justifyContent="center"
-          flexWrap="wrap"
-          width={'80%'}
-          margin={'0 auto'}
-        >
+    <main>
+      <header style={{ padding: '64px 0 28px' }}>
+        <p style={{ color: 'var(--seed-color-fg-brand)', fontWeight: 700, margin: 0 }}>CATEGORY</p>
+        <h1 style={{ fontSize: 'clamp(36px, 7vw, 64px)', letterSpacing: '-0.04em', margin: '8px 0 0' }}>{params.categoryId}</h1>
+      </header>
+      <section aria-label={`${params.categoryId} 게시글`}>
           {pageData().map((post) => (
             <PostItem key={post.title} post={post} />
           ))}
-        </Flex>
-      </main>
+      </section>
       <Pagination
         numPages={pageCount}
         handleOnClickPage={(page) =>
           route.push(`/category/${params.categoryId}/${page}`)
         }
       />
-    </>
+    </main>
   );
 }

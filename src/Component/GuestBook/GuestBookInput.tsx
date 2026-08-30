@@ -1,15 +1,26 @@
+import type { ComponentType, CSSProperties, InputHTMLAttributes, PropsWithChildren } from 'react';
 import { useState } from 'react';
 
+import { ActionButton, TextField } from '@seed-design/react';
 import Image from 'next/image';
 
 import DropDown from '@/Component/Common/DropDown/DropDown';
 import Flex from '@/Component/Common/Flex/Flex';
 import { ToastManager, ToastContainer } from '@/Component/Common/Toast';
 import { GuestBookAvatarList } from '@/Component/GuestBook/constants';
-import { Input, InputBox } from '@/Component/Input';
 import usePostGuestBook from '@/hooks/mutations/useGuestBookMutation';
 import useInput from '@/hooks/useInput';
-import { Button } from '@/stories/Button';
+
+import styles from './guestbook.module.css';
+
+// SEED 2.4's React 18 declarations omit compound-component children/input
+// attributes even though the runtime API supports them.
+const SeedTextFieldRoot = TextField.Root as ComponentType<
+  PropsWithChildren<{ size?: 'small' | 'medium' | 'large'; style?: CSSProperties }>
+>;
+const SeedTextFieldInput = TextField.Input as ComponentType<
+  InputHTMLAttributes<HTMLInputElement>
+>;
 const GuestBookInput = ({ refetch }: { refetch: () => void }) => {
   const guestBookInput = useInput('', (e) => e.target.value.length <= 150);
   const { mutate } = usePostGuestBook();
@@ -37,11 +48,12 @@ const GuestBookInput = ({ refetch }: { refetch: () => void }) => {
 
   return (
     <Flex
+      className={styles.form}
       alignItems="center"
       justifyContent="center"
       flexWrap="wrap"
       margin={'0 auto'}
-      width={'80%'}
+      width={'100%'}
     >
       <Image
         src={avatar ?? GuestBookAvatarList[0].icon}
@@ -58,27 +70,26 @@ const GuestBookInput = ({ refetch }: { refetch: () => void }) => {
         }}
       />
 
-      <InputBox width="350px" color="#f8f9fa">
-        <Input
-          {...guestBookInput}
+      <SeedTextFieldRoot size="large" style={{ flex: '1 1 320px' }}>
+        <SeedTextFieldInput
+          value={guestBookInput.value}
+          onChange={guestBookInput.onChange}
           placeholder="😀 방명록을 적어주세요"
           style={{
             fontSize: '1rem',
           }}
+          aria-label="방명록 내용"
         />
-      </InputBox>
-      <Button
+      </SeedTextFieldRoot>
+      <ActionButton
         disabled={guestBookInput.error}
-        label="쓰기"
         type="button"
-        style={{
-          borderRadius: '7px',
-        }}
         onClick={handleSubmitGuestBook}
-        backgroundColor="#f8f9fa"
+        variant="brandSolid"
+        size="large"
       >
         쓰기
-      </Button>
+      </ActionButton>
       <ToastContainer enterTimeout={1000} leaveTimeout={1000} />
     </Flex>
   );

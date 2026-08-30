@@ -1,0 +1,11 @@
+.header { position:sticky; top:0; z-index:100; width:100%; border-bottom:1px solid var(--seed-color-stroke-neutral-subtle); background:color-mix(in srgb,var(--seed-color-bg-layer-default) 88%,transparent); backdrop-filter:blur(18px); }
+.nav { display:grid; grid-template-columns:1fr auto 1fr; align-items:center; width:min(100% - 40px,1120px); min-height:68px; margin:0 auto; }
+.brand { justify-self:start; color:var(--seed-color-fg-neutral); font-size:18px; font-weight:800; letter-spacing:-.03em; text-decoration:none; }
+.brand span { color:var(--seed-color-fg-brand); }
+.links { display:flex; gap:8px; }
+.links a { padding:9px 13px; border-radius:999px; color:var(--seed-color-fg-neutral-muted); font-size:14px; font-weight:700; text-decoration:none; }
+.links a:hover { background:var(--seed-color-bg-neutral-weak); }
+.links .active { color:var(--seed-color-fg-brand); background:var(--seed-color-bg-brand-weak); }
+.actions { justify-self:end; }
+.column { display:flex; flex-direction:column; gap:12px; padding:24px; }
+@media (max-width:640px) { .nav { grid-template-columns:1fr auto; width:min(100% - 32px,1120px); min-height:60px; } .links { display:none; } }

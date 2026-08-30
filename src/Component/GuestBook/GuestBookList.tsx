@@ -4,26 +4,22 @@ import styled from 'styled-components';
 import Flex from '@/Component/Common/Flex/Flex';
 import ItemList from '@/Component/Common/ItemList/ItemList';
 const StyledGuestBookList = styled.section`
-  min-height: 700px;
-  width: 500px;
-  max-height: 1000px;
-  overflow-y: scroll;
+  width: min(100%, 760px);
 
   @media ${({ theme }) => theme.device.mobile} {
-    width: 300px;
+    width: 100%;
   }
 
-  margin: 20px auto;
-  padding: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  background-color: #f8f9fa;
+  margin: 0 auto 28px;
+  padding: 8px 20px;
+  border: 1px solid var(--seed-color-stroke-neutral-subtle);
+  border-radius: 20px;
+  background-color: var(--seed-color-bg-layer-fill);
 `;
 
 const EntryContent = styled.p`
-  color: #343a40;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  color: var(--seed-color-fg-neutral);
+  overflow-wrap: anywhere;
 `;
 
 type guestBookListProps = {

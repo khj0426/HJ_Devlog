@@ -1,11 +1,11 @@
 import { dehydrate } from '@tanstack/react-query';
 
+import Hero from '@/Component/Blog/Hero/Hero';
 import UserCountInfo from '@/Component/Blog/UserCountInfo/UserCountInfo';
 import CategoryList from '@/Component/CategoryList/CategoryList';
 import Hydrate from '@/Component/Common/Hydrate';
 import PostContainer from '@/Component/Post/PostContainer';
 import {
-  gaQueryKey,
   gaQueryOptions,
   postQueryKey,
 } from '@/hooks/queries/queryKey';
@@ -28,14 +28,15 @@ export default async function Home() {
   const allCategory = getAllCategories();
 
   return (
-    <>
-      <CategoryList category={allCategory}></CategoryList>
-      <main>
+    <main>
+      <Hero />
+      <CategoryList category={allCategory} />
+      <section aria-label="최근 게시글">
         <Hydrate state={dehydratePostState}>
           <UserCountInfo />
           <PostContainer />
         </Hydrate>
-      </main>
-    </>
+      </section>
+    </main>
   );
 }

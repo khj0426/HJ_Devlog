@@ -1,3 +1,4 @@
+import "@seed-design/css/base.css";
 import "./globals.css";
 
 import { Metadata } from "next";
@@ -78,7 +79,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ko" className={baseFont.className}>
+    <html
+      lang="ko"
+      className={baseFont.className}
+      data-seed-color-mode="light-only"
+      suppressHydrationWarning
+    >
       <meta
         name="naver-site-verification"
         content="e0f502f252b42b1b2aa8779c7927832b439a42ab"

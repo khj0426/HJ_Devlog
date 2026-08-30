@@ -19,8 +19,8 @@ test('현재 제공하는 내비게이션 링크를 렌더링한다', () => {
     </RecoilRoot>
   );
 
-  expect(getByRole('link', { name: 'Blog' }).getAttribute('href')).toBe('/');
-  expect(getByRole('link', { name: 'GuestBook' }).getAttribute('href')).toBe(
+  expect(getByRole('link', { name: '글' }).getAttribute('href')).toBe('/');
+  expect(getByRole('link', { name: '방명록' }).getAttribute('href')).toBe(
     '/guestbook'
   );
   expect(queryByText('About')).toBeNull();

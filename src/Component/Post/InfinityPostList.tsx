@@ -12,12 +12,12 @@ type PostListProps = PostContainerData & {
 
 export default function InfinityPostList({ data, target }: PostListProps) {
   return (
-    <>
+    <div aria-live="polite">
       {data?.pages?.map((page) =>
         page.posts.map((post) => <PostItem post={post} key={post.title} />)
       )}
 
       <div ref={target}></div>
-    </>
+    </div>
   );
 }

@@ -1,0 +1,32 @@
+.hero {
+  padding: 72px 0 36px;
+}
+
+.eyebrow {
+  margin: 0 0 12px;
+  color: var(--seed-color-fg-brand);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.title {
+  margin: 0;
+  color: var(--seed-color-fg-neutral);
+  font-size: clamp(40px, 7vw, 72px);
+  line-height: 1.1;
+  letter-spacing: -0.045em;
+}
+
+.description {
+  max-width: 540px;
+  margin: 20px 0 0;
+  color: var(--seed-color-fg-neutral-muted);
+  font-size: clamp(16px, 2vw, 19px);
+}
+
+@media (max-width: 640px) {
+  .hero {
+    padding: 48px 0 28px;
+  }
+}

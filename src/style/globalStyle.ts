@@ -15,7 +15,7 @@ const GlobalStyle = createGlobalStyle`
 
   a {
     text-decoration: none;
-    color: ${({ theme }) => theme.text};
+    color: var(--seed-color-fg-neutral);
     cursor: pointer;
   }
 
@@ -25,20 +25,17 @@ const GlobalStyle = createGlobalStyle`
 
 
   body {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
     min-height: 100vh;
-    line-height: 1.5;
+    line-height: 1.6;
     max-width: 100%;
-    background-color: ${({ theme }) => theme.currentTheme.background};
-    color: ${({ theme }) => theme.currentTheme.text};
+    background-color: var(--seed-color-bg-layer-default);
+    color: var(--seed-color-fg-neutral);
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: ${({ theme }) => theme.fontWeight.medium};
-    transition: background 0.2s ease-in, color 0.2s ease-in;
+    transition: background-color 0.2s ease-in, color 0.2s ease-in;
   }
 
   pre {
@@ -51,7 +48,26 @@ const GlobalStyle = createGlobalStyle`
   }
 
   a{
-    color:${({ theme }) => theme.currentTheme.text};
+    color: var(--seed-color-fg-neutral);
+  }
+
+  ::selection {
+    background: var(--seed-color-bg-brand-weak);
+    color: var(--seed-color-fg-neutral);
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--seed-color-stroke-focus-ring);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      scroll-behavior: auto !important;
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+    }
   }
 
 `;

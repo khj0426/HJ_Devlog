@@ -7,10 +7,10 @@ import useGetUsersCountQuery from '@/hooks/queries/useGetUsersCountQuery';
 
 export const StyledUserCountText = styled.p`
   display: flex;
-  width: 80%;
-  margin: 15px auto;
+  margin: 0 0 16px;
   padding: 0;
-  font-size: ${({ theme }) => theme.fontSize.xs};
+  color: var(--seed-color-fg-neutral-subtle);
+  font-size: 13px;
 `;
 export default function UserCountInfo() {
   const { data: countData, isLoading } = useGetUsersCountQuery();
@@ -19,7 +19,7 @@ export default function UserCountInfo() {
   }
   return (
     <StyledUserCountText>
-      어제까지 총 {countData?.datalist[0]?.value}명이 방문했어요🧡
+      어제까지 총 {countData?.datalist[0]?.value}명이 이 기록을 다녀갔어요.
     </StyledUserCountText>
   );
 }
