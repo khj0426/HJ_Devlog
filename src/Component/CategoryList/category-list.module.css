@@ -1,3 +1,0 @@
-.wrapper { display:flex; gap:8px; margin:0 0 36px; padding:4px 0 10px; overflow-x:auto; scrollbar-width:none; }
-.wrapper::-webkit-scrollbar { display:none; }
-.wrapper > * { flex:0 0 auto; text-decoration:none; }
