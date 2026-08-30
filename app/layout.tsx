@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://hj-devlog.vercel.app'),
   alternates: { canonical: '/' },
   title: { default: 'HJ Devlog', template: '%s | HJ Devlog' },
-  description: '프론트엔드 개발과 제품에 대한 생각을 기록하는 공간',
+  description: '3개 조직이 사용하는 토스증권 고객상담 시스템을 개발, 출시, 운영한 프론트엔드 개발자 김효중의 블로그',
   icons: { icon: '/images/favicon.webp' },
 };
 
