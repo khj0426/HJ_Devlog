@@ -65,7 +65,6 @@ export const postLoaders = {
   "Vue와 React의 상태 비교": () => import('./posts/064.mdx'),
   "Webpack으로 SPA설정하기": () => import('./posts/065.mdx'),
   "폴링을 SSE로 바꾸며 배운 것들: Next.js App Route로 안전한 스트림 프록시 만들기": () => import('./posts/066.mdx'),
-  "간략히 한 일 정리 (8월)": () => import('./posts/067.mdx'),
   "2026년 6~7월 회고": () => import('./posts/068.mdx'),
   "4월 회고": () => import('./posts/069.mdx'),
   "3월 회고": () => import('./posts/070.mdx'),
