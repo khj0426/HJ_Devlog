@@ -1,0 +1,325 @@
+export const post = {
+  slug: "폴링을 SSE로 바꾸며 배운 것들: Next.js App Route로 안전한 스트림 프록시 만들기",
+  title: "폴링을 SSE로 바꾸며 배운 것들: Next.js App Route로 안전한 스트림 프록시 만들기",
+  description: "Next.js App Router에서 SSE 프록시를 만들며 연결, 헤더, 취소, 종료를 다룬 방법",
+  date: "2026-09-02",
+};
+
+# 폴링을 SSE로 바꾸며 배운 것들: Next.js App Route로 안전한 스트림 프록시 만들기
+
+2026-09-02
+
+실시간 상태를 보여주는 운영 화면을 만들면서, 일정한 간격으로 같은 요청을 반복하는 폴링을 SSE(Server-Sent Events)로 바꾼 경험을 정리해요.
+
+이 글에서는 특정 회사나 서비스의 내부 정보 대신, 어디에나 적용할 수 있는 구조와 원칙만 다룹니다.
+
+- 브라우저에서 SSE를 구독하고 해제하는 방법
+- Next.js App Route를 SSE 프록시로 사용할 때 필요한 설정
+- 프록시 경계를 넘을 때 요청 헤더를 안전하게 전달하는 방법
+- 브라우저 연결이 끊겼을 때 upstream 연결까지 정리하는 방법
+- 정상적인 스트림 종료를 오류로 오인하지 않는 방법
+
+## 폴링이 만든 문제
+
+폴링은 구현하기 쉬워요. 클라이언트가 일정한 주기로 API를 호출하고, 응답으로 최신 상태를 받아 화면을 갱신하면 돼요.
+
+```text
+클라이언트 ── 주기적인 요청 ──> 서버
+클라이언트 <── 현재 상태 응답 ── 서버
+```
+
+하지만 실시간 데이터 화면에서는 다음과 같은 비용이 생겨요.
+
+1. 데이터가 바뀌지 않아도 요청을 보내요.
+2. 화면을 여러 개 열면 같은 종류의 요청이 동시에 늘어나요.
+3. 주기를 짧게 잡으면 네트워크 비용이 커지고, 길게 잡으면 최신 상태를 늦게 보여줘요.
+4. 운영 로그에서 의미 있는 사용자 동작과 주기적인 상태 확인 요청을 구분하기 어려워져요.
+
+여러 운영 화면에서 나가는 요청을 관찰해 보니 상당수가 폴링 요청이었어요. 사용자가 늘어날수록 화면 수와 요청 수가 함께 증가하는 구조였기 때문에, 주기를 조정하는 것보다 데이터가 바뀐 시점에 서버가 알려주는 방식이 적절했어요.
+
+## SSE를 선택한 이유
+
+SSE는 브라우저와 서버 사이에 HTTP 연결을 하나 열어두고, 서버가 이벤트를 클라이언트로 보내는 기술이에요. 통신 방향은 서버에서 클라이언트로 단방향이에요.
+
+```text
+클라이언트 ── 최초 연결 ──> 서버
+클라이언트 <── 변경 이벤트 ── 서버
+클라이언트 <── 변경 이벤트 ── 서버
+```
+
+이번 요구사항은 서버에서 변경된 상태와 지표를 브라우저로 전달하는 일이었어요. 클라이언트가 서버로 임의의 메시지를 계속 보내야 하는 양방향 통신은 필요하지 않았어요. 그래서 WebSocket보다 SSE가 단순한 선택이었어요.
+
+폴링 주기를 늘리는 방법은 최신성을 포기하면서도 데이터가 바뀌지 않은 요청을 완전히 없애지는 못해요. SSE는 최초 연결 뒤 변경 이벤트만 전달하므로 이 문제를 직접 해결해요.
+
+### WebSocket이 아닌 SSE
+
+WebSocket은 브라우저와 서버가 서로 메시지를 주고받는 양방향 연결이에요. 반면 상태 대시보드가 필요한 통신은 서버가 바뀐 값을 브라우저에 알려주는 단방향 전달이에요.
+
+WebSocket을 선택하면 양방향 세션 수립, 메시지 형식, 연결 상태 관리까지 설계해야 해요. 필요한 범위보다 큰 추상화가 생길 수 있어요. 클라이언트에서 서버로 메시지를 보내거나 바이너리 양방향 통신이 필요해지는 순간에는 WebSocket이 더 적합해요.
+
+## 전체 구조
+
+브라우저가 내부 서비스에 직접 연결하는 대신, Next.js App Route를 중간 프록시로 두었어요.
+
+```text
+┌──────────────┐       ┌──────────────────────┐       ┌────────────────┐
+│ 브라우저      │       │ Next.js App Route    │       │ upstream 서버   │
+│              │       │ /api/stream/[...path]│       │ /internal/sse/*│
+└──────┬───────┘       └──────────┬───────────┘       └───────┬────────┘
+       │  SSE 구독                 │  스트림 프록시 요청        │
+       ├─────────────────────────>│──────────────────────────>│
+       │  이벤트 스트림             │  이벤트 스트림 전달        │
+       │<─────────────────────────┤<──────────────────────────┤
+```
+
+프록시를 둔 이유는 세 가지예요.
+
+- 브라우저가 upstream 주소와 서버 전용 인증 규칙을 직접 알 필요가 없어요.
+- 기존 애플리케이션 경계 안에서 인증과 관측 정책을 적용할 수 있어요.
+- 허용된 요청 헤더만 선택해 upstream으로 전달할 수 있어요.
+
+## 브라우저의 SSE 구독 클라이언트
+
+브라우저에서는 `@microsoft/fetch-event-source`를 사용했어요. 기본 `EventSource`보다 요청 헤더, 취소 신호, 응답 상태 처리 같은 제어가 쉬워요.
+
+구독 클라이언트의 책임은 단순하게 나눴어요.
+
+- 연결을 시작해요.
+- 이벤트를 파싱해 화면별 콜백으로 전달해요.
+- 오류를 전달해요.
+- `AbortSignal`이 취소되면 연결을 종료해요.
+
+```ts
+import { fetchEventSource } from '@microsoft/fetch-event-source';
+
+export async function subscribeSse<T>({
+  url,
+  signal,
+  onMessage,
+}: {
+  url: string;
+  signal: AbortSignal;
+  onMessage: (data: T) => void;
+}) {
+  await fetchEventSource(url, {
+    signal,
+    onmessage(event) {
+      onMessage(JSON.parse(event.data) as T);
+    },
+  });
+}
+```
+
+화면마다 다른 이벤트 타입과 응답 형식을 매핑하는 로직은 구독 클라이언트와 분리했어요. 구독기가 특정 화면의 비즈니스 로직까지 알게 하면 재사용하기 어려워지기 때문이에요.
+
+초기 데이터 조회와 실시간 변경 알림의 역할도 분리했어요. 초기 상태는 기존 조회 API로 받고, 이후 변경 이벤트는 React Query 캐시에 반영했어요. 화면 컴포넌트는 같은 캐시를 읽으므로 데이터 공급 방식만 바꾸고 UI의 책임은 크게 늘리지 않을 수 있었어요.
+
+## Next.js App Route에서 스트림 프록시 만들기
+
+SSE는 일반적인 JSON API와 다르게 연결을 오래 유지해요. 프록시 응답에서 다음 조건을 지켜야 해요.
+
+- `Content-Type`은 `text/event-stream`이어야 해요.
+- 캐시를 사용하면 안 돼요.
+- 압축이나 버퍼링으로 이벤트 전달을 지연시키면 안 돼요.
+- 브라우저가 연결을 취소했을 때 upstream 요청도 취소해야 해요.
+
+응답 본문은 문자열이나 JSON으로 읽지 않고 스트림 그대로 반환해야 해요.
+
+```ts
+const upstreamResponse = await fetch(upstreamUrl, {
+  headers: createUpstreamHeaders(request),
+  signal: request.signal,
+});
+
+return new Response(upstreamResponse.body, {
+  headers: {
+    'Cache-Control': 'no-cache, no-transform',
+    'Content-Type': 'text/event-stream',
+    'X-Accel-Buffering': 'no',
+  },
+});
+```
+
+실제 구현에서는 인증 쿠키나 서버 전용 키를 브라우저에 노출하지 않고, 서버에서 관리하는 값만 upstream에 주입해야 해요. 빈 헤더를 그대로 전달하지 말고 허용 목록을 기준으로 선택해야 해요.
+
+## 문제 1. 연결은 열렸지만 이벤트가 오지 않았어요
+
+SSE 요청이 200으로 열리고 `Content-Type`도 맞더라도 이벤트가 브라우저까지 도착한다고 단정할 수 없어요. 프록시가 응답을 버퍼링하거나 압축하면 연결은 살아 있어도 `onmessage`가 호출되지 않을 수 있어요.
+
+일반 JSON 응답은 본문을 모두 받은 뒤 한 번에 처리해도 괜찮아요. SSE는 이벤트가 하나씩 도착하는 즉시 화면을 갱신해야 하므로, 중간 계층이 이벤트를 모으지 않도록 해야 해요.
+
+확인할 항목은 다음과 같아요.
+
+- 브라우저 요청이 올바른 SSE 경로로 들어오는지 확인해요.
+- upstream 응답의 `Content-Type`이 `text/event-stream`인지 확인해요.
+- 프록시가 `response.body`를 문자열이나 JSON으로 읽지 않는지 확인해요.
+- 요청에는 `Accept-Encoding: identity`를 사용해 압축을 피하고, 응답에는 `no-transform`을 설정해요.
+- 프록시와 reverse proxy의 버퍼링 설정을 확인해요.
+- 이벤트가 `data:` 형식과 빈 줄로 끝나는지 확인해요.
+
+Next.js의 전역 압축을 끄는 방법도 있지만, 그러면 SSE와 관계없는 모든 응답의 네트워크 비용과 캐시 동작까지 바뀌어요. 영향 범위가 좁은 SSE 전용 Route에서만 스트림 정책을 적용하는 편이 안전해요.
+
+## 문제 2. 프록시를 거치며 요청 식별 정보가 사라졌어요
+
+Next.js가 upstream 요청을 새로 만들면 upstream이 보는 출발지 정보는 브라우저의 원래 요청과 달라질 수 있어요. 감사 로그나 접근 정책에 요청 식별 정보가 필요하다면 배포 환경의 신뢰된 프록시가 넣은 값만 제한적으로 전달해야 해요.
+
+```ts
+function createUpstreamHeaders(request: Request) {
+  const headers = new Headers({
+    Accept: 'text/event-stream',
+    'Accept-Encoding': 'identity',
+  });
+
+  const forwardedFor = request.headers.get('x-forwarded-for');
+  if (forwardedFor != null) {
+    headers.set('X-Forwarded-For', forwardedFor);
+  }
+
+  return headers;
+}
+```
+
+여기서 중요한 점은 애플리케이션이 브라우저가 직접 보낸 `X-Forwarded-For`를 무조건 신뢰하면 안 된다는 거예요. 프록시 앞단에서 해당 헤더를 덮어쓰고, 애플리케이션은 신뢰할 수 있는 네트워크 경계에서 추가된 값만 읽도록 배포 규칙을 함께 정해야 해요.
+
+인증 정보도 같은 원칙을 따라야 해요. 클라이언트가 보낸 모든 헤더를 전달하는 대신, 서버가 검증한 값과 명시적으로 허용한 헤더만 upstream으로 보내야 해요.
+
+## 문제 3. 브라우저 연결을 끊어도 upstream 요청이 남았어요
+
+프록시를 사이에 두면 HTTP 연결이 두 개 생겨요.
+
+```text
+브라우저 ── downstream SSE ──> Next.js App Route ── upstream SSE ──> 서버
+```
+
+브라우저가 페이지를 이동하면 downstream 연결은 취소돼요. 하지만 이 취소가 Route Handler 안의 upstream `fetch`까지 전달되지 않으면, 브라우저는 사라졌는데 서버 연결은 계속 유지될 수 있어요.
+
+upstream 요청에 같은 `request.signal`을 넘겨야 해요.
+
+```ts
+const upstreamResponse = await fetch(upstreamUrl, {
+  headers: createUpstreamHeaders(request),
+  signal: request.signal,
+});
+```
+
+이렇게 하면 downstream 요청이 취소될 때 upstream fetch도 취소돼요. 프록시가 연결을 중계하는 구조에서는 응답을 반환하는 것뿐 아니라 소비자가 더 이상 응답을 받지 않을 때 upstream 리소스를 정리하는 책임까지 구현해야 해요.
+
+## 문제 4. 정상 종료가 오류로 기록됐어요
+
+upstream 서비스가 정상적으로 연결을 끝내거나 네트워크 반대편에서 소켓을 닫으면 스트림 읽기 과정에서 예외가 발생할 수 있어요. 이 상황을 모두 오류로 기록하면 정상적인 화면 이동과 실제 장애를 구분하기 어려워져요.
+
+upstream 응답 본문을 감싸는 `ReadableStream`을 만들고, 종료 원인을 기준으로 처리할 수 있어요.
+
+```ts
+function isConnectionClosedError(error: unknown) {
+  return error instanceof TypeError && /closed|terminated|abort/i.test(error.message);
+}
+
+function proxyBody(upstreamResponse: Response, request: Request) {
+  let reader: ReadableStreamDefaultReader<Uint8Array> | undefined;
+
+  return new ReadableStream<Uint8Array>({
+    async start(controller) {
+      reader = upstreamResponse.body?.getReader();
+      if (reader == null) {
+        controller.close();
+        return;
+      }
+
+      try {
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) {
+            controller.close();
+            return;
+          }
+          controller.enqueue(value);
+        }
+      } catch (error) {
+        if (request.signal.aborted || isConnectionClosedError(error)) {
+          controller.close();
+          return;
+        }
+        controller.error(error);
+      }
+    },
+    async cancel() {
+      await reader?.cancel();
+    },
+  });
+}
+```
+
+핵심은 모든 오류를 숨기지 않는 거예요.
+
+- 요청이 이미 취소됐거나 알려진 연결 종료 오류면 스트림을 정상적으로 닫아요.
+- 그 밖의 오류는 `controller.error()`로 전달해 실제 문제를 놓치지 않아요.
+- 소비자가 스트림을 취소하면 upstream reader도 취소해요.
+
+## 데이터 흐름을 단계별로 검증하기
+
+SSE 문제는 브라우저, Next.js, upstream 중 어느 한 곳에서든 발생할 수 있어요. 다음 순서로 경계를 나눠 확인하면 원인을 빠르게 좁힐 수 있어요.
+
+1. 브라우저가 올바른 SSE URL로 요청하는지 확인해요.
+2. App Route가 요청을 받는지 확인해요.
+3. 허용된 인증 정보와 요청 식별 헤더만 전달되는지 확인해요.
+4. upstream 응답의 상태 코드와 `Content-Type`을 확인해요.
+5. 응답 본문을 스트림으로 전달하는지 확인해요.
+6. 브라우저에서 실제 이벤트를 수신하는지 확인해요.
+7. 브라우저 연결을 취소했을 때 upstream fetch도 취소되는지 확인해요.
+8. 정상 종료와 비정상 종료가 서로 다른 로그로 남는지 확인해요.
+
+한 번에 전체 화면만 확인하면 연결 실패와 이벤트 파싱 실패를 구분하기 어려워요. 각 경계의 입력과 출력을 확인하는 것이 중요해요.
+
+## 테스트로 남긴 동작
+
+SSE는 시간과 연결 상태에 따라 동작이 달라지기 때문에 다음 동작을 테스트로 고정하는 것이 좋아요.
+
+- 구독 클라이언트가 이벤트를 올바르게 전달해요.
+- 구독 중 오류가 발생하면 오류 콜백을 호출해요.
+- `AbortSignal`이 취소되면 구독을 종료해요.
+- 이벤트가 올바른 캐시 데이터로 매핑돼요.
+- downstream 취소 신호가 upstream `fetch`의 `signal`로 전달돼요.
+- upstream 연결 종료 오류가 정상적인 스트림 종료로 처리돼요.
+- 연결 종료가 아닌 오류는 그대로 전파돼요.
+- 소비자가 스트림을 취소하면 upstream reader가 함께 취소돼요.
+
+스트리밍 응답은 “응답 객체를 받았다”에서 끝나지 않아요. 본문을 읽고 닫는 과정까지가 동작의 일부이므로, `ReadableStream`의 읽기와 취소를 함께 테스트해야 해요.
+
+## 폴링과 SSE 비교
+
+| 구분 | 폴링 | SSE |
+| --- | --- | --- |
+| 연결 방식 | 요청을 주기적으로 새로 생성 | 연결을 열어두고 이벤트 수신 |
+| 데이터가 없을 때 | 요청이 계속 발생 | 추가 전송 없음 |
+| 최신성 | 폴링 주기에 따라 지연 | 서버 이벤트 발생 시 전달 |
+| 통신 방향 | 요청·응답 | 서버에서 클라이언트로 단방향 |
+| 구현 복잡도 | 낮음 | 스트림 종료와 재연결 고려 필요 |
+| 적합한 상황 | 간헐적인 조회 | 실시간 단방향 상태 갱신 |
+
+SSE가 항상 폴링보다 좋은 것은 아니에요. 데이터가 자주 바뀌지 않고 화면도 오래 열리지 않는다면 단순한 요청이 더 적절할 수 있어요. 반대로 여러 화면에서 지속적으로 상태를 보여주고 변경 시점의 지연을 줄여야 한다면 SSE를 고려할 만해요.
+
+## 운영에서 추가로 확인할 것
+
+SSE 연결은 일반 API보다 오래 유지되기 때문에 개발 환경에서 정상 동작하는 것만으로 충분하지 않아요.
+
+- 로드밸런서와 reverse proxy의 idle timeout을 확인해요.
+- 프록시 버퍼링과 응답 압축이 이벤트 전달을 지연시키지 않는지 확인해요.
+- 연결 수와 연결 유지 시간을 모니터링해요.
+- 재연결이 반복될 때 서버와 브라우저의 부하를 확인해요.
+- 정상 종료와 비정상 종료를 서로 다른 로그로 남겨요.
+- 인증 만료와 네트워크 단절에 대한 재연결 정책을 정해요.
+
+## 마무리
+
+이번 전환에서 가장 큰 변화는 요청 횟수를 줄인 것만이 아니에요. 실시간 상태의 책임을 “클라이언트가 계속 물어보는 구조”에서 “서버가 변경 시점을 알려주는 구조”로 옮겼어요.
+
+그 과정에서 SSE 자체보다 프록시의 경계가 더 중요하다는 점을 배웠어요.
+
+- 스트림을 JSON 응답처럼 처리하지 않아야 해요.
+- 인증 정보와 요청 식별 헤더를 필요한 범위에서만 전달해야 해요.
+- downstream 취소를 upstream 취소로 연결해야 해요.
+- 정상적인 연결 종료와 실제 오류를 구분해야 해요.
+- 브라우저 이벤트 수신부터 upstream reader 취소까지 테스트해야 해요.
+
+Next.js App Route를 스트림 프록시로 사용할 때는 연결의 시작과 끝을 모두 설계해야 해요. 이벤트가 잘 도착하는지만 확인하지 말고, 사용자가 화면을 떠났을 때 서버의 연결과 리소스가 함께 정리되는지까지 확인해야 안정적인 SSE를 만들 수 있어요.
