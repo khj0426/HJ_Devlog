@@ -64,6 +64,7 @@ export const postLoaders = {
   "Vue.js의 비동기요청과 라이프사이클": () => import('./posts/063.mdx'),
   "Vue와 React의 상태 비교": () => import('./posts/064.mdx'),
   "Webpack으로 SPA설정하기": () => import('./posts/065.mdx'),
+  "폴링을 SSE로 바꾸며 배운 것들: Next.js App Route로 안전한 스트림 프록시 만들기": () => import('./posts/066.mdx'),
 } as const;
 
 export type PostSlug = keyof typeof postLoaders;
