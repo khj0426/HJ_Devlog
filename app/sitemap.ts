@@ -8,9 +8,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url: `${SITE_URL}/blog/${encodeURIComponent(slug)}`,
     lastModified: new Date(),
   }));
-  return [
-    { url: SITE_URL, lastModified: new Date() },
-    { url: `${SITE_URL}/resume`, lastModified: new Date() },
-    ...posts,
-  ];
+  return [{ url: SITE_URL, lastModified: new Date() }, ...posts];
 }
