@@ -70,6 +70,7 @@ export const postLoaders = {
   "3월 회고": () => import('./posts/070.mdx'),
   "26년의 첫 회고": () => import('./posts/071.mdx'),
   "후일담 (2026상반기)": () => import('./posts/072.mdx'),
+  "SPA에서 비동기 목록의 스크롤 복원하기": () => import('./posts/073.mdx'),
 } as const;
 
 export type PostSlug = keyof typeof postLoaders;

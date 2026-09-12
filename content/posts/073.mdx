@@ -1,0 +1,107 @@
+export const post = {
+  slug: "SPA에서 비동기 목록의 스크롤 복원하기",
+  title: "SPA에서 비동기 목록의 스크롤 복원하기",
+  description: "React SPA에서 목록과 상세 페이지를 오갈 때 스크롤 위치를 안정적으로 복원하는 방법",
+  date: "2026-09-12",
+};
+
+SPA에서 목록을 아래까지 읽다가 상세 화면으로 이동한 뒤, 다시 목록으로 돌아왔을 때 스크롤 위치가 맨 위로 돌아가면 꽤 불편합니다.
+
+처음에는 `window.scrollTo` 한 줄이면 해결될 것처럼 보입니다. 하지만 목록이 API로 렌더링되고 페이지 이동이 클라이언트 라우팅으로 처리되면 생각보다 고려할 지점이 많습니다.
+
+### 기본적인 구현
+
+스크롤 복원에 필요한 값은 단순합니다.
+
+```ts
+const key = 'list-scroll-y';
+
+// 목록을 떠날 때
+sessionStorage.setItem(key, String(window.scrollY));
+
+// 목록에 돌아왔을 때
+const saved = sessionStorage.getItem(key);
+if (saved !== null) {
+  window.scrollTo(0, Number(saved));
+}
+```
+
+스크롤 위치는 탭을 닫으면 사라져도 되는 임시 UI 상태인 경우가 많아서 `localStorage`보다 `sessionStorage`가 자연스럽습니다.
+
+### `requestAnimationFrame`만으로는 부족하다
+
+다음과 같은 코드를 자주 볼 수 있습니다.
+
+```ts
+requestAnimationFrame(() => {
+  window.scrollTo(0, Number(savedScrollY));
+});
+```
+
+`requestAnimationFrame`은 다음 repaint 전에 콜백을 실행하도록 예약하는 API입니다. 네트워크 응답이나 이미지 로딩이 끝날 때까지 기다리는 API는 아닙니다.
+
+따라서 목록 컴포넌트가 마운트된 직후에는 문서 높이가 아직 짧을 수 있습니다.
+
+```text
+목록 진입
+→ 스켈레톤만 렌더링
+→ scrollTo(3000) 실행
+→ 현재 문서 높이가 부족해 이동 가능한 곳까지만 이동
+→ API 응답 후 목록이 길어짐
+→ 이미 복원 작업은 끝났으므로 3000으로 다시 이동하지 않음
+```
+
+복원 시점을 데이터 준비 이후로 미뤄야 합니다.
+
+```tsx
+function ListPage() {
+  const { data, isPending } = useListQuery();
+
+  useScrollRestoration('list-scroll-y', {
+    enabled: !isPending && data !== undefined,
+  });
+
+  return <List data={data} />;
+}
+```
+
+여기서 `data?.length > 0`을 준비 조건으로 사용하면 안 됩니다. 정상적인 빈 결과와 아직 로딩 중인 상태를 구분할 수 없기 때문입니다. `data !== undefined`처럼 쿼리 결과가 도착했는지를 기준으로 삼는 편이 안전합니다.
+
+### 브라우저 기본 복원과 직접 구현한 복원
+
+브라우저도 히스토리 이동 시 스크롤 위치를 복원하려고 합니다. 직접 복원할 때는 두 주체가 경쟁하지 않도록 앱 시작 시 한 번만 수동 모드로 설정하는 것이 좋습니다.
+
+```tsx
+useEffect(() => {
+  window.history.scrollRestoration = 'manual';
+}, []);
+```
+
+목록 훅이 마운트될 때마다 `manual`로 바꾸고 언마운트 시 `auto`로 되돌리면, 브라우저 뒤로가기와 애플리케이션의 뒤로가기 버튼이 서로 다른 결과를 만들 수 있습니다.
+
+스크롤 위치 저장은 페이지 이동 시점에 처리하거나 `scroll` 이벤트에서 최신 좌표를 저장하는 방식으로 구현할 수 있습니다. 스크롤 이벤트가 너무 자주 발생하는 것이 걱정되면 `requestAnimationFrame`으로 저장 작업만 한 프레임에 한 번으로 제한할 수 있습니다. 이때도 중요한 것은 `requestAnimationFrame`을 데이터 준비 신호로 사용하지 않는 것입니다.
+
+### 무한 목록에서의 한계
+
+스크롤 좌표를 복원하는 것과 해당 좌표까지 문서를 다시 만드는 것은 별개의 문제입니다.
+
+사용자가 여러 페이지를 불러온 뒤 상세로 이동했는데 목록 데이터 캐시가 사라졌다면, 돌아왔을 때 첫 페이지만 렌더링될 수 있습니다. 이 상태에서 저장된 좌표가 아무리 정확해도 문서가 그만큼 길지 않습니다.
+
+완전한 복원이 필요하다면 스크롤 좌표와 함께 당시 불러온 페이지 수를 저장하고, 필요한 페이지를 먼저 다시 가져온 뒤 스크롤을 이동해야 합니다.
+
+```text
+저장: scrollY + loadedPageCount
+복귀: loadedPageCount까지 fetchNextPage
+      → 목록 렌더링 완료
+      → scrollTo(scrollY)
+```
+
+### 정리
+
+- 스크롤 좌표는 `sessionStorage`에 저장한다.
+- `history.scrollRestoration`은 앱에서 일관되게 관리한다.
+- `requestAnimationFrame`은 다음 repaint 예약일 뿐 데이터 로딩 대기가 아니다.
+- API 결과가 렌더링된 이후에 복원한다.
+- 무한 목록은 좌표뿐 아니라 필요한 페이지도 복구해야 한다.
+
+결국 스크롤 복원은 `scrollTo` 호출 자체보다 **언제 저장하고, 언제 목록을 충분히 만들었는가**를 설계하는 문제에 가깝습니다.
