@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
+import Comments from '@/components/Comments';
 import { postLoaders, type PostSlug } from '@/content/posts';
 
 type PageProps = { params: Promise<{ slug: string }> };
@@ -37,5 +39,17 @@ export default async function BlogPost({ params }: PageProps) {
   const loader = postLoaders[slug];
   if (!loader) notFound();
   const { default: Post } = await loader();
-  return <Post />;
+  return (
+    <>
+      <Link
+        href="/"
+        className="inline-flex items-center text-sm text-gray-500 transition-colors hover:text-blue-500 dark:text-zinc-400 dark:hover:text-zinc-200"
+      >
+        <span aria-hidden="true">←</span>
+        <span className="ml-1">글 목록</span>
+      </Link>
+      <Post />
+      <Comments />
+    </>
+  );
 }
