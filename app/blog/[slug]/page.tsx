@@ -43,7 +43,7 @@ export default async function BlogPost({ params }: PageProps) {
     <>
       <nav
         aria-label="게시글 탐색"
-        className="sticky top-0 z-10 bg-white/90 py-3 backdrop-blur-sm dark:bg-zinc-950/90"
+        className="sticky top-0 z-10 -mx-8 bg-white/95 px-8 py-3 backdrop-blur-sm dark:bg-zinc-950/95"
       >
         <Link
           href="/"
