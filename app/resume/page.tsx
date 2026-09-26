@@ -131,7 +131,7 @@ export default function ResumePage() {
       <header className="border-b border-gray-200 pb-10 dark:border-zinc-800">
         <div className="flex items-start justify-between gap-6">
           <div className="flex items-start gap-5">
-            <Image src="/images/Profile.jpg" alt="김효중" width={80} height={80} className="rounded-full" priority />
+            <Image src="/images/Profile.jpg" alt="김효중" width={80} height={80} className="h-20 w-20 rounded-full object-cover" priority />
             <div>
               <h1 className="m-0 text-3xl font-semibold tracking-tight text-gray-950 dark:text-zinc-100">김효중</h1>
               <p className="mt-2 text-sm text-gray-500 dark:text-zinc-400">Frontend Developer</p>
