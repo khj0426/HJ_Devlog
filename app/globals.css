@@ -24,3 +24,13 @@ hr { color: var(--color-gray-200); }
 table { display: block; max-width: fit-content; overflow-x: auto; white-space: nowrap; text-align: left; }
 img { max-width: 100%; height: auto; border-radius: 0.5rem; }
 .post-date { margin-left: 0.4rem; color: var(--color-gray-400); font-size: 0.875rem; white-space: nowrap; }
+
+@media print {
+  html { min-width: 0; }
+  body { background: white !important; color: black !important; }
+  body > div { padding: 0 !important; }
+  .resume { padding: 0 !important; }
+  .resume a { color: black !important; }
+  .resume-entry { break-inside: avoid; }
+  .resume-back, footer { display: none !important; }
+}
