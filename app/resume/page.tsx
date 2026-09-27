@@ -19,7 +19,7 @@ type Detail = { title: string; description?: string; bullets?: string[] };
 
 const tossDetails: Detail[] = [
   {
-    title: '불필요한 SDK 로딩을 줄여 초기 JavaScript 71.6% 감소',
+    title: '상담 팝업의 초기 JavaScript 71.6% 감소',
     description: '영상통화 기능을 사용하지 않는 상담 팝업에도 SDK가 포함되어 있었어요. 의존성과 로딩 범위를 분리해 초기 JavaScript를 689kB에서 196kB로 줄였어요.',
     bullets: [
       '빌드 산출물에서 전역 MeetingProvider의 정적 import를 따라 SDK가 포함되는 경로를 확인했어요. Provider를 실제 사용 라우트의 layout으로 옮기고, 헤더·드래그 패널은 next/dynamic으로 나눠 필요한 화면에서 불러오도록 했어요.',
@@ -31,19 +31,18 @@ const tossDetails: Detail[] = [
     description: '재연결만으로는 돌아오지 않는 메시지를 다시 조회하고 병합해, 상담원이 누락된 대화를 이어서 확인할 수 있도록 개선했어요.',
     bullets: [
       '마지막 메시지 시각을 기준으로 getTranscript를 순방향·오름차순 조회했어요. 이미 받은 메시지 ID를 Set에 담아 중복을 제거하고, 목록을 병합한 뒤 구독 화면을 갱신했어요. 세션이 사라지거나 조회 결과가 없으면 갱신을 중단했어요.',
-      '적용 약 1개월 후 팀의 고객 만족도 집계에서 ‘매우 불만족’ 27.1% → 19.7%(-7.4%p), ‘매우 만족’ 40.6% → 48.2%(+7.6%p)가 관측됐어요. 팀 단위 개선 전후 관측값이에요.',
     ],
   },
   {
-    title: '외부 SDK 이벤트와 업무 처리의 결합 분리',
+    title: '상담 SDK의 이벤트 수신과 업무 로직 분리',
     description: '외부 SDK의 이벤트 수신과 고객·계좌 조회, 기록 생성 로직을 분리하고 여러 탭 사이의 상담 상태를 동기화했어요.',
-    bullets: ['Amazon Connect Streams/Chat 이벤트를 이벤트버스로 추상화하고, 구독하는 업무 로직을 분리해 테스트를 작성했어요.'],
+    bullets: ['Amazon Connect Streams/Chat 이벤트를 이벤트버스로 전달하고 업무 로직이 이를 구독하도록 구성했어요. 분리한 업무 로직에 테스트를 작성했어요.'],
   },
   {
-    title: 'CI 검사 시간 중앙값 약 24% 단축',
+    title: 'PR 검증 시간 중앙값 약 24% 단축',
     bullets: [
-      '문제. 타입 검사·린트·테스트·빌드가 같은 의존성을 각각 설치해 PR 검증이 지연됐어요. lockfile 변경 직후에는 새 캐시를 채우는 시간도 필요했어요.',
-      '해결. lockfile 기반 pnpm 캐시를 4개 작업에 적용하고, develop 반영 직후 pnpm fetch로 미리 채웠어요. Next.js 빌드 캐시도 복원·저장하도록 바꾼 뒤, 검사 완료 시간 중앙값이 5분 35초에서 4분 13초로 줄었어요.',
+      '타입 검사·린트·테스트·빌드가 같은 의존성을 각각 설치해 PR 검증이 지연됐어요. lockfile 변경 직후에는 새 캐시를 채우는 시간도 필요했어요.',
+      'lockfile 기반 pnpm 캐시를 4개 작업에 적용하고, develop 반영 직후 pnpm fetch로 미리 채웠어요. Next.js 빌드 캐시도 복원·저장하도록 바꾼 뒤, 검사 완료 시간 중앙값이 5분 35초에서 4분 13초로 줄었어요.',
     ],
   },
   {
@@ -57,7 +56,7 @@ const tossDetails: Detail[] = [
     ],
   },
   {
-    title: '복잡한 폼에서 검증·저장·단계 이동의 책임 분리',
+    title: '상담 폼의 입력·저장 상태와 문서 등록 단계 관리',
     description: '복합 입력과 동적 필드를 가진 상담 폼, 여러 단계를 거치는 문서 등록 화면의 상태를 역할별로 분리했어요.',
     bullets: [
       '상담 폼은 Zod 스키마와 React Hook Form을 연결하고 Controller·useFieldArray로 입력을 관리했어요. 저장 응답을 해당 상담의 Query cache에 반영한 뒤 목록·상세를 갱신하고, 상담 ID·서버 데이터 변경에 맞춰 폼을 reset했어요.',
@@ -73,12 +72,12 @@ const tossDetails: Detail[] = [
     ],
   },
   {
-    title: '접근 권한과 화면 선택 조건을 한곳에서 관리',
+    title: '메뉴별 접근 권한과 고객 유형별 화면 분기 통합',
     description: '메뉴별 접근 권한과 고객 유형별 화면 분기를 상위에서 처리하도록 정리했어요.',
     bullets: ['route-permissions에 메뉴별 허용 조직을 매핑하고 공통 훅·가드와 403 안내 화면을 연결했어요. 회원 상태·계좌 유형에 따른 화면 선택은 상위 SwitchCase로 옮겨 하위 페이지에 흩어진 조건문을 정리했어요.'],
   },
   {
-    title: '기존 동작을 유지하면서 공통 테이블과 렌더링 구조 확장',
+    title: '공통 테이블 확장과 브라우저 전용 UI 렌더링 처리',
     description: '화면마다 다른 헤더를 지원하면서 기존 테이블 사용처의 동작을 유지하고, 브라우저 전용 UI의 렌더링 시점을 구분했어요.',
     bullets: [
       '공통 ListTable에 renderHeader 확장 지점을 추가하고, 지정하지 않으면 기존 columns 헤더를 사용하도록 했어요. 커스텀 헤더가 우선하는 동작을 테스트해 하위 호환성을 확인했어요.',
@@ -86,7 +85,7 @@ const tossDetails: Detail[] = [
     ],
   },
   {
-    title: '기간·태그별 분석에서 실제 상담 이력까지 연결',
+    title: '상담 통계에서 같은 조건의 상담 이력으로 이동하는 기능 구현',
     description: '요약 지표를 확인한 뒤 같은 조건의 상담 원본까지 살펴볼 수 있도록 분석 화면과 이력 조회를 연결했어요.',
     bullets: [
       '날짜 구간·전화/채팅 집계·이전 기간 증감률·차트 데이터 변환을 함수로 분리했어요. visx로 기간별 건수와 태그의 14일 추이를 표시하고, 상담·음성 인식(STT) 영역은 Error Boundary로 나눠 오류를 격리했어요.',
@@ -102,9 +101,13 @@ const upsiteDetails: Detail[] = [
     bullets: ['GitHub Packages로 디자인 시스템을 배포하고 Changesets로 변경 사항과 버전을 관리했어요. Storybook을 AWS S3에 배포해 디자이너와 실제 컴포넌트 단위로 QA했어요.'],
   },
   {
-    title: '번역 문구 수정에 필요한 개발자 의존성 축소',
+    title: '비개발자가 시트에서 번역 문구를 관리하도록 개선',
     description: '개발자가 번역 JSON을 수정하던 흐름을 바꿔, 비개발자가 공통 시트에서 서비스 문구를 직접 관리하도록 개선했어요.',
-    bullets: ['Google Spreadsheet API로 시트의 번역 데이터를 서비스에 반영했어요. 별도로 작업일보의 가변 입력은 React Hook Form·useFieldArray로 구현해 필드 추가·삭제와 입력 상태를 함께 관리했어요.'],
+    bullets: ['Google Spreadsheet API로 시트의 번역 데이터를 서비스에 반영했어요.'],
+  },
+  {
+    title: '작업일보의 동적 입력 필드 구현',
+    description: 'React Hook Form·useFieldArray로 작업일보의 필드 추가·삭제와 입력 상태를 함께 관리했어요.',
   },
 ];
 
@@ -115,7 +118,7 @@ const devlogDetails: Detail[] = [
     bullets: ['Lighthouse에서 Total Blocking Time 문제를 확인하고 next/bundle-analyzer로 react-syntax-highlighter의 번들 비용을 추적했어요. 언어별로 dynamic import하도록 로딩 단위를 나눴어요.'],
   },
   {
-    title: '블로그 운영에 오류 관측과 성능 검사 연결',
+    title: '블로그 오류 추적·성능 검사와 검색 노출·방문 통계 관리',
     description: '직접 만든 블로그에 오류 추적과 자동 성능 검사를 연결하고, 검색·공유와 방문 지표까지 관리했어요.',
     bullets: [
       'axios 응답 interceptor에서 수집한 오류 정보를 Sentry로 전송했어요. 전체 페이지의 Lighthouse 검사를 CI에서 자동 실행하도록 연결했어요.',
@@ -142,10 +145,8 @@ export default function ResumePage() {
           </nav>
         </div>
         <div className="mt-8 space-y-4 leading-relaxed text-gray-700 dark:text-zinc-300">
-          <p>3개 조직이 사용하는 토스증권 고객상담 시스템을 개발, 출시, 운영까지 전 사이클에 걸쳐 참여하며 하루 2,000건의 실시간 상담을 처리하는 서비스를 구축했어요.</p>
-          <p>개인의 목표보다 팀의 목표를 우선시해요.<br />팀의 방향에 맞춰 우선순위를 조절하고 빠르게 실행하는 것에 익숙해요.</p>
-          <p className="font-medium">제가 만든 것이 실제로 쓰일 때 가장 큰 동기를 얻어요.</p>
-          <p>서로 다른 세 조직의 구성원이 실제로 사용하는 서비스를 직접 개발·운영하며 고객의 목소리를 듣고 필요한 기능을 구현해 문제를 해결한 경험에서 가장 큰 보람을 느꼈어요.</p>
+          <p>3개 조직이 사용하고 하루 2,000건의 상담을 처리하는 토스증권 고객상담 시스템의 프론트엔드 개발·출시·운영에 참여했어요.</p>
+          <p>고객·계좌 조회, 상담 기록 생성과 화면 간 상태 동기화를 구현하고, 초기 로딩 비용과 실시간 상담 중 발생하는 문제를 개선했어요.</p>
         </div>
       </header>
 
@@ -158,7 +159,7 @@ export default function ResumePage() {
         <Project title="HJ-Devlog" period="2023.06 — 현재" subtitle="개인 블로그 · Next.js · React · TypeScript" details={devlogDetails} links={[{ label: 'Blog', href: '/' }, { label: 'Source', href: 'https://github.com/khj0426/HJ_Devlog' }]} />
       </ResumeSection>
 
-      <ResumeSection title="학력 · 활동">
+      <ResumeSection title="교육 · 활동">
         <SimpleEntry title="프로그래머스 데브코스" period="2023.06 — 2023.12">팀 프로젝트 2회, 멘토·동료 코드 리뷰에 참여했어요.</SimpleEntry>
       </ResumeSection>
 
