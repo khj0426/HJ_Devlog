@@ -1,0 +1,236 @@
+export const post = {
+  slug: "pnpm store 캐시로 PR 검증 시간 줄이기",
+  title: "pnpm store 캐시로 PR 검증 시간 줄이기",
+  description: "lockfile 기반 pnpm store 캐시를 PR 검증 작업에서 공유하고 develop 반영 직후 pnpm fetch로 예열한 과정",
+  date: "2026-10-10",
+};
+
+# pnpm store 캐시로 PR 검증 시간 줄이기
+
+PR을 올리면 타입 검사, 린트, 테스트, 빌드가 각각 별도의 GitHub Actions 작업으로 실행돼요.
+
+작업을 나눠 병렬로 돌리고 있었지만 생각보다 빨리 끝나지 않았어요. 네 작업 모두 깨끗한 러너에서 시작하다 보니 같은 의존성을 매번 다시 내려받고 있었거든요. 실제 검사보다 `pnpm install`을 기다리는 시간이 길 때도 있었어요.
+
+`pnpm-lock.yaml`이 바뀐 직후에는 더 느렸어요. 기존 캐시를 쓸 수 없어서 네 작업이 동시에 새 의존성을 내려받았고, 새 캐시가 채워지는 시간도 필요했어요.
+
+이번에는 pnpm store를 lockfile 기준으로 캐싱하고, 변경 사항이 `develop`에 반영되면 `pnpm fetch`로 다음 캐시를 미리 채우는 방식으로 바꿔봤어요.
+
+## node_modules 대신 pnpm store 캐시하기
+
+pnpm은 내려받은 패키지 파일을 content-addressable store에 보관해요. 프로젝트의 `node_modules`에는 store에 있는 파일을 바탕으로 링크를 만들어요.
+
+```text
+패키지 레지스트리
+       │ 최초 다운로드
+       ▼
+pnpm store
+       │ 링크 구성
+       ▼
+프로젝트의 node_modules
+```
+
+현재 쓰고 있는 store 경로는 아래 명령으로 찾을 수 있어요.
+
+```bash
+pnpm store path
+```
+
+이 경로를 캐시하면 다음 실행에서는 이미 받아둔 패키지를 재사용할 수 있어요.
+
+여기서 헷갈렸던 점이 하나 있어요. store 캐시를 복원해도 `pnpm install`은 실행해야 해요. GitHub Actions의 각 작업은 서로 다른 러너에서 돌아가므로 각자의 `node_modules`가 필요해요. 캐시로 줄이는 건 설치 과정 전체라기보다 패키지를 다시 다운로드하고 압축을 푸는 시간에 가까워요.
+
+## lockfile로 캐시 나누기
+
+캐시 키에는 운영체제와 `pnpm-lock.yaml`의 해시를 넣었어요.
+
+```yaml
+key: pnpm-store-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
+```
+
+lockfile이 같으면 타입 검사, 린트, 테스트, 빌드가 같은 store 캐시를 찾아요. 의존성이 바뀌어 lockfile 해시가 달라지면 새 캐시를 만들어요.
+
+여러 Node.js나 pnpm 메이저 버전을 함께 쓰고 있다면 버전도 키에 넣는 편이 안전해요.
+
+```yaml
+key: pnpm-store-${{ runner.os }}-node-24-pnpm-10-${{ hashFiles('pnpm-lock.yaml') }}
+```
+
+## PR 검증 작업에 적용하기
+
+아래 예시는 중복을 줄이려고 matrix로 적었어요. 실제로는 네 작업이 각각 별도 러너에서 병렬로 실행돼요.
+
+```yaml
+name: PR validation
+
+on:
+  pull_request:
+    branches: [develop]
+
+jobs:
+  validate:
+    name: ${{ matrix.task }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        task: [typecheck, lint, test, build]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+
+      - name: Find pnpm store path
+        id: pnpm-store
+        shell: bash
+        run: echo "path=$(pnpm store path)" >> "$GITHUB_OUTPUT"
+
+      - name: Restore pnpm store
+        id: pnpm-cache
+        uses: actions/cache@v6
+        with:
+          path: ${{ steps.pnpm-store.outputs.path }}
+          key: pnpm-store-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
+          restore-keys: |
+            pnpm-store-${{ runner.os }}-
+
+      - name: Fetch dependencies on cache miss
+        if: steps.pnpm-cache.outputs.cache-hit != 'true'
+        run: pnpm fetch --frozen-lockfile
+
+      - name: Install dependencies from store
+        run: pnpm install --offline --frozen-lockfile
+
+      - name: Run ${{ matrix.task }}
+        run: pnpm ${{ matrix.task }}
+```
+
+먼저 `pnpm store path`의 결과를 `actions/cache`에 넘겨요. lockfile 해시가 정확히 일치하면 store를 그대로 복원해요.
+
+정확한 캐시가 없을 때는 `pnpm fetch`를 실행해요. `restore-keys`로 예전 캐시를 가져온 경우에도 `cache-hit`은 `true`가 아니어서, 바뀐 lockfile에 새로 필요한 패키지를 채우게 돼요. 그다음 `pnpm install --offline`으로 레지스트리에 요청하지 않고 `node_modules`를 만들어요.
+
+캐시가 비어 있는데 곧바로 `--offline` install을 실행하면 새 패키지를 찾을 수 없어 실패해요. 그래서 cache miss일 때의 `fetch`를 빼면 안 돼요.
+
+fetch와 install을 굳이 나누고 싶지 않다면 아래처럼 써도 돼요.
+
+```bash
+pnpm install --prefer-offline --frozen-lockfile
+```
+
+store에 패키지가 있으면 재사용하고, 없는 것만 레지스트리에서 받아요. 저는 네트워크를 쓰는 단계와 `node_modules`를 만드는 단계를 구분해서 보고 싶어서 `fetch`와 `install --offline`을 나눴어요.
+
+## pnpm fetch로 store만 채우기
+
+`pnpm fetch`는 `package.json`을 보고 프로젝트에 의존성을 설치하는 명령이 아니에요. lockfile을 읽고 필요한 패키지를 store에 가져와요.
+
+```text
+pnpm fetch
+  pnpm-lock.yaml을 읽어요
+  필요한 패키지를 store에 저장해요
+  node_modules를 완성하지는 않아요
+
+pnpm install --offline
+  store에 있는 패키지만 사용해요
+  프로젝트의 node_modules를 만들어요
+```
+
+소스 코드를 빌드하거나 테스트하지 않고도 store만 준비할 수 있어서 캐시를 미리 채우는 데 잘 맞았어요.
+
+## develop 반영 직후 미리 채우기
+
+PR에서 lockfile이 처음 바뀐 순간에는 아직 맞는 캐시가 없어요. 이 상태로 네 검증 작업이 동시에 시작되면 네 작업 모두 새 의존성을 받게 돼요.
+
+PR에서 만든 캐시는 해당 PR의 merge ref 범위에 저장돼요. 다른 PR이나 base 브랜치가 그대로 가져다 쓰기도 어려워요. 반면 `develop`의 push workflow에서 만든 캐시는 `develop`을 대상으로 하는 다음 PR이 복원할 수 있어요.
+
+그래서 lockfile 변경이 `develop`에 반영되면 아래 workflow가 store를 한 번 미리 채우게 했어요.
+
+```yaml
+name: Warm pnpm store cache
+
+on:
+  push:
+    branches: [develop]
+    paths:
+      - pnpm-lock.yaml
+
+jobs:
+  warm-cache:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+
+      - name: Find pnpm store path
+        id: pnpm-store
+        shell: bash
+        run: echo "path=$(pnpm store path)" >> "$GITHUB_OUTPUT"
+
+      - name: Restore pnpm store
+        id: pnpm-cache
+        uses: actions/cache@v6
+        with:
+          path: ${{ steps.pnpm-store.outputs.path }}
+          key: pnpm-store-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
+          restore-keys: |
+            pnpm-store-${{ runner.os }}-
+
+      - name: Fetch dependencies
+        if: steps.pnpm-cache.outputs.cache-hit != 'true'
+        run: pnpm fetch --frozen-lockfile
+```
+
+이미 같은 키의 캐시가 있으면 아무것도 받지 않아요. lockfile이 달라졌다면 이전 store를 바탕으로 부족한 패키지만 채워요. 작업이 성공하면 `actions/cache`의 post step이 새 키로 store를 저장해요.
+
+```text
+의존성 변경 PR
+      │ merge
+      ▼
+develop push workflow
+      │ pnpm fetch
+      ▼
+lockfile 해시 기반 store 캐시
+      │ restore
+      ├──> typecheck
+      ├──> lint
+      ├──> test
+      └──> build
+```
+
+이 방식도 lockfile을 바꾼 PR의 첫 실행까지 빠르게 해주지는 못해요. 아직 `develop`에 해당 캐시 키가 없기 때문이에요. 대신 merge 이후 실행되는 작업과 다음 PR부터 같은 의존성을 반복해서 내려받는 일은 줄어들어요.
+
+첫 PR 실행에서도 다운로드를 딱 한 번만 하고 싶다면 네 검증 작업 앞에 `prepare-dependencies` 작업을 둘 수도 있어요. 다만 모든 작업이 준비 작업을 기다려야 하므로, 다운로드 중복을 줄이는 대신 병렬 실행 시작이 늦어질 수 있어요. 이 부분은 실제 CI 시간을 보고 결정하는 게 좋아요.
+
+## 적용하며 확인한 것
+
+store 캐시는 없어져도 괜찮아야 해요. GitHub Actions 캐시는 보관 기간이나 용량 때문에 삭제될 수 있어요. cache miss가 나면 `pnpm fetch`가 다시 채우도록 둔 이유예요.
+
+`--frozen-lockfile`도 계속 사용했어요. `package.json`과 lockfile이 맞지 않을 때 CI가 lockfile을 고쳐서 넘어가지 않고 바로 실패해요.
+
+캐시 경로에는 pnpm store만 넣었어요. base 브랜치의 캐시는 PR에서도 읽을 수 있으므로 토큰이나 `.npmrc` 같은 민감한 파일이 섞이면 안 돼요.
+
+결과적으로 네 작업의 `pnpm install`이 사라진 것은 아니에요. 각 러너가 `node_modules`를 만드는 과정은 여전히 남아 있어요. 대신 같은 패키지를 네 번씩 레지스트리에서 받아오던 시간을 줄였고, lockfile 변경 뒤 다음 작업을 위해 캐시를 미리 준비할 수 있게 됐어요.
+
+병렬 작업이 느릴 때는 작업 수만 볼 게 아니라 각 작업이 똑같이 반복하는 준비 과정도 같이 봐야 해요. pnpm에서는 그 재사용 지점이 `node_modules`보다 store에 가까웠고, `pnpm fetch`로 필요한 시점보다 조금 먼저 채워둘 수 있었어요.
+
+## 참고
+
+- [pnpm fetch 공식 문서](https://pnpm.io/cli/fetch)
+- [pnpm store 공식 문서](https://pnpm.io/cli/store)
+- [GitHub Actions dependency caching](https://docs.github.com/en/actions/reference/workflows-and-actions/dependency-caching)
+- [actions/cache](https://github.com/actions/cache)
