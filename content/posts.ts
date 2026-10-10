@@ -74,6 +74,7 @@ export const postLoaders = {
   "9월 회고": () => import('./posts/074.mdx'),
   "간략히 한 일 정리 (8월)": () => import('./posts/075.mdx'),
   "fetch에서 request.signal은 뭘까": () => import('./posts/076.mdx'),
+  "pnpm store 캐시로 PR 검증 시간 줄이기": () => import('./posts/077.mdx'),
 } as const;
 
 export type PostSlug = keyof typeof postLoaders;
