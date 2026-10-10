@@ -73,6 +73,7 @@ export const postLoaders = {
   "SPA에서 비동기 목록의 스크롤 복원하기": () => import('./posts/073.mdx'),
   "9월 회고": () => import('./posts/074.mdx'),
   "간략히 한 일 정리 (8월)": () => import('./posts/075.mdx'),
+  "fetch에서 request.signal은 뭘까?": () => import('./posts/076.mdx'),
 } as const;
 
 export type PostSlug = keyof typeof postLoaders;

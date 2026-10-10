@@ -1,0 +1,60 @@
+export const post = {
+  slug: "fetch에서 request.signal은 뭘까?",
+  title: "fetch에서 request.signal은 뭘까?",
+  description: "fetch 코드에서 자주 보이는 request.signal을 간단히 알아보자",
+  date: "2026-10-10",
+};
+
+코드를 보다 보면 가끔 이런 `fetch`를 마주친다.
+
+```ts
+await fetch(API_URL, {
+  signal: request.signal,
+});
+```
+
+처음에는 `request`에 왜 `signal`이 붙어 있는지 조금 낯설었다.
+
+`request.signal`은 `AbortSignal`이다. 쉽게 말하면 **요청이 취소됐는지를 전달하는 신호**다. signal이 직접 요청을 취소하는 것은 아니고, 취소가 발생했다는 사실을 `fetch` 같은 작업에 알려준다.
+
+보통은 `AbortController`와 함께 사용한다.
+
+```ts
+const controller = new AbortController();
+
+fetch('/api/posts', {
+  signal: controller.signal,
+});
+
+controller.abort();
+```
+
+`abort()`가 호출되면 `controller.signal`을 전달받은 `fetch`가 중단된다.
+
+서버에서 `request.signal`을 다른 요청에 그대로 넘기는 경우도 있다.
+
+```ts
+export async function GET(request: Request) {
+  const response = await fetch(API_URL, {
+    signal: request.signal,
+  });
+
+  return response;
+}
+```
+
+원래 요청이 취소되면 내부에서 실행 중이던 `fetch`에도 그 사실이 전달된다. 사용자가 페이지를 떠났는데 서버가 필요 없는 외부 요청을 계속 붙잡고 있는 상황을 줄일 수 있다.
+
+취소된 `fetch`는 에러를 발생시키기 때문에 필요한 경우 `AbortError`를 따로 처리해주면 된다.
+
+```ts
+try {
+  await fetch(API_URL, { signal: request.signal });
+} catch (error) {
+  if (error instanceof DOMException && error.name === 'AbortError') return;
+
+  throw error;
+}
+```
+
+정리하면 `request.signal`은 요청을 취소하는 버튼이라기보다, **요청의 취소 상태를 다른 비동기 작업까지 이어주는 연결선**에 가깝다.
