@@ -15,9 +15,37 @@ const contactLinks = [
   { label: 'LinkedIn', href: 'https://kr.linkedin.com/in/%ED%9A%A8%EC%A4%91-%EA%B9%80-52092625a' },
 ];
 
-type Detail = { title: string; description?: string; bullets?: string[] };
+type DetailSection = { title: string; description?: string; bullets?: string[] };
+type Detail = { title: string; description?: string; bullets?: string[]; sections?: DetailSection[] };
 
 const tossDetails: Detail[] = [
+  {
+    title: '고객상담 CRM의 Next.js 의존성 분리와 빌드 성능 개선',
+    sections: [
+      {
+        title: '문제',
+        description:
+          "대부분의 업무 화면이 'use client' 기반이었고 데이터 조회와 변경도 브라우저에서 처리했어요. Server Action이나 서버 데이터 조회는 활용하지 않는 반면, 브라우저 전용 코드가 서버에서 실행되지 않도록 ssr: false와 typeof window 처리가 필요했어요. Next.js 16으로 올리려면 한글 라우트 그룹 문제로 프레임워크 자체도 수정해야 했어요. 실제 사용하는 기능은 주로 라우팅과 일부 프록시였기 때문에, Next.js를 계속 사용하는 것이 서비스에 맞는 선택인지 검토했어요.",
+      },
+      {
+        title: '해결 과정',
+        bullets: [
+          '운영 환경에서 의존성부터 분리했어요. 먼저 앱의 SSR을 끄고 주요 상담 기능을 검증한 뒤 라우터·모니터링 코드를 공통 모듈로 모았어요. next/dynamic은 React.lazy와 Suspense로 교체하고 직접적인 next/* import는 린트로 제한했어요.',
+          '기존 화면을 재작성하지 않고 옮겼어요. import.meta.glob으로 기존 page.tsx와 layout.tsx를 수집해 TanStack Router 설정을 생성했어요. 빌드 환경에 따라 Next.js와 Vite 구현을 연결하는 플러그인을 작성해 업무 코드의 import 경로를 유지하면서 두 환경을 병행 검증했어요.',
+        ],
+      },
+      {
+        title: '성과',
+        description:
+          '의존성 분리 1단계를 운영에 반영하고 기존 업무 화면을 Vite에서도 실행할 수 있도록 구현했어요. 전체 교체 전에 변경 사항을 나눠 검증하고, 전환 후 문제가 발생하면 이전 정상 이미지로 돌아갈 수 있도록 롤백 절차도 마련했어요. 측정 환경 기준 Next.js 빌드 컴파일 시간은 7분 42초에서 1분 29초로 약 81%, 힙 사용량은 5.26GiB에서 2.07GiB로 약 61% 감소했어요.',
+      },
+      {
+        title: '배운 점',
+        description:
+          '프레임워크를 바꾸는 작업도 기존 코드를 어디까지 유지할 수 있는지부터 살펴보는 것이 중요했어요. 업무 코드와 프레임워크에 연결된 부분을 나누니 이전 범위가 줄었고 호환성 문제도 따로 확인할 수 있었어요. 빌드 성능 역시 모두 Next.js의 문제로 보기보다 의존성을 함께 살펴본 덕분에 전체 이전이 끝나기 전에도 개선할 수 있었어요.',
+      },
+    ],
+  },
   {
     title: '상담 팝업의 초기 JavaScript 71.6% 감소',
     description: '영상통화 기능을 사용하지 않는 상담 팝업에도 SDK가 포함되어 있었어요. 의존성과 로딩 범위를 분리해 초기 JavaScript를 689kB에서 196kB로 줄였어요.',
@@ -187,7 +215,7 @@ function Project({ title, period, subtitle, details, links }: { title: string; p
 }
 
 function DetailBlock({ detail }: { detail: Detail }) {
-  return <div><h3 className="border-l-3 border-gray-800 pl-3 text-lg font-semibold text-gray-900 dark:border-zinc-300 dark:text-zinc-100">{detail.title}</h3>{detail.description && <p className="mt-2 leading-relaxed text-gray-700 dark:text-zinc-300">{detail.description}</p>}{detail.bullets && <ul className="mt-3 list-disc space-y-2 pl-5 leading-relaxed text-gray-700 marker:text-gray-400 dark:text-zinc-300">{detail.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul>}</div>;
+  return <div><h3 className="border-l-3 border-gray-800 pl-3 text-lg font-semibold text-gray-900 dark:border-zinc-300 dark:text-zinc-100">{detail.title}</h3>{detail.description && <p className="mt-2 leading-relaxed text-gray-700 dark:text-zinc-300">{detail.description}</p>}{detail.bullets && <ul className="mt-3 list-disc space-y-2 pl-5 leading-relaxed text-gray-700 marker:text-gray-400 dark:text-zinc-300">{detail.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul>}{detail.sections && <div className="mt-5 space-y-5">{detail.sections.map((section) => <div key={section.title}><h4 className="font-semibold text-gray-900 dark:text-zinc-100">{section.title}</h4>{section.description && <p className="mt-2 leading-relaxed text-gray-700 dark:text-zinc-300">{section.description}</p>}{section.bullets && <ul className="mt-3 list-disc space-y-2 pl-5 leading-relaxed text-gray-700 marker:text-gray-400 dark:text-zinc-300">{section.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul>}</div>)}</div>}</div>;
 }
 
 function SimpleEntry({ title, period, children }: { title: string; period: string; children: React.ReactNode }) {
