@@ -5,9 +5,13 @@
     "node": "24.x"
   },
   "scripts": {
+    "generate:posts": "node scripts/generate-posts.mjs",
+    "predev": "pnpm generate:posts",
     "dev": "next dev --turbopack",
+    "prebuild": "pnpm generate:posts",
     "build": "next build --turbopack",
     "start": "next start",
+    "pretypecheck": "pnpm generate:posts",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
