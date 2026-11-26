@@ -8,6 +8,8 @@ export type PostSummary = {
   image?: string;
   category?: string;
   tags: readonly string[];
+  readingMinutes: number;
+  hasTitleHeading: boolean;
 };
 
 export const postLoaders = {
@@ -100,6 +102,8 @@ export const posts = [
     description: "2026년 11월을 돌아보며",
     date: "2026-11-25",
     tags: [],
+    readingMinutes: 1,
+    hasTitleHeading: true,
   },
   {
     slug: "10월 회고",
@@ -107,6 +111,8 @@ export const posts = [
     description: "2026년 10월을 돌아보며",
     date: "2026-10-31",
     tags: [],
+    readingMinutes: 2,
+    hasTitleHeading: true,
   },
   {
     slug: "fetch에서 request.signal은 뭘까",
@@ -114,6 +120,8 @@ export const posts = [
     description: "fetch 코드에서 자주 보이는 request.signal을 간단히 알아보자",
     date: "2026-10-10",
     tags: [],
+    readingMinutes: 1,
+    hasTitleHeading: false,
   },
   {
     slug: "pnpm store 캐시로 PR 검증 시간 줄이기",
@@ -121,6 +129,8 @@ export const posts = [
     description: "pnpm store가 무엇인지 알아보고 lockfile 기반 캐시와 pnpm fetch로 PR 검증 시간을 줄인 과정",
     date: "2026-10-10",
     tags: [],
+    readingMinutes: 3,
+    hasTitleHeading: true,
   },
   {
     slug: "9월 회고",
@@ -128,6 +138,8 @@ export const posts = [
     description: "2026년 9월을 돌아보며",
     date: "2026-09-30",
     tags: [],
+    readingMinutes: 1,
+    hasTitleHeading: true,
   },
   {
     slug: "SPA에서 비동기 목록의 스크롤 복원하기",
@@ -135,6 +147,8 @@ export const posts = [
     description: "React SPA에서 목록과 상세 페이지를 오갈 때 스크롤 위치를 안정적으로 복원하는 방법",
     date: "2026-09-12",
     tags: [],
+    readingMinutes: 2,
+    hasTitleHeading: false,
   },
   {
     slug: "폴링을 SSE로 바꾸며 배운 것들: Next.js App Route로 안전한 스트림 프록시 만들기",
@@ -142,6 +156,8 @@ export const posts = [
     description: "Next.js App Router에서 SSE 프록시를 만들며 연결, 헤더, 취소, 종료를 다룬 방법",
     date: "2026-09-02",
     tags: [],
+    readingMinutes: 8,
+    hasTitleHeading: true,
   },
   {
     slug: "간략히 한 일 정리 (8월)",
@@ -149,6 +165,8 @@ export const posts = [
     description: "2026년 8월 회고",
     date: "2026-08-31",
     tags: [],
+    readingMinutes: 2,
+    hasTitleHeading: true,
   },
   {
     slug: "2026년 6~7월 회고",
@@ -156,6 +174,8 @@ export const posts = [
     description: "2026년 6~7월 회고",
     date: "2026-07-31",
     tags: [],
+    readingMinutes: 2,
+    hasTitleHeading: false,
   },
   {
     slug: "후일담 (2026상반기)",
@@ -163,6 +183,8 @@ export const posts = [
     description: "후일담 (2026상반기)",
     date: "2026-06-30",
     tags: [],
+    readingMinutes: 4,
+    hasTitleHeading: false,
   },
   {
     slug: "4월 회고",
@@ -170,6 +192,8 @@ export const posts = [
     description: "4월 회고",
     date: "2026-05-31",
     tags: [],
+    readingMinutes: 2,
+    hasTitleHeading: true,
   },
   {
     slug: "3월 회고",
@@ -177,6 +201,8 @@ export const posts = [
     description: "3월 회고",
     date: "2026-04-30",
     tags: [],
+    readingMinutes: 2,
+    hasTitleHeading: true,
   },
   {
     slug: "26년의 첫 회고",
@@ -184,6 +210,8 @@ export const posts = [
     description: "26년의 첫 회고",
     date: "2026-03-31",
     tags: [],
+    readingMinutes: 2,
+    hasTitleHeading: false,
   },
   {
     slug: "탭간 데이터 공유하기",
@@ -192,6 +220,8 @@ export const posts = [
     date: "2025-09-14",
     image: "/images/postImg/react.png",
     tags: [],
+    readingMinutes: 3,
+    hasTitleHeading: true,
   },
   {
     slug: "2025 상반기 회고-1탄",
@@ -200,6 +230,8 @@ export const posts = [
     date: "2025-06-06",
     image: "/images/postImg/reflection.jpg",
     tags: [],
+    readingMinutes: 4,
+    hasTitleHeading: true,
   },
   {
     slug: "Hydration에러 선언적으로 해결하기",
@@ -208,6 +240,8 @@ export const posts = [
     date: "2025-05-25",
     image: "/images/postImg/next13.png",
     tags: [],
+    readingMinutes: 2,
+    hasTitleHeading: true,
   },
   {
     slug: "잘하는 프론트엔드 개발자란",
@@ -216,6 +250,8 @@ export const posts = [
     date: "2025-02-23",
     image: "/images/postImg/0727.png",
     tags: [],
+    readingMinutes: 2,
+    hasTitleHeading: true,
   },
   {
     slug: "react-query 모음집",
@@ -224,6 +260,8 @@ export const posts = [
     date: "2025-02-02",
     image: "/images/postImg/react-query.png",
     tags: [],
+    readingMinutes: 3,
+    hasTitleHeading: true,
   },
   {
     slug: "서버컴포넌트와 리액트쿼리",
@@ -232,6 +270,8 @@ export const posts = [
     date: "2025-01-22",
     image: "/images/postImg/next13.png",
     tags: [],
+    readingMinutes: 6,
+    hasTitleHeading: true,
   },
   {
     slug: "2024년 회고",
@@ -240,6 +280,8 @@ export const posts = [
     date: "2024-12-30",
     image: "/images/postImg/reflection.jpg",
     tags: [],
+    readingMinutes: 7,
+    hasTitleHeading: true,
   },
   {
     slug: "페이지의 흐름을 제어해보자",
@@ -248,6 +290,8 @@ export const posts = [
     date: "2024-08-15",
     image: "/images/postImg/0815.png",
     tags: [],
+    readingMinutes: 2,
+    hasTitleHeading: true,
   },
   {
     slug: "GA를 블로그에 녹여보자",
@@ -256,6 +300,8 @@ export const posts = [
     date: "2024-07-27",
     image: "/images/postImg/0727.png",
     tags: [],
+    readingMinutes: 3,
+    hasTitleHeading: true,
   },
   {
     slug: "TQ로 SSR처리하기",
@@ -264,6 +310,8 @@ export const posts = [
     date: "2024-07-04",
     image: "/images/postImg/react-query.png",
     tags: [],
+    readingMinutes: 3,
+    hasTitleHeading: true,
   },
   {
     slug: "[짧]SVG를 리액트에서 써보자",
@@ -272,6 +320,8 @@ export const posts = [
     date: "2024-06-28",
     image: "/images/postImg/svgr.png",
     tags: [],
+    readingMinutes: 1,
+    hasTitleHeading: true,
   },
   {
     slug: "Next js app Route의 캐싱-DataCache",
@@ -280,6 +330,8 @@ export const posts = [
     date: "2024-06-15",
     image: "/images/postImg/next13.png",
     tags: [],
+    readingMinutes: 4,
+    hasTitleHeading: true,
   },
   {
     slug: "date-fns로 알잘딱 달력 컴포넌트 만들기",
@@ -288,6 +340,8 @@ export const posts = [
     date: "2024-06-12",
     image: "/images/postImg/06_12_1.png",
     tags: [],
+    readingMinutes: 4,
+    hasTitleHeading: true,
   },
   {
     slug: "서버컴포넌트에서의 CSS",
@@ -296,6 +350,8 @@ export const posts = [
     date: "2024-06-08",
     image: "/images/postImg/next13.png",
     tags: [],
+    readingMinutes: 15,
+    hasTitleHeading: true,
   },
   {
     slug: "반오십의 반절",
@@ -304,6 +360,8 @@ export const posts = [
     date: "2024-06-05",
     image: "/images/postImg/06_05_01.jpg",
     tags: [],
+    readingMinutes: 4,
+    hasTitleHeading: true,
   },
   {
     slug: "tanstackQuery딥다이브-1",
@@ -312,6 +370,8 @@ export const posts = [
     date: "2024-05-28",
     image: "/images/postImg/react-query.png",
     tags: [],
+    readingMinutes: 4,
+    hasTitleHeading: true,
   },
   {
     slug: "recoil로 URL에 State저장하기",
@@ -320,6 +380,8 @@ export const posts = [
     date: "2024-05-24",
     image: "/images/postImg/05_24.png",
     tags: [],
+    readingMinutes: 2,
+    hasTitleHeading: true,
   },
   {
     slug: "블로그 글에 OpenGraph이미지 커스텀하기",
@@ -328,6 +390,8 @@ export const posts = [
     date: "2024-05-17",
     image: "/images/postImg/05_17_2.png",
     tags: [],
+    readingMinutes: 2,
+    hasTitleHeading: true,
   },
   {
     slug: "Sentry를 잘 쓰기 위한 고민",
@@ -336,6 +400,8 @@ export const posts = [
     date: "2024-05-11",
     image: "/images/postImg/0511.png",
     tags: [],
+    readingMinutes: 3,
+    hasTitleHeading: true,
   },
   {
     slug: "svg+xml but dangerouslyAllowSVG is disabled에러",
@@ -344,6 +410,8 @@ export const posts = [
     date: "2024-05-05",
     image: "/images/postImg/0505.png",
     tags: [],
+    readingMinutes: 2,
+    hasTitleHeading: true,
   },
   {
     slug: "Next js app Route의 캐싱-RouterCache",
@@ -352,6 +420,8 @@ export const posts = [
     date: "2024-04-28",
     image: "/images/postImg/next13.png",
     tags: [],
+    readingMinutes: 3,
+    hasTitleHeading: true,
   },
   {
     slug: "Next js app Route의 캐싱-RequestMemorization",
@@ -360,6 +430,8 @@ export const posts = [
     date: "2024-04-27",
     image: "/images/postImg/next13.png",
     tags: [],
+    readingMinutes: 2,
+    hasTitleHeading: true,
   },
   {
     slug: "컴포넌트 작성에 대한 고민들 (합성 컴포넌트)",
@@ -368,6 +440,8 @@ export const posts = [
     date: "2024-04-24",
     image: "/images/postImg/react.png",
     tags: [],
+    readingMinutes: 6,
+    hasTitleHeading: true,
   },
   {
     slug: "뒤죽박죽 코드블록 컴포넌트 뜯어 고치기",
@@ -376,6 +450,8 @@ export const posts = [
     date: "2024-04-16",
     image: "/images/postImg/0416.webp",
     tags: [],
+    readingMinutes: 3,
+    hasTitleHeading: true,
   },
   {
     slug: "React에서 좋지않은 환경에서의 API요청 처리하기",
@@ -384,6 +460,8 @@ export const posts = [
     date: "2024-04-15",
     image: "/images/postImg/0415.webp",
     tags: [],
+    readingMinutes: 6,
+    hasTitleHeading: true,
   },
   {
     slug: "useCallback훅 알아보기",
@@ -392,6 +470,8 @@ export const posts = [
     date: "2024-03-29",
     image: "/images/postImg/react.png",
     tags: [],
+    readingMinutes: 3,
+    hasTitleHeading: true,
   },
   {
     slug: "isLoading vs isFetching",
@@ -400,6 +480,8 @@ export const posts = [
     date: "2024-03-17",
     image: "/images/postImg/react-query.png",
     tags: [],
+    readingMinutes: 3,
+    hasTitleHeading: true,
   },
   {
     slug: "react-query의 Stale vs Cache 상태",
@@ -408,6 +490,8 @@ export const posts = [
     date: "2024-03-09",
     image: "/images/postImg/react-query.png",
     tags: [],
+    readingMinutes: 3,
+    hasTitleHeading: true,
   },
   {
     slug: "웹 사이트 보안에 대해 알아보자",
@@ -416,6 +500,8 @@ export const posts = [
     date: "2024-02-27",
     image: "/images/postImg/webpolicy.jpg",
     tags: [],
+    readingMinutes: 9,
+    hasTitleHeading: true,
   },
   {
     slug: "npm install과 npm ci의 차이",
@@ -424,6 +510,8 @@ export const posts = [
     date: "2024-02-26",
     image: "/images/postImg/lighthouseCI.png",
     tags: [],
+    readingMinutes: 2,
+    hasTitleHeading: true,
   },
   {
     slug: "웹 개발자가 알아야 할 웹 지표",
@@ -432,6 +520,8 @@ export const posts = [
     date: "2024-02-23",
     image: "/images/postImg/corewebvital.png",
     tags: [],
+    readingMinutes: 11,
+    hasTitleHeading: true,
   },
   {
     slug: "모던 리액트 11장",
@@ -440,6 +530,8 @@ export const posts = [
     date: "2024-02-13",
     image: "/images/postImg/react.png",
     tags: [],
+    readingMinutes: 9,
+    hasTitleHeading: true,
   },
   {
     slug: "서버 컴포넌트에서 Blur이미지 처리하기",
@@ -448,6 +540,8 @@ export const posts = [
     date: "2024-02-01",
     image: "/images/postImg/next13.png",
     tags: [],
+    readingMinutes: 3,
+    hasTitleHeading: true,
   },
   {
     slug: "모던 리액트 5장",
@@ -456,6 +550,8 @@ export const posts = [
     date: "2024-01-30",
     image: "/images/postImg/react.png",
     tags: [],
+    readingMinutes: 7,
+    hasTitleHeading: true,
   },
   {
     slug: "recoil을 이용해 모달을 관리해보자!",
@@ -464,6 +560,8 @@ export const posts = [
     date: "2024-01-25",
     image: "/images/postImg/react.png",
     tags: [],
+    readingMinutes: 3,
+    hasTitleHeading: true,
   },
   {
     slug: "모던 리액트 4장",
@@ -472,6 +570,8 @@ export const posts = [
     date: "2024-01-23",
     image: "/images/postImg/react.png",
     tags: [],
+    readingMinutes: 10,
+    hasTitleHeading: true,
   },
   {
     slug: "모던 리액트 3장",
@@ -480,6 +580,8 @@ export const posts = [
     date: "2024-01-16",
     image: "/images/postImg/react.png",
     tags: [],
+    readingMinutes: 13,
+    hasTitleHeading: true,
   },
   {
     slug: "프론트엔드 취준생의 2023년 회고",
@@ -488,6 +590,8 @@ export const posts = [
     date: "2024-01-13",
     image: "/images/postImg/1010.jpg",
     tags: [],
+    readingMinutes: 7,
+    hasTitleHeading: true,
   },
   {
     slug: "tsconfig path를 린트에 적용하기",
@@ -496,6 +600,8 @@ export const posts = [
     date: "2024-01-11",
     image: "/images/postImg/typescript.png",
     tags: [],
+    readingMinutes: 3,
+    hasTitleHeading: true,
   },
   {
     slug: "모던 리액트 2장",
@@ -504,6 +610,8 @@ export const posts = [
     date: "2024-01-01",
     image: "/images/postImg/react.png",
     tags: [],
+    readingMinutes: 14,
+    hasTitleHeading: true,
   },
   {
     slug: "RestFul하다는게 무엇일까",
@@ -512,6 +620,8 @@ export const posts = [
     date: "2023-12-31",
     image: "/images/postImg/reflection.jpg",
     tags: [],
+    readingMinutes: 7,
+    hasTitleHeading: true,
   },
   {
     slug: "React의 최고의 관행을 다시 생각해보기",
@@ -520,6 +630,8 @@ export const posts = [
     date: "2023-12-20",
     image: "/images/postImg/next13.png",
     tags: [],
+    readingMinutes: 12,
+    hasTitleHeading: true,
   },
   {
     slug: "Webpack으로 SPA설정하기",
@@ -528,6 +640,8 @@ export const posts = [
     date: "2023-12-14",
     image: "/images/postImg/Js.png",
     tags: [],
+    readingMinutes: 3,
+    hasTitleHeading: true,
   },
   {
     slug: "리액트에서 입력 다루기",
@@ -536,6 +650,8 @@ export const posts = [
     date: "2023-10-30",
     image: "/images/postImg/form.png",
     tags: [],
+    readingMinutes: 3,
+    hasTitleHeading: true,
   },
   {
     slug: "유틸리티 타입 정리",
@@ -544,6 +660,8 @@ export const posts = [
     date: "2023-10-22",
     image: "/images/postImg/typescript.png",
     tags: [],
+    readingMinutes: 3,
+    hasTitleHeading: true,
   },
   {
     slug: "서버 컴포넌트 이해하기",
@@ -552,6 +670,8 @@ export const posts = [
     date: "2023-10-05",
     image: "/images/postImg/next13.png",
     tags: [],
+    readingMinutes: 8,
+    hasTitleHeading: true,
   },
   {
     slug: "2023 9월 회고",
@@ -560,6 +680,8 @@ export const posts = [
     date: "2023-10-03",
     image: "/images/postImg/1010.jpg",
     tags: [],
+    readingMinutes: 6,
+    hasTitleHeading: true,
   },
   {
     slug: "이펙티드 타입스크립트 정리-1",
@@ -568,6 +690,8 @@ export const posts = [
     date: "2023-09-09",
     image: "/images/postImg/typescript.png",
     tags: [],
+    readingMinutes: 2,
+    hasTitleHeading: true,
   },
   {
     slug: "2023년 8월 회고",
@@ -576,6 +700,8 @@ export const posts = [
     date: "2023-09-08",
     image: "/images/postImg/reflection.jpg",
     tags: [],
+    readingMinutes: 5,
+    hasTitleHeading: true,
   },
   {
     slug: "함수형 컴포넌트와 클래스형 컴포넌트",
@@ -584,6 +710,8 @@ export const posts = [
     date: "2023-09-01",
     image: "/images/postImg/classandfunc.png",
     tags: [],
+    readingMinutes: 3,
+    hasTitleHeading: true,
   },
   {
     slug: "Axios 알아보기",
@@ -592,6 +720,8 @@ export const posts = [
     date: "2023-08-26",
     image: "/images/postImg/axiosIntroduce.avif",
     tags: [],
+    readingMinutes: 3,
+    hasTitleHeading: true,
   },
   {
     slug: "HTMLAttributes를 알아보자",
@@ -600,6 +730,8 @@ export const posts = [
     date: "2023-08-24",
     image: "/images/postImg/DomAttribute.png",
     tags: [],
+    readingMinutes: 3,
+    hasTitleHeading: true,
   },
   {
     slug: "Vue와 React의 상태 비교",
@@ -608,6 +740,8 @@ export const posts = [
     date: "2023-08-15",
     image: "/images/postImg/vue-state-1.png",
     tags: [],
+    readingMinutes: 3,
+    hasTitleHeading: true,
   },
   {
     slug: "Vue.js의 비동기요청과 라이프사이클",
@@ -616,6 +750,8 @@ export const posts = [
     date: "2023-08-14",
     image: "/images/postImg/vuelifecycle.png",
     tags: [],
+    readingMinutes: 2,
+    hasTitleHeading: true,
   },
   {
     slug: "이전 커밋으로 되돌리기",
@@ -624,6 +760,8 @@ export const posts = [
     date: "2023-08-11",
     image: "/images/postImg/github.png",
     tags: [],
+    readingMinutes: 2,
+    hasTitleHeading: true,
   },
   {
     slug: "2023 7월 회고",
@@ -632,6 +770,8 @@ export const posts = [
     date: "2023-08-07",
     image: "/images/postImg/reflection.jpg",
     tags: [],
+    readingMinutes: 5,
+    hasTitleHeading: true,
   },
   {
     slug: "Next js app route로 블로그 만들기",
@@ -640,6 +780,8 @@ export const posts = [
     date: "2023-07-29",
     image: "/images/postImg/NextjsBlog.webp",
     tags: [],
+    readingMinutes: 5,
+    hasTitleHeading: true,
   },
   {
     slug: "노션 클로닝 회고",
@@ -648,6 +790,8 @@ export const posts = [
     date: "2023-07-18",
     image: "/images/postImg/notion.png",
     tags: [],
+    readingMinutes: 4,
+    hasTitleHeading: true,
   },
   {
     slug: "2023 상반기를 돌아보며",
@@ -656,6 +800,8 @@ export const posts = [
     date: "2023-07-05",
     image: "/images/postImg/blogbundleSize.png",
     tags: [],
+    readingMinutes: 4,
+    hasTitleHeading: true,
   },
   {
     slug: "Node환경에서의 이벤트 루프",
@@ -664,6 +810,8 @@ export const posts = [
     date: "2023-06-30",
     image: "/images/postImg/libuv.jpg",
     tags: [],
+    readingMinutes: 5,
+    hasTitleHeading: true,
   },
   {
     slug: "자바스크립트의 빌드과정",
@@ -672,6 +820,8 @@ export const posts = [
     date: "2023-06-29",
     image: "/images/postImg/Js.png",
     tags: [],
+    readingMinutes: 4,
+    hasTitleHeading: true,
   },
   {
     slug: "모던 자바스크립트 4,5,6장 정리",
@@ -680,6 +830,8 @@ export const posts = [
     date: "2023-06-20",
     image: "/images/postImg/Js.png",
     tags: [],
+    readingMinutes: 4,
+    hasTitleHeading: true,
   },
   {
     slug: "ES6의 모듈",
@@ -688,6 +840,8 @@ export const posts = [
     date: "2023-06-19",
     image: "/images/postImg/bundle.png",
     tags: [],
+    readingMinutes: 3,
+    hasTitleHeading: true,
   },
   {
     slug: "명령형 프로그래밍과 선언형 프로그래밍",
@@ -696,6 +850,8 @@ export const posts = [
     date: "2023-06-15",
     image: "/images/Profile.jpg",
     tags: [],
+    readingMinutes: 3,
+    hasTitleHeading: true,
   },
   {
     slug: "자바스크립트의 여러 코드 트릭",
@@ -704,5 +860,7 @@ export const posts = [
     date: "2023-06-12",
     image: "/images/postImg/Js.png",
     tags: [],
+    readingMinutes: 1,
+    hasTitleHeading: true,
   },
 ] as const satisfies readonly PostSummary[];

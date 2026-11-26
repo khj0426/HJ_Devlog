@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
 import Comments from '@/components/Comments';
-import { postLoaders, type PostSlug } from '@/content/posts';
+import { postLoaders, posts, type PostSlug } from '@/content/posts';
 
 type PageProps = { params: Promise<{ slug: string }> };
 
@@ -13,6 +13,11 @@ function decodeSlug(slug: string) {
   } catch {
     return slug as PostSlug;
   }
+}
+
+function formatDate(date: string) {
+  const [year, month, day] = date.split('-').map(Number);
+  return `${year}년 ${month}월 ${day}일`;
 }
 
 export function generateStaticParams() {
@@ -38,6 +43,8 @@ export default async function BlogPost({ params }: PageProps) {
   const slug = decodeSlug(paramsValue.slug);
   const loader = postLoaders[slug];
   if (!loader) notFound();
+  const post = posts.find((item) => item.slug === slug);
+  if (!post) notFound();
   const { default: Post } = await loader();
   return (
     <>
@@ -53,7 +60,21 @@ export default async function BlogPost({ params }: PageProps) {
           <span className="ml-1">글 목록</span>
         </Link>
       </nav>
-      <Post />
+      <article>
+        <header className="mb-10 border-b border-gray-200 pb-8 pt-6 dark:border-zinc-800">
+          <h1 className="text-3xl font-semibold tracking-tight text-gray-950 dark:text-zinc-100">
+            {post.title}
+          </h1>
+          <p className="mt-3 text-sm text-gray-500 dark:text-zinc-400">
+            <time dateTime={post.date}>{formatDate(post.date)}</time>
+            <span aria-hidden="true"> · </span>
+            <span>{post.readingMinutes}분 읽기</span>
+          </p>
+        </header>
+        <div className={post.hasTitleHeading ? 'post-content hide-title-heading' : 'post-content'}>
+          <Post />
+        </div>
+      </article>
       <Comments />
     </>
   );

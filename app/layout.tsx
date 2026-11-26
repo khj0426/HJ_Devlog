@@ -22,7 +22,10 @@ const themeInitScript = `
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://hj-devlog.vercel.app'),
-  alternates: { canonical: '/' },
+  alternates: {
+    canonical: '/',
+    types: { 'application/rss+xml': '/rss.xml' },
+  },
   title: { default: 'HJ Devlog', template: '%s | HJ Devlog' },
   description: '프론트엔드 개발과 제품에 대한 생각을 기록하는 공간',
   icons: { icon: '/images/favicon.webp' },
@@ -48,9 +51,12 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
 
 function Footer() {
   return (
-    <footer className="mt-12 text-center">
-      <a href="https://github.com/khj0426" target="_blank" rel="noopener noreferrer" className="text-gray-400 dark:text-gray-500 hover:text-blue-500 transition-colors duration-200">
+    <footer className="mt-12 flex justify-center gap-4 text-center">
+      <a href="https://github.com/khj0426" target="_blank" rel="noopener noreferrer" className="text-gray-400 transition-colors duration-200 hover:text-blue-500 dark:text-gray-500">
         github
+      </a>
+      <a href="/rss.xml" className="text-gray-400 transition-colors duration-200 hover:text-blue-500 dark:text-gray-500">
+        rss
       </a>
     </footer>
   );
