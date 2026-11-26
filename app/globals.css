@@ -21,7 +21,7 @@ pre code { border: 0; background: transparent; padding: 0; font-size: 14px; line
 pre code > span .sh__token--identifier { color: white !important; }
 pre code span, code:not(pre code) span { font-weight: 500; }
 code:not(pre code) span { color: black !important; }
-.dark code { background: var(--color-zinc-800); }
+.dark code:not(pre code) { background: var(--color-zinc-800); }
 .dark code:not(pre code) span { color: var(--color-zinc-100) !important; }
 hr { color: var(--color-gray-200); }
 table { display: block; max-width: fit-content; overflow-x: auto; white-space: nowrap; text-align: left; }
