@@ -61,7 +61,7 @@ export default async function BlogPost({ params }: PageProps) {
         </Link>
       </nav>
       <article>
-        <header className="mb-10 border-b border-gray-200 pb-8 pt-6 dark:border-zinc-800">
+        <header className="border-b border-gray-200 dark:border-zinc-800">
           <h1 className="text-3xl font-semibold tracking-tight text-gray-950 dark:text-zinc-100">
             {post.title}
           </h1>
