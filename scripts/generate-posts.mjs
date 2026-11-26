@@ -44,25 +44,11 @@ function parsePost(source, fileName) {
     tags: readStringArray(metadata, 'tags', fileName),
   };
 
-  const body = source.slice(metadataMatch.index + metadataMatch[0].length);
-  const firstHeading = body.match(/^#{1,6}\s+(.+)$/m)?.[1]?.trim();
-  const readableText = body
-    .replace(/```[\s\S]*?```/g, ' ')
-    .replace(/`[^`]*`/g, ' ')
-    .replace(/<[^>]+>/g, ' ')
-    .replace(/https?:\/\/\S+/g, ' ')
-    .replace(/[#>*_[\]()-]/g, ' ');
-  const wordCount = readableText.match(/[가-힣]+|[A-Za-z0-9]+/g)?.length ?? 0;
-
   if (Number.isNaN(Date.parse(`${post.date}T00:00:00Z`))) {
     throw new Error(`${fileName}: post.date must use a valid YYYY-MM-DD value`);
   }
 
-  return {
-    ...post,
-    readingMinutes: Math.max(1, Math.ceil(wordCount / 200)),
-    hasTitleHeading: firstHeading === post.title,
-  };
+  return post;
 }
 
 function serializePost(post) {
@@ -70,8 +56,6 @@ function serializePost(post) {
     post.image ? `    image: ${JSON.stringify(post.image)},` : null,
     post.category ? `    category: ${JSON.stringify(post.category)},` : null,
     post.tags.length > 0 ? `    tags: ${JSON.stringify(post.tags)},` : '    tags: [],',
-    `    readingMinutes: ${post.readingMinutes},`,
-    `    hasTitleHeading: ${post.hasTitleHeading},`,
   ].filter(Boolean);
 
   return [
@@ -121,8 +105,6 @@ export type PostSummary = {
   image?: string;
   category?: string;
   tags: readonly string[];
-  readingMinutes: number;
-  hasTitleHeading: boolean;
 };
 
 export const postLoaders = {
